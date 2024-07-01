@@ -1,6 +1,8 @@
 package net.kenddie.fantasyarmor;
 
 import com.mojang.logging.LogUtils;
+import net.kenddie.fantasyarmor.database.FantasyArmorCreativeModTabs;
+import net.kenddie.fantasyarmor.database.FantasyArmorItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.food.FoodProperties;
@@ -38,6 +40,10 @@ public class FantasyArmor
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        FantasyArmorCreativeModTabs.register(modEventBus);
+
+        FantasyArmorItems.register(modEventBus);
+
         modEventBus.addListener(this::commonSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
@@ -52,7 +58,7 @@ public class FantasyArmor
 
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
-
+        
     }
 
     @SubscribeEvent
