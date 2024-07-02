@@ -1,5 +1,4 @@
 {
-    "item.fantasy_armor.moon_crystal": "Moon Crystal",
-
-    "creativetab.fantasy_armor_tab": "Fantasy Armor"
+    "itemGroup.fantasy_armor.fa_tab": "Fantasy Armor",
+    "item.fantasy_armor.moon_crystal": "Moon Crystal"
 }
