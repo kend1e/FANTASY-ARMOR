@@ -1,7 +1,7 @@
 package net.kenddie.fantasyarmor.item;
 
 import net.kenddie.fantasyarmor.FantasyArmor;
-import net.kenddie.fantasyarmor.item.armor.lib.FAArmorItem;
+import net.kenddie.fantasyarmor.item.armor.EclipseSoldierArmorItem;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -15,10 +15,10 @@ public final class FAItems {
 
     public static final RegistryObject<Item> MOON_CRYSTAL = ITEMS.register("moon_crystal", () -> new Item(new Item.Properties()));
 
-    public static final RegistryObject<Item> ECLIPSE_SOLDIER_HELMET = ITEMS.register("eclipse_soldier_helmet", () -> new FAArmorItem(ArmorItem.Type.HELMET));
-    public static final RegistryObject<Item> ECLIPSE_SOLDIER_CHESTPLATE = ITEMS.register("eclipse_soldier_chestplate", () -> new FAArmorItem(ArmorItem.Type.CHESTPLATE));
-    public static final RegistryObject<Item> ECLIPSE_SOLDIER_LEGGINGS = ITEMS.register("eclipse_soldier_leggings", () -> new FAArmorItem(ArmorItem.Type.LEGGINGS));
-    public static final RegistryObject<Item> ECLIPSE_SOLDIER_BOOTS = ITEMS.register("eclipse_soldier_boots", () -> new FAArmorItem(ArmorItem.Type.BOOTS));
+    public static final RegistryObject<Item> ECLIPSE_SOLDIER_HELMET = ITEMS.register("eclipse_soldier_helmet", () -> new EclipseSoldierArmorItem(ArmorItem.Type.HELMET));
+    public static final RegistryObject<Item> ECLIPSE_SOLDIER_CHESTPLATE = ITEMS.register("eclipse_soldier_chestplate", () -> new EclipseSoldierArmorItem(ArmorItem.Type.CHESTPLATE));
+    public static final RegistryObject<Item> ECLIPSE_SOLDIER_LEGGINGS = ITEMS.register("eclipse_soldier_leggings", () -> new EclipseSoldierArmorItem(ArmorItem.Type.LEGGINGS));
+    public static final RegistryObject<Item> ECLIPSE_SOLDIER_BOOTS = ITEMS.register("eclipse_soldier_boots", () -> new EclipseSoldierArmorItem(ArmorItem.Type.BOOTS));
 
     private FAItems() {
     }
