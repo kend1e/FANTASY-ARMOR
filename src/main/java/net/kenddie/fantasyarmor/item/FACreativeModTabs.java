@@ -1,4 +1,4 @@
-package net.kenddie.fantasyarmor.registry;
+package net.kenddie.fantasyarmor.item;
 
 import net.kenddie.fantasyarmor.FantasyArmor;
 import net.minecraft.core.registries.Registries;
@@ -9,7 +9,8 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
-public class FACreativeModTabsRegistry {
+@SuppressWarnings({"unused"})
+public class FACreativeModTabs {
 
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, FantasyArmor.MOD_ID);
 
@@ -17,9 +18,15 @@ public class FACreativeModTabsRegistry {
             CREATIVE_MODE_TABS.register(
                     "fa_tab",
                     () -> CreativeModeTab.builder()
-                            .icon(() -> new ItemStack(FAItemsRegistry.MOON_CRYSTAL.get()))
+                            .icon(() -> new ItemStack(FAItems.MOON_CRYSTAL.get()))
                             .title(Component.translatable("itemGroup." + FantasyArmor.MOD_ID + ".fa_tab"))
-                            .displayItems((pParameters, pOutput) -> pOutput.accept(FAItemsRegistry.MOON_CRYSTAL.get()))
+                            .displayItems((pParameters, pOutput) -> {
+                                pOutput.accept(FAItems.MOON_CRYSTAL.get());
+                                pOutput.accept(FAItems.ECLIPSE_SOLDIER_HELMET.get());
+                                pOutput.accept(FAItems.ECLIPSE_SOLDIER_CHESTPLATE.get());
+                                pOutput.accept(FAItems.ECLIPSE_SOLDIER_LEGGINGS.get());
+                                pOutput.accept(FAItems.ECLIPSE_SOLDIER_BOOTS.get());
+                            })
                             .build()
             );
 

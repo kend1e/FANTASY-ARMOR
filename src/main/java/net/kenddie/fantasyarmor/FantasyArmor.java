@@ -1,7 +1,7 @@
 package net.kenddie.fantasyarmor;
 
-import net.kenddie.fantasyarmor.registry.FACreativeModTabsRegistry;
-import net.kenddie.fantasyarmor.registry.FAItemsRegistry;
+import net.kenddie.fantasyarmor.item.FACreativeModTabs;
+import net.kenddie.fantasyarmor.item.FAItems;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -14,7 +14,7 @@ public class FantasyArmor {
     public FantasyArmor() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        FACreativeModTabsRegistry.register(modEventBus);
-        FAItemsRegistry.register(modEventBus);
+        FAItems.register(modEventBus);
+        FACreativeModTabs.register(modEventBus);
     }
 }
