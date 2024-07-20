@@ -11,7 +11,7 @@ public class FAArmorModel extends GeoModel<EclipseSoldierArmorItem> {
     private final String animationPath;
 
     public FAArmorModel(String modelPath, String texturePath) {
-        this(modelPath, texturePath, "animations/armor.animation.json");
+        this(modelPath, texturePath, null);
     }
 
     public FAArmorModel(String modelPath, String texturePath, String animationPath) {
@@ -32,6 +32,9 @@ public class FAArmorModel extends GeoModel<EclipseSoldierArmorItem> {
 
     @Override
     public ResourceLocation getAnimationResource(EclipseSoldierArmorItem animatable) {
-        return new ResourceLocation(FantasyArmor.MOD_ID, animationPath);
+        if (animationPath != null) {
+            return new ResourceLocation(FantasyArmor.MOD_ID, animationPath);
+        }
+        return null;
     }
 }
