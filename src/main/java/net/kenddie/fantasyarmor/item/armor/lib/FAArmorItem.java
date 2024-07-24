@@ -20,7 +20,7 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
     protected final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
 
     public FAArmorItem(Type type) {
-        super(ArmorMaterials.NETHERITE, type, new Properties());
+        super(ArmorMaterials.NETHERITE, type, new Properties().stacksTo(1));
     }
 
     @Override
