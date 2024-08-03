@@ -26,6 +26,22 @@ public class FACreativeModTabs {
                                 pOutput.accept(FAItems.ECLIPSE_SOLDIER_CHESTPLATE.get());
                                 pOutput.accept(FAItems.ECLIPSE_SOLDIER_LEGGINGS.get());
                                 pOutput.accept(FAItems.ECLIPSE_SOLDIER_BOOTS.get());
+                                pOutput.accept(FAItems.DRAGONSLAYER_HELMET.get());
+                                pOutput.accept(FAItems.DRAGONSLAYER_CHESTPLATE.get());
+                                pOutput.accept(FAItems.DRAGONSLAYER_LEGGINGS.get());
+                                pOutput.accept(FAItems.DRAGONSLAYER_BOOTS.get());
+                                pOutput.accept(FAItems.HERO_HELMET.get());
+                                pOutput.accept(FAItems.HERO_CHESTPLATE.get());
+                                pOutput.accept(FAItems.HERO_LEGGINGS.get());
+                                pOutput.accept(FAItems.HERO_BOOTS.get());
+                                pOutput.accept(FAItems.GOLDEN_HORNS_HELMET.get());
+                                pOutput.accept(FAItems.GOLDEN_HORNS_CHESTPLATE.get());
+                                pOutput.accept(FAItems.GOLDEN_HORNS_LEGGINGS.get());
+                                pOutput.accept(FAItems.GOLDEN_HORNS_BOOTS.get());
+                                pOutput.accept(FAItems.THIEF_HELMET.get());
+                                pOutput.accept(FAItems.THIEF_CHESTPLATE.get());
+                                pOutput.accept(FAItems.THIEF_LEGGINGS.get());
+                                pOutput.accept(FAItems.THIEF_BOOTS.get());
                             })
                             .build()
             );

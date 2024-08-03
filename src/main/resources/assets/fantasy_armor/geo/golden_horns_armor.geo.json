@@ -12,10 +12,6 @@
 			},
 			"bones": [
 				{
-					"name": "bb_main",
-					"pivot": [0, 0, 0]
-				},
-				{
 					"name": "bipedHead",
 					"pivot": [0, 24, 0]
 				},
@@ -24,18 +20,35 @@
 					"parent": "bipedHead",
 					"pivot": [0, 24, 0],
 					"cubes": [
-						{"origin": [-4.5, 23.5, -4.5], "size": [9, 9, 9], "inflate": 0.56, "uv": [0, 16]},
 						{"origin": [-4.5, 23.5, -4.5], "size": [9, 9, 9], "inflate": 0.8, "uv": [0, 34]},
-						{"origin": [-4.5, 32.65, -4.5], "size": [9, 1, 9], "inflate": 0.2, "uv": [0, 52]}
+						{"origin": [-4.5, 23.5, -4.5], "size": [9, 9, 9], "inflate": 0.56, "uv": [0, 16]},
+						{"origin": [-1.5, 32.65, -4.5], "size": [3, 2, 9], "inflate": 0.3, "uv": [0, 52]}
 					]
 				},
 				{
-					"name": "helmetSide",
+					"name": "horns",
 					"parent": "armorHead",
-					"pivot": [0, 21.75, 0],
+					"pivot": [0, 21.75, 0]
+				},
+				{
+					"name": "leftHorn",
+					"parent": "horns",
+					"pivot": [4.75, 30.25, 0],
 					"cubes": [
-						{"origin": [-5.5, 28.15, -5.5], "size": [11, 1, 11], "inflate": 0.2, "uv": [0, 62]},
-						{"origin": [-0.5, 29.55, -5.5], "size": [1, 5, 11], "inflate": 0.2, "uv": [0, 74]}
+						{"origin": [4.75, 28.75, -1.5], "size": [4, 3, 3], "uv": [0, 63]},
+						{"origin": [7.2088, 29.05656, -1.5], "size": [6, 3, 3], "inflate": -0.01, "pivot": [8.2088, 30.05656, -0.5], "rotation": [0, 0, -67.5], "uv": [0, 69]},
+						{"origin": [8.73954, 33.83447, -1.5], "size": [6, 3, 3], "inflate": -0.02, "pivot": [9.73954, 34.83447, -0.5], "rotation": [0, 0, -112.5], "uv": [0, 75]}
+					]
+				},
+				{
+					"name": "rightHorn",
+					"parent": "horns",
+					"pivot": [-4.75, 30.25, 0],
+					"rotation": [0, 180, 0],
+					"cubes": [
+						{"origin": [-4.75, 28.75, -1.5], "size": [4, 3, 3], "pivot": [-2.75, 30.25, 0], "rotation": [0, 180, 0], "uv": [0, 63], "mirror": true},
+						{"origin": [-3.98777, 30.59566, -1.5], "size": [6, 3, 3], "inflate": -0.01, "pivot": [-0.98777, 32.09566, 0], "rotation": [180, 0, 112.5], "uv": [0, 69], "mirror": true},
+						{"origin": [-3.98777, 34.99089, -1.5], "size": [6, 3, 3], "inflate": -0.02, "pivot": [-0.98777, 36.49089, 0], "rotation": [180, 0, 67.5], "uv": [0, 75], "mirror": true}
 					]
 				},
 				{
@@ -52,6 +65,15 @@
 					]
 				},
 				{
+					"name": "chestplateFrontCape",
+					"parent": "armorBody",
+					"pivot": [0, 13, -3.15],
+					"rotation": [-2.5, 0, 0],
+					"cubes": [
+						{"origin": [-4, 0, -3.15], "size": [8, 13, 0], "uv": [36, 64]}
+					]
+				},
+				{
 					"name": "bipedRightArm",
 					"pivot": [-4, 22, 0]
 				},
@@ -60,8 +82,8 @@
 					"parent": "bipedRightArm",
 					"pivot": [-4, 22, 0],
 					"cubes": [
-						{"origin": [-8, 12, -2], "size": [4, 12, 4], "inflate": 1, "uv": [76, 32]},
-						{"origin": [-8, 12, -2], "size": [4, 12, 4], "inflate": 1.25, "uv": [76, 48]}
+						{"origin": [-8, 12, -2], "size": [4, 12, 4], "inflate": 1.25, "uv": [76, 16]},
+						{"origin": [-8, 12, -2], "size": [4, 12, 4], "inflate": 1, "uv": [76, 0]}
 					]
 				},
 				{
@@ -78,25 +100,6 @@
 					]
 				},
 				{
-					"name": "leftShoulder",
-					"parent": "armorLeftArm",
-					"pivot": [6.5, 22.25, 0],
-					"rotation": [0, 0, 5],
-					"cubes": [
-						{"origin": [3.25, 20.25, -3], "size": [6, 5, 6], "inflate": 0.15, "uv": [92, 0]},
-						{"origin": [3.25, 20.25, -3], "size": [6, 5, 6], "inflate": 0.4, "uv": [92, 11]}
-					]
-				},
-				{
-					"name": "leftShoulderCloth",
-					"parent": "armorLeftArm",
-					"pivot": [6, 22, 0],
-					"rotation": [0, 0, -2.5],
-					"cubes": [
-						{"origin": [3.5, 12, -2.5], "size": [5, 10, 5], "inflate": 0.6, "uv": [92, 22]}
-					]
-				},
-				{
 					"name": "bipedLeftLeg",
 					"pivot": [2, 12, 0]
 				},
@@ -105,8 +108,8 @@
 					"parent": "bipedLeftLeg",
 					"pivot": [2, 12, 0],
 					"cubes": [
-						{"origin": [-0.1, 0, -2], "size": [4, 12, 4], "inflate": 0.85, "uv": [52, 48], "mirror": true},
-						{"origin": [-0.1, 0, -2], "size": [4, 12, 4], "inflate": 0.66, "uv": [52, 32], "mirror": true}
+						{"origin": [-0.1, 0, -2], "size": [4, 12, 4], "inflate": 0.66, "uv": [52, 32], "mirror": true},
+						{"origin": [-0.1, 0, -2], "size": [4, 12, 4], "inflate": 0.85, "uv": [52, 48], "mirror": true}
 					]
 				},
 				{
