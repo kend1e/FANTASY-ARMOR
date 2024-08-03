@@ -1,11 +1,11 @@
 package net.kenddie.fantasyarmor.entity.client.armor.model.lib;
 
 import net.kenddie.fantasyarmor.FantasyArmor;
-import net.kenddie.fantasyarmor.item.armor.EclipseSoldierArmorItem;
+import net.kenddie.fantasyarmor.item.armor.lib.FAArmorItem;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.GeoModel;
 
-public class FAArmorModel extends GeoModel<EclipseSoldierArmorItem> {
+public class FAArmorModel <T extends FAArmorItem> extends GeoModel<T> {
     private final String modelPath;
     private final String texturePath;
     private final String animationPath;
@@ -21,17 +21,17 @@ public class FAArmorModel extends GeoModel<EclipseSoldierArmorItem> {
     }
 
     @Override
-    public ResourceLocation getModelResource(EclipseSoldierArmorItem animatable) {
+    public ResourceLocation getModelResource(T animatable) {
         return new ResourceLocation(FantasyArmor.MOD_ID, modelPath);
     }
 
     @Override
-    public ResourceLocation getTextureResource(EclipseSoldierArmorItem animatable) {
+    public ResourceLocation getTextureResource(T animatable) {
         return new ResourceLocation(FantasyArmor.MOD_ID, texturePath);
     }
 
     @Override
-    public ResourceLocation getAnimationResource(EclipseSoldierArmorItem animatable) {
+    public ResourceLocation getAnimationResource(T animatable) {
         if (animationPath != null) {
             return new ResourceLocation(FantasyArmor.MOD_ID, animationPath);
         }

@@ -12,7 +12,7 @@ public class DragonslayerArmorItem extends FAArmorItem {
 
     @Override
     protected GeoArmorRenderer<? extends FAArmorItem> createArmorRenderer() {
-        return new FAArmorRendererCape<>(new FAArmorModel(
+        return new FAArmorRendererCape<>(new FAArmorModel<>(
                 "geo/dragonslayer_armor.geo.json",
                 "textures/armor/dragonslayer_armor.png"
         ));

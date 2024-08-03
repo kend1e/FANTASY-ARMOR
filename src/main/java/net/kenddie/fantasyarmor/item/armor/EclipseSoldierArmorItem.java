@@ -12,7 +12,7 @@ public class EclipseSoldierArmorItem extends FAArmorItem {
 
     @Override
     protected GeoArmorRenderer<? extends FAArmorItem> createArmorRenderer() {
-        return new FAArmorRendererCape<>(new FAArmorModel(
+        return new FAArmorRendererCape<>(new FAArmorModel<>(
                 "geo/eclipse_soldier_armor.geo.json",
                 "textures/armor/eclipse_soldier_armor.png"
         ));

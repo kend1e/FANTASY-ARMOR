@@ -12,7 +12,7 @@ public class HeroArmorItem extends FAArmorItem {
 
     @Override
     protected GeoArmorRenderer<? extends FAArmorItem> createArmorRenderer() {
-        return new FAArmorRendererCape<>(new FAArmorModel(
+        return new FAArmorRendererCape<>(new FAArmorModel<>(
                 "geo/hero_armor.geo.json",
                 "textures/armor/hero_armor.png"
         ));
