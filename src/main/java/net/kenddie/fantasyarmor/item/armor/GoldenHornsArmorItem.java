@@ -12,7 +12,7 @@ public class GoldenHornsArmorItem extends FAArmorItem {
 
     @Override
     protected GeoArmorRenderer<? extends FAArmorItem> createArmorRenderer() {
-        return new FAArmorRendererCape<>(new FAArmorModel<>(
+        return new GeoArmorRenderer<>(new FAArmorModel<>(
                 "geo/golden_horns_armor.geo.json",
                 "textures/armor/golden_horns_armor.png"
         ));
