@@ -55,14 +55,8 @@ public class FAArmorRendererCape <T extends FAArmorItem> extends GeoArmorRendere
     public void preRender(PoseStack poseStack, T animatable, BakedGeoModel model, @Nullable MultiBufferSource bufferSource, @Nullable VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
         super.preRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
 
-        if(cape == null) {
-            return;
-        }
-
-        if(currentEntity instanceof Player player) {
+        if(cape != null && currentEntity instanceof Player player) {
             RenderUtils.applyCapeRotation(player, cape, partialTick);
-        } else {
-            cape.updateRotation((float) Math.toRadians(5.0F), 0.0F, 0.0F);
         }
     }
 
