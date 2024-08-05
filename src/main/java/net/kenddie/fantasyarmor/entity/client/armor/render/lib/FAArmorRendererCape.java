@@ -62,7 +62,7 @@ public class FAArmorRendererCape <T extends FAArmorItem> extends GeoArmorRendere
         if(currentEntity instanceof Player player) {
             RenderUtils.applyCapeRotation(player, cape, partialTick);
         } else {
-            cape.updateRotation((float) Math.toRadians(5.0F), 0.0F, 0.0F);
+            cape.updateRotation((float) -Math.toRadians(5.0F), 0.0F, 0.0F);
         }
     }
 

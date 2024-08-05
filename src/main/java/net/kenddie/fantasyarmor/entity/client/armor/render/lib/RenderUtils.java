@@ -35,12 +35,12 @@ public final class RenderUtils {
         float f4 = Mth.lerp(partialTick, player.oBob, player.bob);
         f1 += Mth.sin(Mth.lerp(partialTick, player.walkDistO, player.walkDist) * 6.0F) * 32.0F * f4;
         if(player.isCrouching()) {
-            f1 += 25.0F;
+            f1 += 10.0F;
         }
 
         bone.updateRotation(
-                (float) Math.toRadians(6.0F + f2 / 2.0F + f1),
-                (float) Math.toRadians(180.0F - f3 / 2.0F),
+                (float) -Math.toRadians(6.0F + f2 / 2.0F + f1),
+                (float) Math.toRadians(f3 / 2.0F),
                 (float) Math.toRadians(f3 / 2.0F)
         );
     }
