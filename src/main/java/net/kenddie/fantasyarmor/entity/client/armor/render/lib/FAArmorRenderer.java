@@ -92,7 +92,7 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
         if(cape != null) {
             ModelPart bodyPart = baseModel.body;
 
-            cape.updatePosition(bodyPart.x, -bodyPart.y, bodyPart.z);
+            cape.updatePosition(bodyPart.x, 1 - bodyPart.y, bodyPart.z);
         }
 
         if(leftLegCloth != null) {
