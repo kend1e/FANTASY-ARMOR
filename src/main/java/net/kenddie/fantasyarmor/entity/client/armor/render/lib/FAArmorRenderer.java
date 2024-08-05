@@ -13,11 +13,14 @@ import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;
+import software.bernie.geckolib.util.RenderUtil;
 
-public class FAArmorRendererCape <T extends FAArmorItem> extends GeoArmorRenderer<T> {
+public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> {
     protected GeoBone cape = null;
+    protected GeoBone leftLegCloth = null;
+    protected GeoBone rightLegCloth = null;
 
-    public FAArmorRendererCape(GeoModel<T> model) {
+    public FAArmorRenderer(GeoModel<T> model) {
         super(model);
     }
 
@@ -26,12 +29,24 @@ public class FAArmorRendererCape <T extends FAArmorItem> extends GeoArmorRendere
         return model.getBone("armorCape").orElse(null);
     }
 
+    @Nullable
+    public GeoBone getLeftLegClothBone(GeoModel<T> model) {
+        return model.getBone("armorLeftLegCloth").orElse(null);
+    }
+
+    @Nullable
+    public GeoBone getRightLegClothBone(GeoModel<T> model) {
+        return model.getBone("armorRightLegCloth").orElse(null);
+    }
+
     @Override
     protected void grabRelevantBones(BakedGeoModel bakedModel) {
         super.grabRelevantBones(bakedModel);
 
         GeoModel<T> model = getGeoModel();
         cape = getCapeBone(model);
+        leftLegCloth = getLeftLegClothBone(model);
+        rightLegCloth = getRightLegClothBone(model);
     }
 
     @Override
@@ -40,6 +55,8 @@ public class FAArmorRendererCape <T extends FAArmorItem> extends GeoArmorRendere
 
         if(currentSlot == EquipmentSlot.CHEST) {
             setBoneVisible(cape, true);
+            setBoneVisible(leftLegCloth, true);
+            setBoneVisible(rightLegCloth, true);
         }
     }
 
@@ -48,6 +65,8 @@ public class FAArmorRendererCape <T extends FAArmorItem> extends GeoArmorRendere
 
         if(currentPart == model.body) {
             cape.setHidden(false);
+            leftLegCloth.setHidden(false);
+            rightLegCloth.setHidden(false);
         }
     }
 
@@ -72,7 +91,22 @@ public class FAArmorRendererCape <T extends FAArmorItem> extends GeoArmorRendere
 
         if(cape != null) {
             ModelPart bodyPart = baseModel.body;
+
             cape.updatePosition(bodyPart.x, -bodyPart.y, bodyPart.z);
+        }
+
+        if(leftLegCloth != null) {
+            ModelPart leftLegPart = baseModel.leftLeg;
+
+            RenderUtil.matchModelPartRot(leftLegPart, leftLegCloth);
+            leftLegCloth.updatePosition(leftLegPart.x - 2, 12 - leftLegPart.y, leftLegPart.z);
+        }
+
+        if(rightLegCloth != null) {
+            ModelPart rightLegPart = baseModel.rightLeg;
+
+            RenderUtil.matchModelPartRot(rightLegPart, rightLegCloth);
+            rightLegCloth.updatePosition(rightLegPart.x + 2, 12 - rightLegPart.y, rightLegPart.z);
         }
     }
 
@@ -81,5 +115,7 @@ public class FAArmorRendererCape <T extends FAArmorItem> extends GeoArmorRendere
         super.setAllVisible(pVisible);
 
         setBoneVisible(cape, pVisible);
+        setBoneVisible(leftLegCloth, pVisible);
+        setBoneVisible(rightLegCloth, pVisible);
     }
 }
