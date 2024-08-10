@@ -1,4 +1,24 @@
 {
     "itemGroup.fantasy_armor.fa_tab": "Fantasy Armor",
-    "item.fantasy_armor.moon_crystal": "Moon Crystal"
+    "item.fantasy_armor.moon_crystal": "Moon Crystal",
+    "item.fantasy_armor.eclipse_soldier_helmet": "Eclipse Soldier Helmet",
+    "item.fantasy_armor.eclipse_soldier_chestplate": "Eclipse Soldier Chestplate",
+    "item.fantasy_armor.eclipse_soldier_leggings": "Eclipse Soldier Leggings",
+    "item.fantasy_armor.eclipse_soldier_boots": "Eclipse Soldier Boots",
+    "item.fantasy_armor.golden_horns_helmet": "Golden Horns Helmet",
+    "item.fantasy_armor.golden_horns_chestplate": "Golden Horns Chestplate",
+    "item.fantasy_armor.golden_horns_leggings": "Golden Horns Leggings",
+    "item.fantasy_armor.golden_horns_boots": "Golden Horns Boots",
+    "item.fantasy_armor.dragonslayer_helmet": "Dragonslayer Helmet",
+    "item.fantasy_armor.dragonslayer_chestplate": "Dragonslayer Chestplate",
+    "item.fantasy_armor.dragonslayer_leggings": "Dragonslayer Leggings",
+    "item.fantasy_armor.dragonslayer_boots": "Dragonslayer Boots",
+    "item.fantasy_armor.hero_helmet": "Hero Helmet",
+    "item.fantasy_armor.hero_chestplate": "Hero Chestplate",
+    "item.fantasy_armor.hero_leggings": "Hero Leggings",
+    "item.fantasy_armor.hero_boots": "Hero Boots",
+    "item.fantasy_armor.thief_helmet": "Thief Helmet",
+    "item.fantasy_armor.thief_chestplate": "Thief Chestplate",
+    "item.fantasy_armor.thief_leggings": "Thief Leggings",
+    "item.fantasy_armor.thief_boots": "Thief Boots"
 }

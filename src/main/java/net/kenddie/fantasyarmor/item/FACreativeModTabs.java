@@ -18,7 +18,7 @@ public class FACreativeModTabs {
             CREATIVE_MODE_TABS.register(
                     "fa_tab",
                     () -> CreativeModeTab.builder()
-                            .icon(() -> new ItemStack(FAItems.MOON_CRYSTAL.get()))
+                            .icon(() -> new ItemStack(FAItems.HERO_HELMET.get()))
                             .title(Component.translatable("itemGroup." + FantasyArmor.MOD_ID + ".fa_tab"))
                             .displayItems((pParameters, pOutput) -> {
                                 pOutput.accept(FAItems.MOON_CRYSTAL.get());
