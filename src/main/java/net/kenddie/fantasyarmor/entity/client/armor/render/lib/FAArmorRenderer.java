@@ -13,7 +13,7 @@ import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;
-import software.bernie.geckolib.util.RenderUtil;
+import software.bernie.geckolib.util.RenderUtils;
 
 public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> {
     protected GeoBone cape = null;
@@ -79,7 +79,7 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
         }
 
         if(currentEntity instanceof Player player) {
-            RenderUtils.applyCapeRotation(player, cape, partialTick);
+            FARenderUtils.applyCapeRotation(player, cape, partialTick);
         } else {
             cape.updateRotation((float) -Math.toRadians(5.0F), 0.0F, 0.0F);
         }
@@ -98,14 +98,14 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
         if(leftLegCloth != null) {
             ModelPart leftLegPart = baseModel.leftLeg;
 
-            RenderUtil.matchModelPartRot(leftLegPart, leftLegCloth);
+            RenderUtils.matchModelPartRot(leftLegPart, leftLegCloth);
             leftLegCloth.updatePosition(leftLegPart.x - 2, 12 - leftLegPart.y, leftLegPart.z);
         }
 
         if(rightLegCloth != null) {
             ModelPart rightLegPart = baseModel.rightLeg;
 
-            RenderUtil.matchModelPartRot(rightLegPart, rightLegCloth);
+            RenderUtils.matchModelPartRot(rightLegPart, rightLegCloth);
             rightLegCloth.updatePosition(rightLegPart.x + 2, 12 - rightLegPart.y, rightLegPart.z);
         }
     }

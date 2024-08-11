@@ -7,7 +7,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import software.bernie.geckolib.cache.object.GeoBone;
 
 @OnlyIn(Dist.CLIENT)
-public final class RenderUtils {
+public final class FARenderUtils {
     public static void applyCapeRotation(Player player, GeoBone bone, float partialTick) {
         // See net.minecraft.client.renderer.entity.layers.CapeLayer
 
