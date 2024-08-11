@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "YYY",
+        "#X#",
+        "#Y#"
+    ],
+    "key": {
+        "#": { "item": "fantasy_armor:moon_crystal" },
+        "Y": { "item": "minecraft:flint" },
+        "X": { "item": "minecraft:netherite_boots" }
+    },
+    "result": { "id": "fantasy_armor:golden_horns_boots" }  
+}

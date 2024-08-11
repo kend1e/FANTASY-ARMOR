@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#X#",
+        "YYY"
+    ],
+    "key": {
+        "#": { "item": "fantasy_armor:moon_crystal" },
+        "Y": { "item": "minecraft:gold_nugget" },
+        "X": { "item": "minecraft:netherite_helmet" }
+    },
+    "result": { "id": "fantasy_armor:eclipse_soldier_helmet" }  
+}

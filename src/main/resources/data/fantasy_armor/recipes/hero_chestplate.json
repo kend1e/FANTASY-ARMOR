@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#Y#",
+        "#X#",
+        "###"
+    ],
+    "key": {
+        "#": { "item": "fantasy_armor:moon_crystal" },
+        "Y": { "item": "minecraft:iron_ingot" },
+        "X": { "item": "minecraft:netherite_chestplate" }
+    },
+    "result": { "id": "fantasy_armor:hero_chestplate" }  
+}
