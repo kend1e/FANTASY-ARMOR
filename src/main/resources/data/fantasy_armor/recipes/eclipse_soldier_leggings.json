@@ -10,5 +10,5 @@
         "Y": { "item": "minecraft:gold_nugget" },
         "X": { "item": "minecraft:netherite_leggings" }
     },
-    "result": { "id": "fantasy_armor:eclipse_soldier_leggings" }  
+    "result": { "item": "fantasy_armor:eclipse_soldier_leggings" }  
 }

@@ -10,5 +10,5 @@
         "Y": { "item": "minecraft:leather" },
         "X": { "item": "minecraft:netherite_helmet" }
     },
-    "result": { "id": "fantasy_armor:thief_helmet" }  
+    "result": { "item": "fantasy_armor:thief_helmet" }  
 }
