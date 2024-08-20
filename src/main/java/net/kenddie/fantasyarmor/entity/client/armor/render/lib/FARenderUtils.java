@@ -1,6 +1,8 @@
 package net.kenddie.fantasyarmor.entity.client.armor.render.lib;
 
+import net.minecraft.client.model.PlayerModel;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -43,5 +45,12 @@ public final class FARenderUtils {
                 (float) Math.toRadians(f3 / 2.0F),
                 (float) Math.toRadians(f3 / 2.0F)
         );
+    }
+
+    public static <T extends LivingEntity> void setArmsVisibility(PlayerModel<T> model, boolean visible) {
+        model.rightArm.visible = visible;
+        model.rightSleeve.visible = visible;
+        model.leftArm.visible = visible;
+        model.leftSleeve.visible = visible;
     }
 }
