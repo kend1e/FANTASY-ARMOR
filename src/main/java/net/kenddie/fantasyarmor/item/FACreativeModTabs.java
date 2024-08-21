@@ -42,6 +42,10 @@ public class FACreativeModTabs {
                                 pOutput.accept(FAItems.THIEF_CHESTPLATE.get());
                                 pOutput.accept(FAItems.THIEF_LEGGINGS.get());
                                 pOutput.accept(FAItems.THIEF_BOOTS.get());
+                                pOutput.accept(FAItems.WANDERING_WIZARD_HELMET.get());
+                                pOutput.accept(FAItems.WANDERING_WIZARD_CHESTPLATE.get());
+                                pOutput.accept(FAItems.WANDERING_WIZARD_LEGGINGS.get());
+                                pOutput.accept(FAItems.WANDERING_WIZARD_BOOTS.get());
                             })
                             .build()
             );

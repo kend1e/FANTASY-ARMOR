@@ -39,6 +39,10 @@ public final class FAItems {
     public static final RegistryObject<Item> THIEF_CHESTPLATE = ITEMS.register("thief_chestplate", () -> new ThiefArmorItem(ArmorItem.Type.CHESTPLATE));
     public static final RegistryObject<Item> THIEF_LEGGINGS = ITEMS.register("thief_leggings", () -> new ThiefArmorItem(ArmorItem.Type.LEGGINGS));
     public static final RegistryObject<Item> THIEF_BOOTS = ITEMS.register("thief_boots", () -> new ThiefArmorItem(ArmorItem.Type.BOOTS));
+    public static final RegistryObject<Item> WANDERING_WIZARD_HELMET = ITEMS.register("wandering_wizard_helmet", () -> new WanderingWizardArmorItem(ArmorItem.Type.HELMET));
+    public static final RegistryObject<Item> WANDERING_WIZARD_CHESTPLATE = ITEMS.register("wandering_wizard_chestplate", () -> new WanderingWizardArmorItem(ArmorItem.Type.CHESTPLATE));
+    public static final RegistryObject<Item> WANDERING_WIZARD_LEGGINGS = ITEMS.register("wandering_wizard_leggings", () -> new WanderingWizardArmorItem(ArmorItem.Type.LEGGINGS));
+    public static final RegistryObject<Item> WANDERING_WIZARD_BOOTS = ITEMS.register("wandering_wizard_boots", () -> new WanderingWizardArmorItem(ArmorItem.Type.BOOTS));
 
     private FAItems() {
     }

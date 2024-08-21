@@ -20,5 +20,9 @@
     "item.fantasy_armor.thief_helmet": "Шлем Вора",
     "item.fantasy_armor.thief_chestplate": "Нагрудник Вора",
     "item.fantasy_armor.thief_leggings": "Поножи Вора",
-    "item.fantasy_armor.thief_boots": "Ботинки Вора"
+    "item.fantasy_armor.thief_boots": "Ботинки Вора",
+    "item.fantasy_armor.wandering_wizard_helmet": "Шлем Странствующего Чародея",
+    "item.fantasy_armor.wandering_wizard_chestplate": "Нагрудник Странствующего Чародея",
+    "item.fantasy_armor.wandering_wizard_leggings": "Поножи Странствующего Чародея",
+    "item.fantasy_armor.wandering_wizard_boots": "Ботинки Странствующего Чародея"
 }
