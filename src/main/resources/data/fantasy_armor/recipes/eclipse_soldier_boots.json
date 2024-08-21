@@ -1,14 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "YYY",
-        "#X#",
-        "#Y#"
-    ],
-    "key": {
-        "#": { "item": "fantasy_armor:moon_crystal" },
-        "Y": { "item": "minecraft:gold_nugget" },
-        "X": { "item": "minecraft:netherite_boots" }
+    "type": "minecraft:smithing_transform",
+    "category": "equipment",
+    "template": {
+        "item": "minecraft:gold_nugget"
     },
-    "result": { "item": "fantasy_armor:eclipse_soldier_boots" }  
+    "base": {
+        "item": "minecraft:netherite_boots"
+    },
+    "addition": {
+        "item": "fantasy_armor:moon_crystal"
+    },
+    "result": {
+        "item": "fantasy_armor:eclipse_soldier_boots"
+    }
 }

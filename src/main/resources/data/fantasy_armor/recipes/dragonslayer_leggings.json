@@ -1,14 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "###",
-        "#X#",
-        "#Y#"
-    ],
-    "key": {
-        "#": { "item": "fantasy_armor:moon_crystal" },
-        "Y": { "item": "minecraft:nether_wart" },
-        "X": { "item": "minecraft:netherite_leggings" }
+    "type": "minecraft:smithing_transform",
+    "category": "equipment",
+    "template": {
+        "item": "minecraft:nether_wart"
     },
-    "result": { "item": "fantasy_armor:dragonslayer_leggings" }  
+    "base": {
+        "item": "minecraft:netherite_leggings"
+    },
+    "addition": {
+        "item": "fantasy_armor:moon_crystal"
+    },
+    "result": {
+        "item": "fantasy_armor:dragonslayer_leggings"
+    }
 }
