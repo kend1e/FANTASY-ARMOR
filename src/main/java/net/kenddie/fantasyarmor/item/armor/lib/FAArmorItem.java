@@ -6,6 +6,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoItem;
@@ -49,5 +51,6 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
         return cache;
     }
 
+    @OnlyIn(Dist.CLIENT)
     protected abstract GeoArmorRenderer<? extends FAArmorItem> createArmorRenderer();
 }

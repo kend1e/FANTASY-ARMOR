@@ -6,11 +6,12 @@ import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = FantasyArmor.MOD_ID)
+@Mod.EventBusSubscriber(modid = FantasyArmor.MOD_ID, value = Dist.CLIENT)
 @SuppressWarnings("unused")
 public final class FARenderEventHandler {
     @SubscribeEvent
