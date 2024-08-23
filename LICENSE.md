@@ -25,9 +25,5 @@ Terms and Conditions:
 4. You are allowed to use the mod* as dependency for your projects, as long as you don't pack or ship the mod's* JAR file or its code with your projects.
  
 *: "The mod" refers to the mod that is licensed under this license (DSMSLv2).
-**: You can ask me for permission via Discord, by joining "https://discord.gg/rhayah27GC" and then writing a PM to @keksuccino.
-***: "Official" in this case means the CurseForge and Modrinth projects created by @keksuccino (Modrinth; https://modrinth.com/user/keksuccino) and Keksuccino (CurseForge; https://curseforge.com/members/keksuccino).
- 
- 
- 
- 
+**: You can ask me for permission via Discord by writing a PM to @kendd1e.
+***: "Official" in this case means the CurseForge and Modrinth projects created by Kenddie (Modrinth; https://modrinth.com/user/kenddie) (CurseForge; https://www.curseforge.com/members/kenddie).
