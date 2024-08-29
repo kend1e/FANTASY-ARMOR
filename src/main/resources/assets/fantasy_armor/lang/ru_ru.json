@@ -24,5 +24,17 @@
     "item.fantasy_armor.wandering_wizard_helmet": "Шлем Странствующего Чародея",
     "item.fantasy_armor.wandering_wizard_chestplate": "Нагрудник Странствующего Чародея",
     "item.fantasy_armor.wandering_wizard_leggings": "Поножи Странствующего Чародея",
-    "item.fantasy_armor.wandering_wizard_boots": "Ботинки Странствующего Чародея"
+    "item.fantasy_armor.wandering_wizard_boots": "Ботинки Странствующего Чародея",
+    "item.fantasy_armor.sunset_wings_helmet": "Шлем Крыльев Заката",
+    "item.fantasy_armor.sunset_wings_chestplate": "Нагрудник Крыльев Заката",
+    "item.fantasy_armor.sunset_wings_leggings": "Поножи Крыльев Заката",
+    "item.fantasy_armor.sunset_wings_boots": "Ботинки Крыльев Заката",
+    "item.fantasy_armor.chess_board_knight_helmet": "Шлем Рыцаря Шахматной Доски",
+    "item.fantasy_armor.chess_board_knight_chestplate": "Нагрудник Рыцаря Шахматной Доски",
+    "item.fantasy_armor.chess_board_knight_leggings": "Поножи Рыцаря Шахматной Доски",
+    "item.fantasy_armor.chess_board_knight_boots": "Ботинки Рыцаря Шахматной Доски",
+    "item.fantasy_armor.dark_lord_helmet": "Шлем Тёмного Лорда",
+    "item.fantasy_armor.dark_lord_chestplate": "Нагрудник Тёмного Лорда",
+    "item.fantasy_armor.dark_lord_leggings": "Поножи Тёмного Лорда",
+    "item.fantasy_armor.dark_lord_boots": "Ботинки Тёмного Лорда"
 }

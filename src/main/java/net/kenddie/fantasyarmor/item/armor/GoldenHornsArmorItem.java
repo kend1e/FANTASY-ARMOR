@@ -8,8 +8,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;
 
 public class GoldenHornsArmorItem extends FAArmorItem {
-    public GoldenHornsArmorItem(Type type) {
-        super(type);
+    public GoldenHornsArmorItem(Type type, double knockbackResistance, double movementSpeed, double maxHealth, double attackDamage, double attackSpeed, double luck) {
+        super(type, knockbackResistance, movementSpeed, maxHealth, attackDamage, attackSpeed, luck);
     }
 
     @Override

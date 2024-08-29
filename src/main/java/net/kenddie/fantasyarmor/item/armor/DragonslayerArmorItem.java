@@ -8,8 +8,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;
 
 public class DragonslayerArmorItem extends FAArmorItem {
-    public DragonslayerArmorItem(Type type) {
-        super(type);
+    public DragonslayerArmorItem(Type type, double knockbackResistance, double movementSpeed, double maxHealth, double attackDamage, double attackSpeed, double luck) {
+        super(type, knockbackResistance, movementSpeed, maxHealth, attackDamage, attackSpeed, luck);
     }
 
     @Override

@@ -46,6 +46,18 @@ public class FACreativeModTabs {
                                 pOutput.accept(FAItems.WANDERING_WIZARD_CHESTPLATE.get());
                                 pOutput.accept(FAItems.WANDERING_WIZARD_LEGGINGS.get());
                                 pOutput.accept(FAItems.WANDERING_WIZARD_BOOTS.get());
+                                pOutput.accept(FAItems.CHESS_BOARD_HELMET.get());
+                                pOutput.accept(FAItems.CHESS_BOARD_CHESTPLATE.get());
+                                pOutput.accept(FAItems.CHESS_BOARD_LEGGINGS.get());
+                                pOutput.accept(FAItems.CHESS_BOARD_BOOTS.get());
+                                pOutput.accept(FAItems.DARK_LORD_HELMET.get());
+                                pOutput.accept(FAItems.DARK_LORD_CHESTPLATE.get());
+                                pOutput.accept(FAItems.DARK_LORD_LEGGINGS.get());
+                                pOutput.accept(FAItems.DARK_LORD_BOOTS.get());
+                                pOutput.accept(FAItems.SUNSET_WINGS_HELMET.get());
+                                pOutput.accept(FAItems.SUNSET_WINGS_CHESTPLATE.get());
+                                pOutput.accept(FAItems.SUNSET_WINGS_LEGGINGS.get());
+                                pOutput.accept(FAItems.SUNSET_WINGS_BOOTS.get());
                             })
                             .build()
             );

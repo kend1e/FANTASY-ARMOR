@@ -7,8 +7,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;
 
-public class EclipseSoldierArmorItem extends FAArmorItem {
-    public EclipseSoldierArmorItem(Type type, double knockbackResistance, double movementSpeed, double maxHealth, double attackDamage, double attackSpeed, double luck) {
+public class DarkLordArmorItem extends FAArmorItem {
+    public DarkLordArmorItem(Type type, double knockbackResistance, double movementSpeed, double maxHealth, double attackDamage, double attackSpeed, double luck) {
         super(type, knockbackResistance, movementSpeed, maxHealth, attackDamage, attackSpeed, luck);
     }
 
@@ -16,8 +16,9 @@ public class EclipseSoldierArmorItem extends FAArmorItem {
     @OnlyIn(Dist.CLIENT)
     protected GeoArmorRenderer<? extends FAArmorItem> createArmorRenderer() {
         return new FAArmorRenderer<>(new FAArmorModel<>(
-                "geo/eclipse_soldier_armor.geo.json",
-                "textures/armor/eclipse_soldier_armor.png"
+                "geo/dark_lord_armor.geo.json",
+                "textures/armor/dark_lord_armor.png"
         ));
     }
 }
+

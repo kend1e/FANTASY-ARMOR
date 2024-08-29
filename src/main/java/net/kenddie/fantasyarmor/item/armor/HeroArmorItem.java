@@ -8,8 +8,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;
 
 public class HeroArmorItem extends FAArmorItem {
-    public HeroArmorItem(Type type) {
-        super(type);
+    public HeroArmorItem(Type type, double knockbackResistance, double movementSpeed, double maxHealth, double attackDamage, double attackSpeed, double luck) {
+        super(type, knockbackResistance, movementSpeed, maxHealth, attackDamage, attackSpeed, luck);
     }
 
     @Override
