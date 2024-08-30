@@ -54,7 +54,7 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
         }
 
         if (movementSpeed > 0) {
-            builder.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(MOVEMENT_SPEED_MODIFIER_UUID, "Armor movement speed", movementSpeed, AttributeModifier.Operation.ADDITION));
+            builder.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(MOVEMENT_SPEED_MODIFIER_UUID, "Armor movement speed", movementSpeed, AttributeModifier.Operation.MULTIPLY_TOTAL));
         }
 
         if (maxHealth > 0) {
@@ -62,11 +62,11 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
         }
 
         if (attackDamage > 0) {
-            builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER_UUID, "Armor attack damage", attackDamage, AttributeModifier.Operation.ADDITION));
+            builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER_UUID, "Armor attack damage", attackDamage, AttributeModifier.Operation.MULTIPLY_TOTAL));
         }
 
         if (attackSpeed > 0) {
-            builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER_UUID, "Armor attack speed", attackSpeed, AttributeModifier.Operation.ADDITION));
+            builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER_UUID, "Armor attack speed", attackSpeed, AttributeModifier.Operation.MULTIPLY_TOTAL));
         }
 
         if (luck > 0) {

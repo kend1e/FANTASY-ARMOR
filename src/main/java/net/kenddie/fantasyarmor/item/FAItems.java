@@ -56,8 +56,8 @@ public final class FAItems {
     public static final RegistryObject<Item> DARK_LORD_BOOTS = ITEMS.register("dark_lord_boots", () -> new DarkLordArmorItem(ArmorItem.Type.BOOTS,  0.1, 0.02, 2.0, 0, 0, 0));
 
     public static final RegistryObject<Item> SUNSET_WINGS_HELMET = ITEMS.register("sunset_wings_helmet", () -> new SunsetWingsArmorItem(ArmorItem.Type.HELMET,  0.1, 0, 2.0, 0.5, 0.03, 0));
-    public static final RegistryObject<Item> SUNSET_WINGS_CHESTPLATE = ITEMS.register("sunset_wings_chestplate", () -> new SunsetWingsArmorItem(ArmorItem.Type.CHESTPLATE,  0.1, 0, 2.0, 0.75, 0, 0));
-    public static final RegistryObject<Item> SUNSET_WINGS_LEGGINGS = ITEMS.register("sunset_wings_leggings", () -> new SunsetWingsArmorItem(ArmorItem.Type.LEGGINGS,  0.1, 0, 0, 0.25, 0, 1.0));
+    public static final RegistryObject<Item> SUNSET_WINGS_CHESTPLATE = ITEMS.register("sunset_wings_chestplate", () -> new SunsetWingsArmorItem(ArmorItem.Type.CHESTPLATE,  0.1, 1.0, 10.0, 0.75, 0, 0));
+    public static final RegistryObject<Item> SUNSET_WINGS_LEGGINGS = ITEMS.register("sunset_wings_leggings", () -> new SunsetWingsArmorItem(ArmorItem.Type.LEGGINGS,  0.1, 0.1, 0, 0.25, 0, 1.0));
     public static final RegistryObject<Item> SUNSET_WINGS_BOOTS = ITEMS.register("sunset_wings_boots", () -> new SunsetWingsArmorItem(ArmorItem.Type.BOOTS,  0.1, 0.03, 0, 0.5, 0, 0));
 
     private FAItems() {
