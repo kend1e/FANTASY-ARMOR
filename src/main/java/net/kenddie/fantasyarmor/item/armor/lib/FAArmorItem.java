@@ -3,14 +3,19 @@ package net.kenddie.fantasyarmor.item.armor.lib;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.renderer.EffectInstance;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
@@ -21,6 +26,7 @@ import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInst
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;
 
+import java.util.List;
 import java.util.UUID;
 import java.util.function.Consumer;
 
@@ -31,7 +37,6 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
 
     protected FAArmorItem(Type type, double knockbackResistance, double movementSpeed, double maxHealth, double attackDamage, double attackSpeed, double luck) {
         super(ArmorMaterials.NETHERITE, type, new Properties().stacksTo(1));
-
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
 
         if (knockbackResistance > 0) {
@@ -105,4 +110,6 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
 
     @OnlyIn(Dist.CLIENT)
     protected abstract GeoArmorRenderer<? extends FAArmorItem> createArmorRenderer();
+
+    public abstract List<MobEffectInstance> getFullSetEffects();
 }
