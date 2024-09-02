@@ -20,8 +20,8 @@ public class DragonslayerArmorItem extends FAArmorItem {
     @Override
     public List<MobEffectInstance> getFullSetEffects() {
         return List.of(
-                new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 239, 1),
-                new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 239, 1)
+                new MobEffectInstance(MobEffects.DAMAGE_BOOST, 239),
+                new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 239)
         );
     }
 
