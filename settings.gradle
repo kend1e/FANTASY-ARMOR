@@ -5,11 +5,21 @@ pluginManagement {
             name = 'MinecraftForge'
             url = 'https://maven.minecraftforge.net/'
         }
+        maven {
+			name = 'Fabric'
+			url = 'https://maven.fabricmc.net/'
+		}
+		mavenCentral()
         maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
         maven { url = 'https://maven.parchmentmc.org' }
     }
 }
 
 plugins {
-    id 'org.gradle.toolchains.foojay-resolver-convention' version '0.7.0'
+    id 'org.gradle.toolchains.foojay-resolver-convention' version 'latest.release'
 }
+
+include(':appForge:1.20.1')
+include(':appForgeLite:1.20.1')
+include(':appFabric:1.20.1')
+include(':appFabricLite:1.20.1')
