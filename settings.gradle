@@ -20,6 +20,4 @@ plugins {
 }
 
 include(':appForge:1.20.1')
-include(':appForgeLite:1.20.1')
 include(':appFabric:1.20.1')
-include(':appFabricLite:1.20.1')
