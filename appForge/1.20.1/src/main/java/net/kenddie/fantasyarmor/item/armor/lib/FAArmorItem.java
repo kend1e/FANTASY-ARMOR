@@ -2,6 +2,7 @@ package net.kenddie.fantasyarmor.item.armor.lib;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import net.kenddie.fantasyarmor.config.FAConfig;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -39,39 +40,44 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
         super(ArmorMaterials.NETHERITE, type, new Properties().stacksTo(1));
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
 
-        if (knockbackResistance > 0) {
-            builder.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(UUID.randomUUID(), "Armor knockback resistance", knockbackResistance, AttributeModifier.Operation.ADDITION));
-        }
+        FAConfig config = FAConfig.getInstance();
+        if (config.applyModificators) {
+            if (knockbackResistance > 0) {
+                builder.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(UUID.randomUUID(), "Armor knockback resistance", knockbackResistance, AttributeModifier.Operation.ADDITION));
+            }
 
-        if (movementSpeed > 0) {
-            builder.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(UUID.randomUUID(), "Armor movement speed", movementSpeed, AttributeModifier.Operation.MULTIPLY_TOTAL));
-        }
+            if (movementSpeed > 0) {
+                builder.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(UUID.randomUUID(), "Armor movement speed", movementSpeed, AttributeModifier.Operation.MULTIPLY_TOTAL));
+            }
 
-        if (maxHealth > 0) {
-            builder.put(Attributes.MAX_HEALTH, new AttributeModifier(UUID.randomUUID(), "Armor health gain", maxHealth, AttributeModifier.Operation.ADDITION));
-        }
+            if (maxHealth > 0) {
+                builder.put(Attributes.MAX_HEALTH, new AttributeModifier(UUID.randomUUID(), "Armor health gain", maxHealth, AttributeModifier.Operation.ADDITION));
+            }
 
-        if (attackDamage > 0) {
-            builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(UUID.randomUUID(), "Armor attack damage", attackDamage, AttributeModifier.Operation.MULTIPLY_TOTAL));
-        }
+            if (attackDamage > 0) {
+                builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(UUID.randomUUID(), "Armor attack damage", attackDamage, AttributeModifier.Operation.MULTIPLY_TOTAL));
+            }
 
-        if (attackSpeed > 0) {
-            builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(UUID.randomUUID(), "Armor attack speed", attackSpeed, AttributeModifier.Operation.MULTIPLY_TOTAL));
-        }
+            if (attackSpeed > 0) {
+                builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(UUID.randomUUID(), "Armor attack speed", attackSpeed, AttributeModifier.Operation.MULTIPLY_TOTAL));
+            }
 
-        if (luck > 0) {
-            builder.put(Attributes.LUCK, new AttributeModifier(UUID.randomUUID(), "Armor luck", luck, AttributeModifier.Operation.ADDITION));
+            if (luck > 0) {
+                builder.put(Attributes.LUCK, new AttributeModifier(UUID.randomUUID(), "Armor luck", luck, AttributeModifier.Operation.ADDITION));
+            }
         }
-
         attributeModifiers = builder.build();
     }
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
-        super.appendHoverText(stack, world, tooltip, flag);
+        FAConfig config = FAConfig.getInstance();
+        if (config.showDescriptions) {
+            super.appendHoverText(stack, world, tooltip, flag);
 
-        String translationKey = this.getDescriptionId() + ".tooltip";
-        tooltip.add(Component.translatable(translationKey));
+            String translationKey = this.getDescriptionId() + ".tooltip";
+            tooltip.add(Component.translatable(translationKey));
+        }
     }
 
     @Override

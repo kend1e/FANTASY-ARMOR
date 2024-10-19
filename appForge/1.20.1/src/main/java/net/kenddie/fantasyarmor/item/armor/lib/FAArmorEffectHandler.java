@@ -1,5 +1,6 @@
 package net.kenddie.fantasyarmor.item.armor.lib;
 
+import net.kenddie.fantasyarmor.config.FAConfig;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -17,8 +18,9 @@ public class FAArmorEffectHandler {
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.phase == TickEvent.Phase.START) {
             Player player = event.player;
+            FAConfig config = FAConfig.getInstance();
 
-            if (hasFullSet(player)) {
+            if (config.applyArmorEffects && hasFullSet(player)) {
                 applyFullSetEffects(player);
             }
         }
