@@ -1,5 +1,7 @@
 package net.kenddie.fantasyarmor.item.armor;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.kenddie.fantasyarmor.entity.client.armor.model.lib.FAArmorModel;
 import net.kenddie.fantasyarmor.entity.client.armor.render.FAArmorRenderer;
 import net.kenddie.fantasyarmor.item.armor.lib.FAArmorItem;
@@ -23,6 +25,7 @@ public class ThiefArmorItem extends FAArmorItem {
 
 
     @Override
+    @Environment(EnvType.CLIENT)
     protected GeoArmorRenderer<? extends FAArmorItem> createArmorRenderer() {
         return new FAArmorRenderer<>(new FAArmorModel<>(
                 "geo/thief_armor.geo.json",
