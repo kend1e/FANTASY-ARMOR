@@ -2,7 +2,6 @@ package net.kenddie.fantasyarmor.entity.client.armor.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.kenddie.fantasyarmor.entity.client.armor.render.FARenderUtils;
 import net.kenddie.fantasyarmor.item.armor.lib.FAArmorItem;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -18,6 +17,7 @@ import software.bernie.geckolib.util.RenderUtils;
 
 public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> {
     protected GeoBone cape = null;
+    protected GeoBone frontCape = null;
     protected GeoBone leftLegCloth = null;
     protected GeoBone rightLegCloth = null;
 
@@ -28,6 +28,11 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
     @Nullable
     public GeoBone getCapeBone(GeoModel<T> model) {
         return model.getBone("armorCape").orElse(null);
+    }
+
+    @Nullable
+    public GeoBone getFrontCapeBone(GeoModel<T> model) {
+        return model.getBone("armorFrontCape").orElse(null);
     }
 
     @Nullable
@@ -46,6 +51,7 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
 
         GeoModel<T> model = getGeoModel();
         cape = getCapeBone(model);
+        frontCape = getFrontCapeBone(model);
         leftLegCloth = getLeftLegClothBone(model);
         rightLegCloth = getRightLegClothBone(model);
     }
@@ -56,6 +62,7 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
 
         if(currentSlot == EquipmentSlot.CHEST) {
             setBoneVisible(cape, true);
+            setBoneVisible(frontCape, true);
             setBoneVisible(leftLegCloth, true);
             setBoneVisible(rightLegCloth, true);
         }
@@ -66,6 +73,7 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
 
         if(currentPart == model.body) {
             cape.setHidden(false);
+            frontCape.setHidden(false);
             leftLegCloth.setHidden(false);
             rightLegCloth.setHidden(false);
         }
@@ -75,14 +83,16 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
     public void preRender(PoseStack poseStack, T animatable, BakedGeoModel model, @Nullable MultiBufferSource bufferSource, @Nullable VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
         super.preRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
 
-        if(cape == null) {
-            return;
+        if(frontCape != null) {
+            FARenderUtils.setFrontLegCapeAngle(this, frontCape);
         }
 
-        if(currentEntity instanceof Player player) {
-            FARenderUtils.applyCapeRotation(player, cape, partialTick);
-        } else {
-            cape.updateRotation((float) -Math.toRadians(5.0F), 0.0F, 0.0F);
+        if(cape != null) {
+            if(currentEntity instanceof Player player) {
+                FARenderUtils.applyCapeRotation(player, cape, partialTick);
+            } else {
+                cape.updateRotation((float) -Math.toRadians(5.0F), 0.0F, 0.0F);
+            }
         }
     }
 
@@ -94,6 +104,12 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
             ModelPart bodyPart = baseModel.body;
 
             cape.updatePosition(bodyPart.x, 1 - bodyPart.y, bodyPart.z);
+        }
+
+        if(frontCape != null) {
+            ModelPart leftLegPart = baseModel.leftLeg;
+
+            frontCape.updatePosition(leftLegPart.x - 1.95f, 13 - leftLegPart.y, leftLegPart.z - 0.1f);
         }
 
         if(leftLegCloth != null) {
@@ -116,6 +132,7 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
         super.setAllVisible(pVisible);
 
         setBoneVisible(cape, pVisible);
+        setBoneVisible(frontCape, pVisible);
         setBoneVisible(leftLegCloth, pVisible);
         setBoneVisible(rightLegCloth, pVisible);
     }

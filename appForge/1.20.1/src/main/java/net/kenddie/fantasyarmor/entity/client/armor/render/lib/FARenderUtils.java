@@ -4,9 +4,12 @@ import net.minecraft.client.model.PlayerModel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.cache.object.GeoBone;
+import software.bernie.geckolib.renderer.GeoArmorRenderer;
 
 @OnlyIn(Dist.CLIENT)
 public final class FARenderUtils {
@@ -45,6 +48,14 @@ public final class FARenderUtils {
                 (float) Math.toRadians(f3 / 2.0F),
                 (float) Math.toRadians(f3 / 2.0F)
         );
+    }
+
+    public static <T extends Item & GeoItem> void setFrontLegCapeAngle(GeoArmorRenderer<T> renderer, GeoBone bone) {
+        if(renderer.getLeftLegBone() == null || renderer.getRightLegBone() == null) {
+            return;
+        }
+        float legRot = Math.min(renderer.getLeftLegBone().getRotX(), renderer.getRightLegBone().getRotX());
+        bone.setRotX((legRot > 0 ? 0 : legRot) * -1.2f);
     }
 
     public static <T extends LivingEntity> void setArmsVisibility(PlayerModel<T> model, boolean visible) {
