@@ -40,8 +40,7 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
         super(ArmorMaterials.NETHERITE, type, new Properties().stacksTo(1));
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
 
-        FAConfig config = FAConfig.getInstance();
-        if (config.applyModificators) {
+        if (FAConfig.getValues().applyModifiers()) {
             if (armorAttributes.armor() > 0) {
                 builder.put(Attributes.ARMOR, new AttributeModifier(UUID.randomUUID(), "Armor", armorAttributes.armor(), AttributeModifier.Operation.ADDITION));
             }
@@ -81,8 +80,7 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
-        FAConfig config = FAConfig.getInstance();
-        if (config.showDescriptions) {
+        if (FAConfig.getValues().showDescriptions()) {
             super.appendHoverText(stack, world, tooltip, flag);
 
             String translationKey = this.getDescriptionId() + ".tooltip";
