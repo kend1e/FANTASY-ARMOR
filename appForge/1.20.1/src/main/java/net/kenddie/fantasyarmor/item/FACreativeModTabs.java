@@ -58,6 +58,38 @@ public class FACreativeModTabs {
                                 pOutput.accept(FAItems.SUNSET_WINGS_CHESTPLATE.get());
                                 pOutput.accept(FAItems.SUNSET_WINGS_LEGGINGS.get());
                                 pOutput.accept(FAItems.SUNSET_WINGS_BOOTS.get());
+                                pOutput.accept(FAItems.FOG_GUARD_HELMET.get());
+                                pOutput.accept(FAItems.FOG_GUARD_CHESTPLATE.get());
+                                pOutput.accept(FAItems.FOG_GUARD_LEGGINGS.get());
+                                pOutput.accept(FAItems.FOG_GUARD_BOOTS.get());
+                                pOutput.accept(FAItems.DARK_COVER_HELMET.get());
+                                pOutput.accept(FAItems.DARK_COVER_CHESTPLATE.get());
+                                pOutput.accept(FAItems.DARK_COVER_LEGGINGS.get());
+                                pOutput.accept(FAItems.DARK_COVER_BOOTS.get());
+                                pOutput.accept(FAItems.SPARK_OF_DAWN_HELMET.get());
+                                pOutput.accept(FAItems.SPARK_OF_DAWN_CHESTPLATE.get());
+                                pOutput.accept(FAItems.SPARK_OF_DAWN_LEGGINGS.get());
+                                pOutput.accept(FAItems.SPARK_OF_DAWN_BOOTS.get());
+                                pOutput.accept(FAItems.GOLDEN_EXECUTION_HELMET.get());
+                                pOutput.accept(FAItems.GOLDEN_EXECUTION_CHESTPLATE.get());
+                                pOutput.accept(FAItems.GOLDEN_EXECUTION_LEGGINGS.get());
+                                pOutput.accept(FAItems.GOLDEN_EXECUTION_BOOTS.get());
+                                pOutput.accept(FAItems.FORGOTTEN_TRACE_HELMET.get());
+                                pOutput.accept(FAItems.FORGOTTEN_TRACE_CHESTPLATE.get());
+                                pOutput.accept(FAItems.FORGOTTEN_TRACE_LEGGINGS.get());
+                                pOutput.accept(FAItems.FORGOTTEN_TRACE_BOOTS.get());
+                                pOutput.accept(FAItems.REDEEMER_HELMET.get());
+                                pOutput.accept(FAItems.REDEEMER_CHESTPLATE.get());
+                                pOutput.accept(FAItems.REDEEMER_LEGGINGS.get());
+                                pOutput.accept(FAItems.REDEEMER_BOOTS.get());
+                                pOutput.accept(FAItems.TWINNED_HELMET.get());
+                                pOutput.accept(FAItems.TWINNED_CHESTPLATE.get());
+                                pOutput.accept(FAItems.TWINNED_LEGGINGS.get());
+                                pOutput.accept(FAItems.TWINNED_BOOTS.get());
+                                pOutput.accept(FAItems.GILDED_HUNT_HELMET.get());
+                                pOutput.accept(FAItems.GILDED_HUNT_CHESTPLATE.get());
+                                pOutput.accept(FAItems.GILDED_HUNT_LEGGINGS.get());
+                                pOutput.accept(FAItems.GILDED_HUNT_BOOTS.get());
                             })
                             .build()
             );

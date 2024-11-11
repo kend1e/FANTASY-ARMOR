@@ -60,6 +60,46 @@ public final class FAItems {
     public static final RegistryObject<Item> SUNSET_WINGS_LEGGINGS = ITEMS.register("sunset_wings_leggings", () -> new SunsetWingsArmorItem(ArmorItem.Type.LEGGINGS,  0.1, 0.05, 1.0, 0, 0, 0));
     public static final RegistryObject<Item> SUNSET_WINGS_BOOTS = ITEMS.register("sunset_wings_boots", () -> new SunsetWingsArmorItem(ArmorItem.Type.BOOTS,  0.1, 0.05, 1.0, 0, 0, 0));
 
+    public static final RegistryObject<Item> FOG_GUARD_HELMET = ITEMS.register("fog_guard_helmet", () -> new FogGuardArmorItem(ArmorItem.Type.HELMET,  0.1, 0, 1.0, 0, 0.02, 0));
+    public static final RegistryObject<Item> FOG_GUARD_CHESTPLATE = ITEMS.register("fog_guard_chestplate", () -> new FogGuardArmorItem(ArmorItem.Type.CHESTPLATE,  0.1, 0, 1.0, 0.03, 0, 0));
+    public static final RegistryObject<Item> FOG_GUARD_LEGGINGS = ITEMS.register("fog_guard_leggings", () -> new FogGuardArmorItem(ArmorItem.Type.LEGGINGS,  0.1, 0, 1.0, 0.02, 0, 0));
+    public static final RegistryObject<Item> FOG_GUARD_BOOTS = ITEMS.register("fog_guard_boots", () -> new FogGuardArmorItem(ArmorItem.Type.BOOTS,  0.1, 0, 1.0, 0.03, 0, 0));
+
+    public static final RegistryObject<Item> DARK_COVER_HELMET = ITEMS.register("dark_cover_helmet", () -> new DarkCoverArmorItem(ArmorItem.Type.HELMET,  0.1, 0, 0, 0, 0, 0));
+    public static final RegistryObject<Item> DARK_COVER_CHESTPLATE = ITEMS.register("dark_cover_chestplate", () -> new DarkCoverArmorItem(ArmorItem.Type.CHESTPLATE,  0.2, 0, 0, 0, 0, 0));
+    public static final RegistryObject<Item> DARK_COVER_LEGGINGS = ITEMS.register("dark_cover_leggings", () -> new DarkCoverArmorItem(ArmorItem.Type.LEGGINGS,  0.2, 0, 0, 0, 0, 0));
+    public static final RegistryObject<Item> DARK_COVER_BOOTS = ITEMS.register("dark_cover_boots", () -> new DarkCoverArmorItem(ArmorItem.Type.BOOTS,  0.1, 0, 0, 0, 0, 0));
+
+    public static final RegistryObject<Item> SPARK_OF_DAWN_HELMET = ITEMS.register("spark_of_dawn_helmet", () -> new SparkOfDawnArmorItem(ArmorItem.Type.HELMET,  0.1, 0, 0, 0, 0, 0));
+    public static final RegistryObject<Item> SPARK_OF_DAWN_CHESTPLATE = ITEMS.register("spark_of_dawn_chestplate", () -> new SparkOfDawnArmorItem(ArmorItem.Type.CHESTPLATE,  0.1, 0, 0, 0, 0, 0));
+    public static final RegistryObject<Item> SPARK_OF_DAWN_LEGGINGS = ITEMS.register("spark_of_dawn_leggings", () -> new SparkOfDawnArmorItem(ArmorItem.Type.LEGGINGS,  0.1, 0, 0, 0, 0, 0));
+    public static final RegistryObject<Item> SPARK_OF_DAWN_BOOTS = ITEMS.register("spark_of_dawn_boots", () -> new SparkOfDawnArmorItem(ArmorItem.Type.BOOTS,  0.1, 0, 0, 0, 0, 0));
+
+    public static final RegistryObject<Item> GOLDEN_EXECUTION_HELMET = ITEMS.register("golden_execution_helmet", () -> new GoldenExecutionArmorItem(ArmorItem.Type.HELMET,  0.1, 0, 0, 0, 0, 0));
+    public static final RegistryObject<Item> GOLDEN_EXECUTION_CHESTPLATE = ITEMS.register("golden_execution_chestplate", () -> new GoldenExecutionArmorItem(ArmorItem.Type.CHESTPLATE,  0.1, 0, 0, 0, 0, 0));
+    public static final RegistryObject<Item> GOLDEN_EXECUTION_LEGGINGS = ITEMS.register("golden_execution_leggings", () -> new GoldenExecutionArmorItem(ArmorItem.Type.LEGGINGS,  0.1, 0, 0, 0, 0, 0));
+    public static final RegistryObject<Item> GOLDEN_EXECUTION_BOOTS = ITEMS.register("golden_execution_boots", () -> new GoldenExecutionArmorItem(ArmorItem.Type.BOOTS,  0.1, 0, 0, 0, 0, 0));
+
+    public static final RegistryObject<Item> FORGOTTEN_TRACE_HELMET = ITEMS.register("forgotten_trace_helmet", () -> new ForgottenTraceArmorItem(ArmorItem.Type.HELMET,  0.1, 0, 0, 0, 0, 0));
+    public static final RegistryObject<Item> FORGOTTEN_TRACE_CHESTPLATE = ITEMS.register("forgotten_trace_chestplate", () -> new ForgottenTraceArmorItem(ArmorItem.Type.CHESTPLATE,  0.1, 0, 0, 0, 0, 0));
+    public static final RegistryObject<Item> FORGOTTEN_TRACE_LEGGINGS = ITEMS.register("forgotten_trace_leggings", () -> new ForgottenTraceArmorItem(ArmorItem.Type.LEGGINGS,  0.1, 0, 0, 0, 0, 0));
+    public static final RegistryObject<Item> FORGOTTEN_TRACE_BOOTS = ITEMS.register("forgotten_trace_boots", () -> new ForgottenTraceArmorItem(ArmorItem.Type.BOOTS,  0.1, 0, 0, 0, 0, 0));
+
+    public static final RegistryObject<Item> REDEEMER_HELMET = ITEMS.register("redeemer_helmet", () -> new RedeemerArmorItem(ArmorItem.Type.HELMET,  0.1, 0, 0, 0, 0, 0));
+    public static final RegistryObject<Item> REDEEMER_CHESTPLATE = ITEMS.register("redeemer_chestplate", () -> new RedeemerArmorItem(ArmorItem.Type.CHESTPLATE,  0.1, 0, 0, 0, 0, 0));
+    public static final RegistryObject<Item> REDEEMER_LEGGINGS = ITEMS.register("redeemer_leggings", () -> new RedeemerArmorItem(ArmorItem.Type.LEGGINGS,  0.1, 0, 0, 0, 0, 0));
+    public static final RegistryObject<Item> REDEEMER_BOOTS = ITEMS.register("redeemer_boots", () -> new RedeemerArmorItem(ArmorItem.Type.BOOTS,  0.1, 0, 0, 0, 0, 0));
+
+    public static final RegistryObject<Item> TWINNED_HELMET = ITEMS.register("twinned_helmet", () -> new TwinnedArmorItem(ArmorItem.Type.HELMET,  0.1, 0, 0, 0, 0, 0));
+    public static final RegistryObject<Item> TWINNED_CHESTPLATE = ITEMS.register("twinned_chestplate", () -> new TwinnedArmorItem(ArmorItem.Type.CHESTPLATE,  0.1, 0, 0, 0, 0, 0));
+    public static final RegistryObject<Item> TWINNED_LEGGINGS = ITEMS.register("twinned_leggings", () -> new TwinnedArmorItem(ArmorItem.Type.LEGGINGS,  0.1, 0, 0, 0, 0, 0));
+    public static final RegistryObject<Item> TWINNED_BOOTS = ITEMS.register("twinned_boots", () -> new TwinnedArmorItem(ArmorItem.Type.BOOTS,  0.1, 0, 0, 0, 0, 0));
+
+    public static final RegistryObject<Item> GILDED_HUNT_HELMET = ITEMS.register("gilded_hunt_helmet", () -> new GildedHuntArmorItem(ArmorItem.Type.HELMET,  0.1, 0, 0, 0, 0, 0));
+    public static final RegistryObject<Item> GILDED_HUNT_CHESTPLATE = ITEMS.register("gilded_hunt_chestplate", () -> new GildedHuntArmorItem(ArmorItem.Type.CHESTPLATE,  0.1, 0, 0, 0, 0, 0));
+    public static final RegistryObject<Item> GILDED_HUNT_LEGGINGS = ITEMS.register("gilded_hunt_leggings", () -> new GildedHuntArmorItem(ArmorItem.Type.LEGGINGS,  0.1, 0, 0, 0, 0, 0));
+    public static final RegistryObject<Item> GILDED_HUNT_BOOTS = ITEMS.register("gilded_hunt_boots", () -> new GildedHuntArmorItem(ArmorItem.Type.BOOTS,  0.1, 0, 0, 0, 0, 0));
+
     private FAItems() {
     }
 
