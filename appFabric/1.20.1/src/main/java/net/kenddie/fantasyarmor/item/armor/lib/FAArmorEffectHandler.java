@@ -17,10 +17,8 @@ public class FAArmorEffectHandler {
     }
 
     private static void onWorldTick(ServerLevel world) {
-        FAConfig config = FAConfig.getInstance();
-
         for (ServerPlayer player : world.players()) {
-            if (config.applyArmorEffects && hasFullSet(player)) {
+            if (FAConfig.getValues().applyArmorEffects() && hasFullSet(player)) {
                 applyFullSetEffects(player);
             }
         }

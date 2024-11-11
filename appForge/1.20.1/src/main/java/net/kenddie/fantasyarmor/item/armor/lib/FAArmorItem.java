@@ -76,7 +76,6 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
         }
         attributeModifiers = builder.build();
 
-
     }
 
     @Override

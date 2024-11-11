@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.kenddie.fantasyarmor.FantasyArmor;
 
 import net.kenddie.fantasyarmor.item.armor.*;
+import net.kenddie.fantasyarmor.item.armor.lib.FAArmorAttributes;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -18,95 +19,95 @@ public final class FAItems {
 
     public static final Item MOON_CRYSTAL = new Item(new FabricItemSettings());
 
-    public static final Item ECLIPSE_SOLDIER_HELMET = new EclipseSoldierArmorItem(ArmorItem.Type.HELMET, 0.1, 0.1, 0, 0, 0, 0);
-    public static final Item ECLIPSE_SOLDIER_CHESTPLATE = new EclipseSoldierArmorItem(ArmorItem.Type.CHESTPLATE, 0.2, 0, 0, 0, 0.1, 0);
-    public static final Item ECLIPSE_SOLDIER_LEGGINGS = new EclipseSoldierArmorItem(ArmorItem.Type.LEGGINGS, 0.2, 0, 0, 0, 0, 0);
-    public static final Item ECLIPSE_SOLDIER_BOOTS = new EclipseSoldierArmorItem(ArmorItem.Type.BOOTS, 0.1, 0, 0, 0, 0, 0);
+    public static final Item ECLIPSE_SOLDIER_HELMET = new EclipseSoldierArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0.1, 0, 0, 0, 0));
+    public static final Item ECLIPSE_SOLDIER_CHESTPLATE = new EclipseSoldierArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.2, 0, 0, 0, 0.1, 0));
+    public static final Item ECLIPSE_SOLDIER_LEGGINGS = new EclipseSoldierArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.2, 0, 0, 0, 0, 0));
+    public static final Item ECLIPSE_SOLDIER_BOOTS = new EclipseSoldierArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 0, 0, 0, 0));
 
-    public static final Item DRAGONSLAYER_HELMET = new DragonslayerArmorItem(ArmorItem.Type.HELMET, 0.2, 0, 0, 0, 0, 0);
-    public static final Item DRAGONSLAYER_CHESTPLATE = new DragonslayerArmorItem(ArmorItem.Type.CHESTPLATE, 0.2, 0, 0, 0.1, 0, 0);
-    public static final Item DRAGONSLAYER_LEGGINGS = new DragonslayerArmorItem(ArmorItem.Type.LEGGINGS, 0.2, 0, 0, 0.05, 0, 0);
-    public static final Item DRAGONSLAYER_BOOTS = new DragonslayerArmorItem(ArmorItem.Type.BOOTS, 0.1, 0, 0, 0.05, 0, 0);
+    public static final Item DRAGONSLAYER_HELMET = new DragonslayerArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.2, 0, 0, 0, 0, 0));
+    public static final Item DRAGONSLAYER_CHESTPLATE = new DragonslayerArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.2, 0, 0, 0.1, 0, 0));
+    public static final Item DRAGONSLAYER_LEGGINGS = new DragonslayerArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.2, 0, 0, 0.05, 0, 0));
+    public static final Item DRAGONSLAYER_BOOTS = new DragonslayerArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 0, 0.05, 0, 0));
 
-    public static final Item HERO_HELMET = new HeroArmorItem(ArmorItem.Type.HELMET, 0.1, 0, 0, 0.1, 0.1, 0);
-    public static final Item HERO_CHESTPLATE = new HeroArmorItem(ArmorItem.Type.CHESTPLATE, 0.1, 0, 0, 0.1, 0.1, 0);
-    public static final Item HERO_LEGGINGS = new HeroArmorItem(ArmorItem.Type.LEGGINGS, 0.1, 0, 0, 0, 0, 0);
-    public static final Item HERO_BOOTS = new HeroArmorItem(ArmorItem.Type.BOOTS, 0.1, 0, 0, 0, 0, 0);
+    public static final Item HERO_HELMET = new HeroArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 0, 0.1, 0.1, 0));
+    public static final Item HERO_CHESTPLATE = new HeroArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.1, 0, 0, 0.1, 0.1, 0));
+    public static final Item HERO_LEGGINGS = new HeroArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.1, 0, 0, 0, 0, 0));
+    public static final Item HERO_BOOTS = new HeroArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 0, 0, 0, 0));
 
-    public static final Item GOLDEN_HORNS_HELMET = new GoldenHornsArmorItem(ArmorItem.Type.HELMET, 0.1, 0.03, 0, 0, 0.1, 0);
-    public static final Item GOLDEN_HORNS_CHESTPLATE = new GoldenHornsArmorItem(ArmorItem.Type.CHESTPLATE, 0.1, 0.01, 0, 0, 0.1, 0);
-    public static final Item GOLDEN_HORNS_LEGGINGS = new GoldenHornsArmorItem(ArmorItem.Type.LEGGINGS, 0.1, 0.02, 0, 0, 0, 0);
-    public static final Item GOLDEN_HORNS_BOOTS = new GoldenHornsArmorItem(ArmorItem.Type.BOOTS, 0.1, 0.04, 0, 0, 0, 0);
+    public static final Item GOLDEN_HORNS_HELMET = new GoldenHornsArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0.03, 0, 0, 0.1, 0));
+    public static final Item GOLDEN_HORNS_CHESTPLATE = new GoldenHornsArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.1, 0.01, 0, 0, 0.1, 0));
+    public static final Item GOLDEN_HORNS_LEGGINGS = new GoldenHornsArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.1, 0.02, 0, 0, 0, 0));
+    public static final Item GOLDEN_HORNS_BOOTS = new GoldenHornsArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0.04, 0, 0, 0, 0));
 
-    public static final Item THIEF_HELMET = new ThiefArmorItem(ArmorItem.Type.HELMET, 0.1, 0.05, 0, 0, 0.1, 1.0);
-    public static final Item THIEF_CHESTPLATE = new ThiefArmorItem(ArmorItem.Type.CHESTPLATE, 0.1, 0.05, 0, 0, 0.1, 0);
-    public static final Item THIEF_LEGGINGS = new ThiefArmorItem(ArmorItem.Type.LEGGINGS, 0.1, 0.1, 0, 0, 0.1, 0);
-    public static final Item THIEF_BOOTS = new ThiefArmorItem(ArmorItem.Type.BOOTS, 0.1, 0.1, 0, 0, 0.05, 0);
+    public static final Item THIEF_HELMET = new ThiefArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0.05, 0, 0, 0.1, 1.0));
+    public static final Item THIEF_CHESTPLATE = new ThiefArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.1, 0.05, 0, 0, 0.1, 0));
+    public static final Item THIEF_LEGGINGS = new ThiefArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.1, 0.1, 0, 0, 0.1, 0));
+    public static final Item THIEF_BOOTS = new ThiefArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0.1, 0, 0, 0.05, 0));
 
-    public static final Item WANDERING_WIZARD_HELMET = new WanderingWizardArmorItem(ArmorItem.Type.HELMET, 0.1, 0.05, 0, 0, 0, 2.0);
-    public static final Item WANDERING_WIZARD_CHESTPLATE = new WanderingWizardArmorItem(ArmorItem.Type.CHESTPLATE, 0.1, 0.05, 0, 0, 0, 0);
-    public static final Item WANDERING_WIZARD_LEGGINGS = new WanderingWizardArmorItem(ArmorItem.Type.LEGGINGS, 0.1, 0.05, 0, 0, 0, 0);
-    public static final Item WANDERING_WIZARD_BOOTS = new WanderingWizardArmorItem(ArmorItem.Type.BOOTS, 0.1, 0.05, 0, 0, 0, 0);
+    public static final Item WANDERING_WIZARD_HELMET = new WanderingWizardArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0.05, 0, 0, 0, 2.0));
+    public static final Item WANDERING_WIZARD_CHESTPLATE = new WanderingWizardArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.1, 0.05, 0, 0, 0, 0));
+    public static final Item WANDERING_WIZARD_LEGGINGS = new WanderingWizardArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.1, 0.05, 0, 0, 0, 0));
+    public static final Item WANDERING_WIZARD_BOOTS = new WanderingWizardArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0.05, 0, 0, 0, 0));
 
-    public static final Item CHESS_BOARD_KNIGHT_HELMET = new ChessBoardKnightArmorItem(ArmorItem.Type.HELMET, 0.2, 0, 0, 0, 0, 0);
-    public static final Item CHESS_BOARD_KNIGHT_CHESTPLATE = new ChessBoardKnightArmorItem(ArmorItem.Type.CHESTPLATE, 0.2, 0, 2.0, 0, 0, 0);
-    public static final Item CHESS_BOARD_KNIGHT_LEGGINGS = new ChessBoardKnightArmorItem(ArmorItem.Type.LEGGINGS, 0.2, 0, 0, 0, 0, 0);
-    public static final Item CHESS_BOARD_KNIGHT_BOOTS = new ChessBoardKnightArmorItem(ArmorItem.Type.BOOTS, 0.2, 0, 2.0, 0, 0, 0);
+    public static final Item CHESS_BOARD_KNIGHT_HELMET = new ChessBoardKnightArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.2, 0, 0, 0, 0, 0));
+    public static final Item CHESS_BOARD_KNIGHT_CHESTPLATE = new ChessBoardKnightArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.2, 0, 2.0, 0, 0, 0));
+    public static final Item CHESS_BOARD_KNIGHT_LEGGINGS = new ChessBoardKnightArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.2, 0, 0, 0, 0, 0));
+    public static final Item CHESS_BOARD_KNIGHT_BOOTS = new ChessBoardKnightArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.2, 0, 2.0, 0, 0, 0));
 
-    public static final Item DARK_LORD_HELMET = new DarkLordArmorItem(ArmorItem.Type.HELMET, 0.1, 0, 0, 0.02, 0, 0);
-    public static final Item DARK_LORD_CHESTPLATE = new DarkLordArmorItem(ArmorItem.Type.CHESTPLATE, 0.2, 0, 0, 0.03, 0, 0);
-    public static final Item DARK_LORD_LEGGINGS = new DarkLordArmorItem(ArmorItem.Type.LEGGINGS, 0.2, 0, 0, 0.03, 0, 0);
-    public static final Item DARK_LORD_BOOTS = new DarkLordArmorItem(ArmorItem.Type.BOOTS, 0.1, 0, 0, 0.02, 0, 0);
+    public static final Item DARK_LORD_HELMET = new DarkLordArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 0, 0.02, 0, 0));
+    public static final Item DARK_LORD_CHESTPLATE = new DarkLordArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.2, 0, 0, 0.03, 0, 0));
+    public static final Item DARK_LORD_LEGGINGS = new DarkLordArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.2, 0, 0, 0.03, 0, 0));
+    public static final Item DARK_LORD_BOOTS = new DarkLordArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 0, 0.02, 0, 0));
 
-    public static final Item SUNSET_WINGS_HELMET = new SunsetWingsArmorItem(ArmorItem.Type.HELMET, 0.1, 0.05, 1.0, 0, 0, 0);
-    public static final Item SUNSET_WINGS_CHESTPLATE = new SunsetWingsArmorItem(ArmorItem.Type.CHESTPLATE, 0.1, 0.05, 1.0, 0, 0, 0);
-    public static final Item SUNSET_WINGS_LEGGINGS = new SunsetWingsArmorItem(ArmorItem.Type.LEGGINGS, 0.1, 0.05, 1.0, 0, 0, 0);
-    public static final Item SUNSET_WINGS_BOOTS = new SunsetWingsArmorItem(ArmorItem.Type.BOOTS, 0.1, 0.05, 1.0, 0, 0, 0);
+    public static final Item SUNSET_WINGS_HELMET = new SunsetWingsArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0.05, 1.0, 0, 0, 0));
+    public static final Item SUNSET_WINGS_CHESTPLATE = new SunsetWingsArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.1, 0.05, 1.0, 0, 0, 0));
+    public static final Item SUNSET_WINGS_LEGGINGS = new SunsetWingsArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.1, 0.05, 1.0, 0, 0, 0));
+    public static final Item SUNSET_WINGS_BOOTS = new SunsetWingsArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0.05, 1.0, 0, 0, 0));
 
-    public static final Item FOG_GUARD_HELMET = new FogGuardArmorItem(ArmorItem.Type.HELMET, 0.1, 0, 1.0, 0, 0.02, 0);
-    public static final Item FOG_GUARD_CHESTPLATE = new FogGuardArmorItem(ArmorItem.Type.CHESTPLATE, 0.1, 0, 1.0, 0.03, 0, 0);
-    public static final Item FOG_GUARD_LEGGINGS = new FogGuardArmorItem(ArmorItem.Type.LEGGINGS, 0.1, 0, 1.0, 0.02, 0, 0);
-    public static final Item FOG_GUARD_BOOTS = new FogGuardArmorItem(ArmorItem.Type.BOOTS, 0.1, 0, 1.0, 0.03, 0, 0);
+    public static final Item FOG_GUARD_HELMET = new FogGuardArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 1.0, 0, 0.1, 0));
+    public static final Item FOG_GUARD_CHESTPLATE = new FogGuardArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.1, 0, 1.0, 0.01, 0, 0));
+    public static final Item FOG_GUARD_LEGGINGS = new FogGuardArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.1, 0, 1.0, 0.02, 0, 0));
+    public static final Item FOG_GUARD_BOOTS = new FogGuardArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 1.0, 0.03, 0, 0));
 
-    public static final Item DARK_COVER_HELMET = new DarkCoverArmorItem(ArmorItem.Type.HELMET, 0.1, 0, 0, 0, 0, 0);
-    public static final Item DARK_COVER_CHESTPLATE = new DarkCoverArmorItem(ArmorItem.Type.CHESTPLATE, 0.2, 0, 0, 0, 0, 0);
-    public static final Item DARK_COVER_LEGGINGS = new DarkCoverArmorItem(ArmorItem.Type.LEGGINGS, 0.2, 0, 0, 0, 0, 0);
-    public static final Item DARK_COVER_BOOTS = new DarkCoverArmorItem(ArmorItem.Type.BOOTS, 0.1, 0, 0, 0, 0, 0);
+    public static final Item DARK_COVER_HELMET = new DarkCoverArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 2.0, 0, 0, 0));
+    public static final Item DARK_COVER_CHESTPLATE = new DarkCoverArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.2, 0, 0, 0.1, 0, 0));
+    public static final Item DARK_COVER_LEGGINGS = new DarkCoverArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.2, 0, 1.0, 0, 0, 0));
+    public static final Item DARK_COVER_BOOTS = new DarkCoverArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 0, 0, 0, 0));
 
-    public static final Item SPARK_OF_DAWN_HELMET = new SparkOfDawnArmorItem(ArmorItem.Type.HELMET, 0.1, 0, 0, 0, 0, 0);
-    public static final Item SPARK_OF_DAWN_CHESTPLATE = new SparkOfDawnArmorItem(ArmorItem.Type.CHESTPLATE, 0.1, 0, 0, 0, 0, 0);
-    public static final Item SPARK_OF_DAWN_LEGGINGS = new SparkOfDawnArmorItem(ArmorItem.Type.LEGGINGS, 0.1, 0, 0, 0, 0, 0);
-    public static final Item SPARK_OF_DAWN_BOOTS = new SparkOfDawnArmorItem(ArmorItem.Type.BOOTS, 0.1, 0, 0, 0, 0, 0);
+    public static final Item SPARK_OF_DAWN_HELMET = new SparkOfDawnArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 1.0, 0, 0.1, 0));
+    public static final Item SPARK_OF_DAWN_CHESTPLATE = new SparkOfDawnArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.1, 0, 0, 0.05, 0, 0));
+    public static final Item SPARK_OF_DAWN_LEGGINGS = new SparkOfDawnArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.2, 0.05, 1.0, 0, 0.05, 0));
+    public static final Item SPARK_OF_DAWN_BOOTS = new SparkOfDawnArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0.05, 0, 0, 0, 0));
 
-    public static final Item GOLDEN_EXECUTION_HELMET = new GoldenExecutionArmorItem(ArmorItem.Type.HELMET, 0.1, 0, 0, 0, 0, 0);
-    public static final Item GOLDEN_EXECUTION_CHESTPLATE = new GoldenExecutionArmorItem(ArmorItem.Type.CHESTPLATE, 0.1, 0, 0, 0, 0, 0);
-    public static final Item GOLDEN_EXECUTION_LEGGINGS = new GoldenExecutionArmorItem(ArmorItem.Type.LEGGINGS, 0.1, 0, 0, 0, 0, 0);
-    public static final Item GOLDEN_EXECUTION_BOOTS = new GoldenExecutionArmorItem(ArmorItem.Type.BOOTS, 0.1, 0, 0, 0, 0, 0);
+    public static final Item GOLDEN_EXECUTION_HELMET = new GoldenExecutionArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.2, 0, 2.0, 0.05, 0, 0));
+    public static final Item GOLDEN_EXECUTION_CHESTPLATE = new GoldenExecutionArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.2, 0, 4.0, 0.05, 0, 0));
+    public static final Item GOLDEN_EXECUTION_LEGGINGS = new GoldenExecutionArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.2, 0, 1.0, 0, 0, 0));
+    public static final Item GOLDEN_EXECUTION_BOOTS = new GoldenExecutionArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.2, 0, 1.0, 0, 0, 0));
 
-    public static final Item FORGOTTEN_TRACE_HELMET = new ForgottenTraceArmorItem(ArmorItem.Type.HELMET, 0.1, 0, 0, 0, 0, 0);
-    public static final Item FORGOTTEN_TRACE_CHESTPLATE = new ForgottenTraceArmorItem(ArmorItem.Type.CHESTPLATE, 0.1, 0, 0, 0, 0, 0);
-    public static final Item FORGOTTEN_TRACE_LEGGINGS = new ForgottenTraceArmorItem(ArmorItem.Type.LEGGINGS, 0.1, 0, 0, 0, 0, 0);
-    public static final Item FORGOTTEN_TRACE_BOOTS = new ForgottenTraceArmorItem(ArmorItem.Type.BOOTS, 0.1, 0, 0, 0, 0, 0);
+    public static final Item FORGOTTEN_TRACE_HELMET = new ForgottenTraceArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0.5, 0, 0, 0, 1.0));
+    public static final Item FORGOTTEN_TRACE_CHESTPLATE = new ForgottenTraceArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.1, 0.03, 2.0, 0, 0, 0));
+    public static final Item FORGOTTEN_TRACE_LEGGINGS = new ForgottenTraceArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.1, 0.02, 1.0, 0, 0, 0));
+    public static final Item FORGOTTEN_TRACE_BOOTS = new ForgottenTraceArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.2, 0.05, 1.0, 0, 0, 1.0));
 
-    public static final Item REDEEMER_HELMET = new RedeemerArmorItem(ArmorItem.Type.HELMET, 0.1, 0, 0, 0, 0, 0);
-    public static final Item REDEEMER_CHESTPLATE = new RedeemerArmorItem(ArmorItem.Type.CHESTPLATE, 0.1, 0, 0, 0, 0, 0);
-    public static final Item REDEEMER_LEGGINGS = new RedeemerArmorItem(ArmorItem.Type.LEGGINGS, 0.1, 0, 0, 0, 0, 0);
-    public static final Item REDEEMER_BOOTS = new RedeemerArmorItem(ArmorItem.Type.BOOTS, 0.1, 0, 0, 0, 0, 0);
+    public static final Item REDEEMER_HELMET = new RedeemerArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 2.0, 0, 0.05, 1.0));
+    public static final Item REDEEMER_CHESTPLATE = new RedeemerArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.1, 0, 2.0, 0.03, 0.02, 1.0));
+    public static final Item REDEEMER_LEGGINGS = new RedeemerArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.2, 0.04, 0, 0, 0, 0));
+    public static final Item REDEEMER_BOOTS = new RedeemerArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0.02, 0, 0, 0, 0));
 
-    public static final Item TWINNED_HELMET = new TwinnedArmorItem(ArmorItem.Type.HELMET, 0.1, 0, 0, 0, 0, 0);
-    public static final Item TWINNED_CHESTPLATE = new TwinnedArmorItem(ArmorItem.Type.CHESTPLATE, 0.1, 0, 0, 0, 0, 0);
-    public static final Item TWINNED_LEGGINGS = new TwinnedArmorItem(ArmorItem.Type.LEGGINGS, 0.1, 0, 0, 0, 0, 0);
-    public static final Item TWINNED_BOOTS = new TwinnedArmorItem(ArmorItem.Type.BOOTS, 0.1, 0, 0, 0, 0, 0);
+    public static final Item TWINNED_HELMET = new TwinnedArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.2, 0, 0, 0.1, 0.02, 0));
+    public static final Item TWINNED_CHESTPLATE = new TwinnedArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.1, 0, 0, 0.02, 0.02, 0));
+    public static final Item TWINNED_LEGGINGS = new TwinnedArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.2, 0, 0, 0.05, 0.02, 0));
+    public static final Item TWINNED_BOOTS = new TwinnedArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 0, 0.05, 0.02, 0));
 
-    public static final Item GILDED_HUNT_HELMET = new GildedHuntArmorItem(ArmorItem.Type.HELMET, 0.1, 0, 0, 0, 0, 0);
-    public static final Item GILDED_HUNT_CHESTPLATE = new GildedHuntArmorItem(ArmorItem.Type.CHESTPLATE, 0.1, 0, 0, 0, 0, 0);
-    public static final Item GILDED_HUNT_LEGGINGS = new GildedHuntArmorItem(ArmorItem.Type.LEGGINGS, 0.1, 0, 0, 0, 0, 0);
-    public static final Item GILDED_HUNT_BOOTS = new GildedHuntArmorItem(ArmorItem.Type.BOOTS, 0.1, 0, 0, 0, 0, 0);
+    public static final Item GILDED_HUNT_HELMET = new GildedHuntArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 1.0, 0.1, 0, 0));
+    public static final Item GILDED_HUNT_CHESTPLATE = new GildedHuntArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.1, 0, 1.0, 0.1, 0, 0));
+    public static final Item GILDED_HUNT_LEGGINGS = new GildedHuntArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.1, 0, 0, 0, 0, 0));
+    public static final Item GILDED_HUNT_BOOTS = new GildedHuntArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 0, 0, 0, 0));
 
-    public static final Item LADY_MARIA_HELMET = new LadyMariaArmorItem(ArmorItem.Type.HELMET, 0.1, 0, 0, 0, 0, 0);
-    public static final Item LADY_MARIA_CHESTPLATE = new LadyMariaArmorItem(ArmorItem.Type.CHESTPLATE, 0.1, 0, 0, 0, 0, 0);
-    public static final Item LADY_MARIA_LEGGINGS = new LadyMariaArmorItem(ArmorItem.Type.LEGGINGS, 0.1, 0, 0, 0, 0, 0);
-    public static final Item LADY_MARIA_BOOTS = new LadyMariaArmorItem(ArmorItem.Type.BOOTS, 0.1, 0, 0, 0, 0, 0);
+    public static final Item LADY_MARIA_HELMET = new LadyMariaArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 0, 0, 0.05, 1.0));
+    public static final Item LADY_MARIA_CHESTPLATE = new LadyMariaArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.1, 0.05, 0, 0, 0.05, 0));
+    public static final Item LADY_MARIA_LEGGINGS = new LadyMariaArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.1, 0.05, 0, 0, 0, 0));
+    public static final Item LADY_MARIA_BOOTS = new LadyMariaArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0.03, 0, 0, 0, 0));
 
     private FAItems() {
     }

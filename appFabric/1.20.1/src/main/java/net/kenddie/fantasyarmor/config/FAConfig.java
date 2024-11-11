@@ -8,50 +8,67 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-public class FAConfig {
+public final class FAConfig {
 
-    private static final String CONFIG_FILE_PATH = "config/" + FantasyArmor.MOD_ID + "/" + FantasyArmor.MOD_ID + ".json";
-    private static FAConfig instance;
+    // TODO: Change to Paths.get("config", "config.json"); so we don't have mod_id in path twice for no reason.
+    private static final Path CONFIG_FILE_PATH = Paths.get("config", FantasyArmor.MOD_ID, FantasyArmor.MOD_ID + ".json");
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
-    public boolean useRecipes = true;
-    public boolean applyArmorEffects = true;
-    public boolean applyModificators = true;
-    public boolean showDescriptions = true;
-    public int descrtiptionsLength = 250;
+    private static ConfigValues values;
 
-    public static FAConfig loadConfig() {
-        File configFile = new File(CONFIG_FILE_PATH);
-
-        if (configFile.exists()) {
-            try (FileReader reader = new FileReader(configFile)) {
-                instance = GSON.fromJson(reader, FAConfig.class);
-            } catch (IOException e) {
-                instance = new FAConfig();
-            }
-        } else {
-            instance = new FAConfig();
-            saveConfig();
-        }
-        return instance;
+    static {
+        loadDefaults();
     }
 
-    public static void saveConfig() {
-        File configFile = new File(CONFIG_FILE_PATH);
-        configFile.getParentFile().mkdirs();
+    private FAConfig() {
+    }
+
+    public static void save() {
+        File configFile = CONFIG_FILE_PATH.toFile();
+        File parentFile = configFile.getParentFile();
+
+        if(parentFile == null) {
+            return;
+        }
+
+        if(!parentFile.mkdirs() && !parentFile.isDirectory()) {
+            FantasyArmor.LOGGER.warn("Failed to save config: Directory could not be created.");
+            return;
+        }
 
         try (FileWriter writer = new FileWriter(configFile)) {
-            GSON.toJson(instance, writer);
+            GSON.toJson(values, writer);
         } catch (IOException e) {
-            System.out.println("FA: can't save the config");
+            FantasyArmor.LOGGER.warn("Failed to save config: ", e);
         }
     }
 
-    public static FAConfig getInstance() {
-        if (instance == null) {
-            return loadConfig();
+    public static void load() {
+        try (FileReader reader = new FileReader(CONFIG_FILE_PATH.toFile())) {
+            values = GSON.fromJson(reader, ConfigValues.class);
+        } catch (IOException e) {
+            FantasyArmor.LOGGER.warn("Failed to read config (default parameters will be used): ", e);
+            loadDefaults();
         }
-        return instance;
+    }
+
+    public static void loadDefaults() {
+        values = new ConfigValues(
+                true,
+                true,
+                true,
+                250
+        );
+    }
+
+    public static boolean exists() {
+        return CONFIG_FILE_PATH.toFile().exists();
+    }
+
+    public static ConfigValues getValues() {
+        return values;
     }
 }
