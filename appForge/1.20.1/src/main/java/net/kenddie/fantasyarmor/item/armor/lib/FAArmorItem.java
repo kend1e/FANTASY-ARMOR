@@ -32,6 +32,7 @@ import java.util.UUID;
 import java.util.function.Consumer;
 
 public abstract class FAArmorItem extends ArmorItem implements GeoItem {
+
     private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
 
     private final Multimap<Attribute, AttributeModifier> attributeModifiers;
