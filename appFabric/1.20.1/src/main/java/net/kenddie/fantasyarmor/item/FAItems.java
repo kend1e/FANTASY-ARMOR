@@ -63,6 +63,46 @@ public final class FAItems {
     public static final Item SUNSET_WINGS_LEGGINGS = new SunsetWingsArmorItem(ArmorItem.Type.LEGGINGS, 0.1, 0.05, 1.0, 0, 0, 0);
     public static final Item SUNSET_WINGS_BOOTS = new SunsetWingsArmorItem(ArmorItem.Type.BOOTS, 0.1, 0.05, 1.0, 0, 0, 0);
 
+    public static final Item FOG_GUARD_HELMET = new FogGuardArmorItem(ArmorItem.Type.HELMET, 0.1, 0, 1.0, 0, 0.02, 0);
+    public static final Item FOG_GUARD_CHESTPLATE = new FogGuardArmorItem(ArmorItem.Type.CHESTPLATE, 0.1, 0, 1.0, 0.03, 0, 0);
+    public static final Item FOG_GUARD_LEGGINGS = new FogGuardArmorItem(ArmorItem.Type.LEGGINGS, 0.1, 0, 1.0, 0.02, 0, 0);
+    public static final Item FOG_GUARD_BOOTS = new FogGuardArmorItem(ArmorItem.Type.BOOTS, 0.1, 0, 1.0, 0.03, 0, 0);
+
+    public static final Item DARK_COVER_HELMET = new DarkCoverArmorItem(ArmorItem.Type.HELMET, 0.1, 0, 0, 0, 0, 0);
+    public static final Item DARK_COVER_CHESTPLATE = new DarkCoverArmorItem(ArmorItem.Type.CHESTPLATE, 0.2, 0, 0, 0, 0, 0);
+    public static final Item DARK_COVER_LEGGINGS = new DarkCoverArmorItem(ArmorItem.Type.LEGGINGS, 0.2, 0, 0, 0, 0, 0);
+    public static final Item DARK_COVER_BOOTS = new DarkCoverArmorItem(ArmorItem.Type.BOOTS, 0.1, 0, 0, 0, 0, 0);
+
+    public static final Item SPARK_OF_DAWN_HELMET = new SparkOfDawnArmorItem(ArmorItem.Type.HELMET, 0.1, 0, 0, 0, 0, 0);
+    public static final Item SPARK_OF_DAWN_CHESTPLATE = new SparkOfDawnArmorItem(ArmorItem.Type.CHESTPLATE, 0.1, 0, 0, 0, 0, 0);
+    public static final Item SPARK_OF_DAWN_LEGGINGS = new SparkOfDawnArmorItem(ArmorItem.Type.LEGGINGS, 0.1, 0, 0, 0, 0, 0);
+    public static final Item SPARK_OF_DAWN_BOOTS = new SparkOfDawnArmorItem(ArmorItem.Type.BOOTS, 0.1, 0, 0, 0, 0, 0);
+
+    public static final Item GOLDEN_EXECUTION_HELMET = new GoldenExecutionArmorItem(ArmorItem.Type.HELMET, 0.1, 0, 0, 0, 0, 0);
+    public static final Item GOLDEN_EXECUTION_CHESTPLATE = new GoldenExecutionArmorItem(ArmorItem.Type.CHESTPLATE, 0.1, 0, 0, 0, 0, 0);
+    public static final Item GOLDEN_EXECUTION_LEGGINGS = new GoldenExecutionArmorItem(ArmorItem.Type.LEGGINGS, 0.1, 0, 0, 0, 0, 0);
+    public static final Item GOLDEN_EXECUTION_BOOTS = new GoldenExecutionArmorItem(ArmorItem.Type.BOOTS, 0.1, 0, 0, 0, 0, 0);
+
+    public static final Item FORGOTTEN_TRACE_HELMET = new ForgottenTraceArmorItem(ArmorItem.Type.HELMET, 0.1, 0, 0, 0, 0, 0);
+    public static final Item FORGOTTEN_TRACE_CHESTPLATE = new ForgottenTraceArmorItem(ArmorItem.Type.CHESTPLATE, 0.1, 0, 0, 0, 0, 0);
+    public static final Item FORGOTTEN_TRACE_LEGGINGS = new ForgottenTraceArmorItem(ArmorItem.Type.LEGGINGS, 0.1, 0, 0, 0, 0, 0);
+    public static final Item FORGOTTEN_TRACE_BOOTS = new ForgottenTraceArmorItem(ArmorItem.Type.BOOTS, 0.1, 0, 0, 0, 0, 0);
+
+    public static final Item REDEEMER_HELMET = new RedeemerArmorItem(ArmorItem.Type.HELMET, 0.1, 0, 0, 0, 0, 0);
+    public static final Item REDEEMER_CHESTPLATE = new RedeemerArmorItem(ArmorItem.Type.CHESTPLATE, 0.1, 0, 0, 0, 0, 0);
+    public static final Item REDEEMER_LEGGINGS = new RedeemerArmorItem(ArmorItem.Type.LEGGINGS, 0.1, 0, 0, 0, 0, 0);
+    public static final Item REDEEMER_BOOTS = new RedeemerArmorItem(ArmorItem.Type.BOOTS, 0.1, 0, 0, 0, 0, 0);
+
+    public static final Item TWINNED_HELMET = new TwinnedArmorItem(ArmorItem.Type.HELMET, 0.1, 0, 0, 0, 0, 0);
+    public static final Item TWINNED_CHESTPLATE = new TwinnedArmorItem(ArmorItem.Type.CHESTPLATE, 0.1, 0, 0, 0, 0, 0);
+    public static final Item TWINNED_LEGGINGS = new TwinnedArmorItem(ArmorItem.Type.LEGGINGS, 0.1, 0, 0, 0, 0, 0);
+    public static final Item TWINNED_BOOTS = new TwinnedArmorItem(ArmorItem.Type.BOOTS, 0.1, 0, 0, 0, 0, 0);
+
+    public static final Item GILDED_HUNT_HELMET = new GildedHuntArmorItem(ArmorItem.Type.HELMET, 0.1, 0, 0, 0, 0, 0);
+    public static final Item GILDED_HUNT_CHESTPLATE = new GildedHuntArmorItem(ArmorItem.Type.CHESTPLATE, 0.1, 0, 0, 0, 0, 0);
+    public static final Item GILDED_HUNT_LEGGINGS = new GildedHuntArmorItem(ArmorItem.Type.LEGGINGS, 0.1, 0, 0, 0, 0, 0);
+    public static final Item GILDED_HUNT_BOOTS = new GildedHuntArmorItem(ArmorItem.Type.BOOTS, 0.1, 0, 0, 0, 0, 0);
+
     private FAItems() {
     }
 
@@ -113,6 +153,46 @@ public final class FAItems {
         register("sunset_wings_chestplate", SUNSET_WINGS_CHESTPLATE);
         register("sunset_wings_leggings", SUNSET_WINGS_LEGGINGS);
         register("sunset_wings_boots", SUNSET_WINGS_BOOTS);
+
+        register("fog_guard_helmet", FOG_GUARD_HELMET);
+        register("fog_guard_chestplate", FOG_GUARD_CHESTPLATE);
+        register("fog_guard_leggings", FOG_GUARD_LEGGINGS);
+        register("fog_guard_boots", FOG_GUARD_BOOTS);
+
+        register("dark_cover_helmet", DARK_COVER_HELMET);
+        register("dark_cover_chestplate", DARK_COVER_CHESTPLATE);
+        register("dark_cover_leggings", DARK_COVER_LEGGINGS);
+        register("dark_cover_boots", DARK_COVER_BOOTS);
+
+        register("spark_of_dawn_helmet", SPARK_OF_DAWN_HELMET);
+        register("spark_of_dawn_chestplate", SPARK_OF_DAWN_CHESTPLATE);
+        register("spark_of_dawn_leggings", SPARK_OF_DAWN_LEGGINGS);
+        register("spark_of_dawn_boots", SPARK_OF_DAWN_BOOTS);
+
+        register("golden_execution_helmet", GOLDEN_EXECUTION_HELMET);
+        register("golden_execution_chestplate", GOLDEN_EXECUTION_CHESTPLATE);
+        register("golden_execution_leggings", GOLDEN_EXECUTION_LEGGINGS);
+        register("golden_execution_boots", GOLDEN_EXECUTION_BOOTS);
+
+        register("forgotten_trace_helmet", FORGOTTEN_TRACE_HELMET);
+        register("forgotten_trace_chestplate", FORGOTTEN_TRACE_CHESTPLATE);
+        register("forgotten_trace_leggings", FORGOTTEN_TRACE_LEGGINGS);
+        register("forgotten_trace_boots", FORGOTTEN_TRACE_BOOTS);
+
+        register("redeemer_helmet", REDEEMER_HELMET);
+        register("redeemer_chestplate", REDEEMER_CHESTPLATE);
+        register("redeemer_leggings", REDEEMER_LEGGINGS);
+        register("redeemer_boots", REDEEMER_BOOTS);
+
+        register("twinned_helmet", TWINNED_HELMET);
+        register("twinned_chestplate", TWINNED_CHESTPLATE);
+        register("twinned_leggings", TWINNED_LEGGINGS);
+        register("twinned_boots", TWINNED_BOOTS);
+
+        register("gilded_hunt_helmet", GILDED_HUNT_HELMET);
+        register("gilded_hunt_chestplate", GILDED_HUNT_CHESTPLATE);
+        register("gilded_hunt_leggings", GILDED_HUNT_LEGGINGS);
+        register("gilded_hunt_boots", GILDED_HUNT_BOOTS);
     }
 
     private static void register(String name, Item item) {
