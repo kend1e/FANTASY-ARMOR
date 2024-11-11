@@ -41,7 +41,7 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
         super(ArmorMaterials.NETHERITE, type, new Properties().stacksTo(1));
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
 
-        if (FAConfig.getValues().applyModifiers()) {
+        if (FAConfig.getValues().applyModificators()) {
             if (armorAttributes.armor() > 0) {
                 builder.put(Attributes.ARMOR, new AttributeModifier(UUID.randomUUID(), "Armor", armorAttributes.armor(), AttributeModifier.Operation.ADDITION));
             }
@@ -112,7 +112,9 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
 
         if (slot == this.type.getSlot()) {
             ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-
+            if (!FAConfig.getValues().applyModificators()) {
+                builder.putAll(modifiers);
+            }
             builder.putAll(this.attributeModifiers);
 
             return builder.build();
