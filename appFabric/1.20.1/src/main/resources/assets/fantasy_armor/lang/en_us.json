@@ -153,5 +153,14 @@
     "item.fantasy_armor.gilded_hunt_helmet.tooltip": "§7Worn by those who chase honor and glory, this armor reflects the wild ambition of its bearer.\n§7Hunt with it, but beware - glory often has a steep price.",
     "item.fantasy_armor.gilded_hunt_chestplate.tooltip": "§7Worn by those who chase honor and glory, this armor reflects the wild ambition of its bearer.\n§7Hunt with it, but beware - glory often has a steep price.",
     "item.fantasy_armor.gilded_hunt_leggings.tooltip": "§7Worn by those who chase honor and glory, this armor reflects the wild ambition of its bearer.\n§7Hunt with it, but beware - glory often has a steep price.",
-    "item.fantasy_armor.gilded_hunt_boots.tooltip": "§7Worn by those who chase honor and glory, this armor reflects the wild ambition of its bearer.\n§7Hunt with it, but beware - glory often has a steep price."
+    "item.fantasy_armor.gilded_hunt_boots.tooltip": "§7Worn by those who chase honor and glory, this armor reflects the wild ambition of its bearer.\n§7Hunt with it, but beware - glory often has a steep price.",
+
+    "item.fantasy_armor.lady_maria_helmet": "Lady Maria's Helmet",
+    "item.fantasy_armor.lady_maria_chestplate": "Lady Maria's Chestplate",
+    "item.fantasy_armor.lady_maria_leggings": "Lady Maria's Leggings",
+    "item.fantasy_armor.lady_maria_boots": "Lady Maria's Boots",
+    "item.fantasy_armor.lady_maria_helmet.tooltip": "§7A corpse... should be left well alone. \n§7Oh, I know very well. How the secrets beckon so sweetly. \n§7Only an honest death will cure you now. \n§7Liberate you, from your wild curiosity.",
+    "item.fantasy_armor.lady_maria_chestplate.tooltip": "§7A corpse... should be left well alone. \n§7Oh, I know very well. How the secrets beckon so sweetly. \n§7Only an honest death will cure you now. \n§7Liberate you, from your wild curiosity.",
+    "item.fantasy_armor.lady_maria_leggings.tooltip": "§7A corpse... should be left well alone. \n§7Oh, I know very well. How the secrets beckon so sweetly. \n§7Only an honest death will cure you now. \n§7Liberate you, from your wild curiosity.",
+    "item.fantasy_armor.lady_maria_boots.tooltip": "§7A corpse... should be left well alone. \n§7Oh, I know very well. How the secrets beckon so sweetly. \n§7Only an honest death will cure you now. \n§7Liberate you, from your wild curiosity."
 }
