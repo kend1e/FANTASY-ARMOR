@@ -11,6 +11,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 @SuppressWarnings({"unused"})
 public final class FAItems {
+
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, FantasyArmor.MOD_ID);
 
     public static final RegistryObject<Item> MOON_CRYSTAL = ITEMS.register("moon_crystal", () -> new Item(new Item.Properties()));

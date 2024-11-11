@@ -18,9 +18,8 @@ public class FAArmorEffectHandler {
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.phase == TickEvent.Phase.START) {
             Player player = event.player;
-            FAConfig config = FAConfig.getInstance();
 
-            if (config.applyArmorEffects && hasFullSet(player)) {
+            if (FAConfig.getValues().applyArmorEffects() && hasFullSet(player)) {
                 applyFullSetEffects(player);
             }
         }

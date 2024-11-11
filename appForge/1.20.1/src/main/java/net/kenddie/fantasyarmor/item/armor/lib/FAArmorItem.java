@@ -32,6 +32,7 @@ import java.util.UUID;
 import java.util.function.Consumer;
 
 public abstract class FAArmorItem extends ArmorItem implements GeoItem {
+
     private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
 
     private final Multimap<Attribute, AttributeModifier> attributeModifiers;
@@ -40,8 +41,7 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
         super(ArmorMaterials.NETHERITE, type, new Properties().stacksTo(1));
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
 
-        FAConfig config = FAConfig.getInstance();
-        if (config.applyModificators) {
+        if (FAConfig.getValues().applyModifiers()) {
             if (knockbackResistance > 0) {
                 builder.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(UUID.randomUUID(), "Armor knockback resistance", knockbackResistance, AttributeModifier.Operation.ADDITION));
             }
@@ -71,8 +71,7 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
-        FAConfig config = FAConfig.getInstance();
-        if (config.showDescriptions) {
+        if (FAConfig.getValues().showDescriptions()) {
             super.appendHoverText(stack, world, tooltip, flag);
 
             String translationKey = this.getDescriptionId() + ".tooltip";
