@@ -100,6 +100,11 @@ public final class FAItems {
     public static final RegistryObject<Item> GILDED_HUNT_LEGGINGS = ITEMS.register("gilded_hunt_leggings", () -> new GildedHuntArmorItem(ArmorItem.Type.LEGGINGS,  0.1, 0, 0, 0, 0, 0));
     public static final RegistryObject<Item> GILDED_HUNT_BOOTS = ITEMS.register("gilded_hunt_boots", () -> new GildedHuntArmorItem(ArmorItem.Type.BOOTS,  0.1, 0, 0, 0, 0, 0));
 
+    public static final RegistryObject<Item> LADY_MARIA_HELMET = ITEMS.register("lady_maria_helmet", () -> new LadyMariaArmorItem(ArmorItem.Type.HELMET,  0.1, 0, 0, 0, 0, 0));
+    public static final RegistryObject<Item> LADY_MARIA_CHESTPLATE = ITEMS.register("lady_maria_chestplate", () -> new LadyMariaArmorItem(ArmorItem.Type.CHESTPLATE,  0.1, 0, 0, 0, 0, 0));
+    public static final RegistryObject<Item> LADY_MARIA_LEGGINGS = ITEMS.register("lady_maria_leggings", () -> new LadyMariaArmorItem(ArmorItem.Type.LEGGINGS,  0.1, 0, 0, 0, 0, 0));
+    public static final RegistryObject<Item> LADY_MARIA_BOOTS = ITEMS.register("lady_maria_boots", () -> new LadyMariaArmorItem(ArmorItem.Type.BOOTS,  0.1, 0, 0, 0, 0, 0));
+
     private FAItems() {
     }
 

@@ -103,6 +103,11 @@ public final class FAItems {
     public static final Item GILDED_HUNT_LEGGINGS = new GildedHuntArmorItem(ArmorItem.Type.LEGGINGS, 0.1, 0, 0, 0, 0, 0);
     public static final Item GILDED_HUNT_BOOTS = new GildedHuntArmorItem(ArmorItem.Type.BOOTS, 0.1, 0, 0, 0, 0, 0);
 
+    public static final Item LADY_MARIA_HELMET = new LadyMariaArmorItem(ArmorItem.Type.HELMET, 0.1, 0, 0, 0, 0, 0);
+    public static final Item LADY_MARIA_CHESTPLATE = new LadyMariaArmorItem(ArmorItem.Type.CHESTPLATE, 0.1, 0, 0, 0, 0, 0);
+    public static final Item LADY_MARIA_LEGGINGS = new LadyMariaArmorItem(ArmorItem.Type.LEGGINGS, 0.1, 0, 0, 0, 0, 0);
+    public static final Item LADY_MARIA_BOOTS = new LadyMariaArmorItem(ArmorItem.Type.BOOTS, 0.1, 0, 0, 0, 0, 0);
+
     private FAItems() {
     }
 
@@ -193,6 +198,11 @@ public final class FAItems {
         register("gilded_hunt_chestplate", GILDED_HUNT_CHESTPLATE);
         register("gilded_hunt_leggings", GILDED_HUNT_LEGGINGS);
         register("gilded_hunt_boots", GILDED_HUNT_BOOTS);
+
+        register("lady_maria_helmet", LADY_MARIA_HELMET);
+        register("lady_maria_chestplate", LADY_MARIA_CHESTPLATE);
+        register("lady_maria_leggings", LADY_MARIA_LEGGINGS);
+        register("lady_maria_boots", LADY_MARIA_BOOTS);
     }
 
     private static void register(String name, Item item) {

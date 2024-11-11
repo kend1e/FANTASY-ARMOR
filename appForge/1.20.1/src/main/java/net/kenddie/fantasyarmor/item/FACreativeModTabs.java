@@ -90,6 +90,10 @@ public class FACreativeModTabs {
                                 pOutput.accept(FAItems.GILDED_HUNT_CHESTPLATE.get());
                                 pOutput.accept(FAItems.GILDED_HUNT_LEGGINGS.get());
                                 pOutput.accept(FAItems.GILDED_HUNT_BOOTS.get());
+                                pOutput.accept(FAItems.LADY_MARIA_HELMET.get());
+                                pOutput.accept(FAItems.LADY_MARIA_CHESTPLATE.get());
+                                pOutput.accept(FAItems.LADY_MARIA_LEGGINGS.get());
+                                pOutput.accept(FAItems.LADY_MARIA_BOOTS.get());
                             })
                             .build()
             );
