@@ -21,7 +21,8 @@ public class ForgottenTraceArmorItem extends FAArmorItem {
     @Override
     public List<MobEffectInstance> getFullSetEffects() {
         return List.of(
-                new MobEffectInstance(MobEffects.DAMAGE_BOOST, 239)
+                new MobEffectInstance(MobEffects.DIG_SPEED, 239),
+                new MobEffectInstance(MobEffects.REGENERATION, 239)
         );
     }
 
