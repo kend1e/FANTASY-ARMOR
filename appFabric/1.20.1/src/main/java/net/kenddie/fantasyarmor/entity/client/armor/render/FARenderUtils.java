@@ -56,6 +56,7 @@ public final class FARenderUtils {
         bone.setRotX((legRot > 0 ? 0 : legRot) * -1.2f);
     }
 
+    //TODO: Set cloak visibility false if armor has a cloak.
     public static <T extends LivingEntity> void setArmsVisibility(PlayerModel<T> model, boolean visible) {
         model.rightArm.visible = visible;
         model.rightSleeve.visible = visible;
