@@ -20,14 +20,12 @@ import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.animatable.client.RenderProvider;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;
 
 import java.util.List;
@@ -45,7 +43,7 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
         super(ArmorMaterials.NETHERITE, type, new Properties().stacksTo(1));
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
 
-        if (FAConfig.getValues().applyModificators()) {
+        if (FAConfig.getValues().applyModifiers()) {
             if (armorAttributes.armor() > 0) {
                 builder.put(Attributes.ARMOR, new AttributeModifier(UUID.randomUUID(), "Armor", armorAttributes.armor(), AttributeModifier.Operation.ADDITION));
             }
@@ -152,7 +150,7 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
 
         if (slot == this.type.getSlot()) {
             ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-            if (!FAConfig.getValues().applyModificators()) {
+            if (!FAConfig.getValues().applyModifiers()) {
                 builder.putAll(modifiers);
             }
             builder.putAll(this.attributeModifiers);
