@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:smithing_transform",
+    "category": "equipment",
+    "template": {
+        "item": "minecraft:raw_gold"
+    },
+    "base": {
+        "item": "minecraft:netherite_boots"
+    },
+    "addition": {
+        "item": "fantasy_armor:moon_crystal"
+    },
+    "result": {
+        "item": "fantasy_armor:gilded_hunt_boots"
+    }
+}

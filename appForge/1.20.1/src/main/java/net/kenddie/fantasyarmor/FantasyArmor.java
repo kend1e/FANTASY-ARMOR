@@ -15,8 +15,8 @@ public class FantasyArmor {
     public static final String MOD_ID = "fantasy_armor";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public FantasyArmor() {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+    public FantasyArmor(FMLJavaModLoadingContext modLoadingContext) {
+        IEventBus modEventBus = modLoadingContext.getModEventBus();
 
         if(FAConfig.exists()) {
             FAConfig.load();

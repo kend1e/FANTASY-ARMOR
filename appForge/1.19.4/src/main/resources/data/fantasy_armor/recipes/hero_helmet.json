@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:smithing_transform",
+    "category": "equipment",
+    "template": {
+        "item": "minecraft:iron_ingot"
+    },
+    "base": {
+        "item": "minecraft:netherite_helmet"
+    },
+    "addition": {
+        "item": "fantasy_armor:moon_crystal"
+    },
+    "result": {
+        "item": "fantasy_armor:hero_helmet"
+    }
+}
