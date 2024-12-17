@@ -72,10 +72,10 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
         super.applyBoneVisibilityByPart(currentSlot, currentPart, model);
 
         if(currentPart == model.body) {
-            cape.setHidden(false);
-            frontCape.setHidden(false);
-            leftLegCloth.setHidden(false);
-            rightLegCloth.setHidden(false);
+            if (cape != null) cape.setHidden(false);
+            if (frontCape != null) frontCape.setHidden(false);
+            if (leftLegCloth != null) leftLegCloth.setHidden(false);
+            if (rightLegCloth != null) rightLegCloth.setHidden(false);
         }
     }
 
