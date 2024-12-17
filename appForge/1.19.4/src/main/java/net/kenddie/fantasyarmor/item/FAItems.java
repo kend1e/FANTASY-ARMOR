@@ -82,7 +82,7 @@ public final class FAItems {
     public static final RegistryObject<Item> GOLDEN_EXECUTION_LEGGINGS = ITEMS.register("golden_execution_leggings", () -> new GoldenExecutionArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.2, 0, 1.0, 0, 0, 0)));
     public static final RegistryObject<Item> GOLDEN_EXECUTION_BOOTS = ITEMS.register("golden_execution_boots", () -> new GoldenExecutionArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.2, 0, 1.0, 0, 0, 0)));
 
-    public static final RegistryObject<Item> FORGOTTEN_TRACE_HELMET = ITEMS.register("forgotten_trace_helmet", () -> new ForgottenTraceArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0.5, 0, 0, 0, 1.0)));
+    public static final RegistryObject<Item> FORGOTTEN_TRACE_HELMET = ITEMS.register("forgotten_trace_helmet", () -> new ForgottenTraceArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0.05, 0, 0, 0, 1.0)));
     public static final RegistryObject<Item> FORGOTTEN_TRACE_CHESTPLATE = ITEMS.register("forgotten_trace_chestplate", () -> new ForgottenTraceArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.1, 0.03, 2.0, 0, 0, 0)));
     public static final RegistryObject<Item> FORGOTTEN_TRACE_LEGGINGS = ITEMS.register("forgotten_trace_leggings", () -> new ForgottenTraceArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.1, 0.02, 1.0, 0, 0, 0)));
     public static final RegistryObject<Item> FORGOTTEN_TRACE_BOOTS = ITEMS.register("forgotten_trace_boots", () -> new ForgottenTraceArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.2, 0.05, 1.0, 0, 0, 1.0)));

@@ -84,7 +84,7 @@ public final class FAItems {
     public static final Item GOLDEN_EXECUTION_LEGGINGS = new GoldenExecutionArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.2, 0, 1.0, 0, 0, 0));
     public static final Item GOLDEN_EXECUTION_BOOTS = new GoldenExecutionArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.2, 0, 1.0, 0, 0, 0));
 
-    public static final Item FORGOTTEN_TRACE_HELMET = new ForgottenTraceArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0.5, 0, 0, 0, 1.0));
+    public static final Item FORGOTTEN_TRACE_HELMET = new ForgottenTraceArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0.05, 0, 0, 0, 1.0));
     public static final Item FORGOTTEN_TRACE_CHESTPLATE = new ForgottenTraceArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.1, 0.03, 2.0, 0, 0, 0));
     public static final Item FORGOTTEN_TRACE_LEGGINGS = new ForgottenTraceArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.1, 0.02, 1.0, 0, 0, 0));
     public static final Item FORGOTTEN_TRACE_BOOTS = new ForgottenTraceArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.2, 0.05, 1.0, 0, 0, 1.0));
