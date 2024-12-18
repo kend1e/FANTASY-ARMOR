@@ -19,7 +19,7 @@ public class FAArmorEffectHandler {
         if (event.phase == TickEvent.Phase.START) {
             Player player = event.player;
 
-            if (FAConfig.getValues().applyArmorEffects() && hasFullSet(player)) {
+            if (FAConfig.applyArmorEffects && hasFullSet(player)) {
                 applyFullSetEffects(player);
             }
         }
