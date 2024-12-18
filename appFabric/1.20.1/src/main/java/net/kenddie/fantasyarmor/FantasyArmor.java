@@ -1,8 +1,8 @@
 package net.kenddie.fantasyarmor;
 
 import com.mojang.logging.LogUtils;
-import net.kenddie.fantasyarmor.config.FAConfig;
 import net.fabricmc.api.ModInitializer;
+import net.kenddie.fantasyarmor.config.FAConfig;
 import net.kenddie.fantasyarmor.item.FACreativeModTabs;
 import net.kenddie.fantasyarmor.item.FAItems;
 import net.kenddie.fantasyarmor.item.armor.lib.FAArmorEffectHandler;

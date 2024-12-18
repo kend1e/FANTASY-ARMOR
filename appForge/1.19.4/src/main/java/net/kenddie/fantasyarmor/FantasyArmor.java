@@ -1,19 +1,13 @@
 package net.kenddie.fantasyarmor;
 
-import com.mojang.logging.LogUtils;
 import net.kenddie.fantasyarmor.config.FAConfig;
-import net.kenddie.fantasyarmor.item.FACreativeModTabs;
 import net.kenddie.fantasyarmor.item.FAItems;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.IModBusEvent;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.slf4j.Logger;
 
 @Mod(FantasyArmor.MOD_ID)
 public class FantasyArmor {

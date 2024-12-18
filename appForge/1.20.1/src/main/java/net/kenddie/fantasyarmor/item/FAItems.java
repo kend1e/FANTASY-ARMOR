@@ -1,7 +1,24 @@
 package net.kenddie.fantasyarmor.item;
 
 import net.kenddie.fantasyarmor.FantasyArmor;
-import net.kenddie.fantasyarmor.item.armor.*;
+import net.kenddie.fantasyarmor.item.armor.ChessBoardKnightArmorItem;
+import net.kenddie.fantasyarmor.item.armor.DarkCoverArmorItem;
+import net.kenddie.fantasyarmor.item.armor.DarkLordArmorItem;
+import net.kenddie.fantasyarmor.item.armor.DragonslayerArmorItem;
+import net.kenddie.fantasyarmor.item.armor.EclipseSoldierArmorItem;
+import net.kenddie.fantasyarmor.item.armor.FogGuardArmorItem;
+import net.kenddie.fantasyarmor.item.armor.ForgottenTraceArmorItem;
+import net.kenddie.fantasyarmor.item.armor.GildedHuntArmorItem;
+import net.kenddie.fantasyarmor.item.armor.GoldenExecutionArmorItem;
+import net.kenddie.fantasyarmor.item.armor.GoldenHornsArmorItem;
+import net.kenddie.fantasyarmor.item.armor.HeroArmorItem;
+import net.kenddie.fantasyarmor.item.armor.LadyMariaArmorItem;
+import net.kenddie.fantasyarmor.item.armor.RedeemerArmorItem;
+import net.kenddie.fantasyarmor.item.armor.SparkOfDawnArmorItem;
+import net.kenddie.fantasyarmor.item.armor.SunsetWingsArmorItem;
+import net.kenddie.fantasyarmor.item.armor.ThiefArmorItem;
+import net.kenddie.fantasyarmor.item.armor.TwinnedArmorItem;
+import net.kenddie.fantasyarmor.item.armor.WanderingWizardArmorItem;
 import net.kenddie.fantasyarmor.item.armor.lib.FAArmorAttributes;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
