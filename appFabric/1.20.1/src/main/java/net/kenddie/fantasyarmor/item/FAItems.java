@@ -19,95 +19,558 @@ public final class FAItems {
 
     public static final Item MOON_CRYSTAL = new Item(new FabricItemSettings());
 
-    public static final Item ECLIPSE_SOLDIER_HELMET = new EclipseSoldierArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0.1, 0, 0, 0, 0));
-    public static final Item ECLIPSE_SOLDIER_CHESTPLATE = new EclipseSoldierArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.2, 0, 0, 0, 0.1, 0));
-    public static final Item ECLIPSE_SOLDIER_LEGGINGS = new EclipseSoldierArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.2, 0, 0, 0, 0, 0));
-    public static final Item ECLIPSE_SOLDIER_BOOTS = new EclipseSoldierArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 0, 0, 0, 0));
+    // ECLIPSE_SOLDIER
+    public static final Item ECLIPSE_SOLDIER_HELMET = new EclipseSoldierArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.1)
+            .build());
 
-    public static final Item DRAGONSLAYER_HELMET = new DragonslayerArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.2, 0, 0, 0, 0, 0));
-    public static final Item DRAGONSLAYER_CHESTPLATE = new DragonslayerArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.2, 0, 0, 0.1, 0, 0));
-    public static final Item DRAGONSLAYER_LEGGINGS = new DragonslayerArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.2, 0, 0, 0.05, 0, 0));
-    public static final Item DRAGONSLAYER_BOOTS = new DragonslayerArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 0, 0.05, 0, 0));
+    public static final Item ECLIPSE_SOLDIER_CHESTPLATE = new EclipseSoldierArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+            .armor(8.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .attackSpeed(0.1)
+            .build());
 
-    public static final Item HERO_HELMET = new HeroArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 0, 0.1, 0.1, 0));
-    public static final Item HERO_CHESTPLATE = new HeroArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.1, 0, 0, 0.1, 0.1, 0));
-    public static final Item HERO_LEGGINGS = new HeroArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.1, 0, 0, 0, 0, 0));
-    public static final Item HERO_BOOTS = new HeroArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 0, 0, 0, 0));
+    public static final Item ECLIPSE_SOLDIER_LEGGINGS = new EclipseSoldierArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+            .armor(6.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .build());
 
-    public static final Item GOLDEN_HORNS_HELMET = new GoldenHornsArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0.03, 0, 0, 0.1, 0));
-    public static final Item GOLDEN_HORNS_CHESTPLATE = new GoldenHornsArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.1, 0.01, 0, 0, 0.1, 0));
-    public static final Item GOLDEN_HORNS_LEGGINGS = new GoldenHornsArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.1, 0.02, 0, 0, 0, 0));
-    public static final Item GOLDEN_HORNS_BOOTS = new GoldenHornsArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0.04, 0, 0, 0, 0));
+    public static final Item ECLIPSE_SOLDIER_BOOTS = new EclipseSoldierArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .build());
 
-    public static final Item THIEF_HELMET = new ThiefArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0.05, 0, 0, 0.1, 1.0));
-    public static final Item THIEF_CHESTPLATE = new ThiefArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.1, 0.05, 0, 0, 0.1, 0));
-    public static final Item THIEF_LEGGINGS = new ThiefArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.1, 0.1, 0, 0, 0.1, 0));
-    public static final Item THIEF_BOOTS = new ThiefArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0.1, 0, 0, 0.05, 0));
+    // DRAGONSLAYER
+    public static final Item DRAGONSLAYER_HELMET = new DragonslayerArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .build());
 
-    public static final Item WANDERING_WIZARD_HELMET = new WanderingWizardArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0.05, 0, 0, 0, 2.0));
-    public static final Item WANDERING_WIZARD_CHESTPLATE = new WanderingWizardArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.1, 0.05, 0, 0, 0, 0));
-    public static final Item WANDERING_WIZARD_LEGGINGS = new WanderingWizardArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.1, 0.05, 0, 0, 0, 0));
-    public static final Item WANDERING_WIZARD_BOOTS = new WanderingWizardArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0.05, 0, 0, 0, 0));
+    public static final Item DRAGONSLAYER_CHESTPLATE = new DragonslayerArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+            .armor(8.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .attackDamage(0.1)
+            .build());
 
-    public static final Item CHESS_BOARD_KNIGHT_HELMET = new ChessBoardKnightArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.2, 0, 0, 0, 0, 0));
-    public static final Item CHESS_BOARD_KNIGHT_CHESTPLATE = new ChessBoardKnightArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.2, 0, 2.0, 0, 0, 0));
-    public static final Item CHESS_BOARD_KNIGHT_LEGGINGS = new ChessBoardKnightArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.2, 0, 0, 0, 0, 0));
-    public static final Item CHESS_BOARD_KNIGHT_BOOTS = new ChessBoardKnightArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.2, 0, 2.0, 0, 0, 0));
+    public static final Item DRAGONSLAYER_LEGGINGS = new DragonslayerArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+            .armor(6.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .attackDamage(0.05)
+            .build());
 
-    public static final Item DARK_LORD_HELMET = new DarkLordArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 0, 0.02, 0, 0));
-    public static final Item DARK_LORD_CHESTPLATE = new DarkLordArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.2, 0, 0, 0.03, 0, 0));
-    public static final Item DARK_LORD_LEGGINGS = new DarkLordArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.2, 0, 0, 0.03, 0, 0));
-    public static final Item DARK_LORD_BOOTS = new DarkLordArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 0, 0.02, 0, 0));
+    public static final Item DRAGONSLAYER_BOOTS = new DragonslayerArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .attackDamage(0.05)
+            .build());
 
-    public static final Item SUNSET_WINGS_HELMET = new SunsetWingsArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0.05, 1.0, 0, 0, 0));
-    public static final Item SUNSET_WINGS_CHESTPLATE = new SunsetWingsArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.1, 0.05, 1.0, 0, 0, 0));
-    public static final Item SUNSET_WINGS_LEGGINGS = new SunsetWingsArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.1, 0.05, 1.0, 0, 0, 0));
-    public static final Item SUNSET_WINGS_BOOTS = new SunsetWingsArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0.05, 1.0, 0, 0, 0));
+    // HERO
+    public static final Item HERO_HELMET = new HeroArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .attackDamage(0.1)
+            .attackSpeed(0.1)
+            .build());
 
-    public static final Item FOG_GUARD_HELMET = new FogGuardArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 1.0, 0, 0.1, 0));
-    public static final Item FOG_GUARD_CHESTPLATE = new FogGuardArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.1, 0, 1.0, 0.01, 0, 0));
-    public static final Item FOG_GUARD_LEGGINGS = new FogGuardArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.1, 0, 1.0, 0.02, 0, 0));
-    public static final Item FOG_GUARD_BOOTS = new FogGuardArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 1.0, 0.03, 0, 0));
+    public static final Item HERO_CHESTPLATE = new HeroArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+            .armor(8.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .attackDamage(0.1)
+            .attackSpeed(0.1)
+            .build());
 
-    public static final Item DARK_COVER_HELMET = new DarkCoverArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 2.0, 0, 0, 0));
-    public static final Item DARK_COVER_CHESTPLATE = new DarkCoverArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.2, 0, 0, 0.1, 0, 0));
-    public static final Item DARK_COVER_LEGGINGS = new DarkCoverArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.2, 0, 1.0, 0, 0, 0));
-    public static final Item DARK_COVER_BOOTS = new DarkCoverArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 0, 0, 0, 0));
+    public static final Item HERO_LEGGINGS = new HeroArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+            .armor(6.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .build());
 
-    public static final Item SPARK_OF_DAWN_HELMET = new SparkOfDawnArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 1.0, 0, 0.1, 0));
-    public static final Item SPARK_OF_DAWN_CHESTPLATE = new SparkOfDawnArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.1, 0, 0, 0.05, 0, 0));
-    public static final Item SPARK_OF_DAWN_LEGGINGS = new SparkOfDawnArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.2, 0.05, 1.0, 0, 0.05, 0));
-    public static final Item SPARK_OF_DAWN_BOOTS = new SparkOfDawnArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0.05, 0, 0, 0, 0));
+    public static final Item HERO_BOOTS = new HeroArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .build());
 
-    public static final Item GOLDEN_EXECUTION_HELMET = new GoldenExecutionArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.2, 0, 2.0, 0.05, 0, 0));
-    public static final Item GOLDEN_EXECUTION_CHESTPLATE = new GoldenExecutionArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.2, 0, 4.0, 0.05, 0, 0));
-    public static final Item GOLDEN_EXECUTION_LEGGINGS = new GoldenExecutionArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.2, 0, 1.0, 0, 0, 0));
-    public static final Item GOLDEN_EXECUTION_BOOTS = new GoldenExecutionArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.2, 0, 1.0, 0, 0, 0));
+    // GOLDEN_HORNS
+    public static final Item GOLDEN_HORNS_HELMET = new GoldenHornsArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.03)
+            .attackSpeed(0.1)
+            .build());
 
-    public static final Item FORGOTTEN_TRACE_HELMET = new ForgottenTraceArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0.05, 0, 0, 0, 1.0));
-    public static final Item FORGOTTEN_TRACE_CHESTPLATE = new ForgottenTraceArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.1, 0.03, 2.0, 0, 0, 0));
-    public static final Item FORGOTTEN_TRACE_LEGGINGS = new ForgottenTraceArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.1, 0.02, 1.0, 0, 0, 0));
-    public static final Item FORGOTTEN_TRACE_BOOTS = new ForgottenTraceArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.2, 0.05, 1.0, 0, 0, 1.0));
+    public static final Item GOLDEN_HORNS_CHESTPLATE = new GoldenHornsArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+            .armor(8.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.01)
+            .attackSpeed(0.1)
+            .build());
 
-    public static final Item REDEEMER_HELMET = new RedeemerArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 2.0, 0, 0.05, 1.0));
-    public static final Item REDEEMER_CHESTPLATE = new RedeemerArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.1, 0, 2.0, 0.03, 0.02, 1.0));
-    public static final Item REDEEMER_LEGGINGS = new RedeemerArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.2, 0.04, 0, 0, 0, 0));
-    public static final Item REDEEMER_BOOTS = new RedeemerArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0.02, 0, 0, 0, 0));
+    public static final Item GOLDEN_HORNS_LEGGINGS = new GoldenHornsArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+            .armor(6.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.02)
+            .build());
 
-    public static final Item TWINNED_HELMET = new TwinnedArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.2, 0, 0, 0.1, 0.02, 0));
-    public static final Item TWINNED_CHESTPLATE = new TwinnedArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.1, 0, 0, 0.02, 0.02, 0));
-    public static final Item TWINNED_LEGGINGS = new TwinnedArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.2, 0, 0, 0.05, 0.02, 0));
-    public static final Item TWINNED_BOOTS = new TwinnedArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 0, 0.05, 0.02, 0));
+    public static final Item GOLDEN_HORNS_BOOTS = new GoldenHornsArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.04)
+            .build());
 
-    public static final Item GILDED_HUNT_HELMET = new GildedHuntArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 1.0, 0.1, 0, 0));
-    public static final Item GILDED_HUNT_CHESTPLATE = new GildedHuntArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.1, 0, 1.0, 0.1, 0, 0));
-    public static final Item GILDED_HUNT_LEGGINGS = new GildedHuntArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.1, 0, 0, 0, 0, 0));
-    public static final Item GILDED_HUNT_BOOTS = new GildedHuntArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 0, 0, 0, 0));
+    // THIEF
+    public static final Item THIEF_HELMET = new ThiefArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.05)
+            .attackSpeed(0.1)
+            .luck(1.0)
+            .build());
 
-    public static final Item LADY_MARIA_HELMET = new LadyMariaArmorItem(ArmorItem.Type.HELMET, new FAArmorAttributes(3.0, 3.0, 0.1, 0, 0, 0, 0.05, 1.0));
-    public static final Item LADY_MARIA_CHESTPLATE = new LadyMariaArmorItem(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes(8.0, 3.0, 0.1, 0.05, 0, 0, 0.05, 0));
-    public static final Item LADY_MARIA_LEGGINGS = new LadyMariaArmorItem(ArmorItem.Type.LEGGINGS, new FAArmorAttributes(6.0, 3.0, 0.1, 0.05, 0, 0, 0, 0));
-    public static final Item LADY_MARIA_BOOTS = new LadyMariaArmorItem(ArmorItem.Type.BOOTS, new FAArmorAttributes(3.0, 3.0, 0.1, 0.03, 0, 0, 0, 0));
+    public static final Item THIEF_CHESTPLATE = new ThiefArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+            .armor(8.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.05)
+            .attackSpeed(0.1)
+            .build());
+
+    public static final Item THIEF_LEGGINGS = new ThiefArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+            .armor(6.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.1)
+            .attackSpeed(0.1)
+            .build());
+
+    public static final Item THIEF_BOOTS = new ThiefArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.1)
+            .attackSpeed(0.05)
+            .build());
+
+    // WANDERING_WIZARD
+    public static final Item WANDERING_WIZARD_HELMET = new WanderingWizardArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.05)
+            .luck(2.0)
+            .build());
+
+    public static final Item WANDERING_WIZARD_CHESTPLATE = new WanderingWizardArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+            .armor(8.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.05)
+            .build());
+
+    public static final Item WANDERING_WIZARD_LEGGINGS = new WanderingWizardArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+            .armor(6.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.05)
+            .build());
+
+    public static final Item WANDERING_WIZARD_BOOTS = new WanderingWizardArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.05)
+            .build());
+
+    // CHESS_BOARD_KNIGHT
+    public static final Item CHESS_BOARD_KNIGHT_HELMET = new ChessBoardKnightArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .build());
+
+    public static final Item CHESS_BOARD_KNIGHT_CHESTPLATE = new ChessBoardKnightArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+            .armor(8.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .maxHealth(2.0)
+            .build());
+
+    public static final Item CHESS_BOARD_KNIGHT_LEGGINGS = new ChessBoardKnightArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+            .armor(6.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .build());
+
+    public static final Item CHESS_BOARD_KNIGHT_BOOTS = new ChessBoardKnightArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .maxHealth(2.0)
+            .build());
+
+    // DARK_LORD
+    public static final Item DARK_LORD_HELMET = new DarkLordArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .attackDamage(0.02)
+            .build());
+
+    public static final Item DARK_LORD_CHESTPLATE = new DarkLordArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+            .armor(8.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .attackDamage(0.03)
+            .build());
+
+    public static final Item DARK_LORD_LEGGINGS = new DarkLordArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+            .armor(6.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .attackDamage(0.03)
+            .build());
+
+    public static final Item DARK_LORD_BOOTS = new DarkLordArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .attackDamage(0.02)
+            .build());
+
+    // SUNSET_WINGS
+    public static final Item SUNSET_WINGS_HELMET = new SunsetWingsArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.05)
+            .maxHealth(1.0)
+            .build());
+
+    public static final Item SUNSET_WINGS_CHESTPLATE = new SunsetWingsArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+            .armor(8.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.05)
+            .maxHealth(1.0)
+            .build());
+
+    public static final Item SUNSET_WINGS_LEGGINGS = new SunsetWingsArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+            .armor(6.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.05)
+            .maxHealth(1.0)
+            .build());
+
+    public static final Item SUNSET_WINGS_BOOTS = new SunsetWingsArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.05)
+            .maxHealth(1.0)
+            .build());
+
+    // FOG_GUARD
+    public static final Item FOG_GUARD_HELMET = new FogGuardArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .maxHealth(1.0)
+            .attackSpeed(0.1)
+            .build());
+
+    public static final Item FOG_GUARD_CHESTPLATE = new FogGuardArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+            .armor(8.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .maxHealth(1.0)
+            .attackDamage(0.01)
+            .build());
+
+    public static final Item FOG_GUARD_LEGGINGS = new FogGuardArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+            .armor(6.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .maxHealth(1.0)
+            .attackDamage(0.02)
+            .build());
+
+    public static final Item FOG_GUARD_BOOTS = new FogGuardArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .maxHealth(1.0)
+            .attackDamage(0.03)
+            .build());
+
+    // DARK_COVER
+    public static final Item DARK_COVER_HELMET = new DarkCoverArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .maxHealth(2.0)
+            .build());
+
+    public static final Item DARK_COVER_CHESTPLATE = new DarkCoverArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+            .armor(8.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .attackSpeed(0.1)
+            .build());
+
+    public static final Item DARK_COVER_LEGGINGS = new DarkCoverArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+            .armor(6.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .maxHealth(1.0)
+            .build());
+
+    public static final Item DARK_COVER_BOOTS = new DarkCoverArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .build());
+
+    // SPARK_OF_DAWN
+    public static final Item SPARK_OF_DAWN_HELMET = new SparkOfDawnArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .maxHealth(1.0)
+            .attackSpeed(0.1)
+            .build());
+
+    public static final Item SPARK_OF_DAWN_CHESTPLATE = new SparkOfDawnArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+            .armor(8.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .attackDamage(0.05)
+            .build());
+
+    public static final Item SPARK_OF_DAWN_LEGGINGS = new SparkOfDawnArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+            .armor(6.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .movementSpeed(0.05)
+            .maxHealth(1.0)
+            .attackDamage(0.05)
+            .build());
+
+    public static final Item SPARK_OF_DAWN_BOOTS = new SparkOfDawnArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.05)
+            .build());
+
+    // GOLDEN_EXECUTION
+    public static final Item GOLDEN_EXECUTION_HELMET = new GoldenExecutionArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .maxHealth(2.0)
+            .attackDamage(0.05)
+            .build());
+
+    public static final Item GOLDEN_EXECUTION_CHESTPLATE = new GoldenExecutionArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+            .armor(8.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .maxHealth(4.0)
+            .attackDamage(0.05)
+            .build());
+
+    public static final Item GOLDEN_EXECUTION_LEGGINGS = new GoldenExecutionArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+            .armor(6.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .maxHealth(1.0)
+            .build());
+
+    public static final Item GOLDEN_EXECUTION_BOOTS = new GoldenExecutionArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .maxHealth(1.0)
+            .build());
+
+    // FORGOTTEN_TRACE
+    public static final Item FORGOTTEN_TRACE_HELMET = new ForgottenTraceArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.05)
+            .luck(1.0)
+            .build());
+
+    public static final Item FORGOTTEN_TRACE_CHESTPLATE = new ForgottenTraceArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+            .armor(8.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.03)
+            .maxHealth(2.0)
+            .build());
+
+    public static final Item FORGOTTEN_TRACE_LEGGINGS = new ForgottenTraceArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+            .armor(6.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.02)
+            .maxHealth(1.0)
+            .build());
+
+    public static final Item FORGOTTEN_TRACE_BOOTS = new ForgottenTraceArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .movementSpeed(0.05)
+            .maxHealth(1.0)
+            .luck(1.0)
+            .build());
+
+    // REDEEMER
+    public static final Item REDEEMER_HELMET = new RedeemerArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .maxHealth(2.0)
+            .attackSpeed(0.05)
+            .luck(1.0)
+            .build());
+
+    public static final Item REDEEMER_CHESTPLATE = new RedeemerArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+            .armor(8.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .maxHealth(2.0)
+            .attackDamage(0.03)
+            .attackSpeed(0.02)
+            .luck(1.0)
+            .build());
+
+    public static final Item REDEEMER_LEGGINGS = new RedeemerArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+            .armor(6.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .movementSpeed(0.04)
+            .build());
+
+    public static final Item REDEEMER_BOOTS = new RedeemerArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.02)
+            .build());
+
+    // TWINNED
+    public static final Item TWINNED_HELMET = new TwinnedArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .attackDamage(0.1)
+            .attackSpeed(0.02)
+            .build());
+
+    public static final Item TWINNED_CHESTPLATE = new TwinnedArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+            .armor(8.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .attackSpeed(0.02)
+            .build());
+
+    public static final Item TWINNED_LEGGINGS = new TwinnedArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+            .armor(6.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .attackDamage(0.05)
+            .attackSpeed(0.02)
+            .build());
+
+    public static final Item TWINNED_BOOTS = new TwinnedArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .attackDamage(0.05)
+            .attackSpeed(0.02)
+            .build());
+
+    // GILDED_HUNT
+    public static final Item GILDED_HUNT_HELMET = new GildedHuntArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .maxHealth(1.0)
+            .attackDamage(0.1)
+            .build());
+
+    public static final Item GILDED_HUNT_CHESTPLATE = new GildedHuntArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+            .armor(8.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .maxHealth(1.0)
+            .attackDamage(0.1)
+            .build());
+
+    public static final Item GILDED_HUNT_LEGGINGS = new GildedHuntArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+            .armor(6.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .build());
+
+    public static final Item GILDED_HUNT_BOOTS = new GildedHuntArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .build());
+
+    // LADY_MARIA
+    public static final Item LADY_MARIA_HELMET = new LadyMariaArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .attackSpeed(0.05)
+            .luck(1.0)
+            .build());
+
+    public static final Item LADY_MARIA_CHESTPLATE = new LadyMariaArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+            .armor(8.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.05)
+            .attackSpeed(0.05)
+            .build());
+
+    public static final Item LADY_MARIA_LEGGINGS = new LadyMariaArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+            .armor(6.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.05)
+            .build());
+
+    public static final Item LADY_MARIA_BOOTS = new LadyMariaArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.03)
+            .build());
+
 
     private FAItems() {
     }
