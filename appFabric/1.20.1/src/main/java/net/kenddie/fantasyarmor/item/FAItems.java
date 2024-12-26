@@ -3,10 +3,12 @@ package net.kenddie.fantasyarmor.item;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.kenddie.fantasyarmor.FantasyArmor;
 import net.kenddie.fantasyarmor.item.armor.ChessBoardKnightArmorItem;
+import net.kenddie.fantasyarmor.item.armor.CrucibleKnightArmorItem;
 import net.kenddie.fantasyarmor.item.armor.DarkCoverArmorItem;
 import net.kenddie.fantasyarmor.item.armor.DarkLordArmorItem;
 import net.kenddie.fantasyarmor.item.armor.DragonslayerArmorItem;
 import net.kenddie.fantasyarmor.item.armor.EclipseSoldierArmorItem;
+import net.kenddie.fantasyarmor.item.armor.EveningGhostArmorItem;
 import net.kenddie.fantasyarmor.item.armor.FogGuardArmorItem;
 import net.kenddie.fantasyarmor.item.armor.ForgottenTraceArmorItem;
 import net.kenddie.fantasyarmor.item.armor.GildedHuntArmorItem;
@@ -15,6 +17,7 @@ import net.kenddie.fantasyarmor.item.armor.GoldenHornsArmorItem;
 import net.kenddie.fantasyarmor.item.armor.HeroArmorItem;
 import net.kenddie.fantasyarmor.item.armor.LadyMariaArmorItem;
 import net.kenddie.fantasyarmor.item.armor.RedeemerArmorItem;
+import net.kenddie.fantasyarmor.item.armor.RoninArmorItem;
 import net.kenddie.fantasyarmor.item.armor.SparkOfDawnArmorItem;
 import net.kenddie.fantasyarmor.item.armor.SunsetWingsArmorItem;
 import net.kenddie.fantasyarmor.item.armor.ThiefArmorItem;
@@ -587,6 +590,91 @@ public final class FAItems {
             .movementSpeed(0.03)
             .build());
 
+    // CRUCIBLE_KNIGHT
+    public static final Item CRUCIBLE_KNIGHT_HELMET = new CrucibleKnightArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .build());
+
+    public static final Item CRUCIBLE_KNIGHT_CHESTPLATE = new CrucibleKnightArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+            .armor(8.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .maxHealth(2.0)
+            .build());
+
+    public static final Item CRUCIBLE_KNIGHT_LEGGINGS = new CrucibleKnightArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+            .armor(6.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .build());
+
+    public static final Item CRUCIBLE_KNIGHT_BOOTS = new CrucibleKnightArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .build());
+
+    // EVENING_GHOST
+    public static final Item EVENING_GHOST_HELMET = new EveningGhostArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.05)
+            .luck(1.0)
+            .build());
+
+    public static final Item EVENING_GHOST_CHESTPLATE = new EveningGhostArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+            .armor(8.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.03)
+            .luck(1.0)
+            .build());
+
+    public static final Item EVENING_GHOST_LEGGINGS = new EveningGhostArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+            .armor(6.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.04)
+            .build());
+
+    public static final Item EVENING_GHOST_BOOTS = new EveningGhostArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.05)
+            .build());
+
+    // RONIN
+    public static final Item RONIN_HELMET = new RoninArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .attackSpeed(0.1)
+            .build());
+
+    public static final Item RONIN_CHESTPLATE = new RoninArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+            .armor(8.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .attackSpeed(0.1)
+            .build());
+
+    public static final Item RONIN_LEGGINGS = new RoninArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+            .armor(6.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.03)
+            .build());
+
+    public static final Item RONIN_BOOTS = new RoninArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.05)
+            .build());
 
     private FAItems() {
     }
@@ -683,6 +771,21 @@ public final class FAItems {
         register("lady_maria_chestplate", LADY_MARIA_CHESTPLATE);
         register("lady_maria_leggings", LADY_MARIA_LEGGINGS);
         register("lady_maria_boots", LADY_MARIA_BOOTS);
+
+        register("crucible_knight_helmet", CRUCIBLE_KNIGHT_HELMET);
+        register("crucible_knight_chestplate", CRUCIBLE_KNIGHT_CHESTPLATE);
+        register("crucible_knight_leggings", CRUCIBLE_KNIGHT_LEGGINGS);
+        register("crucible_knight_boots", CRUCIBLE_KNIGHT_BOOTS);
+
+        register("evening_ghost_helmet", EVENING_GHOST_HELMET);
+        register("evening_ghost_chestplate", EVENING_GHOST_CHESTPLATE);
+        register("evening_ghost_leggings", EVENING_GHOST_LEGGINGS);
+        register("evening_ghost_boots", EVENING_GHOST_BOOTS);
+
+        register("ronin_helmet", RONIN_HELMET);
+        register("ronin_chestplate", RONIN_CHESTPLATE);
+        register("ronin_leggings", RONIN_LEGGINGS);
+        register("ronin_boots", RONIN_BOOTS);
     }
 
     private static void register(String name, Item item) {

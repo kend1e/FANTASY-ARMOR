@@ -94,6 +94,18 @@ public class FACreativeModTabs {
                                 pOutput.accept(FAItems.LADY_MARIA_CHESTPLATE.get());
                                 pOutput.accept(FAItems.LADY_MARIA_LEGGINGS.get());
                                 pOutput.accept(FAItems.LADY_MARIA_BOOTS.get());
+                                pOutput.accept(FAItems.CRUCIBLE_KNIGHT_HELMET.get());
+                                pOutput.accept(FAItems.CRUCIBLE_KNIGHT_CHESTPLATE.get());
+                                pOutput.accept(FAItems.CRUCIBLE_KNIGHT_LEGGINGS.get());
+                                pOutput.accept(FAItems.CRUCIBLE_KNIGHT_BOOTS.get());
+                                pOutput.accept(FAItems.RONIN_HELMET.get());
+                                pOutput.accept(FAItems.RONIN_CHESTPLATE.get());
+                                pOutput.accept(FAItems.RONIN_LEGGINGS.get());
+                                pOutput.accept(FAItems.RONIN_BOOTS.get());
+                                pOutput.accept(FAItems.EVENING_GHOST_HELMET.get());
+                                pOutput.accept(FAItems.EVENING_GHOST_CHESTPLATE.get());
+                                pOutput.accept(FAItems.EVENING_GHOST_LEGGINGS.get());
+                                pOutput.accept(FAItems.EVENING_GHOST_BOOTS.get());
                             })
                             .build()
             );

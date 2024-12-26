@@ -96,6 +96,18 @@ public class FACreativeModTabs {
             event.accept(FAItems.LADY_MARIA_CHESTPLATE.get());
             event.accept(FAItems.LADY_MARIA_LEGGINGS.get());
             event.accept(FAItems.LADY_MARIA_BOOTS.get());
+            event.accept(FAItems.CRUCIBLE_KNIGHT_HELMET.get());
+            event.accept(FAItems.CRUCIBLE_KNIGHT_CHESTPLATE.get());
+            event.accept(FAItems.CRUCIBLE_KNIGHT_LEGGINGS.get());
+            event.accept(FAItems.CRUCIBLE_KNIGHT_BOOTS.get());
+            event.accept(FAItems.RONIN_HELMET.get());
+            event.accept(FAItems.RONIN_CHESTPLATE.get());
+            event.accept(FAItems.RONIN_LEGGINGS.get());
+            event.accept(FAItems.RONIN_BOOTS.get());
+            event.accept(FAItems.EVENING_GHOST_HELMET.get());
+            event.accept(FAItems.EVENING_GHOST_CHESTPLATE.get());
+            event.accept(FAItems.EVENING_GHOST_LEGGINGS.get());
+            event.accept(FAItems.EVENING_GHOST_BOOTS.get());
         }
     }
 }

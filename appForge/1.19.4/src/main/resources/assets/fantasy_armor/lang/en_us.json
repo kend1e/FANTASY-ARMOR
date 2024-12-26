@@ -162,5 +162,32 @@
     "item.fantasy_armor.lady_maria_helmet.tooltip": "§7A corpse... should be left well alone. \nOh, I know very well. How the secrets beckon so sweetly. \nOnly an honest death will cure you now. \nLiberate you, from your wild curiosity.",
     "item.fantasy_armor.lady_maria_chestplate.tooltip": "§7A corpse... should be left well alone. \nOh, I know very well. How the secrets beckon so sweetly. \nOnly an honest death will cure you now. \nLiberate you, from your wild curiosity.",
     "item.fantasy_armor.lady_maria_leggings.tooltip": "§7A corpse... should be left well alone. \nOh, I know very well. How the secrets beckon so sweetly. \nOnly an honest death will cure you now. \nLiberate you, from your wild curiosity.",
-    "item.fantasy_armor.lady_maria_boots.tooltip": "§7A corpse... should be left well alone. \nOh, I know very well. How the secrets beckon so sweetly. \nOnly an honest death will cure you now. \nLiberate you, from your wild curiosity."
+    "item.fantasy_armor.lady_maria_boots.tooltip": "§7A corpse... should be left well alone. \nOh, I know very well. How the secrets beckon so sweetly. \nOnly an honest death will cure you now. \nLiberate you, from your wild curiosity.",
+
+    "item.fantasy_armor.crucible_knight_helmet": "Crucible Knight Helmet",
+    "item.fantasy_armor.crucible_knight_chestplate": "Crucible Knight Chestplate",
+    "item.fantasy_armor.crucible_knight_leggings": "Crucible Knight Leggings",
+    "item.fantasy_armor.crucible_knight_boots": "Crucible Knight Boots",
+    "item.fantasy_armor.crucible_knight_helmet.tooltip": "§7Hold the power of the crucible of life. \nIn time, the strength shown by these knights, and even their appearance, was seen as chaotic and deserving of scorn.",
+    "item.fantasy_armor.crucible_knight_chestplate.tooltip": "§7Hold the power of the crucible of life. \nIn time, the strength shown by these knights, and even their appearance, was seen as chaotic and deserving of scorn.",
+    "item.fantasy_armor.crucible_knight_leggings.tooltip": "§7Hold the power of the crucible of life. \nIn time, the strength shown by these knights, and even their appearance, was seen as chaotic and deserving of scorn.",
+    "item.fantasy_armor.crucible_knight_boots.tooltip": "§7Hold the power of the crucible of life. \nIn time, the strength shown by these knights, and even their appearance, was seen as chaotic and deserving of scorn.",
+
+    "item.fantasy_armor.evening_ghost_helmet": "Evening Ghost Helmet",
+    "item.fantasy_armor.evening_ghost_chestplate": "Evening Ghost Chestplate",
+    "item.fantasy_armor.evening_ghost_leggings": "Evening Ghost Leggings",
+    "item.fantasy_armor.evening_ghost_boots": "Evening Ghost Boots",
+    "item.fantasy_armor.evening_ghost_helmet.tooltip": "§7Hidden in the night, the shadow knows its place. \nIts steps are silent, but the chill of its presence is felt on the skin.",
+    "item.fantasy_armor.evening_ghost_chestplate.tooltip": "§7Hidden in the night, the shadow knows its place. \nIts steps are silent, but the chill of its presence is felt on the skin.",
+    "item.fantasy_armor.evening_ghost_leggings.tooltip": "§7Hidden in the night, the shadow knows its place. \nIts steps are silent, but the chill of its presence is felt on the skin.",
+    "item.fantasy_armor.evening_ghost_boots.tooltip": "§7Hidden in the night, the shadow knows its place. \nIts steps are silent, but the chill of its presence is felt on the skin.",
+
+    "item.fantasy_armor.ronin_helmet": "Ronin Helmet",
+    "item.fantasy_armor.ronin_chestplate": "Ronin Chestplate",
+    "item.fantasy_armor.ronin_leggings": "Ronin Leggings",
+    "item.fantasy_armor.ronin_boots": "Ronin Boots",
+    "item.fantasy_armor.ronin_helmet.tooltip": "§7Steel bears the scars of the past, its patterns soaked with long-cooled blood.",
+    "item.fantasy_armor.ronin_chestplate.tooltip": "§7Steel bears the scars of the past, its patterns soaked with long-cooled blood.",
+    "item.fantasy_armor.ronin_leggings.tooltip": "§7Steel bears the scars of the past, its patterns soaked with long-cooled blood.",
+    "item.fantasy_armor.ronin_boots.tooltip": "§7Steel bears the scars of the past, its patterns soaked with long-cooled blood."
 }

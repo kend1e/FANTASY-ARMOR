@@ -162,6 +162,33 @@
     "item.fantasy_armor.lady_maria_helmet.tooltip": "§7Не варто торкатися тіл. \nО, я-то знаю, як солодко ваблять таємниці. \nТепер лише чесна смерть принесе тобі зцілення. \nЗвільнить тебе від твоєї неймовірної допитливості.",
     "item.fantasy_armor.lady_maria_chestplate.tooltip": "§7Не варто торкатися тіл. \nО, я-то знаю, як солодко ваблять таємниці. \nТепер лише чесна смерть принесе тобі зцілення. \nЗвільнить тебе від твоєї неймовірної допитливості.",
     "item.fantasy_armor.lady_maria_leggings.tooltip": "§7Не варто торкатися тіл. \nО, я-то знаю, як солодко ваблять таємниці. \nТепер лише чесна смерть принесе тобі зцілення. \nЗвільнить тебе від твоєї неймовірної допитливості.",
-    "item.fantasy_armor.lady_maria_boots.tooltip": "§7Не варто торкатися тіл. \nО, я-то знаю, як солодко ваблять таємниці. \nТепер лише чесна смерть принесе тобі зцілення. \nЗвільнить тебе від твоєї неймовірної допитливості."
+    "item.fantasy_armor.lady_maria_boots.tooltip": "§7Не варто торкатися тіл. \nО, я-то знаю, як солодко ваблять таємниці. \nТепер лише чесна смерть принесе тобі зцілення. \nЗвільнить тебе від твоєї неймовірної допитливості.",
 
+    
+    "item.fantasy_armor.crucible_knight_helmet": "Шолом Лицаря Горнила",
+    "item.fantasy_armor.crucible_knight_chestplate": "Нагрудник Лицаря Горнила",
+    "item.fantasy_armor.crucible_knight_leggings": "Наголінники Лицаря Горнила",
+    "item.fantasy_armor.crucible_knight_boots": "Чоботи Лицаря Горнила",
+    "item.fantasy_armor.crucible_knight_helmet.tooltip": "§7Опануйте силу горнила життя. \nЗ часом сила, яку демонстрували ці лицарі, та навіть їхній вигляд почав вважатися хаотичними та негідними.",
+    "item.fantasy_armor.crucible_knight_chestplate.tooltip": "§7Опануйте силу горнила життя. \nЗ часом сила, яку демонстрували ці лицарі, та навіть їхній вигляд почав вважатися хаотичними та негідними.",
+    "item.fantasy_armor.crucible_knight_leggings.tooltip": "§7Опануйте силу горнила життя. \nЗ часом сила, яку демонстрували ці лицарі, та навіть їхній вигляд почав вважатися хаотичними та негідними.",
+    "item.fantasy_armor.crucible_knight_boots.tooltip": "§7Опануйте силу горнила життя. \nЗ часом сила, яку демонстрували ці лицарі, та навіть їхній вигляд почав вважатися хаотичними та негідними.",
+
+    "item.fantasy_armor.evening_ghost_helmet": "Шолом Примари Вечора",
+    "item.fantasy_armor.evening_ghost_chestplate": "Нагрудник Примари Вечора",
+    "item.fantasy_armor.evening_ghost_leggings": "Наголінники Примари Вечора",
+    "item.fantasy_armor.evening_ghost_boots": "Чоботи Примари Вечора",
+    "item.fantasy_armor.evening_ghost_helmet.tooltip": "§7Схована в ночі, тінь знає своє місце. \nЇї кроки нечутні, але холод її присутності відчувається на шкірі.",
+    "item.fantasy_armor.evening_ghost_chestplate.tooltip": "§7Схована в ночі, тінь знає своє місце. \nЇї кроки нечутні, але холод її присутності відчувається на шкірі.",
+    "item.fantasy_armor.evening_ghost_leggings.tooltip": "§7Схована в ночі, тінь знає своє місце. \nЇї кроки нечутні, але холод її присутності відчувається на шкірі.",
+    "item.fantasy_armor.evening_ghost_boots.tooltip": "§7Схована в ночі, тінь знає своє місце. \nЇї кроки нечутні, але холод її присутності відчувається на шкірі.",
+
+    "item.fantasy_armor.ronin_helmet": "Шолом Роніна",
+    "item.fantasy_armor.ronin_chestplate": "Нагрудник Роніна",
+    "item.fantasy_armor.ronin_leggings": "Наголінники Роніна",
+    "item.fantasy_armor.ronin_boots": "Чоботи Роніна",
+    "item.fantasy_armor.ronin_helmet.tooltip": "§7Сталь несе шрами минулого, її візерунки просякнуті давно охололою кров’ю.",
+    "item.fantasy_armor.ronin_chestplate.tooltip": "§7Сталь несе шрами минулого, її візерунки просякнуті давно охололою кров’ю.",
+    "item.fantasy_armor.ronin_leggings.tooltip": "§7Сталь несе шрами минулого, її візерунки просякнуті давно охололою кров’ю.",
+    "item.fantasy_armor.ronin_boots.tooltip": "§7Сталь несе шрами минулого, її візерунки просякнуті давно охололою кров’ю."
 }
