@@ -5,6 +5,7 @@ import net.kenddie.fantasyarmor.item.FACreativeModTabs;
 import net.kenddie.fantasyarmor.item.FAItems;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
@@ -15,8 +16,10 @@ public class FantasyArmor {
 
     public static final String MOD_ID = "fantasy_armor";
 
-    public FantasyArmor(FMLJavaModLoadingContext modLoadingContext) {
-        IEventBus modEventBus = modLoadingContext.getModEventBus();
+    @SuppressWarnings("removal")
+    public FantasyArmor() {
+        ModLoadingContext modLoadingContext = ModLoadingContext.get();
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         modLoadingContext.registerConfig(ModConfig.Type.COMMON, FAConfig.SPEC, "fantasy_armor-common.toml");
         FAItems.register(modEventBus);
@@ -25,6 +28,7 @@ public class FantasyArmor {
         modEventBus.addListener(this::onConfigLoad);
         modEventBus.addListener(this::onConfigReload);
     }
+
 
     @SubscribeEvent
     public void onConfigLoad(final ModConfigEvent.Loading event) {
