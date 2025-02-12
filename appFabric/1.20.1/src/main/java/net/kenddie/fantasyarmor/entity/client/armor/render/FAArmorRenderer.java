@@ -20,6 +20,7 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
     protected GeoBone frontCape = null;
     protected GeoBone leftLegCloth = null;
     protected GeoBone rightLegCloth = null;
+    protected GeoBone braid = null;
 
     public FAArmorRenderer(GeoModel<T> model) {
         super(model);
@@ -45,6 +46,11 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
         return model.getBone("armorRightLegCloth").orElse(null);
     }
 
+    @Nullable
+    public GeoBone getBraidBone(GeoModel<T> model) {
+        return model.getBone("armorBraid").orElse(null);
+    }
+
     @Override
     protected void grabRelevantBones(BakedGeoModel bakedModel) {
         super.grabRelevantBones(bakedModel);
@@ -54,6 +60,7 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
         frontCape = getFrontCapeBone(model);
         leftLegCloth = getLeftLegClothBone(model);
         rightLegCloth = getRightLegClothBone(model);
+        braid = getBraidBone(model);
     }
 
     @Override
@@ -65,6 +72,8 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
             setBoneVisible(frontCape, true);
             setBoneVisible(leftLegCloth, true);
             setBoneVisible(rightLegCloth, true);
+        } else if (currentSlot == EquipmentSlot.HEAD) {
+            setBoneVisible(braid, true);
         }
     }
 
@@ -72,10 +81,12 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
         super.applyBoneVisibilityByPart(currentSlot, currentPart, model);
 
         if(currentPart == model.body) {
-            cape.setHidden(false);
-            frontCape.setHidden(false);
-            leftLegCloth.setHidden(false);
-            rightLegCloth.setHidden(false);
+            if (cape != null) cape.setHidden(false);
+            if (frontCape != null) frontCape.setHidden(false);
+            if (leftLegCloth != null) leftLegCloth.setHidden(false);
+            if (rightLegCloth != null) rightLegCloth.setHidden(false);
+        } else if (currentSlot == EquipmentSlot.HEAD) {
+            if (braid != null) braid.setHidden(false);
         }
     }
 
@@ -93,6 +104,10 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
             } else {
                 cape.updateRotation((float) -Math.toRadians(5.0F), 0.0F, 0.0F);
             }
+        }
+
+        if (braid != null && currentEntity instanceof Player player) {
+            FARenderUtils.applyBraidRotation(player, braid, partialTick);
         }
     }
 
@@ -135,5 +150,6 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
         setBoneVisible(frontCape, pVisible);
         setBoneVisible(leftLegCloth, pVisible);
         setBoneVisible(rightLegCloth, pVisible);
+        setBoneVisible(braid, pVisible);
     }
 }

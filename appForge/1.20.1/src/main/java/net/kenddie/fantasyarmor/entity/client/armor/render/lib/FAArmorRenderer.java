@@ -85,6 +85,8 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
             if (frontCape != null) frontCape.setHidden(false);
             if (leftLegCloth != null) leftLegCloth.setHidden(false);
             if (rightLegCloth != null) rightLegCloth.setHidden(false);
+        } else if (currentSlot == EquipmentSlot.HEAD) {
+            if (braid != null) braid.setHidden(false);
         }
     }
 
@@ -137,11 +139,6 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
 
             RenderUtils.matchModelPartRot(rightLegPart, rightLegCloth);
             rightLegCloth.updatePosition(rightLegPart.x + 2, 12 - rightLegPart.y, rightLegPart.z);
-        }
-
-        if (braid != null) {
-            ModelPart headPart = baseModel.head;
-            //RenderUtils.matchModelPartRot(headPart, braid);
         }
     }
 

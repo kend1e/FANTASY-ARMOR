@@ -189,5 +189,32 @@
     "item.fantasy_armor.ronin_helmet.tooltip": "§7Сталь носит шрамы прошлого, кровь давно остывшая впиталась в её узоры.",
     "item.fantasy_armor.ronin_chestplate.tooltip": "§7Сталь носит шрамы прошлого, кровь давно остывшая впиталась в её узоры.",
     "item.fantasy_armor.ronin_leggings.tooltip": "§7Сталь носит шрамы прошлого, кровь давно остывшая впиталась в её узоры.",
-    "item.fantasy_armor.ronin_boots.tooltip": "§7Сталь носит шрамы прошлого, кровь давно остывшая впиталась в её узоры."
+    "item.fantasy_armor.ronin_boots.tooltip": "§7Сталь носит шрамы прошлого, кровь давно остывшая впиталась в её узоры.",
+
+    "item.fantasy_armor.malenia_helmet": "Шлем Малении",
+    "item.fantasy_armor.malenia_chestplate": "Нагрудник Малении",
+    "item.fantasy_armor.malenia_leggings": "Поножи Малении",
+    "item.fantasy_armor.malenia_boots": "Ботинки Малении",
+    "item.fantasy_armor.malenia_helmet.tooltip": "§7...Внемлите моим словам. Я — Маления, клинок Микеллы. И я никогда не знала поражения.",
+    "item.fantasy_armor.malenia_chestplate.tooltip": "§7...Внемлите моим словам. Я — Маления, клинок Микеллы. И я никогда не знала поражения.",
+    "item.fantasy_armor.malenia_leggings.tooltip": "§7...Внемлите моим словам. Я — Маления, клинок Микеллы. И я никогда не знала поражения.",
+    "item.fantasy_armor.malenia_boots.tooltip": "§7...Внемлите моим словам. Я — Маления, клинок Микеллы. И я никогда не знала поражения.",
+
+    "item.fantasy_armor.old_knight_helmet": "Шлем Старого Рыцаря",
+    "item.fantasy_armor.old_knight_chestplate": "Нагрудник Старого Рыцаря",
+    "item.fantasy_armor.old_knight_leggings": "Поножи Старого Рыцаря",
+    "item.fantasy_armor.old_knight_boots": "Ботинки Старого Рыцаря",
+    "item.fantasy_armor.old_knight_helmet.tooltip": "§7Когда-то этот доспех носил рыцарь, прошедший сотни битв. \n§7Его вес невыносим для слабых, но те, кто выдержат — никогда не падут.",
+    "item.fantasy_armor.old_knight_chestplate.tooltip": "§7Когда-то этот доспех носил рыцарь, прошедший сотни битв. \n§7Его вес невыносим для слабых, но те, кто выдержат — никогда не падут.",
+    "item.fantasy_armor.old_knight_leggings.tooltip": "§7Когда-то этот доспех носил рыцарь, прошедший сотни битв. \n§7Его вес невыносим для слабых, но те, кто выдержат — никогда не падут.",
+    "item.fantasy_armor.old_knight_boots.tooltip": "§7Когда-то этот доспех носил рыцарь, прошедший сотни битв. \n§7Его вес невыносим для слабых, но те, кто выдержат — никогда не падут.",
+
+    "item.fantasy_armor.silver_knight_helmet": "Шлем Серебряного Рыцаря",
+    "item.fantasy_armor.silver_knight_chestplate": "Нагрудник Серебряного Рыцаря",
+    "item.fantasy_armor.silver_knight_leggings": "Поножи Серебряного Рыцаря",
+    "item.fantasy_armor.silver_knight_boots": "Ботинки Серебряного Рыцаря",
+    "item.fantasy_armor.silver_knight_helmet.tooltip": "§7Доспех элитного воина, не знавшего поражений. \n§7Его серебряный блеск отражает лунный свет и несёт быструю смерть врагам.",
+    "item.fantasy_armor.silver_knight_chestplate.tooltip": "§7Доспех элитного воина, не знавшего поражений. \n§7Его серебряный блеск отражает лунный свет и несёт быструю смерть врагам.",
+    "item.fantasy_armor.silver_knight_leggings.tooltip": "§7Доспех элитного воина, не знавшего поражений. \n§7Его серебряный блеск отражает лунный свет и несёт быструю смерть врагам.",
+    "item.fantasy_armor.silver_knight_boots.tooltip": "§7Доспех элитного воина, не знавшего поражений. \n§7Его серебряный блеск отражает лунный свет и несёт быструю смерть врагам."
 }

@@ -171,5 +171,32 @@
     "item.fantasy_armor.ronin_helmet.tooltip": "§7Сталь несе шрами минулого, її візерунки просякнуті давно охололою кров’ю.",
     "item.fantasy_armor.ronin_chestplate.tooltip": "§7Сталь несе шрами минулого, її візерунки просякнуті давно охололою кров’ю.",
     "item.fantasy_armor.ronin_leggings.tooltip": "§7Сталь несе шрами минулого, її візерунки просякнуті давно охололою кров’ю.",
-    "item.fantasy_armor.ronin_boots.tooltip": "§7Сталь несе шрами минулого, її візерунки просякнуті давно охололою кров’ю."
+    "item.fantasy_armor.ronin_boots.tooltip": "§7Сталь несе шрами минулого, її візерунки просякнуті давно охололою кров’ю.",
+
+    "item.fantasy_armor.malenia_helmet": "Шолом Маленії",
+    "item.fantasy_armor.malenia_chestplate": "Нагрудник Маленії",
+    "item.fantasy_armor.malenia_leggings": "Наголінники Маленії",
+    "item.fantasy_armor.malenia_boots": "Чоботи Маленії",
+    "item.fantasy_armor.malenia_helmet.tooltip": "§7...Прислухайтесь до моїх слів. Я — Маленія, клинок Мікелли. І я ніколи не знала поразки.",
+    "item.fantasy_armor.malenia_chestplate.tooltip": "§7...Прислухайтесь до моїх слів. Я — Маленія, клинок Мікелли. І я ніколи не знала поразки.",
+    "item.fantasy_armor.malenia_leggings.tooltip": "§7...Прислухайтесь до моїх слів. Я — Маленія, клинок Мікелли. І я ніколи не знала поразки.",
+    "item.fantasy_armor.malenia_boots.tooltip": "§7...Прислухайтесь до моїх слів. Я — Маленія, клинок Мікелли. І я ніколи не знала поразки.",
+
+    "item.fantasy_armor.old_knight_helmet": "Шолом Старого Лицаря",
+    "item.fantasy_armor.old_knight_chestplate": "Нагрудник Старого Лицаря",
+    "item.fantasy_armor.old_knight_leggings": "Наголінники Старого Лицаря",
+    "item.fantasy_armor.old_knight_boots": "Чоботи Старого Лицаря",
+    "item.fantasy_armor.old_knight_helmet.tooltip": "§7Колись цей обладунок належав лицарю, що пережив сотні битв. \n§7Його вага нестерпна для слабких, але ті, хто витримає — ніколи не впадуть.",
+    "item.fantasy_armor.old_knight_chestplate.tooltip": "§7Колись цей обладунок належав лицарю, що пережив сотні битв. \n§7Його вага нестерпна для слабких, але ті, хто витримає — ніколи не впадуть.",
+    "item.fantasy_armor.old_knight_leggings.tooltip": "§7Колись цей обладунок належав лицарю, що пережив сотні битв. \n§7Його вага нестерпна для слабких, але ті, хто витримає — ніколи не впадуть.",
+    "item.fantasy_armor.old_knight_boots.tooltip": "§7Колись цей обладунок належав лицарю, що пережив сотні битв. \n§7Його вага нестерпна для слабких, але ті, хто витримає — ніколи не впадуть.",
+
+    "item.fantasy_armor.silver_knight_helmet": "Шолом Срібного Лицаря",
+    "item.fantasy_armor.silver_knight_chestplate": "Нагрудник Срібного Лицаря",
+    "item.fantasy_armor.silver_knight_leggings": "Наголінники Срібного Лицаря",
+    "item.fantasy_armor.silver_knight_boots": "Чоботи Срібного Лицаря",
+    "item.fantasy_armor.silver_knight_helmet.tooltip": "§7Обладунок елітного воїна, що не знав поразок. \n§7Його срібний блиск відображає місячне сяйво, приносячи швидку смерть ворогам.",
+    "item.fantasy_armor.silver_knight_chestplate.tooltip": "§7Обладунок елітного воїна, що не знав поразок. \n§7Його срібний блиск відображає місячне сяйво, приносячи швидку смерть ворогам.",
+    "item.fantasy_armor.silver_knight_leggings.tooltip": "§7Обладунок елітного воїна, що не знав поразок. \n§7Його срібний блиск відображає місячне сяйво, приносячи швидку смерть ворогам.",
+    "item.fantasy_armor.silver_knight_boots.tooltip": "§7Обладунок елітного воїна, що не знав поразок. \n§7Його срібний блиск відображає місячне сяйво, приносячи швидку смерть ворогам."
 }

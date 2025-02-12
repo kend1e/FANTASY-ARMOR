@@ -16,8 +16,11 @@ import net.kenddie.fantasyarmor.item.armor.GoldenExecutionArmorItem;
 import net.kenddie.fantasyarmor.item.armor.GoldenHornsArmorItem;
 import net.kenddie.fantasyarmor.item.armor.HeroArmorItem;
 import net.kenddie.fantasyarmor.item.armor.LadyMariaArmorItem;
+import net.kenddie.fantasyarmor.item.armor.MaleniaArmorItem;
+import net.kenddie.fantasyarmor.item.armor.OldKnightArmorItem;
 import net.kenddie.fantasyarmor.item.armor.RedeemerArmorItem;
 import net.kenddie.fantasyarmor.item.armor.RoninArmorItem;
+import net.kenddie.fantasyarmor.item.armor.SilverKnightArmorItem;
 import net.kenddie.fantasyarmor.item.armor.SparkOfDawnArmorItem;
 import net.kenddie.fantasyarmor.item.armor.SunsetWingsArmorItem;
 import net.kenddie.fantasyarmor.item.armor.ThiefArmorItem;
@@ -676,6 +679,96 @@ public final class FAItems {
             .movementSpeed(0.05)
             .build());
 
+    // MALENIA
+    public static final Item MALENIA_HELMET = new MaleniaArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.07)
+            .attackSpeed(0.05)
+            .build());
+
+    public static final Item MALENIA_CHESTPLATE = new MaleniaArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+            .armor(8.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .movementSpeed(0.05)
+            .attackSpeed(0.05)
+            .build());
+
+    public static final Item MALENIA_LEGGINGS = new MaleniaArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+            .armor(6.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.05)
+            .build());
+
+    public static final Item MALENIA_BOOTS = new MaleniaArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.08)
+            .build());
+
+    // OLD KNIGHT
+    public static final Item OLD_KNIGHT_HELMET = new OldKnightArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .maxHealth(1.0)
+            .build());
+
+    public static final Item OLD_KNIGHT_CHESTPLATE = new OldKnightArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+            .armor(8.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .maxHealth(2.0)
+            .build());
+
+    public static final Item OLD_KNIGHT_LEGGINGS = new OldKnightArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+            .armor(6.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .maxHealth(1.0)
+            .build());
+
+    public static final Item OLD_KNIGHT_BOOTS = new OldKnightArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .build());
+
+    // SILVER KNIGHT
+    public static final Item SILVER_KNIGHT_HELMET = new SilverKnightArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .luck(1.0)
+            .attackSpeed(0.03)
+            .build());
+
+    public static final Item SILVER_KNIGHT_CHESTPLATE = new SilverKnightArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+            .armor(8.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .luck(1.0)
+            .attackSpeed(0.03)
+            .build());
+
+    public static final Item SILVER_KNIGHT_LEGGINGS = new SilverKnightArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+            .armor(6.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .attackSpeed(0.02)
+            .build());
+
+    public static final Item SILVER_KNIGHT_BOOTS = new SilverKnightArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .luck(1.0)
+            .build());
+
     private FAItems() {
     }
 
@@ -786,6 +879,21 @@ public final class FAItems {
         register("ronin_chestplate", RONIN_CHESTPLATE);
         register("ronin_leggings", RONIN_LEGGINGS);
         register("ronin_boots", RONIN_BOOTS);
+
+        register("malenia_helmet", MALENIA_HELMET);
+        register("malenia_chestplate", MALENIA_CHESTPLATE);
+        register("malenia_leggings", MALENIA_LEGGINGS);
+        register("malenia_boots", MALENIA_BOOTS);
+
+        register("old_knight_helmet", OLD_KNIGHT_HELMET);
+        register("old_knight_chestplate", OLD_KNIGHT_CHESTPLATE);
+        register("old_knight_leggings", OLD_KNIGHT_LEGGINGS);
+        register("old_knight_boots", OLD_KNIGHT_BOOTS);
+
+        register("silver_knight_helmet", SILVER_KNIGHT_HELMET);
+        register("silver_knight_chestplate", SILVER_KNIGHT_CHESTPLATE);
+        register("silver_knight_leggings", SILVER_KNIGHT_LEGGINGS);
+        register("silver_knight_boots", SILVER_KNIGHT_BOOTS);
     }
 
     private static void register(String name, Item item) {
