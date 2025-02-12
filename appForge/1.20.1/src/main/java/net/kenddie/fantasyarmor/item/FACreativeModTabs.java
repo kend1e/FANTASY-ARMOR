@@ -106,6 +106,18 @@ public class FACreativeModTabs {
                                 pOutput.accept(FAItems.EVENING_GHOST_CHESTPLATE.get());
                                 pOutput.accept(FAItems.EVENING_GHOST_LEGGINGS.get());
                                 pOutput.accept(FAItems.EVENING_GHOST_BOOTS.get());
+                                pOutput.accept(FAItems.MALENIA_HELMET.get());
+                                pOutput.accept(FAItems.MALENIA_CHESTPLATE.get());
+                                pOutput.accept(FAItems.MALENIA_LEGGINGS.get());
+                                pOutput.accept(FAItems.MALENIA_BOOTS.get());
+                                pOutput.accept(FAItems.OLD_KNIGHT_HELMET.get());
+                                pOutput.accept(FAItems.OLD_KNIGHT_CHESTPLATE.get());
+                                pOutput.accept(FAItems.OLD_KNIGHT_LEGGINGS.get());
+                                pOutput.accept(FAItems.OLD_KNIGHT_BOOTS.get());
+                                pOutput.accept(FAItems.SILVER_KNIGHT_HELMET.get());
+                                pOutput.accept(FAItems.SILVER_KNIGHT_CHESTPLATE.get());
+                                pOutput.accept(FAItems.SILVER_KNIGHT_LEGGINGS.get());
+                                pOutput.accept(FAItems.SILVER_KNIGHT_BOOTS.get());
                             })
                             .build()
             );

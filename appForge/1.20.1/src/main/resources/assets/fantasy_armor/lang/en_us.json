@@ -189,5 +189,33 @@
     "item.fantasy_armor.ronin_helmet.tooltip": "§7Steel bears the scars of the past, its patterns soaked with long-cooled blood.",
     "item.fantasy_armor.ronin_chestplate.tooltip": "§7Steel bears the scars of the past, its patterns soaked with long-cooled blood.",
     "item.fantasy_armor.ronin_leggings.tooltip": "§7Steel bears the scars of the past, its patterns soaked with long-cooled blood.",
-    "item.fantasy_armor.ronin_boots.tooltip": "§7Steel bears the scars of the past, its patterns soaked with long-cooled blood."
+    "item.fantasy_armor.ronin_boots.tooltip": "§7Steel bears the scars of the past, its patterns soaked with long-cooled blood.",
+
+    "item.fantasy_armor.malenia_helmet": "Malenia Helmet",
+    "item.fantasy_armor.malenia_chestplate": "Malenia Chestplate",
+    "item.fantasy_armor.malenia_leggings": "Malenia Leggings",
+    "item.fantasy_armor.malenia_boots": "Malenia Boots",
+    "item.fantasy_armor.malenia_helmet.tooltip": "§7...Heed my words. I am Malenia. Blade of Miquella. And I have never known defeat.",
+    "item.fantasy_armor.malenia_chestplate.tooltip": "§7...Heed my words. I am Malenia. Blade of Miquella. And I have never known defeat.",
+    "item.fantasy_armor.malenia_leggings.tooltip": "§7...Heed my words. I am Malenia. Blade of Miquella. And I have never known defeat.",
+    "item.fantasy_armor.malenia_boots.tooltip": "§7...Heed my words. I am Malenia. Blade of Miquella. And I have never known defeat.",
+
+    "item.fantasy_armor.old_knight_helmet": "Old Knight Helmet",
+    "item.fantasy_armor.old_knight_chestplate": "Old Knight Chestplate",
+    "item.fantasy_armor.old_knight_leggings": "Old Knight Leggings",
+    "item.fantasy_armor.old_knight_boots": "Old Knight Boots",
+    "item.fantasy_armor.old_knight_helmet.tooltip": "§7A set of armor once worn by a knight who survived countless battles. \nIts weight is unbearable for the weak, but those who endure shall never fall.",
+    "item.fantasy_armor.old_knight_chestplate.tooltip": "§7A set of armor once worn by a knight who survived countless battles. \nIts weight is unbearable for the weak, but those who endure shall never fall.",
+    "item.fantasy_armor.old_knight_leggings.tooltip": "§7A set of armor once worn by a knight who survived countless battles. \nIts weight is unbearable for the weak, but those who endure shall never fall.",
+    "item.fantasy_armor.old_knight_boots.tooltip": "§7A set of armor once worn by a knight who survived countless battles. \nIts weight is unbearable for the weak, but those who endure shall never fall.",
+
+    "item.fantasy_armor.silver_knight_helmet": "Silver Knight Helmet",
+    "item.fantasy_armor.silver_knight_chestplate": "Silver Knight Chestplate",
+    "item.fantasy_armor.silver_knight_leggings": "Silver Knight Leggings",
+    "item.fantasy_armor.silver_knight_boots": "Silver Knight Boots",
+    "item.fantasy_armor.silver_knight_helmet.tooltip": "§7The armor of an elite warrior who never faltered in battle. \nIts silver gleam reflects the moonlight, bringing swift death to those who dare oppose its master.",
+    "item.fantasy_armor.silver_knight_chestplate.tooltip": "§7The armor of an elite warrior who never faltered in battle. \nIts silver gleam reflects the moonlight, bringing swift death to those who dare oppose its master.",
+    "item.fantasy_armor.silver_knight_leggings.tooltip": "§7The armor of an elite warrior who never faltered in battle. \nIts silver gleam reflects the moonlight, bringing swift death to those who dare oppose its master.",
+    "item.fantasy_armor.silver_knight_boots.tooltip": "§7The armor of an elite warrior who never faltered in battle. \nIts silver gleam reflects the moonlight, bringing swift death to those who dare oppose its master."
+
 }

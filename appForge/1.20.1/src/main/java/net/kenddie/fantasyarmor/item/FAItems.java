@@ -15,8 +15,11 @@ import net.kenddie.fantasyarmor.item.armor.GoldenExecutionArmorItem;
 import net.kenddie.fantasyarmor.item.armor.GoldenHornsArmorItem;
 import net.kenddie.fantasyarmor.item.armor.HeroArmorItem;
 import net.kenddie.fantasyarmor.item.armor.LadyMariaArmorItem;
+import net.kenddie.fantasyarmor.item.armor.MaleniaArmorItem;
+import net.kenddie.fantasyarmor.item.armor.OldKnightArmorItem;
 import net.kenddie.fantasyarmor.item.armor.RedeemerArmorItem;
 import net.kenddie.fantasyarmor.item.armor.RoninArmorItem;
+import net.kenddie.fantasyarmor.item.armor.SilverKnightArmorItem;
 import net.kenddie.fantasyarmor.item.armor.SparkOfDawnArmorItem;
 import net.kenddie.fantasyarmor.item.armor.SunsetWingsArmorItem;
 import net.kenddie.fantasyarmor.item.armor.ThiefArmorItem;
@@ -757,6 +760,107 @@ public final class FAItems {
                     .movementSpeed(0.05)
                     .build()));
 
+    // MALENIA
+    public static final RegistryObject<Item> MALENIA_HELMET = ITEMS.register("malenia_helmet", () ->
+            new MaleniaArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+                    .armor(3.0)
+                    .armorToughness(3.0)
+                    .knockbackResistance(0.1)
+                    .movementSpeed(0.07)
+                    .attackSpeed(0.05)
+                    .build()));
+
+    public static final RegistryObject<Item> MALENIA_CHESTPLATE = ITEMS.register("malenia_chestplate", () ->
+            new MaleniaArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+                    .armor(8.0)
+                    .armorToughness(3.0)
+                    .knockbackResistance(0.2)
+                    .movementSpeed(0.05)
+                    .attackSpeed(0.05)
+                    .build()));
+
+    public static final RegistryObject<Item> MALENIA_LEGGINGS = ITEMS.register("malenia_leggings", () ->
+            new MaleniaArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+                    .armor(6.0)
+                    .armorToughness(3.0)
+                    .knockbackResistance(0.1)
+                    .movementSpeed(0.05)
+                    .build()));
+
+    public static final RegistryObject<Item> MALENIA_BOOTS = ITEMS.register("malenia_boots", () ->
+            new MaleniaArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+                    .armor(3.0)
+                    .armorToughness(3.0)
+                    .knockbackResistance(0.1)
+                    .movementSpeed(0.08)
+                    .build()));
+
+    // OLD KNIGHT
+    public static final RegistryObject<Item> OLD_KNIGHT_HELMET = ITEMS.register("old_knight_helmet", () ->
+            new OldKnightArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+                    .armor(3.0)
+                    .armorToughness(3.0)
+                    .knockbackResistance(0.2)
+                    .maxHealth(1.0)
+                    .build()));
+
+    public static final RegistryObject<Item> OLD_KNIGHT_CHESTPLATE = ITEMS.register("old_knight_chestplate", () ->
+            new OldKnightArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+                    .armor(8.0)
+                    .armorToughness(3.0)
+                    .knockbackResistance(0.2)
+                    .maxHealth(2.0)
+                    .build()));
+
+    public static final RegistryObject<Item> OLD_KNIGHT_LEGGINGS = ITEMS.register("old_knight_leggings", () ->
+            new OldKnightArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+                    .armor(6.0)
+                    .armorToughness(3.0)
+                    .knockbackResistance(0.2)
+                    .maxHealth(1.0)
+                    .build()));
+
+    public static final RegistryObject<Item> OLD_KNIGHT_BOOTS = ITEMS.register("old_knight_boots", () ->
+            new OldKnightArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+                    .armor(3.0)
+                    .armorToughness(3.0)
+                    .knockbackResistance(0.1)
+                    .build()));
+
+    // SILVER KNIGHT
+    public static final RegistryObject<Item> SILVER_KNIGHT_HELMET = ITEMS.register("silver_knight_helmet", () ->
+            new SilverKnightArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+                    .armor(3.0)
+                    .armorToughness(3.0)
+                    .knockbackResistance(0.1)
+                    .luck(1.0)
+                    .attackSpeed(0.03)
+                    .build()));
+
+    public static final RegistryObject<Item> SILVER_KNIGHT_CHESTPLATE = ITEMS.register("silver_knight_chestplate", () ->
+            new SilverKnightArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+                    .armor(8.0)
+                    .armorToughness(3.0)
+                    .knockbackResistance(0.2)
+                    .luck(1.0)
+                    .attackSpeed(0.03)
+                    .build()));
+
+    public static final RegistryObject<Item> SILVER_KNIGHT_LEGGINGS = ITEMS.register("silver_knight_leggings", () ->
+            new SilverKnightArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+                    .armor(6.0)
+                    .armorToughness(3.0)
+                    .knockbackResistance(0.1)
+                    .attackSpeed(0.02)
+                    .build()));
+
+    public static final RegistryObject<Item> SILVER_KNIGHT_BOOTS = ITEMS.register("silver_knight_boots", () ->
+            new SilverKnightArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+                    .armor(3.0)
+                    .armorToughness(3.0)
+                    .knockbackResistance(0.1)
+                    .luck(1.0)
+                    .build()));
 
     private FAItems() {
     }
