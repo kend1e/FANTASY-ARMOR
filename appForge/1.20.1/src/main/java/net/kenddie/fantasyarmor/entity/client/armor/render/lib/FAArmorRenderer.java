@@ -2,6 +2,8 @@ package net.kenddie.fantasyarmor.entity.client.armor.render.lib;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.kenddie.fantasyarmor.FantasyArmor;
+import net.kenddie.fantasyarmor.config.FAConfig;
 import net.kenddie.fantasyarmor.item.armor.lib.FAArmorItem;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -21,6 +23,7 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
     protected GeoBone leftLegCloth = null;
     protected GeoBone rightLegCloth = null;
     protected GeoBone braid = null;
+    protected GeoBone epicFightCape = null;
 
     public FAArmorRenderer(GeoModel<T> model) {
         super(model);
@@ -51,6 +54,11 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
         return model.getBone("armorBraid").orElse(null);
     }
 
+    @Nullable
+    public GeoBone getEpicFightCapeBone(GeoModel<T> model) {
+        return model.getBone("armorCapeEpicFight").orElse(null);
+    }
+
     @Override
     protected void grabRelevantBones(BakedGeoModel bakedModel) {
         super.grabRelevantBones(bakedModel);
@@ -61,14 +69,20 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
         leftLegCloth = getLeftLegClothBone(model);
         rightLegCloth = getRightLegClothBone(model);
         braid = getBraidBone(model);
+        epicFightCape = getEpicFightCapeBone(model);
     }
 
     @Override
     protected void applyBoneVisibilityBySlot(EquipmentSlot currentSlot) {
         super.applyBoneVisibilityBySlot(currentSlot);
 
-        if(currentSlot == EquipmentSlot.CHEST) {
-            setBoneVisible(cape, true);
+        if (currentSlot == EquipmentSlot.CHEST) {
+            boolean showCape = FAConfig.showCapes;
+            boolean useEpicFightCape = FantasyArmor.isEpicFightLoaded && !FAConfig.epicFightNotStaticCapes;
+
+            setBoneVisible(cape, showCape && !useEpicFightCape);
+            setBoneVisible(epicFightCape, showCape && useEpicFightCape);
+
             setBoneVisible(frontCape, true);
             setBoneVisible(leftLegCloth, true);
             setBoneVisible(rightLegCloth, true);
@@ -77,11 +91,17 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
         }
     }
 
+    @Override
     public void applyBoneVisibilityByPart(EquipmentSlot currentSlot, ModelPart currentPart, HumanoidModel<?> model) {
         super.applyBoneVisibilityByPart(currentSlot, currentPart, model);
 
-        if(currentPart == model.body) {
-            if (cape != null) cape.setHidden(false);
+        if (currentPart == model.body) {
+            boolean showCape = FAConfig.showCapes;
+            boolean useEpicFightCape = FantasyArmor.isEpicFightLoaded && !FAConfig.epicFightNotStaticCapes;
+
+            if (cape != null) cape.setHidden(!(showCape && !useEpicFightCape));
+            if (epicFightCape != null) epicFightCape.setHidden(!(showCape && useEpicFightCape));
+
             if (frontCape != null) frontCape.setHidden(false);
             if (leftLegCloth != null) leftLegCloth.setHidden(false);
             if (rightLegCloth != null) rightLegCloth.setHidden(false);
@@ -94,12 +114,12 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
     public void preRender(PoseStack poseStack, T animatable, BakedGeoModel model, @Nullable MultiBufferSource bufferSource, @Nullable VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
         super.preRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
 
-        if(frontCape != null) {
+        if (frontCape != null) {
             FARenderUtils.setFrontLegCapeAngle(this, frontCape);
         }
 
-        if(cape != null) {
-            if(currentEntity instanceof Player player) {
+        if (cape != null) {
+            if (currentEntity instanceof Player player) {
                 FARenderUtils.applyCapeRotation(player, cape, partialTick);
             } else {
                 cape.updateRotation((float) -Math.toRadians(5.0F), 0.0F, 0.0F);
@@ -146,10 +166,17 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
     public void setAllVisible(boolean pVisible) {
         super.setAllVisible(pVisible);
 
+        boolean showCape = FAConfig.showCapes && pVisible;
+        boolean useEpicFightCape = FantasyArmor.isEpicFightLoaded && !FAConfig.epicFightNotStaticCapes;
+
+        setBoneVisible(cape, showCape && !useEpicFightCape);
+        setBoneVisible(epicFightCape, showCape && useEpicFightCape);
+
         setBoneVisible(cape, pVisible);
         setBoneVisible(frontCape, pVisible);
         setBoneVisible(leftLegCloth, pVisible);
         setBoneVisible(rightLegCloth, pVisible);
         setBoneVisible(braid, pVisible);
+        setBoneVisible(epicFightCape, pVisible);
     }
 }

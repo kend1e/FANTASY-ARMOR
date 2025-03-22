@@ -5,6 +5,7 @@ import net.kenddie.fantasyarmor.item.FACreativeModTabs;
 import net.kenddie.fantasyarmor.item.FAItems;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -15,6 +16,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 public class FantasyArmor {
 
     public static final String MOD_ID = "fantasy_armor";
+    public static final String EPIC_FIGHT_MOD_ID = "epicfight";
+    public static boolean isEpicFightLoaded;
 
     @SuppressWarnings("removal")
     public FantasyArmor() {
@@ -25,10 +28,11 @@ public class FantasyArmor {
         FAItems.register(modEventBus);
         FACreativeModTabs.register(modEventBus);
 
+        isEpicFightLoaded = ModList.get().isLoaded(EPIC_FIGHT_MOD_ID);
+
         modEventBus.addListener(this::onConfigLoad);
         modEventBus.addListener(this::onConfigReload);
     }
-
 
     @SubscribeEvent
     public void onConfigLoad(final ModConfigEvent.Loading event) {

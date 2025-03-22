@@ -49,6 +49,33 @@
 					]
 				},
 				{
+					"name": "armorCapeEpicFight",
+					"parent": "armorBody",
+					"pivot": [0, 24, 2.5],
+					"rotation": [15, 0, 0],
+					"cubes": [
+						{"origin": [-6, 10.5, 1.85], "size": [12, 14, 1], "uv": [68, 32]}
+					]
+				},
+				{
+					"name": "capeMid2",
+					"parent": "armorCapeEpicFight",
+					"pivot": [1.5, 10.5, 2.85],
+					"rotation": [5, 0, 0],
+					"cubes": [
+						{"origin": [-6, 4.63053, 1.85856], "size": [12, 6, 1], "inflate": -0.01, "uv": [68, 47]}
+					]
+				},
+				{
+					"name": "capeLow2",
+					"parent": "capeMid2",
+					"pivot": [0.5, 4.5, 1.85],
+					"rotation": [7.5, 0, 0],
+					"cubes": [
+						{"origin": [-6, 0.62706, 1.88109], "size": [12, 4, 1], "uv": [68, 54]}
+					]
+				},
+				{
 					"name": "armorCape",
 					"parent": "bipedBody",
 					"pivot": [0, 24, 2.5],

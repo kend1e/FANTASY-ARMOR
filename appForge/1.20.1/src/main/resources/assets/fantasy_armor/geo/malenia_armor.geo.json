@@ -140,15 +140,6 @@
 					"pivot": [0, 24, 0]
 				},
 				{
-					"name": "armorBody",
-					"parent": "bipedBody",
-					"pivot": [0, 24, 0],
-					"cubes": [
-						{"origin": [-4, 12, -2], "size": [8, 12, 4], "inflate": 0.41, "uv": [52, 0]},
-						{"origin": [-4, 12, -2], "size": [8, 12, 4], "inflate": 0.6, "uv": [52, 16]}
-					]
-				},
-				{
 					"name": "armorCape",
 					"parent": "bipedBody",
 					"pivot": [0, 24, 2.5],
@@ -160,7 +151,7 @@
 				{
 					"name": "capeMid",
 					"parent": "armorCape",
-					"pivot": [1.5, 12.5, 2.85],
+					"pivot": [0, 12.5, 2.85],
 					"rotation": [5, 0, 0],
 					"cubes": [
 						{"origin": [-6, 6.63053, 1.85856], "size": [12, 6, 1], "inflate": -0.01, "uv": [68, 45]}
@@ -169,10 +160,27 @@
 				{
 					"name": "capeLow",
 					"parent": "capeMid",
-					"pivot": [0.5, 6.5, 1.85],
+					"pivot": [0, 6.5, 1.85],
 					"rotation": [7.5, 0, 0],
 					"cubes": [
 						{"origin": [-6, 2.62706, 1.88109], "size": [12, 4, 1], "uv": [68, 52]}
+					]
+				},
+				{
+					"name": "armorBody",
+					"parent": "bipedBody",
+					"pivot": [0, 24, 0],
+					"cubes": [
+						{"origin": [-4, 12, -2], "size": [8, 12, 4], "inflate": 0.41, "uv": [52, 0]},
+						{"origin": [-4, 12, -2], "size": [8, 12, 4], "inflate": 0.6, "uv": [52, 16]}
+					]
+				},
+				{
+					"name": "armorCapeEpicFight",
+					"parent": "armorBody",
+					"pivot": [0, 24, 0],
+					"cubes": [
+						{"origin": [-6, 2.5, 2.1], "size": [12, 22, 1], "pivot": [0, 24.5, 2.6], "rotation": [15, 0, 0], "uv": [0, 76]}
 					]
 				},
 				{
