@@ -216,6 +216,32 @@
     "item.fantasy_armor.silver_knight_helmet.tooltip": "§7Доспех элитного воина, не знавшего поражений. \nЕго серебряный блеск отражает лунный свет и несёт быструю смерть врагам.",
     "item.fantasy_armor.silver_knight_chestplate.tooltip": "§7Доспех элитного воина, не знавшего поражений. \nЕго серебряный блеск отражает лунный свет и несёт быструю смерть врагам.",
     "item.fantasy_armor.silver_knight_leggings.tooltip": "§7Доспех элитного воина, не знавшего поражений. \nЕго серебряный блеск отражает лунный свет и несёт быструю смерть врагам.",
-    "item.fantasy_armor.silver_knight_boots.tooltip": "§7Доспех элитного воина, не знавшего поражений. \nЕго серебряный блеск отражает лунный свет и несёт быструю смерть врагам."
+    "item.fantasy_armor.silver_knight_boots.tooltip": "§7Доспех элитного воина, не знавшего поражений. \nЕго серебряный блеск отражает лунный свет и несёт быструю смерть врагам.",
 
+    "item.fantasy_armor.dead_gladiator_helmet": "Шлем Мёртвого гладиатора",
+    "item.fantasy_armor.dead_gladiator_helmet.tooltip": "§7Броня раба, павшего на арене. \nИмя забыто, но ярость по-прежнему пылает под этой сталью.",
+    "item.fantasy_armor.dead_gladiator_chestplate": "Нагрудник Мёртвого гладиатора",
+    "item.fantasy_armor.dead_gladiator_chestplate.tooltip": "§7Броня раба, павшего на арене. \nИмя забыто, но ярость по-прежнему пылает под этой сталью.",
+    "item.fantasy_armor.dead_gladiator_leggings": "Поножи Мёртвого гладиатора",
+    "item.fantasy_armor.dead_gladiator_leggings.tooltip": "§7Броня раба, павшего на арене. \nИмя забыто, но ярость по-прежнему пылает под этой сталью.",
+    "item.fantasy_armor.dead_gladiator_boots": "Ботинки Мёртвого гладиатора",
+    "item.fantasy_armor.dead_gladiator_boots.tooltip": "§7Броня раба, павшего на арене. \nИмя забыто, но ярость по-прежнему пылает под этой сталью.",
+
+    "item.fantasy_armor.flesh_of_the_feaster_helmet": "Шлем Плоти Пожирателя",
+    "item.fantasy_armor.flesh_of_the_feaster_helmet.tooltip": "§7Эта броня источает запах крови и жадности. \nКогда-то она принадлежала тому, кто ел без остановки — и стал тем, чем он питался.",
+    "item.fantasy_armor.flesh_of_the_feaster_chestplate": "Нагрудник Плоти Пожирателя",
+    "item.fantasy_armor.flesh_of_the_feaster_chestplate.tooltip": "§7Эта броня источает запах крови и жадности. \nКогда-то она принадлежала тому, кто ел без остановки — и стал тем, чем он питался.",
+    "item.fantasy_armor.flesh_of_the_feaster_leggings": "Поножи Плоти Пожирателя",
+    "item.fantasy_armor.flesh_of_the_feaster_leggings.tooltip": "§7Эта броня источает запах крови и жадности. \nКогда-то она принадлежала тому, кто ел без остановки — и стал тем, чем он питался.",
+    "item.fantasy_armor.flesh_of_the_feaster_boots": "Ботинки Плоти Пожирателя",
+    "item.fantasy_armor.flesh_of_the_feaster_boots.tooltip": "§7Эта броня источает запах крови и жадности. \nКогда-то она принадлежала тому, кто ел без остановки — и стал тем, чем он питался.",
+  
+    "item.fantasy_armor.wind_worshipper_helmet": "Шлем Поклонника ветра",
+    "item.fantasy_armor.wind_worshipper_helmet.tooltip": "§7Ткань легка, как дыхание. \nЕё носят те, кто не знает покоя и следует за ветром, куда бы он ни унес.",
+    "item.fantasy_armor.wind_worshipper_chestplate": "Нагрудник Поклонника ветра",
+    "item.fantasy_armor.wind_worshipper_chestplate.tooltip": "§7Ткань легка, как дыхание. \nЕё носят те, кто не знает покоя и следует за ветром, куда бы он ни унес.",
+    "item.fantasy_armor.wind_worshipper_leggings": "Поножи Поклонника ветра",
+    "item.fantasy_armor.wind_worshipper_leggings.tooltip": "§7Ткань легка, как дыхание. \nЕё носят те, кто не знает покоя и следует за ветром, куда бы он ни унес.",
+    "item.fantasy_armor.wind_worshipper_boots": "Ботинки Поклонника ветра",
+    "item.fantasy_armor.wind_worshipper_boots.tooltip": "§7Ткань легка, как дыхание. \nЕё носят те, кто не знает покоя и следует за ветром, куда бы он ни унес."
 }

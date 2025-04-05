@@ -5,9 +5,11 @@ import net.kenddie.fantasyarmor.item.armor.ChessBoardKnightArmorItem;
 import net.kenddie.fantasyarmor.item.armor.CrucibleKnightArmorItem;
 import net.kenddie.fantasyarmor.item.armor.DarkCoverArmorItem;
 import net.kenddie.fantasyarmor.item.armor.DarkLordArmorItem;
+import net.kenddie.fantasyarmor.item.armor.DeadGladiatorArmorItem;
 import net.kenddie.fantasyarmor.item.armor.DragonslayerArmorItem;
 import net.kenddie.fantasyarmor.item.armor.EclipseSoldierArmorItem;
 import net.kenddie.fantasyarmor.item.armor.EveningGhostArmorItem;
+import net.kenddie.fantasyarmor.item.armor.FeasterArmorItem;
 import net.kenddie.fantasyarmor.item.armor.FogGuardArmorItem;
 import net.kenddie.fantasyarmor.item.armor.ForgottenTraceArmorItem;
 import net.kenddie.fantasyarmor.item.armor.GildedHuntArmorItem;
@@ -25,6 +27,7 @@ import net.kenddie.fantasyarmor.item.armor.SunsetWingsArmorItem;
 import net.kenddie.fantasyarmor.item.armor.ThiefArmorItem;
 import net.kenddie.fantasyarmor.item.armor.TwinnedArmorItem;
 import net.kenddie.fantasyarmor.item.armor.WanderingWizardArmorItem;
+import net.kenddie.fantasyarmor.item.armor.WindWorshipperArmorItem;
 import net.kenddie.fantasyarmor.item.armor.lib.FAArmorAttributes;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
@@ -861,6 +864,104 @@ public final class FAItems {
                     .knockbackResistance(0.1)
                     .luck(1.0)
                     .build()));
+
+    // DEAD GLADIATOR
+    public static final RegistryObject<Item> DEAD_GLADIATOR_HELMET = ITEMS.register("dead_gladiator_helmet", () ->
+            new DeadGladiatorArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+                    .armor(3.0)
+                    .armorToughness(2.0)
+                    .knockbackResistance(0.1)
+                    .attackDamage(0.05)
+                    .build()));
+
+    public static final RegistryObject<Item> DEAD_GLADIATOR_CHESTPLATE = ITEMS.register("dead_gladiator_chestplate", () ->
+            new DeadGladiatorArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+                    .armor(8.0)
+                    .armorToughness(2.0)
+                    .knockbackResistance(0.2)
+                    .attackDamage(0.1)
+                    .build()));
+
+    public static final RegistryObject<Item> DEAD_GLADIATOR_LEGGINGS = ITEMS.register("dead_gladiator_leggings", () ->
+            new DeadGladiatorArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+                    .armor(6.0)
+                    .armorToughness(2.0)
+                    .knockbackResistance(0.1)
+                    .attackDamage(0.05)
+                    .build()));
+
+    public static final RegistryObject<Item> DEAD_GLADIATOR_BOOTS = ITEMS.register("dead_gladiator_boots", () ->
+            new DeadGladiatorArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+                    .armor(3.0)
+                    .armorToughness(2.0)
+                    .knockbackResistance(0.1)
+                    .build()));
+
+    // FLESH OF THE FEASTER
+    public static final RegistryObject<Item> FLESH_OF_THE_FEASTER_HELMET = ITEMS.register("flesh_of_the_feaster_helmet", () ->
+            new FeasterArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+                    .armor(3.0)
+                    .armorToughness(1.0)
+                    .knockbackResistance(0.1)
+                    .maxHealth(1.0)
+                    .build()));
+
+    public static final RegistryObject<Item> FLESH_OF_THE_FEASTER_CHESTPLATE = ITEMS.register("flesh_of_the_feaster_chestplate", () ->
+            new FeasterArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+                    .armor(8.0)
+                    .armorToughness(1.0)
+                    .knockbackResistance(0.2)
+                    .maxHealth(2.0)
+                    .build()));
+
+    public static final RegistryObject<Item> FLESH_OF_THE_FEASTER_LEGGINGS = ITEMS.register("flesh_of_the_feaster_leggings", () ->
+            new FeasterArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+                    .armor(6.0)
+                    .armorToughness(1.0)
+                    .knockbackResistance(0.1)
+                    .maxHealth(1.0)
+                    .build()));
+
+    public static final RegistryObject<Item> FLESH_OF_THE_FEASTER_BOOTS = ITEMS.register("flesh_of_the_feaster_boots", () ->
+            new FeasterArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+                    .armor(3.0)
+                    .armorToughness(1.0)
+                    .knockbackResistance(0.1)
+                    .build()));
+
+    // WIND WORSHIPPER
+    public static final RegistryObject<Item> WIND_WORSHIPPER_HELMET = ITEMS.register("wind_worshipper_helmet", () ->
+            new WindWorshipperArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+                    .armor(3.0)
+                    .armorToughness(2.0)
+                    .knockbackResistance(0.1)
+                    .attackSpeed(0.03)
+                    .build()));
+
+    public static final RegistryObject<Item> WIND_WORSHIPPER_CHESTPLATE = ITEMS.register("wind_worshipper_chestplate", () ->
+            new WindWorshipperArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+                    .armor(8.0)
+                    .armorToughness(2.0)
+                    .knockbackResistance(0.2)
+                    .attackSpeed(0.03)
+                    .build()));
+
+    public static final RegistryObject<Item> WIND_WORSHIPPER_LEGGINGS = ITEMS.register("wind_worshipper_leggings", () ->
+            new WindWorshipperArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+                    .armor(6.0)
+                    .armorToughness(2.0)
+                    .knockbackResistance(0.1)
+                    .attackSpeed(0.02)
+                    .build()));
+
+    public static final RegistryObject<Item> WIND_WORSHIPPER_BOOTS = ITEMS.register("wind_worshipper_boots", () ->
+            new WindWorshipperArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+                    .armor(3.0)
+                    .armorToughness(2.0)
+                    .knockbackResistance(0.1)
+                    .movementSpeed(0.03)
+                    .build()));
+
 
     private FAItems() {
     }

@@ -216,6 +216,32 @@
     "item.fantasy_armor.silver_knight_helmet.tooltip": "§7The armor of an elite warrior who never faltered in battle. \nIts silver gleam reflects the moonlight, bringing swift death to those who dare oppose its master.",
     "item.fantasy_armor.silver_knight_chestplate.tooltip": "§7The armor of an elite warrior who never faltered in battle. \nIts silver gleam reflects the moonlight, bringing swift death to those who dare oppose its master.",
     "item.fantasy_armor.silver_knight_leggings.tooltip": "§7The armor of an elite warrior who never faltered in battle. \nIts silver gleam reflects the moonlight, bringing swift death to those who dare oppose its master.",
-    "item.fantasy_armor.silver_knight_boots.tooltip": "§7The armor of an elite warrior who never faltered in battle. \nIts silver gleam reflects the moonlight, bringing swift death to those who dare oppose its master."
+    "item.fantasy_armor.silver_knight_boots.tooltip": "§7The armor of an elite warrior who never faltered in battle. \nIts silver gleam reflects the moonlight, bringing swift death to those who dare oppose its master.",
 
+    "item.fantasy_armor.dead_gladiator_helmet": "Dead Gladiator Helmet",
+    "item.fantasy_armor.dead_gladiator_helmet.tooltip": "§7Armor of a slave fallen in the arena. \nHis name is forgotten, but fury still burns beneath the steel.",
+    "item.fantasy_armor.dead_gladiator_chestplate": "Dead Gladiator Chestplate",
+    "item.fantasy_armor.dead_gladiator_chestplate.tooltip": "§7Armor of a slave fallen in the arena. \nHis name is forgotten, but fury still burns beneath the steel.",
+    "item.fantasy_armor.dead_gladiator_leggings": "Dead Gladiator Leggings",
+    "item.fantasy_armor.dead_gladiator_leggings.tooltip": "§7Armor of a slave fallen in the arena. \nHis name is forgotten, but fury still burns beneath the steel.",
+    "item.fantasy_armor.dead_gladiator_boots": "Dead Gladiator Boots",
+    "item.fantasy_armor.dead_gladiator_boots.tooltip": "§7Armor of a slave fallen in the arena. \nHis name is forgotten, but fury still burns beneath the steel.",
+
+    "item.fantasy_armor.flesh_of_the_feaster_helmet": "Flesh of the Feaster Helmet",
+    "item.fantasy_armor.flesh_of_the_feaster_helmet.tooltip": "§7This armor reeks of blood and greed. \nIt once belonged to one who fed without end — and became what he consumed.",
+    "item.fantasy_armor.flesh_of_the_feaster_chestplate": "Flesh of the Feaster Chestplate",
+    "item.fantasy_armor.flesh_of_the_feaster_chestplate.tooltip": "§7This armor reeks of blood and greed. \nIt once belonged to one who fed without end — and became what he consumed.",
+    "item.fantasy_armor.flesh_of_the_feaster_leggings": "Flesh of the Feaster Leggings",
+    "item.fantasy_armor.flesh_of_the_feaster_leggings.tooltip": "§7This armor reeks of blood and greed. \nIt once belonged to one who fed without end — and became what he consumed.",
+    "item.fantasy_armor.flesh_of_the_feaster_boots": "Flesh of the Feaster Boots",
+    "item.fantasy_armor.flesh_of_the_feaster_boots.tooltip": "§7This armor reeks of blood and greed. \nIt once belonged to one who fed without end — and became what he consumed.",
+
+    "item.fantasy_armor.wind_worshipper_helmet": "Wind Worshipper Helmet",
+    "item.fantasy_armor.wind_worshipper_helmet.tooltip": "Wind Worshipper fabric is light as breath. \nWorn by those who know no rest, drifting wherever the wind may carry them.",
+    "item.fantasy_armor.wind_worshipper_chestplate": "§7The Chestplate",
+    "item.fantasy_armor.wind_worshipper_chestplate.tooltip": "§7The fabric is light as breath. \nWorn by those who know no rest, drifting wherever the wind may carry them.",
+    "item.fantasy_armor.wind_worshipper_leggings": "Wind Worshipper Leggings",
+    "item.fantasy_armor.wind_worshipper_leggings.tooltip": "§7The fabric is light as breath. \nWorn by those who know no rest, drifting wherever the wind may carry them.",
+    "item.fantasy_armor.wind_worshipper_boots": "Wind Worshipper Boots",
+    "item.fantasy_armor.wind_worshipper_boots.tooltip": "§7The fabric is light as breath. \nWorn by those who know no rest, drifting wherever the wind may carry them."
 }

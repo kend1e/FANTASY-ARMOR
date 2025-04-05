@@ -118,6 +118,18 @@ public class FACreativeModTabs {
                                 pOutput.accept(FAItems.SILVER_KNIGHT_CHESTPLATE.get());
                                 pOutput.accept(FAItems.SILVER_KNIGHT_LEGGINGS.get());
                                 pOutput.accept(FAItems.SILVER_KNIGHT_BOOTS.get());
+                                pOutput.accept(FAItems.DEAD_GLADIATOR_HELMET.get());
+                                pOutput.accept(FAItems.DEAD_GLADIATOR_CHESTPLATE.get());
+                                pOutput.accept(FAItems.DEAD_GLADIATOR_LEGGINGS.get());
+                                pOutput.accept(FAItems.DEAD_GLADIATOR_BOOTS.get());
+                                pOutput.accept(FAItems.FLESH_OF_THE_FEASTER_HELMET.get());
+                                pOutput.accept(FAItems.FLESH_OF_THE_FEASTER_CHESTPLATE.get());
+                                pOutput.accept(FAItems.FLESH_OF_THE_FEASTER_LEGGINGS.get());
+                                pOutput.accept(FAItems.FLESH_OF_THE_FEASTER_BOOTS.get());
+                                pOutput.accept(FAItems.WIND_WORSHIPPER_HELMET.get());
+                                pOutput.accept(FAItems.WIND_WORSHIPPER_CHESTPLATE.get());
+                                pOutput.accept(FAItems.WIND_WORSHIPPER_LEGGINGS.get());
+                                pOutput.accept(FAItems.WIND_WORSHIPPER_BOOTS.get());
                             })
                             .build()
             );
