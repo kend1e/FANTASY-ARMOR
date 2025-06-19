@@ -6,9 +6,11 @@ import net.kenddie.fantasyarmor.item.armor.ChessBoardKnightArmorItem;
 import net.kenddie.fantasyarmor.item.armor.CrucibleKnightArmorItem;
 import net.kenddie.fantasyarmor.item.armor.DarkCoverArmorItem;
 import net.kenddie.fantasyarmor.item.armor.DarkLordArmorItem;
+import net.kenddie.fantasyarmor.item.armor.DeadGladiatorArmorItem;
 import net.kenddie.fantasyarmor.item.armor.DragonslayerArmorItem;
 import net.kenddie.fantasyarmor.item.armor.EclipseSoldierArmorItem;
 import net.kenddie.fantasyarmor.item.armor.EveningGhostArmorItem;
+import net.kenddie.fantasyarmor.item.armor.FeasterArmorItem;
 import net.kenddie.fantasyarmor.item.armor.FogGuardArmorItem;
 import net.kenddie.fantasyarmor.item.armor.ForgottenTraceArmorItem;
 import net.kenddie.fantasyarmor.item.armor.GildedHuntArmorItem;
@@ -26,6 +28,7 @@ import net.kenddie.fantasyarmor.item.armor.SunsetWingsArmorItem;
 import net.kenddie.fantasyarmor.item.armor.ThiefArmorItem;
 import net.kenddie.fantasyarmor.item.armor.TwinnedArmorItem;
 import net.kenddie.fantasyarmor.item.armor.WanderingWizardArmorItem;
+import net.kenddie.fantasyarmor.item.armor.WindWorshipperArmorItem;
 import net.kenddie.fantasyarmor.item.armor.lib.FAArmorAttributes;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -53,7 +56,6 @@ public final class FAItems {
             .armor(8.0)
             .armorToughness(3.0)
             .knockbackResistance(0.2)
-            .attackSpeed(0.1)
             .build());
 
     public static final Item ECLIPSE_SOLDIER_LEGGINGS = new EclipseSoldierArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
@@ -79,21 +81,19 @@ public final class FAItems {
             .armor(8.0)
             .armorToughness(3.0)
             .knockbackResistance(0.2)
-            .attackDamage(0.1)
+            .attackSpeed(0.1)
             .build());
 
     public static final Item DRAGONSLAYER_LEGGINGS = new DragonslayerArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
             .armor(6.0)
             .armorToughness(3.0)
             .knockbackResistance(0.2)
-            .attackDamage(0.05)
             .build());
 
     public static final Item DRAGONSLAYER_BOOTS = new DragonslayerArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
             .armor(3.0)
             .armorToughness(3.0)
             .knockbackResistance(0.1)
-            .attackDamage(0.05)
             .build());
 
     // HERO
@@ -252,28 +252,28 @@ public final class FAItems {
             .armor(3.0)
             .armorToughness(3.0)
             .knockbackResistance(0.1)
-            .attackDamage(0.02)
+            .attackSpeed(0.02)
             .build());
 
     public static final Item DARK_LORD_CHESTPLATE = new DarkLordArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
             .armor(8.0)
             .armorToughness(3.0)
             .knockbackResistance(0.2)
-            .attackDamage(0.03)
+            .attackSpeed(0.03)
             .build());
 
     public static final Item DARK_LORD_LEGGINGS = new DarkLordArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
             .armor(6.0)
             .armorToughness(3.0)
             .knockbackResistance(0.2)
-            .attackDamage(0.03)
+            .attackSpeed(0.03)
             .build());
 
     public static final Item DARK_LORD_BOOTS = new DarkLordArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
             .armor(3.0)
             .armorToughness(3.0)
             .knockbackResistance(0.1)
-            .attackDamage(0.02)
+            .attackSpeed(0.02)
             .build());
 
     // SUNSET_WINGS
@@ -323,7 +323,7 @@ public final class FAItems {
             .armorToughness(3.0)
             .knockbackResistance(0.1)
             .maxHealth(1.0)
-            .attackDamage(0.01)
+            .attackSpeed(0.01)
             .build());
 
     public static final Item FOG_GUARD_LEGGINGS = new FogGuardArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
@@ -331,7 +331,7 @@ public final class FAItems {
             .armorToughness(3.0)
             .knockbackResistance(0.1)
             .maxHealth(1.0)
-            .attackDamage(0.02)
+            .attackSpeed(0.02)
             .build());
 
     public static final Item FOG_GUARD_BOOTS = new FogGuardArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
@@ -339,7 +339,7 @@ public final class FAItems {
             .armorToughness(3.0)
             .knockbackResistance(0.1)
             .maxHealth(1.0)
-            .attackDamage(0.03)
+            .attackSpeed(0.03)
             .build());
 
     // DARK_COVER
@@ -383,7 +383,7 @@ public final class FAItems {
             .armor(8.0)
             .armorToughness(3.0)
             .knockbackResistance(0.1)
-            .attackDamage(0.05)
+            .attackSpeed(0.05)
             .build());
 
     public static final Item SPARK_OF_DAWN_LEGGINGS = new SparkOfDawnArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
@@ -392,7 +392,7 @@ public final class FAItems {
             .knockbackResistance(0.2)
             .movementSpeed(0.05)
             .maxHealth(1.0)
-            .attackDamage(0.05)
+            .attackSpeed(0.05)
             .build());
 
     public static final Item SPARK_OF_DAWN_BOOTS = new SparkOfDawnArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
@@ -408,7 +408,7 @@ public final class FAItems {
             .armorToughness(3.0)
             .knockbackResistance(0.2)
             .maxHealth(2.0)
-            .attackDamage(0.05)
+            .attackSpeed(0.05)
             .build());
 
     public static final Item GOLDEN_EXECUTION_CHESTPLATE = new GoldenExecutionArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
@@ -416,7 +416,7 @@ public final class FAItems {
             .armorToughness(3.0)
             .knockbackResistance(0.2)
             .maxHealth(4.0)
-            .attackDamage(0.05)
+            .attackSpeed(0.05)
             .build());
 
     public static final Item GOLDEN_EXECUTION_LEGGINGS = new GoldenExecutionArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
@@ -482,8 +482,8 @@ public final class FAItems {
             .armorToughness(3.0)
             .knockbackResistance(0.1)
             .maxHealth(2.0)
-            .attackDamage(0.03)
-            .attackSpeed(0.02)
+            .attackSpeed(0.03)
+            .movementSpeed(0.02)
             .luck(1.0)
             .build());
 
@@ -506,8 +506,8 @@ public final class FAItems {
             .armor(3.0)
             .armorToughness(3.0)
             .knockbackResistance(0.2)
-            .attackDamage(0.1)
-            .attackSpeed(0.02)
+            .attackSpeed(0.1)
+            .movementSpeed(0.02)
             .build());
 
     public static final Item TWINNED_CHESTPLATE = new TwinnedArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
@@ -515,22 +515,23 @@ public final class FAItems {
             .armorToughness(3.0)
             .knockbackResistance(0.1)
             .attackSpeed(0.02)
+            .movementSpeed(0.02)
             .build());
 
     public static final Item TWINNED_LEGGINGS = new TwinnedArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
             .armor(6.0)
             .armorToughness(3.0)
             .knockbackResistance(0.2)
-            .attackDamage(0.05)
-            .attackSpeed(0.02)
+            .attackSpeed(0.05)
+            .movementSpeed(0.02)
             .build());
 
     public static final Item TWINNED_BOOTS = new TwinnedArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
             .armor(3.0)
             .armorToughness(3.0)
             .knockbackResistance(0.1)
-            .attackDamage(0.05)
-            .attackSpeed(0.02)
+            .attackSpeed(0.05)
+            .movementSpeed(0.02)
             .build());
 
     // GILDED_HUNT
@@ -539,7 +540,7 @@ public final class FAItems {
             .armorToughness(3.0)
             .knockbackResistance(0.1)
             .maxHealth(1.0)
-            .attackDamage(0.1)
+            .attackSpeed(0.1)
             .build());
 
     public static final Item GILDED_HUNT_CHESTPLATE = new GildedHuntArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
@@ -547,7 +548,7 @@ public final class FAItems {
             .armorToughness(3.0)
             .knockbackResistance(0.1)
             .maxHealth(1.0)
-            .attackDamage(0.1)
+            .attackSpeed(0.1)
             .build());
 
     public static final Item GILDED_HUNT_LEGGINGS = new GildedHuntArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
@@ -769,6 +770,92 @@ public final class FAItems {
             .luck(1.0)
             .build());
 
+    // DEAD GLADIATOR
+    public static final Item DEAD_GLADIATOR_HELMET = new DeadGladiatorArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(2.0)
+            .knockbackResistance(0.1)
+            .attackDamage(0.05)
+            .build());
+
+    public static final Item DEAD_GLADIATOR_CHESTPLATE = new DeadGladiatorArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+            .armor(8.0)
+            .armorToughness(2.0)
+            .knockbackResistance(0.2)
+            .attackDamage(0.1)
+            .build());
+
+    public static final Item DEAD_GLADIATOR_LEGGINGS = new DeadGladiatorArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+            .armor(6.0)
+            .armorToughness(2.0)
+            .knockbackResistance(0.1)
+            .attackDamage(0.05)
+            .build());
+
+    public static final Item DEAD_GLADIATOR_BOOTS = new DeadGladiatorArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(2.0)
+            .knockbackResistance(0.1)
+            .build());
+
+    // FLESH OF THE FEASTER
+    public static final Item FLESH_OF_THE_FEASTER_HELMET = new FeasterArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(1.0)
+            .knockbackResistance(0.1)
+            .maxHealth(1.0)
+            .build());
+
+    public static final Item FLESH_OF_THE_FEASTER_CHESTPLATE = new FeasterArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+            .armor(8.0)
+            .armorToughness(1.0)
+            .knockbackResistance(0.2)
+            .maxHealth(2.0)
+            .build());
+
+    public static final Item FLESH_OF_THE_FEASTER_LEGGINGS = new FeasterArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+            .armor(6.0)
+            .armorToughness(1.0)
+            .knockbackResistance(0.1)
+            .maxHealth(1.0)
+            .build());
+
+    public static final Item FLESH_OF_THE_FEASTER_BOOTS = new FeasterArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(1.0)
+            .knockbackResistance(0.1)
+            .build());
+
+    // WIND WORSHIPPER
+    public static final Item WIND_WORSHIPPER_HELMET = new WindWorshipperArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(2.0)
+            .knockbackResistance(0.1)
+            .attackSpeed(0.03)
+            .build());
+
+    public static final Item WIND_WORSHIPPER_CHESTPLATE = new WindWorshipperArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+            .armor(8.0)
+            .armorToughness(2.0)
+            .knockbackResistance(0.2)
+            .attackSpeed(0.03)
+            .build());
+
+    public static final Item WIND_WORSHIPPER_LEGGINGS = new WindWorshipperArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+            .armor(6.0)
+            .armorToughness(2.0)
+            .knockbackResistance(0.1)
+            .attackSpeed(0.02)
+            .build());
+
+    public static final Item WIND_WORSHIPPER_BOOTS = new WindWorshipperArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(2.0)
+            .knockbackResistance(0.1)
+            .movementSpeed(0.03)
+            .build());
+
+            
     private FAItems() {
     }
 
@@ -894,6 +981,21 @@ public final class FAItems {
         register("silver_knight_chestplate", SILVER_KNIGHT_CHESTPLATE);
         register("silver_knight_leggings", SILVER_KNIGHT_LEGGINGS);
         register("silver_knight_boots", SILVER_KNIGHT_BOOTS);
+
+        register("dead_gladiator_helmet", DEAD_GLADIATOR_HELMET);
+        register("dead_gladiator_chestplate", DEAD_GLADIATOR_CHESTPLATE);
+        register("dead_gladiator_leggings", DEAD_GLADIATOR_LEGGINGS);
+        register("dead_gladiator_boots", DEAD_GLADIATOR_BOOTS);
+
+        register("flesh_of_the_feaster_helmet", FLESH_OF_THE_FEASTER_HELMET);
+        register("flesh_of_the_feaster_chestplate", FLESH_OF_THE_FEASTER_CHESTPLATE);
+        register("flesh_of_the_feaster_leggings", FLESH_OF_THE_FEASTER_LEGGINGS);
+        register("flesh_of_the_feaster_boots", FLESH_OF_THE_FEASTER_BOOTS);
+
+        register("wind_worshipper_helmet", WIND_WORSHIPPER_HELMET);
+        register("wind_worshipper_chestplate", WIND_WORSHIPPER_CHESTPLATE);
+        register("wind_worshipper_leggings", WIND_WORSHIPPER_LEGGINGS);
+        register("wind_worshipper_boots", WIND_WORSHIPPER_BOOTS);
     }
 
     private static void register(String name, Item item) {
