@@ -60,6 +60,7 @@ public final class FAConfig {
                 true,
                 true,
                 true,
+                false,
                 250
         );
     }

@@ -21,7 +21,7 @@ public class FeasterArmorItem extends FAArmorItem {
     @Override
     public List<MobEffectInstance> getFullSetEffects() {
         return List.of(
-                new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 239, 0, false, false)
+                new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 239, 0, true, showParticles, true)
         );
     }
 

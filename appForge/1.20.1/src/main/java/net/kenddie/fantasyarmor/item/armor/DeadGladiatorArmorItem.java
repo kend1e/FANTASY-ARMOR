@@ -21,7 +21,7 @@ public class DeadGladiatorArmorItem extends FAArmorItem {
     @Override
     public List<MobEffectInstance> getFullSetEffects() {
         return List.of(
-                new MobEffectInstance(MobEffects.REGENERATION, 239, 0, false, false)
+                new MobEffectInstance(MobEffects.REGENERATION, 239, 0, true, showParticles, true)
         );
     }
 

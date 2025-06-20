@@ -11,6 +11,8 @@ public record ConfigValues(
 
         boolean showDescriptions,
 
+        boolean showParticles,
+
         int descrtiptionsLength
 
 //        boolean useRecipes
