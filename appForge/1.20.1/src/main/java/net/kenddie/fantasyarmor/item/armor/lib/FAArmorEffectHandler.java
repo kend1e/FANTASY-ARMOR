@@ -10,6 +10,8 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import static net.kenddie.fantasyarmor.config.FAConfig.showParticles;
+
 
 @Mod.EventBusSubscriber
 public class FAArmorEffectHandler {
@@ -59,7 +61,7 @@ public class FAArmorEffectHandler {
                     effectInstance.getDuration(),
                     effectInstance.getAmplifier(),
                     true,  // ambient
-                    FAConfig.getValues().showParticles(),  // showParticles
+                    showParticles,  // showParticles
                     true    // showIcon
                 ));
             }

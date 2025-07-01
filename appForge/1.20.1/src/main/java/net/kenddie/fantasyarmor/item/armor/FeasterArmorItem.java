@@ -12,6 +12,8 @@ import software.bernie.geckolib.renderer.GeoArmorRenderer;
 
 import java.util.List;
 
+import static net.kenddie.fantasyarmor.config.FAConfig.showParticles;
+
 public class FeasterArmorItem extends FAArmorItem {
 
     public FeasterArmorItem(Type type, FAArmorAttributes armorAttributes) {

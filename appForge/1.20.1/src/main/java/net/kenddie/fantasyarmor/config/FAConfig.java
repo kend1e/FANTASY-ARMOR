@@ -11,12 +11,14 @@ public class FAConfig {
     public static final ForgeConfigSpec.BooleanValue SHOW_DESCRIPTIONS;
     public static final ForgeConfigSpec.BooleanValue SHOW_CAPES;
     public static final ForgeConfigSpec.BooleanValue EPIC_FIGHT_NOT_STATIC_CAPES;
+    public static final ForgeConfigSpec.BooleanValue SHOW_PARTICLES;
 
     public static boolean applyArmorEffects;
     public static boolean applyModifiers;
     public static boolean showDescriptions;
     public static boolean showCapes;
     public static boolean epicFightNotStaticCapes;
+    public static boolean showParticles;
 
     static {
         BUILDER.push("General Settings");
@@ -40,6 +42,10 @@ public class FAConfig {
         EPIC_FIGHT_NOT_STATIC_CAPES = BUILDER
                 .comment("Do not make capes static if Epic Fight is loaded. It is not implemented yet completely")
                 .define("epicFightNotStaticCapes", false);
+
+        SHOW_PARTICLES = BUILDER
+                .comment("Show effect particles")
+                .define("showDescriptions", false);
 
         BUILDER.pop();
         SPEC = BUILDER.build();

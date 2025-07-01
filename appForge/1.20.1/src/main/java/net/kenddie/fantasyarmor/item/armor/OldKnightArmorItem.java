@@ -12,6 +12,8 @@ import software.bernie.geckolib.renderer.GeoArmorRenderer;
 
 import java.util.List;
 
+import static net.kenddie.fantasyarmor.config.FAConfig.showParticles;
+
 public class OldKnightArmorItem extends FAArmorItem {
 
     public OldKnightArmorItem(Type type, FAArmorAttributes armorAttributes) {

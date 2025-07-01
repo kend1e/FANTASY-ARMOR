@@ -2,8 +2,8 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
-    id 'net.minecraftforge.gradle' version 'latest.release' apply false
-    id 'org.parchmentmc.librarian.forgegradle' version 'latest.release' apply false
-    id 'org.spongepowered.mixin' version 'latest.release' apply false
+    id 'net.minecraftforge.gradle' version '6.+' apply false
+    id 'org.parchmentmc.librarian.forgegradle' version '1.+' apply false
+    id 'org.spongepowered.mixin' version '0.7-SNAPSHOT' apply false
 }
 

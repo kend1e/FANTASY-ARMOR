@@ -2,9 +2,9 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
-    id 'net.minecraftforge.gradle' version 'latest.release'
-    id 'org.parchmentmc.librarian.forgegradle' version 'latest.release'
-    id 'org.spongepowered.mixin' version 'latest.release'
+    id 'net.minecraftforge.gradle' version '6.+'
+    id 'org.parchmentmc.librarian.forgegradle' version '1.+'
+    id 'org.spongepowered.mixin' version '0.7-SNAPSHOT'
 }
 
 version = mod_version

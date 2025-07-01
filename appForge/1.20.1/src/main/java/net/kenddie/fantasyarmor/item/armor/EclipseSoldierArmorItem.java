@@ -12,6 +12,8 @@ import software.bernie.geckolib.renderer.GeoArmorRenderer;
 
 import java.util.List;
 
+import static net.kenddie.fantasyarmor.config.FAConfig.showParticles;
+
 public class EclipseSoldierArmorItem extends FAArmorItem {
     public EclipseSoldierArmorItem(Type type, FAArmorAttributes armorAttributes) {
         super(type, armorAttributes);
