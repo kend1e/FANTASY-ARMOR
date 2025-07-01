@@ -83,6 +83,24 @@
     "item.fantasy_armor.dark_lord_leggings.tooltip": "§7Створений в глибинах іншого світу, цей комплект є втіленням влади жаху. \n§7Його шипи і чорні лати подібні до поламаних іклів. \n§7Носіть його, якщо наважитеся, але знайте — він вимагає вічної відданості темряві та поглинає тих, хто намагається йому протистояти.",
     "item.fantasy_armor.dark_lord_boots.tooltip": "§7Створений в глибинах іншого світу, цей комплект є втіленням влади жаху. \n§7Його шипи і чорні лати подібні до поламаних іклів. \n§7Носіть його, якщо наважитеся, але знайте — він вимагає вічної відданості темряві та поглинає тих, хто намагається йому протистояти.",
 
+    "item.fantasy_armor.fog_guard_helmet": "Шолом Старжника Туману",
+    "item.fantasy_armor.fog_guard_chestplate": "Нагрудник Старжника Туману",
+    "item.fantasy_armor.fog_guard_leggings": "Наголінники Старжника Туману",
+    "item.fantasy_armor.fog_guard_boots": "Чоботи Старжника Туману",
+    "item.fantasy_armor.fog_guard_helmet.tooltip": "§7Охоплений давнім туманом, цей обладунок забезпечує неперевершений захист, але робить свого носія вразливи через видіння забутих світів.",
+    "item.fantasy_armor.fog_guard_chestplate.tooltip": "§7Охоплений давнім туманом, цей обладунок забезпечує неперевершений захист, але робить свого носія вразливи через видіння забутих світів.",
+    "item.fantasy_armor.fog_guard_leggings.tooltip": "§7Охоплений давнім туманом, цей обладунок забезпечує неперевершений захист, але робить свого носія вразливи через видіння забутих світів.",
+    "item.fantasy_armor.fog_guard_boots.tooltip": "§7Охоплений давнім туманом, цей обладунок забезпечує неперевершений захист, але робить свого носія вразливи через видіння забутих світів.",
+
+    "item.fantasy_armor.dark_cover_helmet": "Шолом Темного Покрову",
+    "item.fantasy_armor.dark_cover_chestplate": "Нагрудник Темного Покрову",
+    "item.fantasy_armor.dark_cover_leggings": "Наголінники Темного Покрову",
+    "item.fantasy_armor.dark_cover_boots": "Чоботи Темного Покрову",
+    "item.fantasy_armor.dark_cover_helmet.tooltip": "§7Загортаючи носія у тіні, цей обладунок надає захист від світла й тишу, але нашіптує забуті секрети темних сил.\n§7Носи його, але стережися попереджень тіней.",
+    "item.fantasy_armor.dark_cover_chestplate.tooltip": "§7Загортаючи носія у тіні, цей обладунок надає захист від світла й тишу, але нашіптує забуті секрети темних сил.\n§7Носи його, але стережися попереджень тіней.",
+    "item.fantasy_armor.dark_cover_leggings.tooltip": "§7Загортаючи носія у тіні, цей обладунок надає захист від світла й тишу, але нашіптує забуті секрети темних сил.\n§7Носи його, але стережися попереджень тіней.",
+    "item.fantasy_armor.dark_cover_boots.tooltip": "§7Загортаючи носія у тіні, цей обладунок надає захист від світла й тишу, але нашіптує забуті секрети темних сил.\n§7Носи його, але стережися попереджень тіней.",
+
     "item.fantasy_armor.spark_of_dawn_helmet": "Шолом Іскри Світанку",
     "item.fantasy_armor.spark_of_dawn_chestplate": "Нагрудник Іскри Світанку",
     "item.fantasy_armor.spark_of_dawn_leggings": "Наголінники Іскри Світанку",
@@ -146,6 +164,7 @@
     "item.fantasy_armor.lady_maria_leggings.tooltip": "§7Не варто торкатися тіл. \n§7О, я-то знаю, як солодко ваблять таємниці. \n§7Тепер лише чесна смерть принесе тобі зцілення. \n§7Звільнить тебе від твоєї неймовірної допитливості.",
     "item.fantasy_armor.lady_maria_boots.tooltip": "§7Не варто торкатися тіл. \n§7О, я-то знаю, як солодко ваблять таємниці. \n§7Тепер лише чесна смерть принесе тобі зцілення. \n§7Звільнить тебе від твоєї неймовірної допитливості.",
 
+    
     "item.fantasy_armor.crucible_knight_helmet": "Шолом Лицаря Горнила",
     "item.fantasy_armor.crucible_knight_chestplate": "Нагрудник Лицаря Горнила",
     "item.fantasy_armor.crucible_knight_leggings": "Наголінники Лицаря Горнила",
@@ -198,5 +217,32 @@
     "item.fantasy_armor.silver_knight_helmet.tooltip": "§7Обладунок елітного воїна, що не знав поразок. \n§7Його срібний блиск відображає місячне сяйво, приносячи швидку смерть ворогам.",
     "item.fantasy_armor.silver_knight_chestplate.tooltip": "§7Обладунок елітного воїна, що не знав поразок. \n§7Його срібний блиск відображає місячне сяйво, приносячи швидку смерть ворогам.",
     "item.fantasy_armor.silver_knight_leggings.tooltip": "§7Обладунок елітного воїна, що не знав поразок. \n§7Його срібний блиск відображає місячне сяйво, приносячи швидку смерть ворогам.",
-    "item.fantasy_armor.silver_knight_boots.tooltip": "§7Обладунок елітного воїна, що не знав поразок. \n§7Його срібний блиск відображає місячне сяйво, приносячи швидку смерть ворогам."
+    "item.fantasy_armor.silver_knight_boots.tooltip": "§7Обладунок елітного воїна, що не знав поразок. \n§7Його срібний блиск відображає місячне сяйво, приносячи швидку смерть ворогам.",
+
+    "item.fantasy_armor.dead_gladiator_helmet": "Шолом Мертвого гладіатора",
+    "item.fantasy_armor.dead_gladiator_helmet.tooltip": "§7Броня воїна, що помер на арені. \n§7Ім’я зникло, та лють усе ще палає під цією сталлю.",
+    "item.fantasy_armor.dead_gladiator_chestplate": "Нагрудник Мертвого гладіатора",
+    "item.fantasy_armor.dead_gladiator_chestplate.tooltip": "§7Броня воїна, що помер на арені. \n§7Ім’я зникло, та лють усе ще палає під цією сталлю.",
+    "item.fantasy_armor.dead_gladiator_leggings": "Наголінники Мертвого гладіатора",
+    "item.fantasy_armor.dead_gladiator_leggings.tooltip": "§7Броня воїна, що помер на арені. \n§7Ім’я зникло, та лють усе ще палає під цією сталлю.",
+    "item.fantasy_armor.dead_gladiator_boots": "Чоботи Мертвого гладіатора",
+    "item.fantasy_armor.dead_gladiator_boots.tooltip": "§7Броня воїна, що помер на арені. \n§7Ім’я зникло, та лють усе ще палає під цією сталлю.",
+
+    "item.fantasy_armor.flesh_of_the_feaster_helmet": "Шолом Пожирача",
+    "item.fantasy_armor.flesh_of_the_feaster_helmet.tooltip": "§7Ця броня просякнута запахом крові та жадоби. \n§7Колись її носив той, хто жер без зупинки, й сам став тим, що їв.",
+    "item.fantasy_armor.flesh_of_the_feaster_chestplate": "Нагрудник Пожирача",
+    "item.fantasy_armor.flesh_of_the_feaster_chestplate.tooltip": "§7Ця броня просякнута запахом крові та жадоби. \n§7Колись її носив той, хто жер без зупинки, й сам став тим, що їв.",
+    "item.fantasy_armor.flesh_of_the_feaster_leggings": "Наголінники Пожирача",
+    "item.fantasy_armor.flesh_of_the_feaster_leggings.tooltip": "§7Ця броня просякнута запахом крові та жадоби. \n§7Колись її носив той, хто жер без зупинки, й сам став тим, що їв.",
+    "item.fantasy_armor.flesh_of_the_feaster_boots": "Чоботи Пожирача",
+    "item.fantasy_armor.flesh_of_the_feaster_boots.tooltip": "§7Ця броня просякнута запахом крові та жадоби. \n§7Колись її носив той, хто жер без зупинки, й сам став тим, що їв.",
+
+    "item.fantasy_armor.wind_worshipper_helmet": "Шолом Шанувальника вітру",
+    "item.fantasy_armor.wind_worshipper_helmet.tooltip": "§7Тканина легка, мов подих. \n§7Її носять ті, хто не знає спокою й мандрує за вітром, куди б він не ніс.",
+    "item.fantasy_armor.wind_worshipper_chestplate": "Нагрудник Шанувальника вітру",
+    "item.fantasy_armor.wind_worshipper_chestplate.tooltip": "§7Тканина легка, мов подих. \n§7Її носять ті, хто не знає спокою й мандрує за вітром, куди б він не ніс.",
+    "item.fantasy_armor.wind_worshipper_leggings": "Наголінники Шанувальника вітру",
+    "item.fantasy_armor.wind_worshipper_leggings.tooltip": "§7Тканина легка, мов подих. \n§7Її носять ті, хто не знає спокою й мандрує за вітром, куди б він не ніс.",
+    "item.fantasy_armor.wind_worshipper_boots": "Чоботи Шанувальника вітру",
+    "item.fantasy_armor.wind_worshipper_boots.tooltip": "§7Тканина легка, мов подих. \n§7Її носять ті, хто не знає спокою й мандрує за вітром, куди б він не ніс."
 }

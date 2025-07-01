@@ -9,10 +9,12 @@ public class FAConfig {
     public static final ForgeConfigSpec.BooleanValue APPLY_ARMOR_EFFECTS;
     public static final ForgeConfigSpec.BooleanValue APPLY_MODIFIERS;
     public static final ForgeConfigSpec.BooleanValue SHOW_DESCRIPTIONS;
+    public static final ForgeConfigSpec.BooleanValue SHOW_PARTICLES;
 
     public static boolean applyArmorEffects;
     public static boolean applyModifiers;
     public static boolean showDescriptions;
+    public static boolean showParticles;
 
     static {
         BUILDER.push("General Settings");
@@ -29,6 +31,10 @@ public class FAConfig {
                 .comment("Show item descriptions")
                 .define("showDescriptions", true);
 
+        SHOW_PARTICLES = BUILDER
+                .comment("Show effect particles")
+                .define("showDescriptions", true);
+
         BUILDER.pop();
         SPEC = BUILDER.build();
     }
@@ -37,5 +43,6 @@ public class FAConfig {
         applyArmorEffects = APPLY_ARMOR_EFFECTS.get();
         applyModifiers = APPLY_MODIFIERS.get();
         showDescriptions = SHOW_DESCRIPTIONS.get();
+        showParticles = SHOW_PARTICLES.get();
     }
 }

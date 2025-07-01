@@ -40,7 +40,7 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
     private final Multimap<Attribute, AttributeModifier> attributeModifiers;
 
     protected FAArmorItem(Type type, FAArmorAttributes armorAttributes) {
-        super(ArmorMaterials.NETHERITE, type, new Properties().stacksTo(1));
+        super(ArmorMaterials.NETHERITE, type, new Properties().stacksTo(1).fireResistant());
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
 
         if (FAConfig.getValues().applyModifiers()) {

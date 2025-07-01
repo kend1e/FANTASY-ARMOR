@@ -20,8 +20,8 @@ public class EveningGhostArmorItem extends FAArmorItem {
     @Override
     public List<MobEffectInstance> getFullSetEffects() {
         return List.of(
-                new MobEffectInstance(MobEffects.REGENERATION, 239),
-                new MobEffectInstance(MobEffects.NIGHT_VISION, 239)
+                new MobEffectInstance(MobEffects.REGENERATION, 239, 0, true, showParticles, true),
+                new MobEffectInstance(MobEffects.NIGHT_VISION, 239, 0, true, showParticles, true)
         );
     }
 

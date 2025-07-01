@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "category": "equipment",
+  "template": {
+    "item": "minecraft:slime_ball"
+  },
+  "base": {
+    "item": "minecraft:netherite_helmet"
+  },
+  "addition": {
+    "item": "fantasy_armor:moon_crystal"
+  },
+  "result": {
+    "item": "fantasy_armor:flesh_of_the_feaster_helmet"
+  }
+}

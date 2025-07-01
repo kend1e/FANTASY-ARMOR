@@ -69,10 +69,10 @@
     "item.fantasy_armor.chess_board_knight_chestplate": "Chess Board Knight Chestplate",
     "item.fantasy_armor.chess_board_knight_leggings": "Chess Board Knight Leggings",
     "item.fantasy_armor.chess_board_knight_boots": "Chess Board Knight Boots",
-    "item.fantasy_armor.chess_board_knight_helmet.tooltip": "§7Every move is a battle; every step is a strategy.\n§7This armor embodies the cold logic and ruthless power of warfare.\n§7Wear it with the pride of a strategist, prepared to sacrifice everything for victory, even your soul.",
-    "item.fantasy_armor.chess_board_knight_chestplate.tooltip": "§7Every move is a battle; every step is a strategy.\n§7This armor embodies the cold logic and ruthless power of warfare.\n§7Wear it with the pride of a strategist, prepared to sacrifice everything for victory, even your soul.",
-    "item.fantasy_armor.chess_board_knight_leggings.tooltip": "§7Every move is a battle; every step is a strategy.\n§7This armor embodies the cold logic and ruthless power of warfare.\n§7Wear it with the pride of a strategist, prepared to sacrifice everything for victory, even your soul.",
-    "item.fantasy_armor.chess_board_knight_boots.tooltip": "§7Every move is a battle; every step is a strategy.\n§7This armor embodies the cold logic and ruthless power of warfare.\n§7Wear it with the pride of a strategist, prepared to sacrifice everything for victory, even your soul.",
+    "item.fantasy_armor.chess_board_knight_helmet.tooltip": "§7Every move is a battle, every step is a strategy.\n§7This armor embodies the cold logic and ruthless power of warfare.\n§7Wear it with the pride of a strategist, prepared to sacrifice everything for victory, even your soul.",
+    "item.fantasy_armor.chess_board_knight_chestplate.tooltip": "§7Every move is a battle, every step is a strategy.\n§7This armor embodies the cold logic and ruthless power of warfare.\n§7Wear it with the pride of a strategist, prepared to sacrifice everything for victory, even your soul.",
+    "item.fantasy_armor.chess_board_knight_leggings.tooltip": "§7Every move is a battle, every step is a strategy.\n§7This armor embodies the cold logic and ruthless power of warfare.\n§7Wear it with the pride of a strategist, prepared to sacrifice everything for victory, even your soul.",
+    "item.fantasy_armor.chess_board_knight_boots.tooltip": "§7Every move is a battle, every step is a strategy.\n§7This armor embodies the cold logic and ruthless power of warfare.\n§7Wear it with the pride of a strategist, prepared to sacrifice everything for victory, even your soul.",
 
     "item.fantasy_armor.dark_lord_helmet": "Dark Lord Helmet",
     "item.fantasy_armor.dark_lord_chestplate": "Dark Lord Chestplate",
@@ -216,6 +216,32 @@
     "item.fantasy_armor.silver_knight_helmet.tooltip": "§7The armor of an elite warrior who never faltered in battle. \n§7Its silver gleam reflects the moonlight, bringing swift death to those who dare oppose its master.",
     "item.fantasy_armor.silver_knight_chestplate.tooltip": "§7The armor of an elite warrior who never faltered in battle. \n§7Its silver gleam reflects the moonlight, bringing swift death to those who dare oppose its master.",
     "item.fantasy_armor.silver_knight_leggings.tooltip": "§7The armor of an elite warrior who never faltered in battle. \n§7Its silver gleam reflects the moonlight, bringing swift death to those who dare oppose its master.",
-    "item.fantasy_armor.silver_knight_boots.tooltip": "§7The armor of an elite warrior who never faltered in battle. \n§7Its silver gleam reflects the moonlight, bringing swift death to those who dare oppose its master."
+    "item.fantasy_armor.silver_knight_boots.tooltip": "§7The armor of an elite warrior who never faltered in battle. \n§7Its silver gleam reflects the moonlight, bringing swift death to those who dare oppose its master.",
 
+    "item.fantasy_armor.dead_gladiator_helmet": "Dead Gladiator Helmet",
+    "item.fantasy_armor.dead_gladiator_helmet.tooltip": "§7Armor of a slave fallen in the arena. \n§7His name is forgotten, but fury still burns beneath the steel.",
+    "item.fantasy_armor.dead_gladiator_chestplate": "Dead Gladiator Chestplate",
+    "item.fantasy_armor.dead_gladiator_chestplate.tooltip": "§7Armor of a slave fallen in the arena. \n§7His name is forgotten, but fury still burns beneath the steel.",
+    "item.fantasy_armor.dead_gladiator_leggings": "Dead Gladiator Leggings",
+    "item.fantasy_armor.dead_gladiator_leggings.tooltip": "§7Armor of a slave fallen in the arena. \n§7His name is forgotten, but fury still burns beneath the steel.",
+    "item.fantasy_armor.dead_gladiator_boots": "Dead Gladiator Boots",
+    "item.fantasy_armor.dead_gladiator_boots.tooltip": "§7Armor of a slave fallen in the arena. \n§7His name is forgotten, but fury still burns beneath the steel.",
+
+    "item.fantasy_armor.flesh_of_the_feaster_helmet": "Flesh of the Feaster Helmet",
+    "item.fantasy_armor.flesh_of_the_feaster_helmet.tooltip": "§7This armor reeks of blood and greed. \n§7It once belonged to one who fed without end — and became what he consumed.",
+    "item.fantasy_armor.flesh_of_the_feaster_chestplate": "Flesh of the Feaster Chestplate",
+    "item.fantasy_armor.flesh_of_the_feaster_chestplate.tooltip": "§7This armor reeks of blood and greed. \n§7It once belonged to one who fed without end — and became what he consumed.",
+    "item.fantasy_armor.flesh_of_the_feaster_leggings": "Flesh of the Feaster Leggings",
+    "item.fantasy_armor.flesh_of_the_feaster_leggings.tooltip": "§7This armor reeks of blood and greed. \n§7It once belonged to one who fed without end — and became what he consumed.",
+    "item.fantasy_armor.flesh_of_the_feaster_boots": "Flesh of the Feaster Boots",
+    "item.fantasy_armor.flesh_of_the_feaster_boots.tooltip": "§7This armor reeks of blood and greed. \n§7It once belonged to one who fed without end — and became what he consumed.",
+
+    "item.fantasy_armor.wind_worshipper_helmet": "Wind Worshipper Helmet",
+    "item.fantasy_armor.wind_worshipper_helmet.tooltip": "Wind Worshipper fabric is light as breath. \n§7Worn by those who know no rest, drifting wherever the wind may carry them.",
+    "item.fantasy_armor.wind_worshipper_chestplate": "Wind Worshipper Chestplate",
+    "item.fantasy_armor.wind_worshipper_chestplate.tooltip": "§7The fabric is light as breath. \n§7Worn by those who know no rest, drifting wherever the wind may carry them.",
+    "item.fantasy_armor.wind_worshipper_leggings": "Wind Worshipper Leggings",
+    "item.fantasy_armor.wind_worshipper_leggings.tooltip": "§7The fabric is light as breath. \n§7Worn by those who know no rest, drifting wherever the wind may carry them.",
+    "item.fantasy_armor.wind_worshipper_boots": "Wind Worshipper Boots",
+    "item.fantasy_armor.wind_worshipper_boots.tooltip": "§7The fabric is light as breath. \n§7Worn by those who know no rest, drifting wherever the wind may carry them."
 }
