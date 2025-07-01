@@ -33,7 +33,7 @@ public class FAConfig {
 
         SHOW_PARTICLES = BUILDER
                 .comment("Show effect particles")
-                .define("showDescriptions", false);
+                .define("showParticles", false);
 
         BUILDER.pop();
         SPEC = BUILDER.build();

@@ -45,7 +45,7 @@ public class FAConfig {
 
         SHOW_PARTICLES = BUILDER
                 .comment("Show effect particles")
-                .define("showDescriptions", false);
+                .define("showParticles", false);
 
         BUILDER.pop();
         SPEC = BUILDER.build();
@@ -57,5 +57,6 @@ public class FAConfig {
         showDescriptions = SHOW_DESCRIPTIONS.get();
         showCapes = SHOW_CAPES.get();
         epicFightNotStaticCapes = EPIC_FIGHT_NOT_STATIC_CAPES.get();
+        showParticles = SHOW_PARTICLES.get();
     }
 }
