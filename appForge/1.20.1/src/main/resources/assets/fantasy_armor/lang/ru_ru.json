@@ -243,5 +243,14 @@
     "item.fantasy_armor.wind_worshipper_leggings": "Поножи Поклонника ветра",
     "item.fantasy_armor.wind_worshipper_leggings.tooltip": "§7Ткань легка, как дыхание. \nЕё носят те, кто не знает покоя и следует за ветром, куда бы он ни унес.",
     "item.fantasy_armor.wind_worshipper_boots": "Ботинки Поклонника ветра",
-    "item.fantasy_armor.wind_worshipper_boots.tooltip": "§7Ткань легка, как дыхание. \nЕё носят те, кто не знает покоя и следует за ветром, куда бы он ни унес."
+    "item.fantasy_armor.wind_worshipper_boots.tooltip": "§7Ткань легка, как дыхание. \nЕё носят те, кто не знает покоя и следует за ветром, куда бы он ни унес.",
+
+    "item.fantasy_armor.grave_sentinel_helmet": "Шлем Стража Кладбища",
+    "item.fantasy_armor.grave_sentinel_chestplate": "Нагрудник Стража Кладбища",
+    "item.fantasy_armor.grave_sentinel_leggings": "Поножи Стража Кладбища",
+    "item.fantasy_armor.grave_sentinel_boots": "Ботинки Стража Кладбища",
+    "item.fantasy_armor.grave_sentinel_helmet.tooltip": "§7Облачитесь в броню, что сторожит покой мёртвых. \nКогда-то их клятвы были благородны, но с течением веков их долг исказился в бессловесную стражу среди праха и тишины.",
+    "item.fantasy_armor.grave_sentinel_chestplate.tooltip": "§7Облачитесь в броню, что сторожит покой мёртвых. \nКогда-то их клятвы были благородны, но с течением веков их долг исказился в бессловесную стражу среди праха и тишины.",
+    "item.fantasy_armor.grave_sentinel_leggings.tooltip": "§7Облачитесь в броню, что сторожит покой мёртвых. \nКогда-то их клятвы были благородны, но с течением веков их долг исказился в бессловесную стражу среди праха и тишины.",
+    "item.fantasy_armor.grave_sentinel_boots.tooltip": "§7Облачитесь в броню, что сторожит покой мёртвых. \nКогда-то их клятвы были благородны, но с течением веков их долг исказился в бессловесную стражу среди праха и тишины."
 }

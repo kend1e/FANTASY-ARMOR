@@ -244,5 +244,15 @@
     "item.fantasy_armor.wind_worshipper_leggings": "Наголінники Шанувальника вітру",
     "item.fantasy_armor.wind_worshipper_leggings.tooltip": "§7Тканина легка, мов подих. \n§7Її носять ті, хто не знає спокою й мандрує за вітром, куди б він не ніс.",
     "item.fantasy_armor.wind_worshipper_boots": "Чоботи Шанувальника вітру",
-    "item.fantasy_armor.wind_worshipper_boots.tooltip": "§7Тканина легка, мов подих. \n§7Її носять ті, хто не знає спокою й мандрує за вітром, куди б він не ніс."
+    "item.fantasy_armor.wind_worshipper_boots.tooltip": "§7Тканина легка, мов подих. \n§7Її носять ті, хто не знає спокою й мандрує за вітром, куди б він не ніс.",
+
+    "item.fantasy_armor.grave_sentinel_helmet": "Шолом Могильного Вартового",
+    "item.fantasy_armor.grave_sentinel_chestplate": "Нагрудник Могильного Вартового",
+    "item.fantasy_armor.grave_sentinel_leggings": "Наголінники Могильного Вартового",
+    "item.fantasy_armor.grave_sentinel_boots": "Чоботи Могильного Вартового",
+    "item.fantasy_armor.grave_sentinel_helmet.tooltip": "§7Вдягніть броню, що стереже спокій мертвих. \n§7Колись їхні обітниці були шляхетними, та з роками їхній обов’язок спотворився у мовчазну варту серед попелу й тиші.",
+    "item.fantasy_armor.grave_sentinel_chestplate.tooltip": "§7Вдягніть броню, що стереже спокій мертвих. \n§7Колись їхні обітниці були шляхетними, та з роками їхній обов’язок спотворився у мовчазну варту серед попелу й тиші.",
+    "item.fantasy_armor.grave_sentinel_leggings.tooltip": "§7Вдягніть броню, що стереже спокій мертвих. \n§7Колись їхні обітниці були шляхетними, та з роками їхній обов’язок спотворився у мовчазну варту серед попелу й тиші.",
+    "item.fantasy_armor.grave_sentinel_boots.tooltip": "§7Вдягніть броню, що стереже спокій мертвих. \n§7Колись їхні обітниці були шляхетними, та з роками їхній обов’язок спотворився у мовчазну варту серед попелу й тиші."
+
 }

@@ -16,6 +16,7 @@ import net.kenddie.fantasyarmor.item.armor.ForgottenTraceArmorItem;
 import net.kenddie.fantasyarmor.item.armor.GildedHuntArmorItem;
 import net.kenddie.fantasyarmor.item.armor.GoldenExecutionArmorItem;
 import net.kenddie.fantasyarmor.item.armor.GoldenHornsArmorItem;
+import net.kenddie.fantasyarmor.item.armor.GraveSentinelArmorItem;
 import net.kenddie.fantasyarmor.item.armor.HeroArmorItem;
 import net.kenddie.fantasyarmor.item.armor.LadyMariaArmorItem;
 import net.kenddie.fantasyarmor.item.armor.MaleniaArmorItem;
@@ -855,7 +856,32 @@ public final class FAItems {
             .movementSpeed(0.03)
             .build());
 
-            
+    // GRAVE SENTINEL
+    public static final Item GRAVE_SENTINEL_HELMET = new GraveSentinelArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .build());
+
+    public static final Item GRAVE_SENTINEL_CHESTPLATE = new GraveSentinelArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+            .armor(8.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .attackSpeed(0.1)
+            .build());
+
+    public static final Item GRAVE_SENTINEL_LEGGINGS = new GraveSentinelArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+            .armor(6.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.2)
+            .build());
+
+    public static final Item GRAVE_SENTINEL_BOOTS = new GraveSentinelArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+            .armor(3.0)
+            .armorToughness(3.0)
+            .knockbackResistance(0.1)
+            .build());
+
     private FAItems() {
     }
 
@@ -996,6 +1022,11 @@ public final class FAItems {
         register("wind_worshipper_chestplate", WIND_WORSHIPPER_CHESTPLATE);
         register("wind_worshipper_leggings", WIND_WORSHIPPER_LEGGINGS);
         register("wind_worshipper_boots", WIND_WORSHIPPER_BOOTS);
+
+        register("grave_sentinel_helmet", GRAVE_SENTINEL_HELMET);
+        register("grave_sentinel_chestplate", GRAVE_SENTINEL_CHESTPLATE);
+        register("grave_sentinel_leggings", GRAVE_SENTINEL_LEGGINGS);
+        register("grave_sentinel_boots", GRAVE_SENTINEL_BOOTS);
     }
 
     private static void register(String name, Item item) {

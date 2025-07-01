@@ -15,6 +15,7 @@ import net.kenddie.fantasyarmor.item.armor.ForgottenTraceArmorItem;
 import net.kenddie.fantasyarmor.item.armor.GildedHuntArmorItem;
 import net.kenddie.fantasyarmor.item.armor.GoldenExecutionArmorItem;
 import net.kenddie.fantasyarmor.item.armor.GoldenHornsArmorItem;
+import net.kenddie.fantasyarmor.item.armor.GraveSentinelArmorItem;
 import net.kenddie.fantasyarmor.item.armor.HeroArmorItem;
 import net.kenddie.fantasyarmor.item.armor.LadyMariaArmorItem;
 import net.kenddie.fantasyarmor.item.armor.MaleniaArmorItem;
@@ -959,6 +960,39 @@ public final class FAItems {
                     .armor(3.0)
                     .armorToughness(2.0)
                     .knockbackResistance(0.1)
+                    .movementSpeed(0.03)
+                    .build()));
+
+    // GRAVE SENTINEL
+    public static final RegistryObject<Item> GRAVE_SENTINEL_HELMET = ITEMS.register("grave_sentinel_helmet", () ->
+            new GraveSentinelArmorItem(ArmorItem.Type.HELMET, FAArmorAttributes.builder()
+                    .armor(3.0)
+                    .armorToughness(2.0)
+                    .knockbackResistance(0.1)
+                    .attackSpeed(0.03)
+                    .build()));
+
+    public static final RegistryObject<Item> GRAVE_SENTINEL_CHESTPLATE = ITEMS.register("grave_sentinel_chestplate", () ->
+            new GraveSentinelArmorItem(ArmorItem.Type.CHESTPLATE, FAArmorAttributes.builder()
+                    .armor(8.0)
+                    .armorToughness(2.0)
+                    .knockbackResistance(0.2)
+                    .attackSpeed(0.03)
+                    .build()));
+
+    public static final RegistryObject<Item> GRAVE_SENTINEL_LEGGINGS = ITEMS.register("grave_sentinel_leggings", () ->
+            new GraveSentinelArmorItem(ArmorItem.Type.LEGGINGS, FAArmorAttributes.builder()
+                    .armor(6.0)
+                    .armorToughness(2.0)
+                    .knockbackResistance(0.1)
+                    .attackSpeed(0.02)
+                    .build()));
+
+    public static final RegistryObject<Item> GRAVE_SENTINEL_BOOTS = ITEMS.register("grave_sentinel_boots", () ->
+            new GraveSentinelArmorItem(ArmorItem.Type.BOOTS, FAArmorAttributes.builder()
+                    .armor(3.0)
+                    .armorToughness(2.0)
+                    .knockbackResistance(0.2)
                     .movementSpeed(0.03)
                     .build()));
 

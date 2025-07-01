@@ -130,6 +130,10 @@ public class FACreativeModTabs {
                                 pOutput.accept(FAItems.WIND_WORSHIPPER_CHESTPLATE.get());
                                 pOutput.accept(FAItems.WIND_WORSHIPPER_LEGGINGS.get());
                                 pOutput.accept(FAItems.WIND_WORSHIPPER_BOOTS.get());
+                                pOutput.accept(FAItems.GRAVE_SENTINEL_HELMET.get());
+                                pOutput.accept(FAItems.GRAVE_SENTINEL_CHESTPLATE.get());
+                                pOutput.accept(FAItems.GRAVE_SENTINEL_LEGGINGS.get());
+                                pOutput.accept(FAItems.GRAVE_SENTINEL_BOOTS.get());
                             })
                             .build()
             );
