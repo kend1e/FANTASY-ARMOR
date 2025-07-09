@@ -20,7 +20,7 @@ public class HeroArmorItem extends FAArmorItem {
     @Override
     public List<MobEffectInstance> getFullSetEffects() {
         return List.of(
-                new MobEffectInstance(MobEffects.REGENERATION, 239)
+                new MobEffectInstance(MobEffects.REGENERATION, 442)
         );
     }
 

@@ -20,7 +20,7 @@ public class RoninArmorItem extends FAArmorItem {
     @Override
     public List<MobEffectInstance> getFullSetEffects() {
         return List.of(
-                new MobEffectInstance(MobEffects.JUMP, 239)
+                new MobEffectInstance(MobEffects.JUMP, 442)
         );
     }
 

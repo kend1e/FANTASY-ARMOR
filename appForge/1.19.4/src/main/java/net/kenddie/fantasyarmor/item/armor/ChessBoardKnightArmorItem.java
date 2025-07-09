@@ -20,9 +20,9 @@ public class ChessBoardKnightArmorItem extends FAArmorItem {
     @Override
     public List<MobEffectInstance> getFullSetEffects() {
         return List.of(
-                new MobEffectInstance(MobEffects.DIG_SPEED, 239, 0, true, showParticles, true),
-                new MobEffectInstance(MobEffects.REGENERATION, 239, 0, true, showParticles, true),
-                new MobEffectInstance(MobEffects.DAMAGE_BOOST, 239, 0, true, showParticles, true)
+                new MobEffectInstance(MobEffects.DIG_SPEED, 442, 0, true, showParticles, true),
+                new MobEffectInstance(MobEffects.REGENERATION, 442, 0, true, showParticles, true),
+                new MobEffectInstance(MobEffects.DAMAGE_BOOST, 442, 0, true, showParticles, true)
         );
     }
 

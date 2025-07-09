@@ -23,7 +23,7 @@ public class WindWorshipperArmorItem extends FAArmorItem {
     @Override
     public List<MobEffectInstance> getFullSetEffects() {
         return List.of(
-                new MobEffectInstance(MobEffects.JUMP, 239, 0, true, showParticles, true)
+                new MobEffectInstance(MobEffects.JUMP, 442, 0, true, showParticles, true)
         );
     }
 

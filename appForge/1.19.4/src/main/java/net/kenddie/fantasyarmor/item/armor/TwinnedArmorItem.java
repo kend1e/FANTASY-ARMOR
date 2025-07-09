@@ -21,8 +21,8 @@ public class TwinnedArmorItem extends FAArmorItem {
     @Override
     public List<MobEffectInstance> getFullSetEffects() {
         return List.of(
-                new MobEffectInstance(MobEffects.REGENERATION, 239, 0, true, showParticles, true),
-                new MobEffectInstance(MobEffects.DIG_SPEED, 239, 1, true, showParticles, true)
+                new MobEffectInstance(MobEffects.REGENERATION, 442, 0, true, showParticles, true),
+                new MobEffectInstance(MobEffects.DIG_SPEED, 442, 1, true, showParticles, true)
         );
     }
 

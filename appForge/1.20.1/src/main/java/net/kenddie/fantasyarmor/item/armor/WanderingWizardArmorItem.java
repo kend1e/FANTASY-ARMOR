@@ -22,9 +22,9 @@ public class WanderingWizardArmorItem extends FAArmorItem {
     @Override
     public List<MobEffectInstance> getFullSetEffects() {
         return List.of(
-                new MobEffectInstance(MobEffects.WATER_BREATHING, 239, 0, true, showParticles, true),
-                new MobEffectInstance(MobEffects.NIGHT_VISION, 239, 0, true, showParticles, true),
-                new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 239, 0, true, showParticles, true)
+                new MobEffectInstance(MobEffects.WATER_BREATHING, 442, 0, true, showParticles, true),
+                new MobEffectInstance(MobEffects.NIGHT_VISION, 442, 0, true, showParticles, true),
+                new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 442, 0, true, showParticles, true)
         );
     }
 

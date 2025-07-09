@@ -21,8 +21,8 @@ public class FogGuardArmorItem extends FAArmorItem {
     @Override
     public List<MobEffectInstance> getFullSetEffects() {
         return List.of(
-                new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 239),
-                new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 239)
+                new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 442),
+                new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 442)
         );
     }
 
