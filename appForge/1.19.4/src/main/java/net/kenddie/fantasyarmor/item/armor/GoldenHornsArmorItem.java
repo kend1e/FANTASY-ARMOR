@@ -20,7 +20,7 @@ public class GoldenHornsArmorItem extends FAArmorItem {
     @Override
     public List<MobEffectInstance> getFullSetEffects() {
         return List.of(
-                new MobEffectInstance(MobEffects.DIG_SPEED, 239, 1, true, showParticles, true)
+                new MobEffectInstance(MobEffects.DIG_SPEED, 442, 1, true, showParticles, true)
         );
     }
 

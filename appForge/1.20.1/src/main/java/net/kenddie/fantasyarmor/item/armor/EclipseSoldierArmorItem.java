@@ -22,8 +22,8 @@ public class EclipseSoldierArmorItem extends FAArmorItem {
     @Override
     public List<MobEffectInstance> getFullSetEffects() {
         return List.of(
-                new MobEffectInstance(MobEffects.DAMAGE_BOOST, 239, 0, true, showParticles, true),
-                new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 239, 0, true, showParticles, true)
+                new MobEffectInstance(MobEffects.DAMAGE_BOOST, 442, 0, true, showParticles, true),
+                new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 442, 0, true, showParticles, true)
         );
     }
 
