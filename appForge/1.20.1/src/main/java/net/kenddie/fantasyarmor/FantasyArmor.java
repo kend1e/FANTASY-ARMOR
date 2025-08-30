@@ -1,6 +1,8 @@
 package net.kenddie.fantasyarmor;
 
+import net.kenddie.fantasyarmor.config.FAArmorConfig;
 import net.kenddie.fantasyarmor.config.FAConfig;
+import net.kenddie.fantasyarmor.item.FAArmorItems;
 import net.kenddie.fantasyarmor.item.FACreativeModTabs;
 import net.kenddie.fantasyarmor.item.FAItems;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -25,7 +27,10 @@ public class FantasyArmor {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         modLoadingContext.registerConfig(ModConfig.Type.COMMON, FAConfig.SPEC, "fantasy_armor-common.toml");
+        modLoadingContext.registerConfig(ModConfig.Type.COMMON, FAArmorConfig.SPEC, "fantasy_armor-armor_attributes.toml");
+
         FAItems.register(modEventBus);
+        FAArmorItems.register(modEventBus);
         FACreativeModTabs.register(modEventBus);
 
         isEpicFightLoaded = ModList.get().isLoaded(EPIC_FIGHT_MOD_ID);

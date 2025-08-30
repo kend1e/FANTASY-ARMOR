@@ -2,7 +2,10 @@ package net.kenddie.fantasyarmor.item.armor.lib;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import net.kenddie.fantasyarmor.client.armor.model.lib.FAArmorModel;
+import net.kenddie.fantasyarmor.client.armor.render.lib.FAArmorRenderer;
 import net.kenddie.fantasyarmor.config.FAConfig;
+import net.minecraft.Util;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -27,54 +30,30 @@ import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInst
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;
 
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public abstract class FAArmorItem extends ArmorItem implements GeoItem {
+    private static final Map<Type, UUID> ARMOR_MODIFIER_UUID_PER_TYPE = Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
+        map.put(ArmorItem.Type.BOOTS, UUID.fromString("845DB27C-C624-495F-8C9F-6020A9A58B6B"));
+        map.put(ArmorItem.Type.LEGGINGS, UUID.fromString("D8499B04-0E66-4726-AB29-64469D734E0D"));
+        map.put(ArmorItem.Type.CHESTPLATE, UUID.fromString("9F3D476D-C118-4544-8365-64846904B48E"));
+        map.put(ArmorItem.Type.HELMET, UUID.fromString("2AD3F246-FEE1-4E67-B886-69FD380BB150"));
+    });
 
     private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
+    private final FAArmorSet armorSet;
+    private final Supplier<FAArmorAttributes> attributesSupplier;
+    private Multimap<Attribute, AttributeModifier> cachedModifiers;
 
-    private final Multimap<Attribute, AttributeModifier> attributeModifiers;
-
-    protected FAArmorItem(Type type, FAArmorAttributes armorAttributes) {
+    protected FAArmorItem(FAArmorSet armorSet, Type type, Supplier<FAArmorAttributes> attributesSupplier) {
         super(ArmorMaterials.NETHERITE, type, new Properties().stacksTo(1).fireResistant());
-
-        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-
-        if (armorAttributes.armor() > 0) {
-            builder.put(Attributes.ARMOR, new AttributeModifier(UUID.randomUUID(), "Armor", armorAttributes.armor(), AttributeModifier.Operation.ADDITION));
-        }
-
-        if (armorAttributes.armorToughness() > 0) {
-            builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(UUID.randomUUID(), "Armor toughness", armorAttributes.armorToughness(), AttributeModifier.Operation.ADDITION));
-        }
-
-        if (armorAttributes.knockbackResistance() > 0) {
-            builder.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(UUID.randomUUID(), "Armor knockback resistance", armorAttributes.knockbackResistance(), AttributeModifier.Operation.ADDITION));
-        }
-
-        if (armorAttributes.movementSpeed() > 0) {
-            builder.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(UUID.randomUUID(), "Armor movement speed", armorAttributes.movementSpeed(), AttributeModifier.Operation.MULTIPLY_TOTAL));
-        }
-
-        if (armorAttributes.maxHealth() > 0) {
-            builder.put(Attributes.MAX_HEALTH, new AttributeModifier(UUID.randomUUID(), "Armor health gain", armorAttributes.maxHealth(), AttributeModifier.Operation.ADDITION));
-        }
-
-        if (armorAttributes.attackDamage() > 0) {
-            builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(UUID.randomUUID(), "Armor attack damage", armorAttributes.attackDamage(), AttributeModifier.Operation.MULTIPLY_TOTAL));
-        }
-
-        if (armorAttributes.attackSpeed() > 0) {
-            builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(UUID.randomUUID(), "Armor attack speed", armorAttributes.attackSpeed(), AttributeModifier.Operation.MULTIPLY_TOTAL));
-        }
-
-        if (armorAttributes.luck() > 0) {
-            builder.put(Attributes.LUCK, new AttributeModifier(UUID.randomUUID(), "Armor luck", armorAttributes.luck(), AttributeModifier.Operation.ADDITION));
-        }
-
-        attributeModifiers = builder.build();
+        this.armorSet = armorSet;
+        this.attributesSupplier = attributesSupplier;
     }
 
     @Override
@@ -110,7 +89,45 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
             return super.getAttributeModifiers(slot, stack);
         }
 
-        return attributeModifiers;
+        if (cachedModifiers == null) {
+            cachedModifiers = buildModifiers();
+        }
+
+        return cachedModifiers;
+    }
+
+    private Multimap<Attribute, AttributeModifier> buildModifiers() {
+        FAArmorAttributes armorAttributes = attributesSupplier.get();
+        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
+
+        UUID uuid = ARMOR_MODIFIER_UUID_PER_TYPE.get(this.type);
+
+        if (armorAttributes.armor() > 0) {
+            builder.put(Attributes.ARMOR, new AttributeModifier(uuid, "Armor", armorAttributes.armor(), AttributeModifier.Operation.ADDITION));
+        }
+        if (armorAttributes.armorToughness() > 0) {
+            builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, "Armor toughness", armorAttributes.armorToughness(), AttributeModifier.Operation.ADDITION));
+        }
+        if (armorAttributes.knockbackResistance() > 0) {
+            builder.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(uuid, "Armor knockback resistance", armorAttributes.knockbackResistance(), AttributeModifier.Operation.ADDITION));
+        }
+        if (armorAttributes.movementSpeed() > 0) {
+            builder.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(uuid, "Armor movement speed", armorAttributes.movementSpeed(), AttributeModifier.Operation.MULTIPLY_TOTAL));
+        }
+        if (armorAttributes.maxHealth() > 0) {
+            builder.put(Attributes.MAX_HEALTH, new AttributeModifier(uuid, "Armor health gain", armorAttributes.maxHealth(), AttributeModifier.Operation.ADDITION));
+        }
+        if (armorAttributes.attackDamage() > 0) {
+            builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(uuid, "Armor attack damage", armorAttributes.attackDamage(), AttributeModifier.Operation.MULTIPLY_TOTAL));
+        }
+        if (armorAttributes.attackSpeed() > 0) {
+            builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(uuid, "Armor attack speed", armorAttributes.attackSpeed(), AttributeModifier.Operation.MULTIPLY_TOTAL));
+        }
+        if (armorAttributes.luck() > 0) {
+            builder.put(Attributes.LUCK, new AttributeModifier(uuid, "Armor luck", armorAttributes.luck(), AttributeModifier.Operation.ADDITION));
+        }
+
+        return builder.build();
     }
 
     @Override
@@ -123,7 +140,9 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
     }
 
     @OnlyIn(Dist.CLIENT)
-    protected abstract GeoArmorRenderer<? extends FAArmorItem> createArmorRenderer();
+    protected GeoArmorRenderer<? extends FAArmorItem> createArmorRenderer() {
+        return new FAArmorRenderer<>(new FAArmorModel<>(armorSet.getGeoPath(), armorSet.getTexturePath()));
+    }
 
     public abstract List<MobEffectInstance> getFullSetEffects();
 }
