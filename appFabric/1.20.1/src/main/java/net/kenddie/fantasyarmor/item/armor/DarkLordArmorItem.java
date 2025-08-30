@@ -20,9 +20,9 @@ public class DarkLordArmorItem extends FAArmorItem {
     @Override
     public List<MobEffectInstance> getFullSetEffects() {
         return List.of(
-                new MobEffectInstance(MobEffects.DAMAGE_BOOST, 239),
-                new MobEffectInstance(MobEffects.NIGHT_VISION, 239),
-                new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 239)
+                new MobEffectInstance(MobEffects.DAMAGE_BOOST, 442),
+                new MobEffectInstance(MobEffects.NIGHT_VISION, 442),
+                new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 442)
         );
     }
     @Override
