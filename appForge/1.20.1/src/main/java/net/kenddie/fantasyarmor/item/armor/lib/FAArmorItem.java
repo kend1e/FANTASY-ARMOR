@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.kenddie.fantasyarmor.client.armor.model.lib.FAArmorModel;
 import net.kenddie.fantasyarmor.client.armor.render.lib.FAArmorRenderer;
+import net.kenddie.fantasyarmor.config.FAArmorEffectsConfig;
 import net.kenddie.fantasyarmor.config.FAConfig;
 import net.minecraft.Util;
 import net.minecraft.client.model.HumanoidModel;
@@ -144,5 +145,7 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
         return new FAArmorRenderer<>(new FAArmorModel<>(armorSet.getGeoPath(), armorSet.getTexturePath()));
     }
 
-    public abstract List<MobEffectInstance> getFullSetEffects();
+    public List<MobEffectInstance> getFullSetEffects() {
+        return FAArmorEffectsConfig.ARMOR_EFFECTS_CONFIGS.getOrDefault(armorSet.getName(), null).getEffects();
+    }
 }

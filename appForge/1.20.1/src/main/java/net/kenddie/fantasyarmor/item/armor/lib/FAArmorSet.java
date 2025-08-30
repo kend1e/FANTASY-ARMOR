@@ -2,6 +2,7 @@ package net.kenddie.fantasyarmor.item.armor.lib;
 
 import net.kenddie.fantasyarmor.item.armor.sets.ChessBoardKnightArmorItem;
 import net.kenddie.fantasyarmor.item.armor.sets.CrucibleKnightArmorItem;
+import net.kenddie.fantasyarmor.item.armor.sets.DarkCoverArmorItem;
 import net.kenddie.fantasyarmor.item.armor.sets.DarkLordArmorItem;
 import net.kenddie.fantasyarmor.item.armor.sets.DeadGladiatorArmorItem;
 import net.kenddie.fantasyarmor.item.armor.sets.DragonslayerArmorItem;
@@ -42,7 +43,7 @@ public enum FAArmorSet {
     DARK_LORD(DarkLordArmorItem::new),
     SUNSET_WINGS(SunsetWingsArmorItem::new),
     FOG_GUARD(FogGuardArmorItem::new),
-    DARK_COVER(DarkLordArmorItem::new),
+    DARK_COVER(DarkCoverArmorItem::new),
     SPARK_OF_DAWN(SparkOfDawnArmorItem::new),
     GOLDEN_EXECUTION(GoldenExecutionArmorItem::new),
     FORGOTTEN_TRACE(ForgottenTraceArmorItem::new),

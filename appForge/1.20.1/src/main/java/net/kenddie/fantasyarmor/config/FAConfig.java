@@ -12,6 +12,8 @@ public class FAConfig {
     public static final ForgeConfigSpec.BooleanValue SHOW_CAPES;
     public static final ForgeConfigSpec.BooleanValue EPIC_FIGHT_NOT_STATIC_CAPES;
     public static final ForgeConfigSpec.BooleanValue SHOW_PARTICLES;
+    public static final ForgeConfigSpec.IntValue EFFECTS_INTERVAL;
+    public static final ForgeConfigSpec.BooleanValue SHOW_EFFECT_ICON;
 
     public static boolean applyArmorEffects;
     public static boolean applyModifiers;
@@ -19,6 +21,8 @@ public class FAConfig {
     public static boolean showCapes;
     public static boolean epicFightNotStaticCapes;
     public static boolean showParticles;
+    public static int effectsInterval;
+    public static boolean showEffectIcon;
 
     static {
         BUILDER.push("General Settings");
@@ -47,6 +51,14 @@ public class FAConfig {
                 .comment("Show effect particles")
                 .define("showParticles", false);
 
+        EFFECTS_INTERVAL = BUILDER
+                .comment("The minimum duration of the existing effect, after which it will be given again")
+                .defineInRange("effectsInterval", 241, 1, Integer.MAX_VALUE);
+
+        SHOW_EFFECT_ICON = BUILDER
+                .comment("Show effect icon or not")
+                .define("showEffectIcon", true);
+
         BUILDER.pop();
         SPEC = BUILDER.build();
     }
@@ -58,5 +70,7 @@ public class FAConfig {
         showCapes = SHOW_CAPES.get();
         epicFightNotStaticCapes = EPIC_FIGHT_NOT_STATIC_CAPES.get();
         showParticles = SHOW_PARTICLES.get();
+        effectsInterval = EFFECTS_INTERVAL.get();
+        showEffectIcon = SHOW_EFFECT_ICON.get();
     }
 }

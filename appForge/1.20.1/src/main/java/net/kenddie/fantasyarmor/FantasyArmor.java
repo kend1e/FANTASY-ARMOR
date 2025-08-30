@@ -1,6 +1,7 @@
 package net.kenddie.fantasyarmor;
 
 import net.kenddie.fantasyarmor.config.FAArmorConfig;
+import net.kenddie.fantasyarmor.config.FAArmorEffectsConfig;
 import net.kenddie.fantasyarmor.config.FAConfig;
 import net.kenddie.fantasyarmor.item.FAArmorItems;
 import net.kenddie.fantasyarmor.item.FACreativeModTabs;
@@ -28,6 +29,7 @@ public class FantasyArmor {
 
         modLoadingContext.registerConfig(ModConfig.Type.COMMON, FAConfig.SPEC, "fantasy_armor-common.toml");
         modLoadingContext.registerConfig(ModConfig.Type.COMMON, FAArmorConfig.SPEC, "fantasy_armor-armor_attributes.toml");
+        modLoadingContext.registerConfig(ModConfig.Type.COMMON, FAArmorEffectsConfig.SPEC, "fantasy_armor-armor_effects.toml");
 
         FAItems.register(modEventBus);
         FAArmorItems.register(modEventBus);
