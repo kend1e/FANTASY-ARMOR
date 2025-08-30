@@ -103,28 +103,28 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
 
         UUID uuid = ARMOR_MODIFIER_UUID_PER_TYPE.get(this.type);
 
-        if (armorAttributes.armor() > 0) {
+        if (armorAttributes.armor() != 0) {
             builder.put(Attributes.ARMOR, new AttributeModifier(uuid, "Armor", armorAttributes.armor(), AttributeModifier.Operation.ADDITION));
         }
-        if (armorAttributes.armorToughness() > 0) {
+        if (armorAttributes.armorToughness() != 0) {
             builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, "Armor toughness", armorAttributes.armorToughness(), AttributeModifier.Operation.ADDITION));
         }
-        if (armorAttributes.knockbackResistance() > 0) {
+        if (armorAttributes.knockbackResistance() != 0) {
             builder.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(uuid, "Armor knockback resistance", armorAttributes.knockbackResistance(), AttributeModifier.Operation.ADDITION));
         }
-        if (armorAttributes.movementSpeed() > 0) {
+        if (armorAttributes.movementSpeed() != 0) {
             builder.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(uuid, "Armor movement speed", armorAttributes.movementSpeed(), AttributeModifier.Operation.MULTIPLY_TOTAL));
         }
-        if (armorAttributes.maxHealth() > 0) {
+        if (armorAttributes.maxHealth() != 0) {
             builder.put(Attributes.MAX_HEALTH, new AttributeModifier(uuid, "Armor health gain", armorAttributes.maxHealth(), AttributeModifier.Operation.ADDITION));
         }
-        if (armorAttributes.attackDamage() > 0) {
+        if (armorAttributes.attackDamage() != 0) {
             builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(uuid, "Armor attack damage", armorAttributes.attackDamage(), AttributeModifier.Operation.MULTIPLY_TOTAL));
         }
-        if (armorAttributes.attackSpeed() > 0) {
+        if (armorAttributes.attackSpeed() != 0) {
             builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(uuid, "Armor attack speed", armorAttributes.attackSpeed(), AttributeModifier.Operation.MULTIPLY_TOTAL));
         }
-        if (armorAttributes.luck() > 0) {
+        if (armorAttributes.luck() != 0) {
             builder.put(Attributes.LUCK, new AttributeModifier(uuid, "Armor luck", armorAttributes.luck(), AttributeModifier.Operation.ADDITION));
         }
 
