@@ -1,4 +1,4 @@
-package net.kenddie.fantasyarmor.item.armor.lib;
+package net.kenddie.fantasyarmor.item.armor;
 
 public record FAArmorAttributes(
         double armor,

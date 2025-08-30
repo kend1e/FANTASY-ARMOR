@@ -1,7 +1,7 @@
 package net.kenddie.fantasyarmor.item;
 
 import net.kenddie.fantasyarmor.FantasyArmor;
-import net.kenddie.fantasyarmor.item.armor.lib.FAArmorSet;
+import net.kenddie.fantasyarmor.item.armor.FAArmorSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ArmorItem;

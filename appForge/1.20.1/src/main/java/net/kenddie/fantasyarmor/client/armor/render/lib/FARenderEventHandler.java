@@ -1,7 +1,7 @@
 package net.kenddie.fantasyarmor.client.armor.render.lib;
 
 import net.kenddie.fantasyarmor.FantasyArmor;
-import net.kenddie.fantasyarmor.item.armor.lib.FAArmorItem;
+import net.kenddie.fantasyarmor.item.armor.FAArmorItem;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.world.entity.EquipmentSlot;

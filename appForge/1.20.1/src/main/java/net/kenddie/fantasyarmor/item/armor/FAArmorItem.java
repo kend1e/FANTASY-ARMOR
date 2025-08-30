@@ -1,4 +1,4 @@
-package net.kenddie.fantasyarmor.item.armor.lib;
+package net.kenddie.fantasyarmor.item.armor;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;

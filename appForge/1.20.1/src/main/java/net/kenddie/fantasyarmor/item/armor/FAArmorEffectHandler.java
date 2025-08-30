@@ -1,4 +1,4 @@
-package net.kenddie.fantasyarmor.item.armor.lib;
+package net.kenddie.fantasyarmor.item.armor;
 
 import net.kenddie.fantasyarmor.config.FAConfig;
 import net.minecraft.world.effect.MobEffect;
