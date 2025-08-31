@@ -76,18 +76,38 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
     protected void applyBoneVisibilityBySlot(EquipmentSlot currentSlot) {
         super.applyBoneVisibilityBySlot(currentSlot);
 
-        if (currentSlot == EquipmentSlot.CHEST) {
-            boolean showCape = FAConfig.showCapes;
-            boolean useEpicFightCape = FantasyArmor.isEpicFightLoaded && !FAConfig.epicFightNotStaticCapes;
+        switch (currentSlot) {
+            case HEAD -> {
+                setBoneVisible(braid, true);
 
-            setBoneVisible(cape, showCape && !useEpicFightCape);
-            setBoneVisible(epicFightCape, showCape && useEpicFightCape);
+                setBoneVisible(cape, false);
+                setBoneVisible(epicFightCape, false);
+                setBoneVisible(frontCape, false);
+                setBoneVisible(leftLegCloth, false);
+                setBoneVisible(rightLegCloth, false);
+            }
+            case CHEST -> {
+                boolean showCape = FAConfig.showCapes;
+                boolean useEpicFightCape = FantasyArmor.isEpicFightLoaded && !FAConfig.epicFightNotStaticCapes;
 
-            setBoneVisible(frontCape, true);
-            setBoneVisible(leftLegCloth, true);
-            setBoneVisible(rightLegCloth, true);
-        } else if (currentSlot == EquipmentSlot.HEAD) {
-            setBoneVisible(braid, true);
+                setBoneVisible(cape, showCape && !useEpicFightCape);
+                setBoneVisible(epicFightCape, showCape && useEpicFightCape);
+
+                setBoneVisible(frontCape, true);
+                setBoneVisible(leftLegCloth, true);
+                setBoneVisible(rightLegCloth, true);
+
+                setBoneVisible(braid, false);
+            }
+            case LEGS, FEET -> {
+                setBoneVisible(braid, false);
+                setBoneVisible(cape, false);
+                setBoneVisible(epicFightCape, false);
+                setBoneVisible(frontCape, false);
+                setBoneVisible(leftLegCloth, false);
+                setBoneVisible(rightLegCloth, false);
+            }
+            default -> {}
         }
     }
 
@@ -105,7 +125,8 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
             if (frontCape != null) frontCape.setHidden(false);
             if (leftLegCloth != null) leftLegCloth.setHidden(false);
             if (rightLegCloth != null) rightLegCloth.setHidden(false);
-        } else if (currentSlot == EquipmentSlot.HEAD) {
+        }
+        else if (currentPart == model.head) {
             if (braid != null) braid.setHidden(false);
         }
     }
@@ -138,7 +159,9 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
         if(cape != null) {
             ModelPart bodyPart = baseModel.body;
 
-            cape.updatePosition(bodyPart.x, 1 - bodyPart.y, bodyPart.z);
+            float yPos = crouching ? bodyPart.y - 3.5f : bodyPart.y;
+
+            cape.updatePosition(bodyPart.x, yPos, bodyPart.z);
         }
 
         if(frontCape != null) {

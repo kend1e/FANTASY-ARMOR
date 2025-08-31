@@ -19,7 +19,7 @@ public class FAArmorEffectsConfig {
 
     public static final Map<String, FAArmorEffectsConfig> ARMOR_EFFECTS_CONFIGS = new HashMap<>();
     private static final Map<FAArmorSet, List<String>> DEFAULT_EFFECTS = Map.ofEntries(
-            Map.entry(FAArmorSet.WIND_WORSHIPPER, List.of("minecraft:jump,259,0")),
+            Map.entry(FAArmorSet.WIND_WORSHIPPER, List.of("minecraft:jump_boost,259,0")),
             Map.entry(FAArmorSet.WANDERING_WIZARD, List.of(
                     "minecraft:water_breathing,259,0",
                     "minecraft:night_vision,259,0",
@@ -29,9 +29,9 @@ public class FAArmorEffectsConfig {
                     "minecraft:regeneration,259,0",
                     "minecraft:haste,259,1"
             )),
-            Map.entry(FAArmorSet.THIEF, List.of("minecraft:jump,259,0")),
-            Map.entry(FAArmorSet.SUNSET_WINGS, List.of("minecraft:jump,259,0")),
-            Map.entry(FAArmorSet.RONIN, List.of("minecraft:jump,259,0")),
+            Map.entry(FAArmorSet.THIEF, List.of("minecraft:jump_boost,259,0")),
+            Map.entry(FAArmorSet.SUNSET_WINGS, List.of("minecraft:jump_boost,259,0")),
+            Map.entry(FAArmorSet.RONIN, List.of("minecraft:jump_boost,259,0")),
             Map.entry(FAArmorSet.SPARK_OF_DAWN, List.of(
                     "minecraft:night_vision,259,0",
                     "minecraft:fire_resistance,259,0"
@@ -70,7 +70,7 @@ public class FAArmorEffectsConfig {
             Map.entry(FAArmorSet.GOLDEN_HORNS, List.of("minecraft:haste,259,1")),
             Map.entry(FAArmorSet.GOLDEN_EXECUTION, List.of("minecraft:strength,259,0")),
             Map.entry(FAArmorSet.GILDED_HUNT, List.of(
-                    "minecraft:jump,259,0",
+                    "minecraft:jump_boost,259,0",
                     "minecraft:strength,259,0"
             )),
             Map.entry(FAArmorSet.FORGOTTEN_TRACE, List.of(
