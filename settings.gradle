@@ -19,6 +19,7 @@ plugins {
     id 'org.gradle.toolchains.foojay-resolver-convention' version '0.8.0'
 }
 
+include(':appForge:1.21.1')
 include(':appForge:1.20.1')
 include(':appForge:1.19.4')
 include(':appFabric:1.20.1')
