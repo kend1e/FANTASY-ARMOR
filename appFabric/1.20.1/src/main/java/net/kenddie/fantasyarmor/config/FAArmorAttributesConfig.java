@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-@Config(name = "fantasyarmor_attributes")
+@Config(name = "fantasy_armor-attributes")
 public class FAArmorAttributesConfig implements ConfigData {
     @ConfigEntry.Category("armor_attributes")
     @ConfigEntry.Gui.CollapsibleObject

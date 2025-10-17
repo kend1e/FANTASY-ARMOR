@@ -12,7 +12,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 
 import java.util.*;
 
-@Config(name = "fantasyarmor_effects")
+@Config(name = "fantasy_armor-effects")
 public class FAArmorEffectsConfig implements ConfigData {
 
     @ConfigEntry.Gui.Tooltip

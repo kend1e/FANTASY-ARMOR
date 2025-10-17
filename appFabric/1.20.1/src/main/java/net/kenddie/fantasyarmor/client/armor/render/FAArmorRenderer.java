@@ -1,8 +1,7 @@
-package net.kenddie.fantasyarmor.client.armor.render.lib;
+package net.kenddie.fantasyarmor.client.armor.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.kenddie.fantasyarmor.config.FAConfig;
 import net.kenddie.fantasyarmor.config.FAConfigs;
 import net.kenddie.fantasyarmor.item.armor.FAArmorItem;
 import net.minecraft.client.model.HumanoidModel;
@@ -79,7 +78,7 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
                 setBoneVisible(rightLegCloth, false);
             }
             case CHEST -> {
-                setBoneVisible(cape, FAConfigs.get().showCapes);
+                setBoneVisible(cape, FAConfigs.getMainConfig().showCapes);
 
                 setBoneVisible(frontCape, true);
                 setBoneVisible(leftLegCloth, true);
@@ -102,7 +101,7 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
         super.applyBoneVisibilityByPart(currentSlot, currentPart, model);
 
         if(currentPart == model.body) {
-            if (cape != null) cape.setHidden(FAConfigs.get().showCapes);
+            if (cape != null) cape.setHidden(FAConfigs.getMainConfig().showCapes);
             if (frontCape != null) frontCape.setHidden(false);
             if (leftLegCloth != null) leftLegCloth.setHidden(false);
             if (rightLegCloth != null) rightLegCloth.setHidden(false);
@@ -170,7 +169,7 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
     public void setAllVisible(boolean pVisible) {
         super.setAllVisible(pVisible);
 
-        setBoneVisible(cape, pVisible && FAConfigs.get().showCapes);
+        setBoneVisible(cape, pVisible && FAConfigs.getMainConfig().showCapes);
         setBoneVisible(frontCape, pVisible);
         setBoneVisible(leftLegCloth, pVisible);
         setBoneVisible(rightLegCloth, pVisible);

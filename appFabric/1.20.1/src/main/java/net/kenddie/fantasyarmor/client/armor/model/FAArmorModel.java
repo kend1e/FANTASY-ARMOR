@@ -1,4 +1,4 @@
-package net.kenddie.fantasyarmor.client.armor.model.lib;
+package net.kenddie.fantasyarmor.client.armor.model;
 
 import net.kenddie.fantasyarmor.FantasyArmor;
 import net.kenddie.fantasyarmor.item.armor.FAArmorItem;

@@ -4,21 +4,15 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.kenddie.fantasyarmor.client.armor.model.lib.FAArmorModel;
-import net.kenddie.fantasyarmor.client.armor.render.lib.FAArmorRenderer;
+import net.kenddie.fantasyarmor.client.armor.model.FAArmorModel;
+import net.kenddie.fantasyarmor.client.armor.render.FAArmorRenderer;
 import net.kenddie.fantasyarmor.config.FAArmorEffectsConfig;
-import net.kenddie.fantasyarmor.config.FAArmorEffectsHolder;
-import net.kenddie.fantasyarmor.config.FAConfig;
 import net.kenddie.fantasyarmor.config.FAConfigs;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -38,7 +32,6 @@ import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInst
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;
 
-import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -67,7 +60,7 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
-        if (FAConfigs.get().showDescriptions) {
+        if (FAConfigs.getMainConfig().showDescriptions) {
             super.appendHoverText(stack, world, tooltip, flag);
 
             String translationKey = this.getDescriptionId() + ".tooltip";
@@ -82,7 +75,7 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
                 String[] words = line.split(" ");
 
                 for (String word : words) {
-                    if (font.width(currentLine + word) > FAConfigs.get().descriptionsLength) {
+                    if (font.width(currentLine + word) > FAConfigs.getMainConfig().descriptionsLength) {
                         tooltip.add(Component.literal(currentLine.toString()));
                         currentLine = new StringBuilder();
                         currentLine.append("§7");
@@ -123,7 +116,7 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
 
     @Override
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(ItemStack stack, EquipmentSlot slot) {
-        if (slot != this.type.getSlot() || !FAConfigs.get().applyModifiers) {
+        if (slot != this.type.getSlot() || !FAConfigs.getMainConfig().applyModifiers) {
             return super.getAttributeModifiers(stack, slot);
         }
 
@@ -191,9 +184,8 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
     public List<MobEffectInstance> getFullSetEffects() {
         return FAArmorEffectsConfig.getEffectsFor(
                 armorSet.getName(),
-                FAConfigs.get().showParticles,
-                FAConfigs.get().showEffectIcon // showIcon
+                FAConfigs.getMainConfig().showParticles,
+                FAConfigs.getMainConfig().showEffectIcon
         );
     }
-
 }

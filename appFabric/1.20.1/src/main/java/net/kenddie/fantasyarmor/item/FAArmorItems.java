@@ -1,18 +1,15 @@
 package net.kenddie.fantasyarmor.item;
 
 import net.kenddie.fantasyarmor.FantasyArmor;
-import net.kenddie.fantasyarmor.config.FAArmorAttributesConfig;
-import net.kenddie.fantasyarmor.config.FAArmorAttributesHolder;
+import net.kenddie.fantasyarmor.config.FAConfigs;
 import net.kenddie.fantasyarmor.item.armor.FAArmorAttributes;
 import net.kenddie.fantasyarmor.item.armor.FAArmorItem;
 import net.kenddie.fantasyarmor.item.armor.FAArmorSet;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
-import org.intellij.lang.annotations.Identifier;
 
 import java.util.EnumMap;
 import java.util.HashMap;
@@ -30,8 +27,7 @@ public final class FAArmorItems {
             for (ArmorItem.Type type : ArmorItem.Type.values()) {
                 String name = set.getName() + "_" + type.getName();
 
-                Supplier<FAArmorAttributes> attributesSupplier =
-                        FAArmorAttributesHolder.supplier(set, type);
+                Supplier<FAArmorAttributes> attributesSupplier = FAConfigs.armorSupplier(set, type);
 
                 FAArmorItem item = set.create(type, attributesSupplier);
                 Item registered = Registry.register(

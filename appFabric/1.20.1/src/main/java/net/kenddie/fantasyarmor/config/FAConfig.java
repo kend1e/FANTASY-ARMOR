@@ -4,7 +4,7 @@ import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 
-@Config(name = "fantasyarmor")
+@Config(name = "fantasy_armor-common")
 public class FAConfig implements ConfigData {
 
     @ConfigEntry.Category("general")

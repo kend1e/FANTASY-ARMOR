@@ -19,7 +19,7 @@ public class FAArmorEffectHandler {
 
     private static void onWorldTick(ServerLevel world) {
         for (ServerPlayer player : world.players()) {
-            if (FAConfigs.get().applyArmorEffects && hasFullSet(player)) {
+            if (FAConfigs.getMainConfig().applyArmorEffects && hasFullSet(player)) {
                 applyFullSetEffects(player);
             }
         }
@@ -53,14 +53,14 @@ public class FAArmorEffectHandler {
             MobEffect effect = effectInstance.getEffect();
             MobEffectInstance existingEffect = player.getEffect(effect);
 
-            if (existingEffect == null || existingEffect.getDuration() < FAConfigs.get().effectsInterval) {
+            if (existingEffect == null || existingEffect.getDuration() < FAConfigs.getMainConfig().effectsInterval) {
                 player.addEffect(new MobEffectInstance(
                         effect,
                         effectInstance.getDuration(),
                         effectInstance.getAmplifier(),
                         true,  // ambient
-                        FAConfigs.get().showParticles,
-                        FAConfigs.get().showEffectIcon
+                        FAConfigs.getMainConfig().showParticles,
+                        FAConfigs.getMainConfig().showEffectIcon
                 ));
             }
         }

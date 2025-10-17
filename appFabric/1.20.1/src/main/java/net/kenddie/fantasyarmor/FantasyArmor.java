@@ -2,8 +2,6 @@ package net.kenddie.fantasyarmor;
 
 import com.mojang.logging.LogUtils;
 import net.fabricmc.api.ModInitializer;
-import net.kenddie.fantasyarmor.config.FAArmorAttributesHolder;
-import net.kenddie.fantasyarmor.config.FAArmorEffectsHolder;
 import net.kenddie.fantasyarmor.config.FAConfigs;
 import net.kenddie.fantasyarmor.item.FAArmorItems;
 import net.kenddie.fantasyarmor.item.FACreativeModTabs;
@@ -18,8 +16,6 @@ public class FantasyArmor implements ModInitializer {
 	@Override
 	public void onInitialize() {
         FAConfigs.init();
-        FAArmorAttributesHolder.init();
-        FAArmorEffectsHolder.init();
 
         FAArmorItems.init();
 
