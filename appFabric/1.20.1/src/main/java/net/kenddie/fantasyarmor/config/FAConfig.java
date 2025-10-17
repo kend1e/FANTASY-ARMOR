@@ -1,75 +1,43 @@
 package net.kenddie.fantasyarmor.config;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import net.kenddie.fantasyarmor.FantasyArmor;
+import me.shedaniel.autoconfig.ConfigData;
+import me.shedaniel.autoconfig.annotation.Config;
+import me.shedaniel.autoconfig.annotation.ConfigEntry;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+@Config(name = "fantasyarmor")
+public class FAConfig implements ConfigData {
 
-public final class FAConfig {
+    @ConfigEntry.Category("general")
+    @ConfigEntry.Gui.Tooltip
+    public boolean applyArmorEffects = true;
 
-    // TODO: Change to Paths.get("config", "config.json"); so we don't have mod_id in path twice for no reason.
-    private static final Path CONFIG_FILE_PATH = Paths.get("config", FantasyArmor.MOD_ID, FantasyArmor.MOD_ID + ".json");
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+    @ConfigEntry.Category("general")
+    @ConfigEntry.Gui.Tooltip
+    public boolean applyModifiers = true;
 
-    private static ConfigValues values;
+    @ConfigEntry.Category("general")
+    @ConfigEntry.Gui.Tooltip
+    public boolean showDescriptions = true;
 
-    static {
-        loadDefaults();
-    }
+    @ConfigEntry.Category("general")
+    @ConfigEntry.Gui.Tooltip
+    public boolean showCapes = true;
 
-    private FAConfig() {
-    }
+    @ConfigEntry.Category("general")
+    @ConfigEntry.Gui.Tooltip
+    public boolean showParticles = false;
 
-    public static void save() {
-        File configFile = CONFIG_FILE_PATH.toFile();
-        File parentFile = configFile.getParentFile();
+    @ConfigEntry.Category("general")
+    @ConfigEntry.BoundedDiscrete(min = 1, max = Integer.MAX_VALUE)
+    @ConfigEntry.Gui.Tooltip
+    public int effectsInterval = 241;
 
-        if(parentFile == null) {
-            return;
-        }
+    @ConfigEntry.Category("general")
+    @ConfigEntry.BoundedDiscrete(min = 20, max = 1000)
+    @ConfigEntry.Gui.Tooltip
+    public int descriptionsLength = 250;
 
-        if(!parentFile.mkdirs() && !parentFile.isDirectory()) {
-            FantasyArmor.LOGGER.warn("Failed to save config: Directory could not be created.");
-            return;
-        }
-
-        try (FileWriter writer = new FileWriter(configFile)) {
-            GSON.toJson(values, writer);
-        } catch (IOException e) {
-            FantasyArmor.LOGGER.warn("Failed to save config: ", e);
-        }
-    }
-
-    public static void load() {
-        try (FileReader reader = new FileReader(CONFIG_FILE_PATH.toFile())) {
-            values = GSON.fromJson(reader, ConfigValues.class);
-        } catch (IOException e) {
-            FantasyArmor.LOGGER.warn("Failed to read config (default parameters will be used): ", e);
-            loadDefaults();
-        }
-    }
-
-    public static void loadDefaults() {
-        values = new ConfigValues(
-                true,
-                true,
-                true,
-                false,
-                250
-        );
-    }
-
-    public static boolean exists() {
-        return CONFIG_FILE_PATH.toFile().exists();
-    }
-
-    public static ConfigValues getValues() {
-        return values;
-    }
+    @ConfigEntry.Category("general")
+    @ConfigEntry.Gui.Tooltip
+    public boolean showEffectIcon = true;
 }

@@ -1,4 +1,4 @@
-package net.kenddie.fantasyarmor.entity.client.armor.render;
+package net.kenddie.fantasyarmor.client.armor.render.lib;
 
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.util.Mth;

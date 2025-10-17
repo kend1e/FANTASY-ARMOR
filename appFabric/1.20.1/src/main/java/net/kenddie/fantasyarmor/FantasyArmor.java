@@ -2,10 +2,13 @@ package net.kenddie.fantasyarmor;
 
 import com.mojang.logging.LogUtils;
 import net.fabricmc.api.ModInitializer;
-import net.kenddie.fantasyarmor.config.FAConfig;
+import net.kenddie.fantasyarmor.config.FAArmorAttributesHolder;
+import net.kenddie.fantasyarmor.config.FAArmorEffectsHolder;
+import net.kenddie.fantasyarmor.config.FAConfigs;
+import net.kenddie.fantasyarmor.item.FAArmorItems;
 import net.kenddie.fantasyarmor.item.FACreativeModTabs;
 import net.kenddie.fantasyarmor.item.FAItems;
-import net.kenddie.fantasyarmor.item.armor.lib.FAArmorEffectHandler;
+import net.kenddie.fantasyarmor.item.armor.FAArmorEffectHandler;
 import org.slf4j.Logger;
 
 public class FantasyArmor implements ModInitializer {
@@ -14,11 +17,11 @@ public class FantasyArmor implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		if(FAConfig.exists()) {
-			FAConfig.load();
-		} else {
-			FAConfig.save();
-		}
+        FAConfigs.init();
+        FAArmorAttributesHolder.init();
+        FAArmorEffectsHolder.init();
+
+        FAArmorItems.init();
 
 		FAItems.register();
 		FACreativeModTabs.register();

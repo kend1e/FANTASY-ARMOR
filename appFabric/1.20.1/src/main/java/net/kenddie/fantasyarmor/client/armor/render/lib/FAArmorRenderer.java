@@ -1,8 +1,10 @@
-package net.kenddie.fantasyarmor.entity.client.armor.render;
+package net.kenddie.fantasyarmor.client.armor.render.lib;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.kenddie.fantasyarmor.item.armor.lib.FAArmorItem;
+import net.kenddie.fantasyarmor.config.FAConfig;
+import net.kenddie.fantasyarmor.config.FAConfigs;
+import net.kenddie.fantasyarmor.item.armor.FAArmorItem;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -67,13 +69,32 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
     protected void applyBoneVisibilityBySlot(EquipmentSlot currentSlot) {
         super.applyBoneVisibilityBySlot(currentSlot);
 
-        if(currentSlot == EquipmentSlot.CHEST) {
-            setBoneVisible(cape, true);
-            setBoneVisible(frontCape, true);
-            setBoneVisible(leftLegCloth, true);
-            setBoneVisible(rightLegCloth, true);
-        } else if (currentSlot == EquipmentSlot.HEAD) {
-            setBoneVisible(braid, true);
+        switch (currentSlot) {
+            case HEAD -> {
+                setBoneVisible(braid, true);
+
+                setBoneVisible(cape, false);
+                setBoneVisible(frontCape, false);
+                setBoneVisible(leftLegCloth, false);
+                setBoneVisible(rightLegCloth, false);
+            }
+            case CHEST -> {
+                setBoneVisible(cape, FAConfigs.get().showCapes);
+
+                setBoneVisible(frontCape, true);
+                setBoneVisible(leftLegCloth, true);
+                setBoneVisible(rightLegCloth, true);
+
+                setBoneVisible(braid, false);
+            }
+            case LEGS, FEET -> {
+                setBoneVisible(braid, false);
+                setBoneVisible(cape, false);
+                setBoneVisible(frontCape, false);
+                setBoneVisible(leftLegCloth, false);
+                setBoneVisible(rightLegCloth, false);
+            }
+            default -> {}
         }
     }
 
@@ -81,11 +102,12 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
         super.applyBoneVisibilityByPart(currentSlot, currentPart, model);
 
         if(currentPart == model.body) {
-            if (cape != null) cape.setHidden(false);
+            if (cape != null) cape.setHidden(FAConfigs.get().showCapes);
             if (frontCape != null) frontCape.setHidden(false);
             if (leftLegCloth != null) leftLegCloth.setHidden(false);
             if (rightLegCloth != null) rightLegCloth.setHidden(false);
-        } else if (currentSlot == EquipmentSlot.HEAD) {
+        }
+        else if (currentSlot == EquipmentSlot.HEAD) {
             if (braid != null) braid.setHidden(false);
         }
     }
@@ -118,7 +140,9 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
         if(cape != null) {
             ModelPart bodyPart = baseModel.body;
 
-            cape.updatePosition(bodyPart.x, 1 - bodyPart.y, bodyPart.z);
+            float yPos = crouching ? bodyPart.y - 5.5f : bodyPart.y;
+
+            cape.updatePosition(bodyPart.x, yPos, bodyPart.z);
         }
 
         if(frontCape != null) {
@@ -146,7 +170,7 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
     public void setAllVisible(boolean pVisible) {
         super.setAllVisible(pVisible);
 
-        setBoneVisible(cape, pVisible);
+        setBoneVisible(cape, pVisible && FAConfigs.get().showCapes);
         setBoneVisible(frontCape, pVisible);
         setBoneVisible(leftLegCloth, pVisible);
         setBoneVisible(rightLegCloth, pVisible);

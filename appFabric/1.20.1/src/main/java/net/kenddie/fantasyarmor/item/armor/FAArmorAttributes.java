@@ -1,4 +1,4 @@
-package net.kenddie.fantasyarmor.item.armor.lib;
+package net.kenddie.fantasyarmor.item.armor;
 
 public record FAArmorAttributes(
         double armor,
@@ -9,12 +9,9 @@ public record FAArmorAttributes(
         double attackDamage,
         double attackSpeed,
         double luck
-) {
+)
 
-    public static Builder builder() {
-        return new Builder();
-    }
-
+{
     public static class Builder {
         private double armor = 0;
         private double armorToughness = 0;

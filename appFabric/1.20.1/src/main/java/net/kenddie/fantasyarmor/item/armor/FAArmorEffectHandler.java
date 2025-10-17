@@ -1,7 +1,8 @@
-package net.kenddie.fantasyarmor.item.armor.lib;
+package net.kenddie.fantasyarmor.item.armor;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.kenddie.fantasyarmor.config.FAConfig;
+import net.kenddie.fantasyarmor.config.FAConfigs;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffect;
@@ -18,7 +19,7 @@ public class FAArmorEffectHandler {
 
     private static void onWorldTick(ServerLevel world) {
         for (ServerPlayer player : world.players()) {
-            if (FAConfig.getValues().applyArmorEffects() && hasFullSet(player)) {
+            if (FAConfigs.get().applyArmorEffects && hasFullSet(player)) {
                 applyFullSetEffects(player);
             }
         }
@@ -52,14 +53,14 @@ public class FAArmorEffectHandler {
             MobEffect effect = effectInstance.getEffect();
             MobEffectInstance existingEffect = player.getEffect(effect);
 
-            if (existingEffect == null || existingEffect.getDuration() < 100) {
+            if (existingEffect == null || existingEffect.getDuration() < FAConfigs.get().effectsInterval) {
                 player.addEffect(new MobEffectInstance(
-                    effect,
-                    effectInstance.getDuration(),
-                    effectInstance.getAmplifier(),
-                    true,  // ambient
-                    FAConfig.getValues().showParticles(),  // showParticles
-                    true    // showIcon
+                        effect,
+                        effectInstance.getDuration(),
+                        effectInstance.getAmplifier(),
+                        true,  // ambient
+                        FAConfigs.get().showParticles,
+                        FAConfigs.get().showEffectIcon
                 ));
             }
         }

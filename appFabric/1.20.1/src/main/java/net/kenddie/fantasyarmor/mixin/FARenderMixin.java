@@ -1,8 +1,8 @@
 package net.kenddie.fantasyarmor.mixin;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.kenddie.fantasyarmor.entity.client.armor.render.FARenderUtils;
-import net.kenddie.fantasyarmor.item.armor.lib.FAArmorItem;
+import net.kenddie.fantasyarmor.client.armor.render.lib.FARenderUtils;
+import net.kenddie.fantasyarmor.item.armor.FAArmorItem;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;

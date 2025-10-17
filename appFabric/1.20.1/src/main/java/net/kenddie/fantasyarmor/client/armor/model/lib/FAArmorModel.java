@@ -1,7 +1,7 @@
-package net.kenddie.fantasyarmor.entity.client.armor.model.lib;
+package net.kenddie.fantasyarmor.client.armor.model.lib;
 
 import net.kenddie.fantasyarmor.FantasyArmor;
-import net.kenddie.fantasyarmor.item.armor.lib.FAArmorItem;
+import net.kenddie.fantasyarmor.item.armor.FAArmorItem;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.GeoModel;
 
