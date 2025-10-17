@@ -1,7 +1,6 @@
 package net.kenddie.fantasyarmor.item.armor;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
-import net.kenddie.fantasyarmor.config.FAConfig;
 import net.kenddie.fantasyarmor.config.FAConfigs;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
