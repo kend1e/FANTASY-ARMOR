@@ -1,0 +1,11 @@
+{
+  "1.19.4": {
+    "recipes_dir": "recipes"
+  },
+  "1.20.1": {
+    "recipes_dir": "recipes"
+  },
+  "1.21.1": {
+    "recipes_dir": "recipe"
+  }
+}

@@ -1,118 +1,118 @@
 {
   "chess_board_knight": {
-    "template": "honeycomb",
+    "template": "minecraft:honeycomb",
     "addition": "fantasy_armor:moon_crystal"
   },
   "crucible_knight": {
-    "template": "blaze_powder",
+    "template": "minecraft:blaze_powder",
     "addition": "fantasy_armor:moon_crystal"
   },
   "dark_cover": {
-    "template": "coal",
+    "template": "minecraft:coal",
     "addition": "fantasy_armor:moon_crystal"
   },
   "dark_lord": {
-    "template": "bone",
+    "template": "minecraft:bone",
     "addition": "fantasy_armor:moon_crystal"
   },
   "dead_gladiator": {
-    "template": "red_sand",
+    "template": "minecraft:red_sand",
     "addition": "fantasy_armor:moon_crystal"
   },
   "dragonslayer": {
-    "template": "nether_wart",
+    "template": "minecraft:nether_wart",
     "addition": "fantasy_armor:moon_crystal"
   },
   "eclipse_soldier": {
-    "template": "gold_nugget",
+    "template": "minecraft:gold_nugget",
     "addition": "fantasy_armor:moon_crystal"
   },
   "evening_ghost": {
-    "template": "dried_kelp",
+    "template": "minecraft:dried_kelp",
     "addition": "fantasy_armor:moon_crystal"
   },
   "flesh_of_the_feaster": {
-    "template": "slime_ball",
+    "template": "minecraft:slime_ball",
     "addition": "fantasy_armor:moon_crystal"
   },
   "fog_guard": {
-    "template": "phantom_membrane",
+    "template": "minecraft:phantom_membrane",
     "addition": "fantasy_armor:moon_crystal"
   },
   "forgotten_trace": {
-    "template": "prismarine_crystals",
+    "template": "minecraft:prismarine_crystals",
     "addition": "fantasy_armor:moon_crystal"
   },
   "gilded_hunt": {
-    "template": "raw_gold",
+    "template": "minecraft:raw_gold",
     "addition": "fantasy_armor:moon_crystal"
   },
   "golden_execution": {
-    "template": "ender_pearl",
+    "template": "minecraft:ender_pearl",
     "addition": "fantasy_armor:moon_crystal"
   },
   "golden_horns": {
-    "template": "flint",
+    "template": "minecraft:flint",
     "addition": "fantasy_armor:moon_crystal"
   },
   "grave_sentinel": {
-    "template": "lily_of_the_valley",
+    "template": "minecraft:lily_of_the_valley",
     "addition": "fantasy_armor:moon_crystal"
   },
   "hero": {
-    "template": "iron_ingot",
+    "template": "minecraft:iron_ingot",
     "addition": "fantasy_armor:moon_crystal"
   },
   "lady_maria": {
-    "template": "feather",
+    "template": "minecraft:feather",
     "addition": "fantasy_armor:moon_crystal"
   },
   "malenia": {
-    "template": "ghast_tear",
+    "template": "minecraft:ghast_tear",
     "addition": "fantasy_armor:moon_crystal"
   },
   "old_knight": {
-    "template": "obsidian",
+    "template": "minecraft:obsidian",
     "addition": "fantasy_armor:moon_crystal"
   },
   "redeemer": {
-    "template": "emerald",
+    "template": "minecraft:emerald",
     "addition": "fantasy_armor:moon_crystal"
   },
   "ronin": {
-    "template": "sugar_cane",
+    "template": "minecraft:sugar_cane",
     "addition": "fantasy_armor:moon_crystal"
   },
   "silver_knight": {
-    "template": "snowball",
+    "template": "minecraft:snowball",
     "addition": "fantasy_armor:moon_crystal"
   },
   "spark_of_dawn": {
-    "template": "amethyst_shard",
+    "template": "minecraft:amethyst_shard",
     "addition": "fantasy_armor:moon_crystal"
   },
   "sunset_wings": {
-    "template": "gunpowder",
+    "template": "minecraft:gunpowder",
     "addition": "fantasy_armor:moon_crystal"
   },
   "thief": {
-    "template": "leather",
+    "template": "minecraft:leather",
     "addition": "fantasy_armor:moon_crystal"
   },
   "twinned": {
-    "template": "quartz",
+    "template": "minecraft:quartz",
     "addition": "fantasy_armor:moon_crystal"
   },
   "wandering_wizard": {
-    "template": "spider_eye",
+    "template": "minecraft:spider_eye",
     "addition": "fantasy_armor:moon_crystal"
   },
   "wind_worshipper": {
-    "template": "paper",
+    "template": "minecraft:paper",
     "addition": "fantasy_armor:moon_crystal"
   },
   "orstein": {
-    "template": "gold_ingot",
+    "template": "minecraft:gold_ingot",
     "addition": "fantasy_armor:moon_crystal"
   }
 }

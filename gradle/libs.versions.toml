@@ -1,0 +1,11 @@
+[versions]
+forgePlugin = "6.+"
+librarianPlugin = "1.+"
+spongePlugin = "0.7-SNAPSHOT"
+
+[libraries]
+
+[plugins]
+forgeGradle = { id = "net.minecraftforge.gradle", version.ref = "forgePlugin" }
+parchmentLibrarian = { id = "org.parchmentmc.librarian.forgegradle", version.ref = "librarianPlugin" }
+spongePoweredMixin = { id = "org.spongepowered.mixin", version.ref = "spongePlugin"}
