@@ -64,23 +64,24 @@ fun genRecipesByVersion(version: String, armorRecipes: Map<String, Map<String, S
  * @param armorSetName armor set name
  * @param recipeItems map of ingredients for the recipe
  * @param recipesDir path to the recipes directory
+ *
+ * @throws Exception if the template or an ingredient is not found
  */
 fun genRecipeByArmorSet(template: String, armorSetName: String, recipeItems: Map<String, String>, recipesDir: String) {
     armorParts.forEach { part ->
         val currentFileName = "${armorSetName}_$part"
 
-        val filledTemplate = template.let {
-            recipeItems.get("template")?.let {
-                armorSetTemplate -> template.replace(templateItemKey, armorSetTemplate)
-            }
-            recipeItems.get("addition")?.let {
-                armorSetAddition -> template.replace(additionItemKey, armorSetAddition)
-            }
-            template.replace(resultItemKey, "$modID:$currentFileName")
-            template.replace(baseItemKey, "${baseItemPrefix}_$part")
-        }
+        val templateItem = recipeItems["template"] ?: throw Exception("Template item not found for [$armorSetName]")
+        val additionItem = recipeItems["addition"] ?: throw Exception("Addition item not found for [$armorSetName]")
 
-        File("$recipesDir${File.separator}$currentFileName.json").writeText(filledTemplate)
+        var filled = template
+
+        filled = filled.replace(templateItemKey, templateItem)
+        filled = filled.replace(additionItemKey, additionItem)
+        filled = filled.replace(resultItemKey, "$modID:$currentFileName")
+        filled = filled.replace(baseItemKey, "${baseItemPrefix}_$part")
+
+        File("$recipesDir${File.separator}$currentFileName.json").writeText(filled)
     }
 }
 
