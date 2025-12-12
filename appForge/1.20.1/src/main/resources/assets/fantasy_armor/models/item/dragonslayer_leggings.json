@@ -1,6 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "fantasy_armor:item/dragonslayer_leggings"
+    "layer0": "fantasy_armor:item/dragonslayer_leggings",
+    "layer1": "fantasy_armor:item/dragonslayer_leggings_overlay"
   }
 }

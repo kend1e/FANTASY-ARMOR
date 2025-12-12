@@ -2,23 +2,24 @@ package net.kenddie.fantasyarmor.item.armor;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import net.kenddie.fantasyarmor.FantasyArmor;
 import net.kenddie.fantasyarmor.client.armor.model.lib.FAArmorModel;
 import net.kenddie.fantasyarmor.client.armor.render.lib.FAArmorRenderer;
 import net.kenddie.fantasyarmor.config.FAArmorEffectsConfig;
 import net.kenddie.fantasyarmor.config.FAConfig;
 import net.minecraft.Util;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterials;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -38,7 +39,7 @@ import java.util.UUID;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public abstract class FAArmorItem extends ArmorItem implements GeoItem {
+public abstract class FAArmorItem extends DyeableArmorItem implements GeoItem {
     private static final Map<Type, UUID> ARMOR_MODIFIER_UUID_PER_TYPE = Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
         map.put(ArmorItem.Type.BOOTS, UUID.fromString("845DB27C-C624-495F-8C9F-6020A9A58B6B"));
         map.put(ArmorItem.Type.LEGGINGS, UUID.fromString("D8499B04-0E66-4726-AB29-64469D734E0D"));
@@ -142,10 +143,25 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
 
     @OnlyIn(Dist.CLIENT)
     protected GeoArmorRenderer<? extends FAArmorItem> createArmorRenderer() {
-        return new FAArmorRenderer<>(new FAArmorModel<>(armorSet.getGeoPath(), armorSet.getTexturePath()));
+        boolean dyeable = resourceExists(new ResourceLocation(FantasyArmor.MOD_ID, armorSet.getOverlayPath()));
+
+        return new FAArmorRenderer<>(new FAArmorModel<>(armorSet.getGeoPath(), armorSet.getTexturePath()), dyeable);
     }
 
     public List<MobEffectInstance> getFullSetEffects() {
         return FAArmorEffectsConfig.ARMOR_EFFECTS_CONFIGS.getOrDefault(armorSet.getName(), null).getEffects();
+    }
+
+    public FAArmorSet getArmorSet() {
+        return armorSet;
+    }
+
+    public static boolean resourceExists(ResourceLocation location) {
+        ResourceManager resourceManager = Minecraft.getInstance().getResourceManager();
+        try {
+            return resourceManager.getResource(location).isPresent();
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

@@ -64,6 +64,10 @@ public enum FAArmorSet {
         return "textures/armor/" + name + "_armor.png";
     }
 
+    public String getOverlayPath() {
+        return "textures/armor/" + name + "_armor_overlay.png";
+    }
+
     @FunctionalInterface
     public interface TriFunction<A, B, C, R> {
         R apply(A a, B b, C c);

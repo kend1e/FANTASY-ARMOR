@@ -2,14 +2,21 @@ package net.kenddie.fantasyarmor.client.armor.render.lib;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import cpw.mods.modlauncher.api.ITransformationService;
 import net.kenddie.fantasyarmor.FantasyArmor;
 import net.kenddie.fantasyarmor.config.FAConfig;
 import net.kenddie.fantasyarmor.item.armor.FAArmorItem;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.fml.loading.FMLLoader;
+import net.minecraftforge.fml.loading.FMLServiceProvider;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.cache.object.GeoBone;
@@ -25,9 +32,12 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
     protected GeoBone braid = null;
     protected GeoBone epicFightCape = null;
 
-    public FAArmorRenderer(GeoModel<T> model) {
+    public FAArmorRenderer(GeoModel<T> model, boolean dyeable) {
         super(model);
+
+        if (dyeable) addRenderLayer(new DyeableGeoLayer<>(this));
     }
+
 
     @Nullable
     public GeoBone getCapeBone(GeoModel<T> model) {
