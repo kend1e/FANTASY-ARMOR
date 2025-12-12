@@ -1,0 +1,118 @@
+{
+  "chess_board_knight": {
+    "template": "honeycomb",
+    "addition": "fantasy_armor:moon_crystal"
+  },
+  "crucible_knight": {
+    "template": "blaze_powder",
+    "addition": "fantasy_armor:moon_crystal"
+  },
+  "dark_cover": {
+    "template": "coal",
+    "addition": "fantasy_armor:moon_crystal"
+  },
+  "dark_lord": {
+    "template": "bone",
+    "addition": "fantasy_armor:moon_crystal"
+  },
+  "dead_gladiator": {
+    "template": "red_sand",
+    "addition": "fantasy_armor:moon_crystal"
+  },
+  "dragonslayer": {
+    "template": "nether_wart",
+    "addition": "fantasy_armor:moon_crystal"
+  },
+  "eclipse_soldier": {
+    "template": "gold_nugget",
+    "addition": "fantasy_armor:moon_crystal"
+  },
+  "evening_ghost": {
+    "template": "dried_kelp",
+    "addition": "fantasy_armor:moon_crystal"
+  },
+  "flesh_of_the_feaster": {
+    "template": "slime_ball",
+    "addition": "fantasy_armor:moon_crystal"
+  },
+  "fog_guard": {
+    "template": "phantom_membrane",
+    "addition": "fantasy_armor:moon_crystal"
+  },
+  "forgotten_trace": {
+    "template": "prismarine_crystals",
+    "addition": "fantasy_armor:moon_crystal"
+  },
+  "gilded_hunt": {
+    "template": "raw_gold",
+    "addition": "fantasy_armor:moon_crystal"
+  },
+  "golden_execution": {
+    "template": "ender_pearl",
+    "addition": "fantasy_armor:moon_crystal"
+  },
+  "golden_horns": {
+    "template": "flint",
+    "addition": "fantasy_armor:moon_crystal"
+  },
+  "grave_sentinel": {
+    "template": "lily_of_the_valley",
+    "addition": "fantasy_armor:moon_crystal"
+  },
+  "hero": {
+    "template": "iron_ingot",
+    "addition": "fantasy_armor:moon_crystal"
+  },
+  "lady_maria": {
+    "template": "feather",
+    "addition": "fantasy_armor:moon_crystal"
+  },
+  "malenia": {
+    "template": "ghast_tear",
+    "addition": "fantasy_armor:moon_crystal"
+  },
+  "old_knight": {
+    "template": "obsidian",
+    "addition": "fantasy_armor:moon_crystal"
+  },
+  "redeemer": {
+    "template": "emerald",
+    "addition": "fantasy_armor:moon_crystal"
+  },
+  "ronin": {
+    "template": "sugar_cane",
+    "addition": "fantasy_armor:moon_crystal"
+  },
+  "silver_knight": {
+    "template": "snowball",
+    "addition": "fantasy_armor:moon_crystal"
+  },
+  "spark_of_dawn": {
+    "template": "amethyst_shard",
+    "addition": "fantasy_armor:moon_crystal"
+  },
+  "sunset_wings": {
+    "template": "gunpowder",
+    "addition": "fantasy_armor:moon_crystal"
+  },
+  "thief": {
+    "template": "leather",
+    "addition": "fantasy_armor:moon_crystal"
+  },
+  "twinned": {
+    "template": "quartz",
+    "addition": "fantasy_armor:moon_crystal"
+  },
+  "wandering_wizard": {
+    "template": "spider_eye",
+    "addition": "fantasy_armor:moon_crystal"
+  },
+  "wind_worshipper": {
+    "template": "paper",
+    "addition": "fantasy_armor:moon_crystal"
+  },
+  "orstein": {
+    "template": "gold_ingot",
+    "addition": "fantasy_armor:moon_crystal"
+  }
+}

@@ -32,7 +32,8 @@ public enum FAArmorSet {
     DEAD_GLADIATOR(FAArmorSets.DeadGladiatorArmorItem::new),
     FLESH_OF_THE_FEASTER(FAArmorSets.FeasterArmorItem::new),
     WIND_WORSHIPPER(FAArmorSets.WindWorshipperArmorItem::new),
-    GRAVE_SENTINEL(FAArmorSets.GraveSentinelArmorItem::new);
+    GRAVE_SENTINEL(FAArmorSets.GraveSentinelArmorItem::new),
+    ORNSTEIN(FAArmorSets.OrnsteinArmorItem::new);
 
     private final TriFunction<FAArmorSet, ArmorItem.Type, Supplier<FAArmorAttributes>, FAArmorItem> factory;
     private final String name;
