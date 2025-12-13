@@ -10,11 +10,12 @@ plugins {
 
 // TODO : Cleanup
 
+// TODO : SEPARATE SHARED AND PROJECTS
 tasks.register("generateRecipesData") {
     doLast {
         val armorRecipes = getArmorRecipesMap() ?: return@doLast;
 
-        val templateVersions = getTemplateVersions();
+        val templateVersions = getRecipesTemplateVersions();
         val projectVersions = getProjectVersions();
         val toGenVersions = templateVersions.intersect(projectVersions)
 
@@ -26,16 +27,45 @@ tasks.register("generateRecipesData") {
 
 tasks.register("generateSharedItemModels") {
     doLast {
-
+        val armorSets = getArmorSets() ?: return@doLast;
+        val itemModelTemplate = File("$itemModelsTemplatesDir${File.separator}armor.json").readText()
+        val itemDyedModelTemplate = File("$itemModelsTemplatesDir${File.separator}armor_dyed.json").readText()
+        armorSets.forEach { armorSet ->
+            armorParts.forEach { armorPart ->
+                val filledItemModel = itemModelTemplate.replace(itemIdKey, "${armorSet}_${armorPart}")
+                val filledItemDyedModel = itemDyedModelTemplate.replace(itemIdKey, "${armorSet}_${armorPart}")
+                File("${itemModelsOutputDir}${File.separator}${armorSet}_${armorPart}.json").writeText(filledItemModel)
+                File("${itemModelsOutputDir}${File.separator}${armorSet}_${armorPart}_dyed.json").writeText(filledItemDyedModel)
+            }
+            println("Generated item models for [$armorSet]")
+        }
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-val recipesInfoDir = "recipesGenInfo"
-val recipesFile = "$recipesInfoDir${File.separator}armor_recipes.json"
-val mcVersionsInfoFile = "$recipesInfoDir${File.separator}mc_versions_info.json"
-val templatesDir = "$recipesInfoDir${File.separator}templates"
+fun getArmorSets(): List<String>? {
+    val armorSetsFile = File(armorSetsFile)
+    if (!armorSetsFile.exists()) {
+        println("Armor sets file not found.")
+        return null
+    }
 
+    val jsonParsed = JsonSlurper().parse(armorSetsFile) as Map<String, List<String>>
+    return jsonParsed.get("armor_sets")
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+val genInfoDir = "resourcesGeneration"
+val armorSetsFile = "${genInfoDir}${File.separator}armor_sets.json"
+val recipesInfoDir = "${genInfoDir}${File.separator}recipes"
+val itemModelsInfoDir = "${genInfoDir}${File.separator}item_models"
+val recipesFile = "$recipesInfoDir${File.separator}armor_recipes.json"
+val mcVersionsInfoFile = "$genInfoDir${File.separator}mc_versions_info.json"
+val recipesTemplatesDir = "$recipesInfoDir${File.separator}templates"
+val itemModelsTemplatesDir = "$itemModelsInfoDir${File.separator}templates"
+
+val itemModelsOutputDir = "shared${File.separator}resources${File.separator}item_models"
+
+val itemIdKey = "ITEM_ID"
 val templateItemKey = "TEMPLATE_ITEM"
 val baseItemKey = "BASE_ITEM"
 val additionItemKey = "ADDITION_ITEM"
@@ -54,7 +84,7 @@ val modID: String = providers.gradleProperty("mod_id").get()
  * @param armorRecipes map of armor sets names and their recipes ingredients
  */
 fun genRecipesByVersion(version: String, armorRecipes: Map<String, Map<String, String>>) {
-    val template = getTemplateByVersion(version) ?: return
+    val template = getRecipesTemplateByVersion(version) ?: return
 
     val versionRecipesDirName = getRecipesDirNameByVersion(version) ?: return
     val recipesDirPath = "$dataDirPath${File.separator}$versionRecipesDirName"
@@ -113,9 +143,9 @@ fun getArmorRecipesMap(): Map<String, Map<String, String>>? {
 /**
  * @return set of available template versions (e.g. "1.20.1", "1.21.1"...)
  */
-fun getTemplateVersions(): Set<String> {
+fun getRecipesTemplateVersions(): Set<String> {
     val versions: MutableSet<String> = mutableSetOf()
-    for (file in File(templatesDir).listFiles()) {
+    for (file in File(recipesTemplatesDir).listFiles()) {
         versions.add(file.nameWithoutExtension)
     }
 
@@ -163,8 +193,8 @@ fun getVersionDirsByVersion(version: String): Set<String> {
  *
  * @return path to the template file
  */
-fun getTemplateByVersion(version: String): String? {
-    val templateFile = File(templatesDir, "$version.json")
+fun getRecipesTemplateByVersion(version: String): String? {
+    val templateFile = File(recipesTemplatesDir, "$version.json")
 
     return if (templateFile.exists()) templateFile.readText() else null
 }

@@ -1,0 +1,33 @@
+{
+  "armor_sets": [
+    "chess_board_knight",
+    "crucible_knight",
+    "dark_cover",
+    "dark_lord",
+    "dead_gladiator",
+    "dragonslayer",
+    "eclipse_soldier",
+    "evening_ghost",
+    "flesh_of_the_feaster",
+    "fog_guard",
+    "forgotten_trace",
+    "gilded_hunt",
+    "golden_execution",
+    "golden_horns",
+    "grave_sentinel",
+    "hero",
+    "lady_maria",
+    "malenia",
+    "old_knight",
+    "redeemer",
+    "ronin",
+    "silver_knight",
+    "spark_of_dawn",
+    "sunset_wings",
+    "thief",
+    "twinned",
+    "wandering_wizard",
+    "wind_worshipper",
+    "orstein"
+  ]
+}

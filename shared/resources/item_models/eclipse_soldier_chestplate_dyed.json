@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "fantasy_armor:item/eclipse_soldier_chestplate",
+    "layer1": "fantasy_armor:item/eclipse_soldier_chestplate_overlay"
+  }
+}

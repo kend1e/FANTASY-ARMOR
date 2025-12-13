@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "fantasy_armor:item/ITEM_ID",
+    "layer1": "fantasy_armor:item/ITEM_ID_overlay"
+  }
+}

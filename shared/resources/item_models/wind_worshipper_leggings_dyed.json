@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "fantasy_armor:item/wind_worshipper_leggings",
+    "layer1": "fantasy_armor:item/wind_worshipper_leggings_overlay"
+  }
+}
