@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "fantasy_armor:item/spark_of_dawn_chestplate",
+    "layer1": "fantasy_armor:item/spark_of_dawn_chestplate_overlay"
+  }
+}
