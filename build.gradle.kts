@@ -8,6 +8,8 @@ plugins {
     alias(libs.plugins.spongePoweredMixin) apply false
 }
 
+// TODO : Cleanup
+
 tasks.register("generateRecipesData") {
     doLast {
         val armorRecipes = getArmorRecipesMap() ?: return@doLast;
@@ -20,6 +22,15 @@ tasks.register("generateRecipesData") {
     }
 }
 
+//----------------------------------------------------------------------------------------------------------------------
+
+tasks.register("generateSharedItemModels") {
+    doLast {
+
+    }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
 val recipesInfoDir = "recipesGenInfo"
 val recipesFile = "$recipesInfoDir${File.separator}armor_recipes.json"
 val mcVersionsInfoFile = "$recipesInfoDir${File.separator}mc_versions_info.json"
