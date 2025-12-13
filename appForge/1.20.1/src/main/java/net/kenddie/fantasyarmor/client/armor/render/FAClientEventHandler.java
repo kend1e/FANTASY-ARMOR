@@ -2,20 +2,19 @@ package net.kenddie.fantasyarmor.client.armor.render;
 
 import net.kenddie.fantasyarmor.FantasyArmor;
 import net.kenddie.fantasyarmor.item.FAArmorItems;
-import net.kenddie.fantasyarmor.item.FAItems;
-import net.kenddie.fantasyarmor.item.armor.FAArmorItem;
 import net.kenddie.fantasyarmor.item.armor.FAArmorSet;
 import net.minecraft.client.color.item.ItemColors;
+import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 @Mod.EventBusSubscriber(
         modid = FantasyArmor.MOD_ID,
@@ -34,17 +33,39 @@ public class FAClientEventHandler {
         }
     }
 
-    // TODO : Transparent
     private static void registerColorForItem(Item item, ItemColors itemColors) {
         itemColors.register((stack, tintIndex) -> {
             if (tintIndex != 1)
                 return 0xFFFFFFFF;
 
             if (!(stack.getItem() instanceof DyeableLeatherItem dyeable) || !dyeable.hasCustomColor(stack)) {
-                return 0x00FFFFFF;
+                return 0xFFFFFFFF;
             }
 
             return dyeable.getColor(stack);
         }, item);
     }
+
+    @SubscribeEvent
+    public static void onClientSetup(FMLClientSetupEvent event) {
+        for (FAArmorSet set : FAArmorSet.values()) {
+            for (ArmorItem.Type type : ArmorItem.Type.values()) {
+
+                Item item = FAArmorItems.getArmorItem(set, type).get();
+
+                event.enqueueWork(() -> ItemProperties.register(
+                        item,
+                        new ResourceLocation(FantasyArmor.MOD_ID, "dyed"),
+                        (stack, level, entity, seed) -> {
+                            if (stack.getItem() instanceof DyeableLeatherItem dyeable
+                                    && dyeable.hasCustomColor(stack)) {
+                                return 1.0F;
+                            }
+                            return 0.0F;
+                        }
+                ));
+            }
+        }
+    }
+
 }

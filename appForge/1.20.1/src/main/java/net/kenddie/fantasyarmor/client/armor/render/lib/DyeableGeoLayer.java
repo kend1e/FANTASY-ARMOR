@@ -29,7 +29,6 @@ public class DyeableGeoLayer<T extends FAArmorItem> extends GeoRenderLayer<T> {
                        VertexConsumer buffer, float partialTick,
                        int packedLight, int packedOverlay) {
         if (animatable == null) return;
-        // TODO : Netherite exception
         ResourceLocation textureResLoc = getArmorResource(animatable);
 
         FAArmorRenderer<T> armorRenderer = (FAArmorRenderer<T>) this.renderer;

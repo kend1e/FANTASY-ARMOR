@@ -1,7 +1,14 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "fantasy_armor:item/dragonslayer_chestplate",
-    "layer1": "fantasy_armor:item/dragonslayer_chestplate_overlay"
-  }
+    "layer0": "fantasy_armor:item/dragonslayer_chestplate"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "fantasy_armor:dyed": 1.0
+      },
+      "model": "fantasy_armor:item/dragonslayer_chestplate_dyed"
+    }
+  ]
 }
