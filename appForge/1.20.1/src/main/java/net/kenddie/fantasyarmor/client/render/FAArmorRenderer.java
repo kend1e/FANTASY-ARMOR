@@ -31,7 +31,6 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
         if (dyeable) addRenderLayer(new FADyeableGeoLayer<>(this));
     }
 
-
     @Nullable
     public GeoBone getCapeBone(GeoModel<T> model) {
         return model.getBone("armorCape").orElse(null);
@@ -198,11 +197,9 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
         setBoneVisible(cape, showCape && !useEpicFightCape);
         setBoneVisible(epicFightCape, showCape && useEpicFightCape);
 
-        setBoneVisible(cape, pVisible);
         setBoneVisible(frontCape, pVisible);
         setBoneVisible(leftLegCloth, pVisible);
         setBoneVisible(rightLegCloth, pVisible);
         setBoneVisible(braid, pVisible);
-        setBoneVisible(epicFightCape, pVisible);
     }
 }

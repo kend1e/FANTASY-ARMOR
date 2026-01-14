@@ -170,4 +170,10 @@ public class FAArmorSets {
             super(armorSet, type, armorAttributes);
         }
     }
+
+    public static class OrnsteinArmorItem extends FAArmorItem {
+        public OrnsteinArmorItem(FAArmorSet armorSet, Type type, Supplier<FAArmorAttributes> armorAttributes) {
+            super(armorSet, type, armorAttributes);
+        }
+    }
 }

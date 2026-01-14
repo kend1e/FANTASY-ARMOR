@@ -1,13 +1,16 @@
 package net.kenddie.fantasyarmor.item.armor;
 
 import net.kenddie.fantasyarmor.FantasyArmor;
-import net.kenddie.fantasyarmor.client.armor.model.lib.FAArmorModel;
-import net.kenddie.fantasyarmor.client.armor.render.lib.FAArmorRenderer;
+import net.kenddie.fantasyarmor.client.model.FAArmorModel;
+import net.kenddie.fantasyarmor.client.render.FAArmorRenderer;
 import net.kenddie.fantasyarmor.config.FAArmorEffectsConfig;
 import net.kenddie.fantasyarmor.config.FAConfig;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -18,6 +21,7 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -44,6 +48,25 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
         super(ArmorMaterials.NETHERITE, type, new Properties().stacksTo(1).fireResistant());
         this.armorSet = armorSet;
         this.attributesSupplier = attributesSupplier;
+    }
+
+    public static final int DEFAULT_COLOR = 0xA06540;
+
+    public boolean hasCustomColor(ItemStack stack) {
+        return stack.has(DataComponents.DYED_COLOR);
+    }
+
+    public int getColor(ItemStack stack) {
+        DyedItemColor color = stack.get(DataComponents.DYED_COLOR);
+        return color != null ? color.rgb() : DEFAULT_COLOR;
+    }
+
+    public void setColor(ItemStack stack, int color) {
+        stack.set(DataComponents.DYED_COLOR, new DyedItemColor(color, false));
+    }
+
+    public void clearColor(ItemStack stack) {
+        stack.remove(DataComponents.DYED_COLOR);
     }
 
     @Override
@@ -179,10 +202,25 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
 
     @OnlyIn(Dist.CLIENT)
     protected GeoArmorRenderer<? extends FAArmorItem> createArmorRenderer() {
-        return new FAArmorRenderer<>(new FAArmorModel<>(armorSet.getGeoPath(), armorSet.getTexturePath()));
+        boolean dyeable = resourceExists(ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, armorSet.getOverlayPath()));
+
+        return new FAArmorRenderer<>(new FAArmorModel<>(armorSet.getGeoPath(), armorSet.getTexturePath()), dyeable);
     }
 
     public List<MobEffectInstance> getFullSetEffects() {
         return FAArmorEffectsConfig.ARMOR_EFFECTS_CONFIGS.getOrDefault(armorSet.getName(), null).getEffects();
+    }
+
+    public FAArmorSet getArmorSet() {
+        return armorSet;
+    }
+
+    public static boolean resourceExists(ResourceLocation location) {
+        ResourceManager resourceManager = Minecraft.getInstance().getResourceManager();
+        try {
+            return resourceManager.getResource(location).isPresent();
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

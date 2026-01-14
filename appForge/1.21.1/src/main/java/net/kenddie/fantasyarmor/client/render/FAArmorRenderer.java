@@ -1,4 +1,4 @@
-package net.kenddie.fantasyarmor.client.armor.render.lib;
+package net.kenddie.fantasyarmor.client.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -25,8 +25,10 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
     protected GeoBone braid = null;
     protected GeoBone epicFightCape = null;
 
-    public FAArmorRenderer(GeoModel<T> model) {
+    public FAArmorRenderer(GeoModel<T> model, boolean dyeable) {
         super(model);
+
+        if (dyeable) addRenderLayer(new FADyeableGeoLayer<>(this));
     }
 
     @Nullable
@@ -194,5 +196,10 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
 
         setBoneVisible(cape, showCape && !useEpicFightCape);
         setBoneVisible(epicFightCape, showCape && useEpicFightCape);
+
+        setBoneVisible(frontCape, pVisible);
+        setBoneVisible(leftLegCloth, pVisible);
+        setBoneVisible(rightLegCloth, pVisible);
+        setBoneVisible(braid, pVisible);
     }
 }
