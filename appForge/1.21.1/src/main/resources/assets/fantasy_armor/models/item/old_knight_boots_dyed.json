@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "fantasy_armor:item/old_knight_boots",
+    "layer1": "fantasy_armor:item/old_knight_boots_overlay"
+  }
+}

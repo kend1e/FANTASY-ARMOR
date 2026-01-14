@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "fantasy_armor:item/ronin_leggings",
+    "layer1": "fantasy_armor:item/ronin_leggings_overlay"
+  }
+}
