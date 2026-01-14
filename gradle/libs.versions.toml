@@ -2,8 +2,10 @@
 forgePlugin = "6.+"
 librarianPlugin = "1.+"
 spongePlugin = "0.7-SNAPSHOT"
+mclib = "20"
 
 [libraries]
+mclib = { group = "com.eliotlash.mclib", name = "mclib", version.ref = "mclib" }
 
 [plugins]
 forgeGradle = { id = "net.minecraftforge.gradle", version.ref = "forgePlugin" }
