@@ -1,7 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "fantasy_armor:item/dark_lord_helmet",
-    "layer1": "fantasy_armor:item/dark_lord_helmet_overlay"
-  }
-}

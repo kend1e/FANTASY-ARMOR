@@ -1,7 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "fantasy_armor:item/lady_maria_boots",
-    "layer1": "fantasy_armor:item/lady_maria_boots_overlay"
-  }
-}

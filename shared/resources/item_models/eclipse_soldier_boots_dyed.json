@@ -1,7 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "fantasy_armor:item/eclipse_soldier_boots",
-    "layer1": "fantasy_armor:item/eclipse_soldier_boots_overlay"
-  }
-}

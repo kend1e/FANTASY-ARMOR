@@ -1,7 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "fantasy_armor:item/fog_guard_leggings",
-    "layer1": "fantasy_armor:item/fog_guard_leggings_overlay"
-  }
-}
