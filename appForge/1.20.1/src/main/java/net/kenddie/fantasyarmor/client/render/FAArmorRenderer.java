@@ -1,4 +1,4 @@
-package net.kenddie.fantasyarmor.client.armor.render.lib;
+package net.kenddie.fantasyarmor.client.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -28,7 +28,7 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
     public FAArmorRenderer(GeoModel<T> model, boolean dyeable) {
         super(model);
 
-        if (dyeable) addRenderLayer(new DyeableGeoLayer<>(this));
+        if (dyeable) addRenderLayer(new FADyeableGeoLayer<>(this));
     }
 
 

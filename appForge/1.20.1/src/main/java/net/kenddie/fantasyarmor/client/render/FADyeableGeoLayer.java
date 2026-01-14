@@ -1,4 +1,4 @@
-package net.kenddie.fantasyarmor.client.armor.render.lib;
+package net.kenddie.fantasyarmor.client.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -16,10 +16,10 @@ import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public class DyeableGeoLayer<T extends FAArmorItem> extends GeoRenderLayer<T> {
+public class FADyeableGeoLayer<T extends FAArmorItem> extends GeoRenderLayer<T> {
     protected static final Map<String, ResourceLocation> ARMOR_PATH_CACHE = new Object2ObjectOpenHashMap<>();
 
-    public DyeableGeoLayer(FAArmorRenderer<T> renderer) {
+    public FADyeableGeoLayer(FAArmorRenderer<T> renderer) {
         super(renderer);
     }
 
