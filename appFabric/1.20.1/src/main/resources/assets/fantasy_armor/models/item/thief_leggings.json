@@ -2,5 +2,13 @@
   "parent": "item/generated",
   "textures": {
     "layer0": "fantasy_armor:item/thief_leggings"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "fantasy_armor:dyed": 1.0
+      },
+      "model": "fantasy_armor:item/thief_leggings_dyed"
+    }
+  ]
 }

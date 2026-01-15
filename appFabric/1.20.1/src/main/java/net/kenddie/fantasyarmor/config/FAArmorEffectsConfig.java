@@ -142,6 +142,10 @@ public class FAArmorEffectsConfig implements ConfigData {
                 new EffectEntry("minecraft:regeneration", 259, 0),
                 new EffectEntry("minecraft:strength", 259, 0)
         ));
+        map.put(FAArmorSet.ORNSTEIN.getName(), List.of(
+                new EffectEntry("minecraft:regeneration", 259, 0),
+                new EffectEntry("minecraft:resistance", 259, 0)
+        ));
         return map;
     }
 

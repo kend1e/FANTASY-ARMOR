@@ -861,6 +861,36 @@ public class FAArmorAttributesConfig implements ConfigData {
                 .movementSpeed(0.03)
                 .build());
         DEFAULTS.put(FAArmorSet.GRAVE_SENTINEL, graveSentinel);
+// ORNSTEIN
+        Map<ArmorItem.Type, FAArmorAttributes> ornstein = new HashMap<>();
+        ornstein.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
+                .armor(3.0)
+                .armorToughness(2.0)
+                .knockbackResistance(0.1)
+                .attackDamage(0.05)
+                .maxHealth(2.0)
+                .build());
+        ornstein.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
+                .armor(8.0)
+                .armorToughness(2.0)
+                .knockbackResistance(0.2)
+                .maxHealth(2.0)
+                .attackDamage(0.05)
+                .build());
+        ornstein.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
+                .armor(6.0)
+                .armorToughness(2.0)
+                .knockbackResistance(0.1)
+                .movementSpeed(0.03)
+                .maxHealth(2.0)
+                .build());
+        ornstein.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
+                .armor(3.0)
+                .armorToughness(2.0)
+                .knockbackResistance(0.2)
+                .movementSpeed(0.03)
+                .build());
+        DEFAULTS.put(FAArmorSet.ORNSTEIN, ornstein);
 
         for (FAArmorSet set : FAArmorSet.values()) {
             DEFAULTS.computeIfAbsent(set, s -> new EnumMap<>(ArmorItem.Type.class));

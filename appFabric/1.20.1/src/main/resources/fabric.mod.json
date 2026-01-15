@@ -17,6 +17,9 @@
 	"entrypoints": {
 		"main": [
 			"net.kenddie.fantasyarmor.FantasyArmor"
+		],
+		"client": [
+			"net.kenddie.fantasyarmor.client.render.FAClientEventHandler"
 		]
 	},
 	"mixins": [
