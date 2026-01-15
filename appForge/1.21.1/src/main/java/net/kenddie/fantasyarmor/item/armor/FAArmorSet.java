@@ -63,6 +63,7 @@ public enum FAArmorSet {
     public String getTexturePath() {
         return "textures/armor/" + name + "_armor.png";
     }
+
     public String getOverlayPath() {
         return "textures/armor/" + name + "_armor_overlay.png";
     }

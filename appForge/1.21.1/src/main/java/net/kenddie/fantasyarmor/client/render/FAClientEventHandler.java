@@ -16,6 +16,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.registries.RegistryObject;
 
 @Mod.EventBusSubscriber(
         modid = FantasyArmor.MOD_ID,
@@ -26,10 +27,12 @@ public class FAClientEventHandler {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onItemColors(RegisterColorHandlersEvent.Item event) {
         for (FAArmorSet set : FAArmorSet.values()) {
-            for (ArmorItem.Type type : ArmorItem.Type.values()) {
-                Item item = FAArmorItems.getArmorItem(set, type).get();
-
-                registerColorForItem(item, event.getItemColors());
+            for (ArmorItem.Type type : FAArmorItems.VALID_ARMOR_TYPES) {
+                RegistryObject<Item> itemRO = FAArmorItems.getArmorItem(set, type);
+                if (itemRO != null && itemRO.isPresent()) {
+                    Item item = itemRO.get();
+                    registerColorForItem(item, event.getItemColors());
+                }
             }
         }
     }
@@ -53,20 +56,19 @@ public class FAClientEventHandler {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
         for (FAArmorSet set : FAArmorSet.values()) {
-            for (ArmorItem.Type type : ArmorItem.Type.values()) {
-
-                Item item = FAArmorItems.getArmorItem(set, type).get();
-
-                event.enqueueWork(() -> ItemProperties.register(
-                        item,
-                        ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, "dyed"),
-                        (stack, level, entity, seed) -> {
-                            return stack.has(DataComponents.DYED_COLOR) ? 1.0F : 0.0F;
-                        }
-                ));
-
+            for (ArmorItem.Type type : FAArmorItems.VALID_ARMOR_TYPES) {
+                RegistryObject<Item> itemRO = FAArmorItems.getArmorItem(set, type);
+                if (itemRO != null && itemRO.isPresent()) {
+                    Item item = itemRO.get();
+                    event.enqueueWork(() -> ItemProperties.register(
+                            item,
+                            ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, "dyed"),
+                            (stack, level, entity, seed) -> {
+                                return stack.has(DataComponents.DYED_COLOR) ? 1.0F : 0.0F;
+                            }
+                    ));
+                }
             }
         }
     }
-
 }
