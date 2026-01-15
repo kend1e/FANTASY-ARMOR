@@ -23,6 +23,28 @@ tasks.register("generateRecipesData") {
     }
 }
 
+tasks.register("generateTagsData") {
+    doLast {
+        val armorSets = getArmorSets() ?: return@doLast;
+
+        var setsText = mutableListOf<String>()
+        armorSets.forEach { armorSet ->
+            armorParts.forEach { armorPart ->
+                setsText.add("\"${modID}:${armorSet}_${armorPart}\"")
+            }
+            println("Generated dyeable tag for [$armorSet]")
+        }
+
+        val jsonText = "{\n" +
+                "  \"replace\": false,\n" +
+                "  \"values\": [\n" +
+                setsText.joinToString(",\n") { it } +
+        "]\n" +
+                "}"
+        File(dyeableTagFile).writeText(jsonText)
+    }
+}
+
 //----------------------------------------------------------------------------------------------------------------------
 
 tasks.register("generateSharedItemModels") {
@@ -64,6 +86,8 @@ val recipesTemplatesDir = "$recipesInfoDir${File.separator}templates"
 val itemModelsTemplatesDir = "$itemModelsInfoDir${File.separator}templates"
 
 val itemModelsOutputDir = "shared${File.separator}resources${File.separator}item_models"
+val tagsOutputDir = "shared${File.separator}resources${File.separator}tags"
+val dyeableTagFile = "${tagsOutputDir}${File.separator}dyeable.json"
 
 val itemIdKey = "ITEM_ID"
 val templateItemKey = "TEMPLATE_ITEM"
