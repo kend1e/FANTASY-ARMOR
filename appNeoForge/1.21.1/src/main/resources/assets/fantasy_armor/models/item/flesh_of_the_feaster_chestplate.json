@@ -2,5 +2,13 @@
   "parent": "item/generated",
   "textures": {
     "layer0": "fantasy_armor:item/flesh_of_the_feaster_chestplate"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "fantasy_armor:dyed": 1.0
+      },
+      "model": "fantasy_armor:item/flesh_of_the_feaster_chestplate_dyed"
+    }
+  ]
 }

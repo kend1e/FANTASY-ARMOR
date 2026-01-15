@@ -105,6 +105,10 @@ public class FAArmorEffectsConfig {
                     "minecraft:haste,259,0",
                     "minecraft:regeneration,259,0",
                     "minecraft:strength,259,0"
+            )),
+            Map.entry(FAArmorSet.ORNSTEIN, List.of(
+                    "minecraft:regeneration,259,0",
+                    "minecraft:resistance,259,0"
             ))
     );
 

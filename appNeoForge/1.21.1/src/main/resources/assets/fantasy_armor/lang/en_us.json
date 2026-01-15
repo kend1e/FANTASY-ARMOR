@@ -252,5 +252,14 @@
     "item.fantasy_armor.grave_sentinel_helmet.tooltip": "§7The armor that guards the sleep of the dead. \nOnce sworn to noble oaths, over time their duty twisted into a silent vigil among dust and silence.",
     "item.fantasy_armor.grave_sentinel_chestplate.tooltip": "§7The armor that guards the sleep of the dead. \nOnce sworn to noble oaths, over time their duty twisted into a silent vigil among dust and silence.",
     "item.fantasy_armor.grave_sentinel_leggings.tooltip": "§7The armor that guards the sleep of the dead. \nOnce sworn to noble oaths, over time their duty twisted into a silent vigil among dust and silence.",
-    "item.fantasy_armor.grave_sentinel_boots.tooltip": "§7The armor that guards the sleep of the dead. \nOnce sworn to noble oaths, over time their duty twisted into a silent vigil among dust and silence."
+    "item.fantasy_armor.grave_sentinel_boots.tooltip": "§7The armor that guards the sleep of the dead. \nOnce sworn to noble oaths, over time their duty twisted into a silent vigil among dust and silence.",
+
+    "item.fantasy_armor.ornstein_helmet": "Ornstein Helmet",
+    "item.fantasy_armor.ornstein_chestplate": "Ornstein Chestplate",
+    "item.fantasy_armor.ornstein_leggings": "Ornstein Leggings",
+    "item.fantasy_armor.ornstein_boots": "Ornstein Boots",
+    "item.fantasy_armor.ornstein_helmet.tooltip": "§7Golden plates shaped in the image of a lion.\nForged for the First Lord’s fiercest dragonslayer, the armor still hums with remnant lightning.\nThose who don the full set feel the echo of a spear strike, capable of piercing ancient stone scales.",
+    "item.fantasy_armor.ornstein_chestplate.tooltip": "§7Golden plates shaped in the image of a lion.\nForged for the First Lord’s fiercest dragonslayer, the armor still hums with remnant lightning.\nThose who don the full set feel the echo of a spear strike, capable of piercing ancient stone scales.",
+    "item.fantasy_armor.ornstein_leggings.tooltip": "§7Golden plates shaped in the image of a lion.\nForged for the First Lord’s fiercest dragonslayer, the armor still hums with remnant lightning.\nThose who don the full set feel the echo of a spear strike, capable of piercing ancient stone scales.",
+    "item.fantasy_armor.ornstein_boots.tooltip": "§7Golden plates shaped in the image of a lion.\nForged for the First Lord’s fiercest dragonslayer, the armor still hums with remnant lightning.\nThose who don the full set feel the echo of a spear strike, capable of piercing ancient stone scales."
 }
