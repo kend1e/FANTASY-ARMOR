@@ -28,29 +28,35 @@ public class FADyeableGeoLayer<T extends FAArmorItem> extends GeoRenderLayer<T> 
                        RenderType baseRenderType, MultiBufferSource bufferSource,
                        VertexConsumer buffer, float partialTick,
                        int packedLight, int packedOverlay) {
+
         if (animatable == null) return;
-        ResourceLocation textureResLoc = getArmorResource(animatable);
 
         FAArmorRenderer<T> armorRenderer = (FAArmorRenderer<T>) this.renderer;
-        ItemStack armorItemStack = armorRenderer.getCurrentStack();
+        ItemStack stack = armorRenderer.getCurrentStack();
 
-        if (!animatable.hasCustomColor(armorItemStack)) return;
-        int color = animatable.getColor(armorItemStack);
+        if (!animatable.hasCustomColor(stack)) return;
 
-        VertexConsumer vertexConsumer = getArmorBuffer(bufferSource, null, textureResLoc, armorItemStack.hasFoil());
+        ResourceLocation overlayTex = getArmorResource(animatable);
+        RenderType overlayType = RenderType.armorCutoutNoCull(overlayTex);
+
+        VertexConsumer overlayBuffer = ItemRenderer.getArmorFoilBuffer(bufferSource, overlayType, stack.hasFoil());
+
+        int color = 0xFF000000 | animatable.getColor(stack);
+
         this.renderer.reRender(
                 bakedModel,
                 poseStack,
                 bufferSource,
                 animatable,
-                baseRenderType,
-                vertexConsumer,
+                overlayType,
+                overlayBuffer,
                 partialTick,
                 packedLight,
                 packedOverlay,
                 color
         );
     }
+
 
     public ResourceLocation getArmorResource(FAArmorItem armorItem) {
         String texture = FantasyArmor.MOD_ID + ":" + armorItem.getArmorSet().getOverlayPath();

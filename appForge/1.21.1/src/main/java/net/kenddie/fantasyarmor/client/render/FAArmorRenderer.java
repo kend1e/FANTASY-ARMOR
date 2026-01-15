@@ -15,6 +15,7 @@ import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;
+import software.bernie.geckolib.util.Color;
 import software.bernie.geckolib.util.RenderUtil;
 
 public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> {
@@ -29,6 +30,11 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
         super(model);
 
         if (dyeable) addRenderLayer(new FADyeableGeoLayer<>(this));
+    }
+
+    @Override
+    public Color getRenderColor(T animatable, float partialTick, int packedLight) {
+        return Color.WHITE;
     }
 
     @Nullable

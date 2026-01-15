@@ -39,18 +39,14 @@ public class FAClientEventHandler {
 
     private static void registerColorForItem(Item item, ItemColors itemColors) {
         itemColors.register((stack, tintIndex) -> {
-            if (tintIndex != 1) {
-                return 0xFFFFFFFF;
-            }
+            if (tintIndex != 1) return 0xFFFFFFFF;
 
             DyedItemColor color = stack.get(DataComponents.DYED_COLOR);
-            if (color == null) {
-                return 0xFFFFFFFF;
-            }
+            if (color == null) return 0xFFFFFFFF;
 
-            return color.rgb();
+            // Force opaque alpha
+            return 0xFF000000 | color.rgb();
         }, item);
-
     }
 
     @SubscribeEvent
