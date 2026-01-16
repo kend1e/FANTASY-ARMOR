@@ -1,0 +1,39 @@
+{
+	"schemaVersion": 1,
+	"id": "fantasy_armor",
+	"version": "${version}",
+	"name": "Fantasy Armor",
+	"description": "Welcome to the world of fantasy equipment!\nThis mod adds awesome armor sets that will diversify your look and help you better express yourself and your character.\nDon't forget to try other mods from the Medieval Series as well!",
+	"authors": [
+		"Kenddie, mon1tor"
+	],
+	"contact": {
+		"homepage": "https://www.curseforge.com/minecraft/mc-mods/fantasy-armor",
+		"sources": "https://github.com/kend1e/FANTASY-ARMOR"
+	},
+	"license": "DSMSLv2",
+	"icon": "assets/fantasy_armor/logo.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.kenddie.fantasyarmor.FantasyArmor"
+		],
+		"client": [
+			"net.kenddie.fantasyarmor.client.render.FAClientEventHandler"
+		]
+	},
+	"mixins": [
+		"fantasy_armor.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.18.2",
+		"minecraft": "~1.21.10",
+		"java": ">=21",
+		"fabric-api": "*",
+		"geckolib": ">=5.3-alpha-3",
+		"cloth-config2": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
