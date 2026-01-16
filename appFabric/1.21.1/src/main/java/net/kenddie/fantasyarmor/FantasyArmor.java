@@ -1,24 +1,26 @@
 package net.kenddie.fantasyarmor;
 
+import com.mojang.logging.LogUtils;
 import net.fabricmc.api.ModInitializer;
-
+import net.kenddie.fantasyarmor.config.FAConfigs;
+import net.kenddie.fantasyarmor.item.FAArmorItems;
+import net.kenddie.fantasyarmor.item.FACreativeModTabs;
+import net.kenddie.fantasyarmor.item.FAItems;
+import net.kenddie.fantasyarmor.item.armor.FAArmorEffectHandler;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class FantasyArmor implements ModInitializer {
 	public static final String MOD_ID = "fantasy_armor";
-
-	// This logger is used to write text to the console and the log file.
-	// It is considered best practice to use your mod id as the logger's name.
-	// That way, it's clear which mod wrote info, warnings, and errors.
-	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+	public static final Logger LOGGER = LogUtils.getLogger();
 
 	@Override
 	public void onInitialize() {
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
+        FAConfigs.init();
 
-		LOGGER.info("Hello Fabric world!");
+        FAArmorItems.init();
+
+		FAItems.register();
+		FACreativeModTabs.register();
+		FAArmorEffectHandler.register();
 	}
 }
