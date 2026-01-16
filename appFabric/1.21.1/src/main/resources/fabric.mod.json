@@ -26,11 +26,11 @@
 		"fantasy_armor.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.18.4",
+		"fabricloader": ">=0.18.2",
 		"minecraft": "~1.21.1",
 		"java": ">=21",
 		"fabric-api": "*",
-		"geckolib": ">=4.8.3",
+		"geckolib": ">=4.8.2",
         "cloth-config2": "*"
 	},
 	"suggests": {

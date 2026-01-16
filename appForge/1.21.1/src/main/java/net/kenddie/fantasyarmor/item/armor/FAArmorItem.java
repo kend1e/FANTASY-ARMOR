@@ -45,9 +45,19 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
     private ItemAttributeModifiers cachedModifiers;
 
     protected FAArmorItem(FAArmorSet armorSet, Type type, Supplier<FAArmorAttributes> attributesSupplier) {
-        super(ArmorMaterials.NETHERITE, type, new Properties().stacksTo(1).fireResistant());
-        this.armorSet = armorSet;
+        super(
+                ArmorMaterials.NETHERITE,
+                type,
+                new Properties()
+                        .stacksTo(1)
+                        .fireResistant()
+        );        this.armorSet = armorSet;
         this.attributesSupplier = attributesSupplier;
+    }
+
+    @Override
+    public boolean isEnchantable(ItemStack itemStack) {
+        return true;
     }
 
     public static final int DEFAULT_COLOR = 0xA06540;
@@ -95,7 +105,6 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
         });
     }
 
-    @Override
     public ItemAttributeModifiers getDefaultAttributeModifiers() {
         if (!FAConfig.applyModifiers) {
             return super.getDefaultAttributeModifiers();

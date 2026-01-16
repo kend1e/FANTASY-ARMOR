@@ -42,6 +42,41 @@ tasks.register("generateTagsData") {
     }
 }
 
+tasks.register("generateEnchantableArmorTags") {
+    doLast {
+        val armorSets = getArmorSets() ?: return@doLast
+
+        val partToTagFile = linkedMapOf(
+            "helmet" to "head_armor.json",
+            "chestplate" to "chest_armor.json",
+            "leggings" to "leg_armor.json",
+            "boots" to "foot_armor.json",
+        )
+
+        val outputDir = File(enchantableOutputDir)
+        outputDir.mkdirs()
+
+        partToTagFile.forEach { (part, tagFileName) ->
+            val values = armorSets.map { armorSet -> "\"$modID:${armorSet}_${part}\"" }
+
+            val jsonText = buildString {
+                append("{\n")
+                append("  \"replace\": false,\n")
+                append("  \"values\": [\n")
+                append(values.joinToString(",\n") { "    $it" })
+                append("\n  ]\n")
+                append("}\n")
+            }
+
+            val outFile = File(outputDir, tagFileName)
+            outFile.parentFile.mkdirs()
+            outFile.writeText(jsonText)
+
+            println("Generated enchantable tag: ${outFile.path} for part [$part] (${values.size} entries)")
+        }
+    }
+}
+
 //----------------------------------------------------------------------------------------------------------------------
 
 tasks.register("generateSharedItemModels") {
@@ -85,6 +120,7 @@ val itemModelsTemplatesDir = "$itemModelsInfoDir${File.separator}templates"
 val itemModelsOutputDir = "shared${File.separator}resources${File.separator}item_models"
 val tagsOutputDir = "shared${File.separator}resources${File.separator}tags"
 val dyeableTagFile = "${tagsOutputDir}${File.separator}dyeable.json"
+val enchantableOutputDir = "shared${File.separator}resources${File.separator}tags${File.separator}enchantable"
 
 val itemIdKey = "ITEM_ID"
 val templateItemKey = "TEMPLATE_ITEM"

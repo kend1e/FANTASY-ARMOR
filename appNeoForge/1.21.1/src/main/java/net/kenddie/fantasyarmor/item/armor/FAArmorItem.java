@@ -50,6 +50,11 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
         this.attributesSupplier = attributesSupplier;
     }
 
+    @Override
+    public boolean isEnchantable(ItemStack stack) {
+        return true;
+    }
+
     public static final int DEFAULT_COLOR = 0xA06540;
 
     public boolean hasCustomColor(ItemStack stack) {
