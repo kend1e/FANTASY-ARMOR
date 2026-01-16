@@ -3,9 +3,6 @@ import kotlin.text.replace
 
 plugins {
     id("idea")
-    alias(libs.plugins.forgeGradle) apply false
-    alias(libs.plugins.parchmentLibrarian) apply false
-    alias(libs.plugins.spongePoweredMixin) apply false
 }
 
 // TODO : Cleanup
