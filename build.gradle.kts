@@ -1,4 +1,5 @@
 import groovy.json.JsonSlurper
+import javax.swing.plaf.basic.BasicHTML.propertyKey
 import kotlin.text.replace
 
 plugins {
@@ -104,6 +105,48 @@ tasks.register("generateSharedItemDefinitions") {
     }
 }
 
+tasks.register("generateSharedDyedItemDefinitions") {
+    doLast {
+        val armorSets = getArmorSets() ?: return@doLast
+
+        val outputDir = File(itemDefinitionsOutputDir)
+        outputDir.mkdirs()
+
+        armorSets.forEach { armorSet ->
+            armorParts.forEach { armorPart ->
+                val itemId = "${armorSet}_${armorPart}"
+
+                val jsonText = buildString {
+                    append("{\n")
+                    append("  \"$modelKey\": {\n")
+                    append("    \"$typeKey\": \"$conditionTypeValue\",\n")
+                    append("    \"$propertyKey\": \"$componentPropertyValue\",\n")
+                    append("    \"$componentKey\": \"$dyedColorComponentValue\",\n")
+                    append("    \"$onTrueKey\": {\n")
+                    append("      \"$typeKey\": \"$modelTypeValue\",\n")
+                    append("      \"$modelKey\": \"$modID:$itemModelPrefix/${itemId}_dyed\",\n")
+                    append("      \"$tintsKey\": [\n")
+                    append("        { \"$typeKey\": \"$tintConstantTypeValue\", \"$valueKey\": $tintWhiteValue },\n")
+                    append("        { \"$typeKey\": \"$tintDyeTypeValue\", \"$defaultKey\": $tintWhiteValue }\n")
+                    append("      ]\n")
+                    append("    },\n")
+                    append("    \"$onFalseKey\": {\n")
+                    append("      \"$typeKey\": \"$modelTypeValue\",\n")
+                    append("      \"$modelKey\": \"$modID:$itemModelPrefix/$itemId\"\n")
+                    append("    }\n")
+                    append("  }\n")
+                    append("}\n")
+                }
+
+                File("${itemDefinitionsOutputDir}${File.separator}$itemId.json").writeText(jsonText)
+            }
+
+            println("Generated dyed item definitions for [$armorSet]")
+        }
+    }
+}
+
+
 //----------------------------------------------------------------------------------------------------------------------
 
 tasks.register("generateSharedItemModels") {
@@ -149,6 +192,22 @@ val tagsOutputDir = "shared${File.separator}resources${File.separator}tags"
 val dyeableTagFile = "${tagsOutputDir}${File.separator}dyeable.json"
 val enchantableOutputDir = "shared${File.separator}resources${File.separator}tags${File.separator}enchantable"
 val itemDefinitionsOutputDir = "shared${File.separator}resources${File.separator}items"
+
+val propertyKey = "property"
+val componentKey = "component"
+val onTrueKey = "on_true"
+val onFalseKey = "on_false"
+val tintsKey = "tints"
+val defaultKey = "default"
+val valueKey = "value"
+
+val conditionTypeValue = "minecraft:condition"
+val componentPropertyValue = "minecraft:has_component"
+val dyedColorComponentValue = "minecraft:dyed_color"
+
+val tintConstantTypeValue = "minecraft:constant"
+val tintDyeTypeValue = "minecraft:dye"
+val tintWhiteValue = -1
 
 val modelKey = "model"
 val typeKey = "type"

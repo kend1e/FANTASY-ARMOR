@@ -1,6 +1,19 @@
 {
   "model": {
-    "type": "minecraft:model",
-    "model": "fantasy_armor:item/wind_worshipper_boots"
+    "type": "minecraft:condition",
+    "property": "minecraft:has_component",
+    "component": "minecraft:dyed_color",
+    "on_true": {
+      "type": "minecraft:model",
+      "model": "fantasy_armor:item/wind_worshipper_boots_dyed",
+      "tints": [
+        { "type": "minecraft:constant", "value": -1 },
+        { "type": "minecraft:dye", "default": -1 }
+      ]
+    },
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "fantasy_armor:item/wind_worshipper_boots"
+    }
   }
 }
