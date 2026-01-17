@@ -77,6 +77,33 @@ tasks.register("generateEnchantableArmorTags") {
     }
 }
 
+tasks.register("generateSharedItemDefinitions") {
+    doLast {
+        val armorSets = getArmorSets() ?: return@doLast
+
+        val outputDir = File(itemDefinitionsOutputDir)
+        outputDir.mkdirs()
+
+        armorSets.forEach { armorSet ->
+            armorParts.forEach { armorPart ->
+                val itemId = "${armorSet}_${armorPart}"
+
+                val jsonText = buildString {
+                    append("{\n")
+                    append("  \"$modelKey\": {\n")
+                    append("    \"$typeKey\": \"$modelTypeValue\",\n")
+                    append("    \"$modelKey\": \"$modID:$itemModelPrefix/$itemId\"\n")
+                    append("  }\n")
+                    append("}\n")
+                }
+
+                File("${itemDefinitionsOutputDir}${File.separator}$itemId.json").writeText(jsonText)
+            }
+            println("Generated item definitions for [$armorSet]")
+        }
+    }
+}
+
 //----------------------------------------------------------------------------------------------------------------------
 
 tasks.register("generateSharedItemModels") {
@@ -121,6 +148,12 @@ val itemModelsOutputDir = "shared${File.separator}resources${File.separator}item
 val tagsOutputDir = "shared${File.separator}resources${File.separator}tags"
 val dyeableTagFile = "${tagsOutputDir}${File.separator}dyeable.json"
 val enchantableOutputDir = "shared${File.separator}resources${File.separator}tags${File.separator}enchantable"
+val itemDefinitionsOutputDir = "shared${File.separator}resources${File.separator}items"
+
+val modelKey = "model"
+val typeKey = "type"
+val modelTypeValue = "minecraft:model"
+val itemModelPrefix = "item"
 
 val itemIdKey = "ITEM_ID"
 val templateItemKey = "TEMPLATE_ITEM"
