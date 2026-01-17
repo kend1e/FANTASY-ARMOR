@@ -37,9 +37,9 @@ public class FAArmorRenderer<T extends FAArmorItem, R extends HumanoidRenderStat
         super(model);
         this.hasOverlayTextureFile = hasOverlayTextureFile;
 
-        if (hasOverlayTextureFile) {
-            this.withRenderLayer(r -> new FADyeableTextureLayer<>((GeoArmorRenderer) r));
-        }
+//        if (hasOverlayTextureFile) {
+//            this.withRenderLayer(r -> new FADyeableTextureLayer<>((GeoArmorRenderer) r));
+//        }
     }
 
     @Override
