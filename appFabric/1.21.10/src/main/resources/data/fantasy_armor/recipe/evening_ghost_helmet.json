@@ -1,16 +1,8 @@
 {
     "type": "minecraft:smithing_transform",
     "category": "equipment",
-    "template": {
-        "item": "minecraft:dried_kelp"
-    },
-    "base": {
-        "item": "minecraft:netherite_helmet"
-    },
-    "addition": {
-        "item": "fantasy_armor:moon_crystal"
-    },
-    "result": {
-        "id": "fantasy_armor:evening_ghost_helmet"
-    }
+    "template": "minecraft:dried_kelp",
+    "base": "minecraft:netherite_helmet",
+    "addition": "fantasy_armor:moon_crystal",
+    "result": "fantasy_armor:evening_ghost_helmet"
 }

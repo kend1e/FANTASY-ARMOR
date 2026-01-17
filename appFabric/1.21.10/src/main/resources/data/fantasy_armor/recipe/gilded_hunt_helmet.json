@@ -1,16 +1,8 @@
 {
     "type": "minecraft:smithing_transform",
     "category": "equipment",
-    "template": {
-        "item": "minecraft:raw_gold"
-    },
-    "base": {
-        "item": "minecraft:netherite_helmet"
-    },
-    "addition": {
-        "item": "fantasy_armor:moon_crystal"
-    },
-    "result": {
-        "id": "fantasy_armor:gilded_hunt_helmet"
-    }
+    "template": "minecraft:raw_gold",
+    "base": "minecraft:netherite_helmet",
+    "addition": "fantasy_armor:moon_crystal",
+    "result": "fantasy_armor:gilded_hunt_helmet"
 }

@@ -4,7 +4,7 @@ import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.kenddie.fantasyarmor.item.armor.FAArmorAttributes;
 import net.kenddie.fantasyarmor.item.armor.FAArmorSet;
-import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.equipment.ArmorType;
 
 import java.util.function.Supplier;
 
@@ -12,6 +12,9 @@ public final class FAConfigs {
     private static FAArmorEffectsConfig effectsConfig;
     private static FAConfig mainConfig;
     private static FAArmorAttributesConfig armorConfig;
+
+    private FAConfigs() {
+    }
 
     public static void init() {
         AutoConfig.register(FAConfig.class, GsonConfigSerializer::new);
@@ -36,7 +39,7 @@ public final class FAConfigs {
         return armorConfig;
     }
 
-    public static Supplier<FAArmorAttributes> armorSupplier(FAArmorSet set, ArmorItem.Type type) {
+    public static Supplier<FAArmorAttributes> armorSupplier(FAArmorSet set, ArmorType type) {
         return () -> armorConfig.getAttributes(set.getName(), type.getName());
     }
 }

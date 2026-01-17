@@ -16,6 +16,10 @@ import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
 
 import java.util.Map;
 
+public class FADyeableGeoLayer{
+
+}
+/*
 public class FADyeableGeoLayer<T extends FAArmorItem> extends GeoRenderLayer<T> {
     protected static final Map<String, ResourceLocation> ARMOR_PATH_CACHE = new Object2ObjectOpenHashMap<>();
 
@@ -70,4 +74,4 @@ public class FADyeableGeoLayer<T extends FAArmorItem> extends GeoRenderLayer<T> 
 
         return ItemRenderer.getArmorFoilBuffer(bufferSource, renderType, enchanted);
     }
-}
+}*/

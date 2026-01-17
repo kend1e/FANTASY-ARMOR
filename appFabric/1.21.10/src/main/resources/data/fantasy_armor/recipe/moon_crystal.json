@@ -6,8 +6,8 @@
         "###"
     ],
     "key": {
-        "#": { "item": "minecraft:glow_ink_sac" },
-        "X": { "item": "minecraft:amethyst_shard" }
+        "#": "minecraft:glow_ink_sac",
+        "X": "minecraft:amethyst_shard"
     },
     "result": { "id": "fantasy_armor:moon_crystal" }
 }

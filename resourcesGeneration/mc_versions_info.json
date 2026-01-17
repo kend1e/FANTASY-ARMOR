@@ -7,5 +7,8 @@
   },
   "1.21.1": {
     "recipes_dir": "recipe"
+  },
+  "1.21.10": {
+    "recipes_dir": "recipe"
   }
 }

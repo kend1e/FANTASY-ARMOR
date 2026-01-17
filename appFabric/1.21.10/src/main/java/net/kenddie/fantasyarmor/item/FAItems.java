@@ -3,27 +3,36 @@ package net.kenddie.fantasyarmor.item;
 import net.kenddie.fantasyarmor.FantasyArmor;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.function.Function;
 
 public final class FAItems {
     public static final Collection<Item> ITEMS = new ArrayList<>();
 
-    public static final Item MOON_CRYSTAL = new Item(new Item.Properties());
+    public static Item MOON_CRYSTAL;
 
     private FAItems() {
     }
 
     public static void register() {
-        register("moon_crystal", MOON_CRYSTAL);
+        MOON_CRYSTAL = register("moon_crystal", Item::new);
     }
 
-    private static void register(String name, Item item) {
+    private static Item register(String name, Function<Item.Properties, Item> factory) {
         ResourceLocation id = ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, name);
-        Registry.register(BuiltInRegistries.ITEM, id, item);
-        ITEMS.add(item);
+        ResourceKey<Item> key = ResourceKey.create(BuiltInRegistries.ITEM.key(), id);
+
+        Item.Properties props = new Item.Properties().setId(key);
+        Item item = factory.apply(props);
+
+        Item registered = Registry.register(BuiltInRegistries.ITEM, key, item);
+        ITEMS.add(registered);
+
+        return registered;
     }
 }

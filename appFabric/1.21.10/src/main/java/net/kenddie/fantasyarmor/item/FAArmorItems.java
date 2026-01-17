@@ -7,9 +7,10 @@ import net.kenddie.fantasyarmor.item.armor.FAArmorItem;
 import net.kenddie.fantasyarmor.item.armor.FAArmorSet;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.equipment.ArmorType;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -19,32 +20,37 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public final class FAArmorItems {
-    public static final ArrayList<ArmorItem.Type> VALID_ARMOR_TYPES = new ArrayList<>(List.of(
-            ArmorItem.Type.HELMET,
-            ArmorItem.Type.CHESTPLATE,
-            ArmorItem.Type.LEGGINGS,
-            ArmorItem.Type.BOOTS
+    public static final ArrayList<ArmorType> VALID_ARMOR_TYPES = new ArrayList<>(List.of(
+            ArmorType.HELMET,
+            ArmorType.CHESTPLATE,
+            ArmorType.LEGGINGS,
+            ArmorType.BOOTS
     ));
-    // EnumEntry -> (ArmorPiece -> Item)
-    public static final Map<FAArmorSet, Map<ArmorItem.Type, Item>> ARMOR_ITEMS = new HashMap<>();
+
+    // ArmorSet -> (ArmorType -> Item)
+    public static final Map<FAArmorSet, Map<ArmorType, Item>> ARMOR_ITEMS = new HashMap<>();
+
+    private FAArmorItems() {
+    }
 
     public static void init() {
         for (FAArmorSet set : FAArmorSet.values()) {
-            Map<ArmorItem.Type, Item> setPieces = new EnumMap<>(ArmorItem.Type.class);
+            Map<ArmorType, Item> setPieces = new EnumMap<>(ArmorType.class);
 
-            for (ArmorItem.Type type : VALID_ARMOR_TYPES) {
+            for (ArmorType type : VALID_ARMOR_TYPES) {
                 String name = set.getName() + "_" + type.getName();
-                Supplier<FAArmorAttributes> attributesSupplier = FAConfigs.armorSupplier(set, type);
-                FAArmorItem item = set.create(type, attributesSupplier);
 
                 ResourceLocation id = ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, name);
-                Item registered = Registry.register(
-                        BuiltInRegistries.ITEM,
-                        id,
-                        item
-                );
+                ResourceKey<Item> key = ResourceKey.create(BuiltInRegistries.ITEM.key(), id);
 
-                FAItems.ITEMS.add(item);
+                Item.Properties props = new Item.Properties().setId(key);
+
+                Supplier<FAArmorAttributes> attributesSupplier = FAConfigs.armorSupplier(set, type);
+                FAArmorItem item = set.create(type, attributesSupplier, props);
+
+                Item registered = Registry.register(BuiltInRegistries.ITEM, key, item);
+
+                FAItems.ITEMS.add(registered);
                 setPieces.put(type, registered);
             }
 
@@ -52,9 +58,17 @@ public final class FAArmorItems {
         }
     }
 
-    public static Item getArmorItem(FAArmorSet set, ArmorItem.Type type) {
-        return ARMOR_ITEMS.get(set).get(type);
-    }
+    public static Item getArmorItem(FAArmorSet set, ArmorType type) {
+        Map<ArmorType, Item> pieces = ARMOR_ITEMS.get(set);
+        if (pieces == null) {
+            throw new IllegalStateException("Armor set not registered: " + set.getName());
+        }
 
-    private FAArmorItems() {}
+        Item item = pieces.get(type);
+        if (item == null) {
+            throw new IllegalStateException("Armor piece not registered: " + set.getName() + " / " + type.getName());
+        }
+
+        return item;
+    }
 }

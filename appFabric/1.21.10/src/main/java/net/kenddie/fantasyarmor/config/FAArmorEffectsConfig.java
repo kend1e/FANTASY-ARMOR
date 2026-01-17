@@ -167,7 +167,7 @@ public class FAArmorEffectsConfig implements ConfigData {
         for (EffectEntry e : list) {
             ResourceLocation id = ResourceLocation.parse(e.id);
 
-            Optional<Holder.Reference<MobEffect>> holderOpt = BuiltInRegistries.MOB_EFFECT.getHolder(id);
+            Optional<Holder.Reference<MobEffect>> holderOpt = BuiltInRegistries.MOB_EFFECT.get(id);
             if (holderOpt.isEmpty()) continue;
             Holder<MobEffect> effectHolder = holderOpt.get();
 

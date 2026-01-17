@@ -1,16 +1,8 @@
 {
     "type": "minecraft:smithing_transform",
     "category": "equipment",
-    "template": {
-        "item": "minecraft:ghast_tear"
-    },
-    "base": {
-        "item": "minecraft:netherite_boots"
-    },
-    "addition": {
-        "item": "fantasy_armor:moon_crystal"
-    },
-    "result": {
-        "id": "fantasy_armor:malenia_boots"
-    }
+    "template": "minecraft:ghast_tear",
+    "base": "minecraft:netherite_boots",
+    "addition": "fantasy_armor:moon_crystal",
+    "result": "fantasy_armor:malenia_boots"
 }

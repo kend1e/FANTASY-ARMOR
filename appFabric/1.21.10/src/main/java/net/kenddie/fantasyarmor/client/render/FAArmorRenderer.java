@@ -1,186 +1,184 @@
 package net.kenddie.fantasyarmor.client.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.kenddie.fantasyarmor.FantasyArmor;
 import net.kenddie.fantasyarmor.config.FAConfigs;
 import net.kenddie.fantasyarmor.item.armor.FAArmorItem;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.OrderedSubmitNodeCollector;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.state.AvatarRenderState;
+import net.minecraft.client.renderer.state.CameraRenderState;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.DyedItemColor;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.cache.object.GeoBone;
+import software.bernie.geckolib.constant.DataTickets;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;
-import software.bernie.geckolib.util.Color;
-import software.bernie.geckolib.util.RenderUtil;
+import software.bernie.geckolib.renderer.base.GeoRenderState;
+import software.bernie.geckolib.renderer.base.RenderModelPositioner;
 
-public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> {
-    protected GeoBone cape = null;
-    protected GeoBone frontCape = null;
-    protected GeoBone leftLegCloth = null;
-    protected GeoBone rightLegCloth = null;
-    protected GeoBone braid = null;
+import java.util.Optional;
 
-    public FAArmorRenderer(GeoModel<T> model, boolean dyeable) {
+/**
+ * GeckoLib 5+ compatible armor renderer.
+ * Important: in 1.21.10 vanilla is state-based (AvatarRenderState etc),
+ * and GeckoLib 5 builds submit tasks instead of immediate rendering.
+ */
+public class FAArmorRenderer<T extends FAArmorItem, R extends net.minecraft.client.renderer.entity.state.HumanoidRenderState & GeoRenderState>
+        extends GeoArmorRenderer<T, R> {
+
+    private final boolean hasOverlayTextureFile;
+
+    private ItemStack currentStack = ItemStack.EMPTY;
+    private EquipmentSlot currentSlot = EquipmentSlot.CHEST;
+    private LivingEntity currentEntity = null;
+
+    public FAArmorRenderer(GeoModel<T> model, boolean hasOverlayTextureFile) {
         super(model);
+        this.hasOverlayTextureFile = hasOverlayTextureFile;
+    }
 
-        if (dyeable) addRenderLayer(new FADyeableGeoLayer<>(this));
+    public ItemStack getCurrentStack() {
+        return currentStack;
     }
 
     @Override
-    public Color getRenderColor(T animatable, float partialTick, int packedLight) {
-        return Color.WHITE;
-    }
+    public R captureDefaultRenderState(T animatable, RenderData renderData, R renderState, float partialTick) {
+        R out = super.captureDefaultRenderState(animatable, renderData, renderState, partialTick);
 
-    @Nullable
-    public GeoBone getCapeBone(GeoModel<T> model) {
-        return model.getBone("armorCape").orElse(null);
-    }
+        this.currentStack = renderData.itemStack();
+        this.currentSlot = renderData.slot();
+        this.currentEntity = renderData.entity();
 
-    @Nullable
-    public GeoBone getFrontCapeBone(GeoModel<T> model) {
-        return model.getBone("armorFrontCape").orElse(null);
-    }
-
-    @Nullable
-    public GeoBone getLeftLegClothBone(GeoModel<T> model) {
-        return model.getBone("armorLeftLegCloth").orElse(null);
-    }
-
-    @Nullable
-    public GeoBone getRightLegClothBone(GeoModel<T> model) {
-        return model.getBone("armorRightLegCloth").orElse(null);
-    }
-
-    @Nullable
-    public GeoBone getBraidBone(GeoModel<T> model) {
-        return model.getBone("armorBraid").orElse(null);
+        return out;
     }
 
     @Override
-    protected void grabRelevantBones(BakedGeoModel bakedModel) {
-        super.grabRelevantBones(bakedModel);
+    public void buildRenderTask(
+            R renderState,
+            PoseStack poseStack,
+            BakedGeoModel bakedModel,
+            GeoModel<T> model,
+            OrderedSubmitNodeCollector renderTasks,
+            CameraRenderState cameraState,
+            @Nullable RenderType renderType,
+            int packedLight,
+            int packedOverlay,
+            int renderColor,
+            @Nullable RenderModelPositioner<R> modelPositioner
+    ) {
+        if (renderType == null) return;
 
-        GeoModel<T> model = getGeoModel();
-        cape = getCapeBone(model);
-        frontCape = getFrontCapeBone(model);
-        leftLegCloth = getLeftLegClothBone(model);
-        rightLegCloth = getRightLegClothBone(model);
-        braid = getBraidBone(model);
+        RenderModelPositioner<R> callback = RenderModelPositioner.add(modelPositioner, (rs, bm) -> {
+            model.handleAnimations(createAnimationState(rs));
+
+            applyExtraBones(rs, bakedModel);
+        });
+
+        super.buildRenderTask(renderState, poseStack, bakedModel, model, renderTasks, cameraState, renderType, packedLight, packedOverlay, renderColor, callback);
+
+        if (!hasOverlayTextureFile) return;
+        if (currentStack == null || currentStack.isEmpty()) return;
+        if (!(currentStack.getItem() instanceof FAArmorItem armorItem)) return;
+
+        if (!armorItem.hasCustomColor(currentStack)) return;
+
+        ResourceLocation overlayTex = ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, armorItem.getArmorSet().getOverlayPath());
+        RenderType overlayType = RenderType.armorCutoutNoCull(overlayTex);
+
+        int dyeColor = 0xFF000000 | armorItem.getColor(currentStack);
+
+        super.buildRenderTask(renderState, poseStack, bakedModel, model, renderTasks, cameraState, overlayType, packedLight, packedOverlay, dyeColor, callback);
     }
 
-    @Override
-    protected void applyBoneVisibilityBySlot(EquipmentSlot currentSlot) {
-        super.applyBoneVisibilityBySlot(currentSlot);
+    private void applyExtraBones(R renderState, BakedGeoModel bakedModel) {
+        if (!(currentStack.getItem() instanceof FAArmorItem armorItem)) return;
+
+        final HumanoidModel<?> baseModel = renderState.getGeckolibData(DataTickets.HUMANOID_MODEL);
+        if (baseModel == null) return;
+
+        GeoBone cape = bakedModel.getBone("armorCape").orElse(null);
+        GeoBone frontCape = bakedModel.getBone("armorFrontCape").orElse(null);
+        GeoBone leftLegCloth = bakedModel.getBone("armorLeftLegCloth").orElse(null);
+        GeoBone rightLegCloth = bakedModel.getBone("armorRightLegCloth").orElse(null);
+        GeoBone braid = bakedModel.getBone("armorBraid").orElse(null);
 
         switch (currentSlot) {
             case HEAD -> {
-                setBoneVisible(braid, true);
+                setHiddenSafe(braid, false);
 
-                setBoneVisible(cape, false);
-                setBoneVisible(frontCape, false);
-                setBoneVisible(leftLegCloth, false);
-                setBoneVisible(rightLegCloth, false);
+                setHiddenSafe(cape, true);
+                setHiddenSafe(frontCape, true);
+                setHiddenSafe(leftLegCloth, true);
+                setHiddenSafe(rightLegCloth, true);
             }
             case CHEST -> {
-                setBoneVisible(cape, FAConfigs.getMainConfig().showCapes);
+                setHiddenSafe(cape, !FAConfigs.getMainConfig().showCapes);
 
-                setBoneVisible(frontCape, true);
-                setBoneVisible(leftLegCloth, true);
-                setBoneVisible(rightLegCloth, true);
+                setHiddenSafe(frontCape, false);
+                setHiddenSafe(leftLegCloth, false);
+                setHiddenSafe(rightLegCloth, false);
 
-                setBoneVisible(braid, false);
+                setHiddenSafe(braid, true);
             }
             case LEGS, FEET -> {
-                setBoneVisible(braid, false);
-                setBoneVisible(cape, false);
-                setBoneVisible(frontCape, false);
-                setBoneVisible(leftLegCloth, false);
-                setBoneVisible(rightLegCloth, false);
+                setHiddenSafe(braid, true);
+                setHiddenSafe(cape, true);
+                setHiddenSafe(frontCape, true);
+                setHiddenSafe(leftLegCloth, true);
+                setHiddenSafe(rightLegCloth, true);
             }
-            default -> {}
-        }
-    }
-
-    public void applyBoneVisibilityByPart(EquipmentSlot currentSlot, ModelPart currentPart, HumanoidModel<?> model) {
-        super.applyBoneVisibilityByPart(currentSlot, currentPart, model);
-
-        if(currentPart == model.body) {
-            if (cape != null) cape.setHidden(!FAConfigs.getMainConfig().showCapes);
-            if (frontCape != null) frontCape.setHidden(false);
-            if (leftLegCloth != null) leftLegCloth.setHidden(false);
-            if (rightLegCloth != null) rightLegCloth.setHidden(false);
-        }
-        else if (currentSlot == EquipmentSlot.HEAD) {
-            if (braid != null) braid.setHidden(false);
-        }
-    }
-
-    @Override
-    public void preRender(PoseStack poseStack, T animatable, BakedGeoModel model, @Nullable MultiBufferSource bufferSource, @Nullable VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, int colour) {
-        super.preRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, colour);
-
-        if(frontCape != null) {
-            FARenderUtils.setFrontLegCapeAngle(this, frontCape);
+            default -> { }
         }
 
-        if(cape != null) {
-            if(currentEntity instanceof Player player) {
-                FARenderUtils.applyCapeRotation(player, cape, partialTick);
+        if (cape != null) {
+            ModelPart bodyPart = baseModel.body;
+            float yPos = (currentEntity != null && currentEntity.isCrouching()) ? bodyPart.y - 5.5f : bodyPart.y;
+            cape.updatePosition(bodyPart.x, yPos, bodyPart.z);
+
+            if (currentEntity instanceof Player && renderState instanceof AvatarRenderState avatarState) {
+                FARenderUtils.applyCapeRotation(avatarState, cape);
             } else {
                 cape.updateRotation((float) -Math.toRadians(5.0F), 0.0F, 0.0F);
             }
         }
 
-        if (braid != null && currentEntity instanceof Player player) {
-            FARenderUtils.applyBraidRotation(player, braid, partialTick);
-        }
-    }
-
-    @Override
-    protected void applyBaseTransformations(HumanoidModel<?> baseModel) {
-        super.applyBaseTransformations(baseModel);
-
-        if(cape != null) {
-            ModelPart bodyPart = baseModel.body;
-
-            float yPos = crouching ? bodyPart.y - 5.5f : bodyPart.y;
-
-            cape.updatePosition(bodyPart.x, yPos, bodyPart.z);
-        }
-
-        if(frontCape != null) {
+        if (frontCape != null) {
             ModelPart leftLegPart = baseModel.leftLeg;
-
             frontCape.updatePosition(leftLegPart.x - 1.95f, 13 - leftLegPart.y, leftLegPart.z - 0.1f);
+
+            Optional<GeoBone> leftLegBone = bakedModel.getBone(getBoneNameForSegment(renderState, ArmorSegment.LEFT_LEG));
+            Optional<GeoBone> rightLegBone = bakedModel.getBone(getBoneNameForSegment(renderState, ArmorSegment.RIGHT_LEG));
+            FARenderUtils.setFrontLegCapeAngle(leftLegBone.orElse(null), rightLegBone.orElse(null), frontCape);
         }
 
-        if(leftLegCloth != null) {
+        if (leftLegCloth != null) {
             ModelPart leftLegPart = baseModel.leftLeg;
-
-            RenderUtil.matchModelPartRot(leftLegPart, leftLegCloth);
+            software.bernie.geckolib.util.RenderUtil.matchModelPartRot(leftLegPart, leftLegCloth);
             leftLegCloth.updatePosition(leftLegPart.x - 2, 12 - leftLegPart.y, leftLegPart.z);
         }
 
-        if(rightLegCloth != null) {
+        if (rightLegCloth != null) {
             ModelPart rightLegPart = baseModel.rightLeg;
-
-            RenderUtil.matchModelPartRot(rightLegPart, rightLegCloth);
+            software.bernie.geckolib.util.RenderUtil.matchModelPartRot(rightLegPart, rightLegCloth);
             rightLegCloth.updatePosition(rightLegPart.x + 2, 12 - rightLegPart.y, rightLegPart.z);
+        }
+
+        if (braid != null && currentEntity instanceof Player && renderState instanceof AvatarRenderState avatarState) {
+            FARenderUtils.applyBraidRotation(avatarState, braid);
         }
     }
 
-    @Override
-    public void setAllVisible(boolean pVisible) {
-        super.setAllVisible(pVisible);
-
-        setBoneVisible(cape, pVisible && FAConfigs.getMainConfig().showCapes);
-        setBoneVisible(frontCape, pVisible);
-        setBoneVisible(leftLegCloth, pVisible);
-        setBoneVisible(rightLegCloth, pVisible);
-        setBoneVisible(braid, pVisible);
+    private static void setHiddenSafe(@Nullable GeoBone bone, boolean hidden) {
+        if (bone != null) bone.setHidden(hidden);
     }
 }

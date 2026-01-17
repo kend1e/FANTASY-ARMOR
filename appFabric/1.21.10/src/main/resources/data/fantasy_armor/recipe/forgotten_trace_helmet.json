@@ -1,16 +1,8 @@
 {
     "type": "minecraft:smithing_transform",
     "category": "equipment",
-    "template": {
-        "item": "minecraft:prismarine_crystals"
-    },
-    "base": {
-        "item": "minecraft:netherite_helmet"
-    },
-    "addition": {
-        "item": "fantasy_armor:moon_crystal"
-    },
-    "result": {
-        "id": "fantasy_armor:forgotten_trace_helmet"
-    }
+    "template": "minecraft:prismarine_crystals",
+    "base": "minecraft:netherite_helmet",
+    "addition": "fantasy_armor:moon_crystal",
+    "result": "fantasy_armor:forgotten_trace_helmet"
 }

@@ -1,16 +1,8 @@
 {
     "type": "minecraft:smithing_transform",
     "category": "equipment",
-    "template": {
-        "item": "minecraft:coal"
-    },
-    "base": {
-        "item": "minecraft:netherite_leggings"
-    },
-    "addition": {
-        "item": "fantasy_armor:moon_crystal"
-    },
-    "result": {
-        "id": "fantasy_armor:dark_cover_leggings"
-    }
+    "template": "minecraft:coal",
+    "base": "minecraft:netherite_leggings",
+    "addition": "fantasy_armor:moon_crystal",
+    "result": "fantasy_armor:dark_cover_leggings"
 }

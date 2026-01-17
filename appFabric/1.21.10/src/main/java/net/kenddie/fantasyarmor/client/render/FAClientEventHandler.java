@@ -5,24 +5,40 @@ import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.kenddie.fantasyarmor.FantasyArmor;
 import net.kenddie.fantasyarmor.item.FAArmorItems;
 import net.kenddie.fantasyarmor.item.armor.FAArmorSet;
-import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.component.DyedItemColor;
+import net.minecraft.world.item.equipment.ArmorType;
 
 public class FAClientEventHandler implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        registerItemColors();
-        registerDyedPredicate();
+
+    }
+
+/*
+    private static void registerItemColors() {
+        for (FAArmorSet set : FAArmorSet.values()) {
+            for (ArmorType type : FAArmorItems.VALID_ARMOR_TYPES) {
+                Item item = FAArmorItems.getArmorItem(set, type);
+
+                ColorProviderRegistryItem.ITEM.register((stack, tintIndex) -> {
+                    if (tintIndex != 1) return 0xFFFFFFFF;
+
+                    DyedItemColor color = stack.get(DataComponents.DYED_COLOR);
+                    if (color == null) return 0xFFFFFFFF;
+
+                    return 0xFF000000 | color.rgb();
+                }, item);
+            }
+        }
     }
 
     private static void registerItemColors() {
         for (FAArmorSet set : FAArmorSet.values()) {
-            for (ArmorItem.Type type : FAArmorItems.VALID_ARMOR_TYPES) {
+            for (ArmorType type : FAArmorItems.VALID_ARMOR_TYPES) {
                 Item item = FAArmorItems.getArmorItem(set, type);
 
                 ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {
@@ -41,7 +57,7 @@ public class FAClientEventHandler implements ClientModInitializer {
         ResourceLocation id = ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, "dyed");
 
         for (FAArmorSet set : FAArmorSet.values()) {
-            for (ArmorItem.Type type : FAArmorItems.VALID_ARMOR_TYPES) {
+            for (ArmorType type : FAArmorItems.VALID_ARMOR_TYPES) {
                 Item item = FAArmorItems.getArmorItem(set, type);
 
                 ItemProperties.register(item, id, (stack, level, entity, seed) -> {
@@ -49,5 +65,5 @@ public class FAClientEventHandler implements ClientModInitializer {
                 });
             }
         }
-    }
+    }*/
 }

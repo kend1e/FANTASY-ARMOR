@@ -1,16 +1,8 @@
 {
     "type": "minecraft:smithing_transform",
     "category": "equipment",
-    "template": {
-        "item": "minecraft:quartz"
-    },
-    "base": {
-        "item": "minecraft:netherite_chestplate"
-    },
-    "addition": {
-        "item": "fantasy_armor:moon_crystal"
-    },
-    "result": {
-        "id": "fantasy_armor:twinned_chestplate"
-    }
+    "template": "minecraft:quartz",
+    "base": "minecraft:netherite_chestplate",
+    "addition": "fantasy_armor:moon_crystal",
+    "result": "fantasy_armor:twinned_chestplate"
 }

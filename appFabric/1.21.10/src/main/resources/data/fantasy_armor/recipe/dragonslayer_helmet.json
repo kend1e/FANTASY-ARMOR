@@ -1,16 +1,8 @@
 {
     "type": "minecraft:smithing_transform",
     "category": "equipment",
-    "template": {
-        "item": "minecraft:nether_wart"
-    },
-    "base": {
-        "item": "minecraft:netherite_helmet"
-    },
-    "addition": {
-        "item": "fantasy_armor:moon_crystal"
-    },
-    "result": {
-        "id": "fantasy_armor:dragonslayer_helmet"
-    }
+    "template": "minecraft:nether_wart",
+    "base": "minecraft:netherite_helmet",
+    "addition": "fantasy_armor:moon_crystal",
+    "result": "fantasy_armor:dragonslayer_helmet"
 }

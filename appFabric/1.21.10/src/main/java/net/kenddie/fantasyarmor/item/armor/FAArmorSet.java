@@ -1,6 +1,8 @@
 package net.kenddie.fantasyarmor.item.armor;
 
-import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.equipment.ArmorType;
+import org.apache.commons.lang3.function.TriFunction;
 
 import java.util.function.Supplier;
 
@@ -35,25 +37,20 @@ public enum FAArmorSet {
     GRAVE_SENTINEL(FAArmorSets.GraveSentinelArmorItem::new),
     ORNSTEIN(FAArmorSets.OrnsteinArmorItem::new);
 
-    private final TriFunction<FAArmorSet, ArmorItem.Type, Supplier<FAArmorAttributes>, FAArmorItem> factory;
+    private final QuadFunction<FAArmorSet, ArmorType, Supplier<FAArmorAttributes>, Item.Properties, FAArmorItem> factory;
     private final String name;
 
-    FAArmorSet(TriFunction<FAArmorSet, ArmorItem.Type, Supplier<FAArmorAttributes>, FAArmorItem> factory) {
+    FAArmorSet(QuadFunction<FAArmorSet, ArmorType, Supplier<FAArmorAttributes>, Item.Properties, FAArmorItem> factory) {
         this.factory = factory;
         this.name = name().toLowerCase();
-    }
-
-    FAArmorSet(TriFunction<FAArmorSet, ArmorItem.Type, Supplier<FAArmorAttributes>, FAArmorItem> factory, String name) {
-        this.factory = factory;
-        this.name = name;
     }
 
     public String getName() {
         return name;
     }
 
-    public FAArmorItem create(ArmorItem.Type type, Supplier<FAArmorAttributes> attributesSupplier) {
-        return factory.apply(this, type, attributesSupplier);
+    public FAArmorItem create(ArmorType type, Supplier<FAArmorAttributes> attributesSupplier, Item.Properties properties) {
+        return factory.apply(this, type, attributesSupplier, properties);
     }
 
     public String getGeoPath() {
@@ -69,7 +66,7 @@ public enum FAArmorSet {
     }
 
     @FunctionalInterface
-    public interface TriFunction<A, B, C, R> {
-        R apply(A a, B b, C c);
+    public interface QuadFunction<A, B, C, D, R> {
+        R apply(A a, B b, C c, D d);
     }
 }
