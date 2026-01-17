@@ -10,12 +10,11 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.OrderedSubmitNodeCollector;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.state.AvatarRenderState;
+import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
@@ -24,43 +23,61 @@ import software.bernie.geckolib.constant.DataTickets;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;
 import software.bernie.geckolib.renderer.base.GeoRenderState;
+import software.bernie.geckolib.renderer.base.GeoRenderer;
 import software.bernie.geckolib.renderer.base.RenderModelPositioner;
 import software.bernie.geckolib.util.RenderUtil;
 
 import java.util.Optional;
 
-public class FAArmorRenderer<T extends FAArmorItem, R extends net.minecraft.client.renderer.entity.state.HumanoidRenderState & GeoRenderState>
+public class FAArmorRenderer<T extends FAArmorItem, R extends HumanoidRenderState & GeoRenderState>
         extends GeoArmorRenderer<T, R> {
 
     private final boolean hasOverlayTextureFile;
 
-    private ItemStack currentStack = ItemStack.EMPTY;
-    private EquipmentSlot currentSlot = EquipmentSlot.CHEST;
-    private LivingEntity currentEntity = null;
-
     public FAArmorRenderer(GeoModel<T> model, boolean hasOverlayTextureFile) {
         super(model);
         this.hasOverlayTextureFile = hasOverlayTextureFile;
+
+        if (hasOverlayTextureFile) {
+            //noinspection unchecked,rawtypes
+            this.withRenderLayer(r -> new FADyeableGeoLayer<>((GeoArmorRenderer) r));
+        }
     }
 
-    public ItemStack getCurrentStack() {
-        return currentStack;
+    @Override
+    public int getRenderColor(T animatable, RenderData renderData, float partialTick) {
+        // Base pass must not be tinted. Overlay pass uses tintColor from RenderState in the layer.
+        if (!hasOverlayTextureFile)
+            return 0xFFFFFFFF;
+
+        if (!animatable.hasCustomColor(renderData.itemStack()))
+            return 0xFFFFFFFF;
+
+        return 0xFF000000 | animatable.getColor(renderData.itemStack());
     }
 
     @Override
     public R captureDefaultRenderState(T animatable, RenderData renderData, R renderState, float partialTick) {
         R out = super.captureDefaultRenderState(animatable, renderData, renderState, partialTick);
 
-        this.currentStack = renderData.itemStack();
-        this.currentSlot = renderData.slot();
-        this.currentEntity = renderData.entity();
+        if (!hasOverlayTextureFile)
+            return out;
+
+        boolean dyed = animatable.hasCustomColor(renderData.itemStack());
+        out.addGeckolibData(FADyeableGeoLayer.HAS_DYE_TICKET, dyed);
+
+        if (dyed) {
+            int dyeColor = 0xFF000000 | animatable.getColor(renderData.itemStack());
+            out.addGeckolibData(FADyeableGeoLayer.DYE_COLOR_TICKET, dyeColor);
+
+            ResourceLocation overlayTex = ResourceLocation.fromNamespaceAndPath(
+                    FantasyArmor.MOD_ID,
+                    animatable.getArmorSet().getOverlayPath()
+            );
+            out.addGeckolibData(FADyeableGeoLayer.OVERLAY_TEX_TICKET, overlayTex);
+        }
 
         return out;
-    }
-
-    @Override
-    public int getRenderColor(T animatable, RenderData stackAndSlot, float partialTick) {
-        return 0xFFFFFFFF;
     }
 
     @Override
@@ -77,145 +94,67 @@ public class FAArmorRenderer<T extends FAArmorItem, R extends net.minecraft.clie
             int renderColor,
             @Nullable RenderModelPositioner<R> modelPositioner
     ) {
-        if (renderType == null) return;
-
-        final EquipmentSlot slot = renderState.getGeckolibData(DataTickets.EQUIPMENT_SLOT);
-        final HumanoidModel<R> baseModel = renderState.getGeckolibData(DataTickets.HUMANOID_MODEL);
-        if (baseModel == null) return;
-
-        final boolean dyed = isDyed();
+        if (renderType == null)
+            return;
 
         RenderModelPositioner<R> callback = RenderModelPositioner.add(modelPositioner, (rs, bm) -> {
             model.handleAnimations(createAnimationState(rs));
-            applyExtraBones(rs, bakedModel);
+            applyExtraBonesStatic(rs, bakedModel);
         });
 
         renderTasks.submitCustomGeometry(poseStack, renderType, (pose, vertexConsumer) -> {
-            final PoseStack poseStack2 = new PoseStack();
-            poseStack2.last().set(pose);
+            final EquipmentSlot slot = renderState.getGeckolibData(DataTickets.EQUIPMENT_SLOT);
+
+            final HumanoidModel<?> baseModelAny = renderState.getGeckolibData(DataTickets.HUMANOID_MODEL);
+            if (baseModelAny == null)
+                return;
+
+            @SuppressWarnings("unchecked")
+            final HumanoidModel<R> baseModel = (HumanoidModel<R>) baseModelAny;
+
+            final PoseStack localPose = new PoseStack();
+            localPose.last().set(pose);
 
             callback.run(renderState, bakedModel);
-
             baseModel.setupAnim(renderState);
 
+            // Render standard segments (this will also render their children automatically)
             for (ArmorSegment segment : getSegmentsForSlot(renderState, slot)) {
                 bakedModel.getBone(getBoneNameForSegment(renderState, segment)).ifPresent(bone -> {
                     ModelPart modelPart = segment.modelPartGetter.apply(baseModel);
+                    Vector3f bonePos = segment.modelPartMatcher.apply(new Vector3f(modelPart.x, modelPart.y, modelPart.z));
 
                     RenderUtil.matchModelPartRot(modelPart, bone);
-
-                    Vector3f bonePos = segment.modelPartMatcher.apply(new Vector3f(modelPart.x, modelPart.y, modelPart.z));
                     bone.updatePosition(bonePos.x, bonePos.y, bonePos.z);
 
-                    renderBone(renderState, poseStack2, bone, vertexConsumer, cameraState, packedLight, packedOverlay, renderColor);
+                    // Base pass must be white
+                    renderBone(renderState, localPose, bone, vertexConsumer, cameraState, packedLight, packedOverlay, 0xFFFFFFFF);
                 });
             }
 
-            if (!dyed) {
-                renderExtraBones(renderState, bakedModel, poseStack2, vertexConsumer, cameraState, packedLight, packedOverlay, renderColor);
-            }
-        });
-
-        submitOverlayPass(renderState, poseStack, bakedModel, model, renderTasks, cameraState, packedLight, packedOverlay, modelPositioner);
-    }
-
-    private void submitOverlayPass(
-            R renderState,
-            PoseStack poseStack,
-            BakedGeoModel bakedModel,
-            GeoModel<T> model,
-            OrderedSubmitNodeCollector renderTasks,
-            CameraRenderState cameraState,
-            int packedLight,
-            int packedOverlay,
-            @Nullable RenderModelPositioner<R> modelPositioner
-    ) {
-        if (!hasOverlayTextureFile) return;
-        if (!isDyed()) return;
-
-        final FAArmorItem armorItem = (FAArmorItem) currentStack.getItem();
-
-        ResourceLocation overlayTex = ResourceLocation.fromNamespaceAndPath(
-                FantasyArmor.MOD_ID, armorItem.getArmorSet().getOverlayPath()
-        );
-        RenderType overlayType = RenderType.armorCutoutNoCull(overlayTex);
-
-        int dyeColor = 0xFF000000 | armorItem.getColor(currentStack);
-
-        RenderModelPositioner<R> callback = RenderModelPositioner.add(modelPositioner, (rs, bm) -> {
-            model.handleAnimations(createAnimationState(rs));
-            applyExtraBones(rs, bakedModel);
-        });
-
-        super.buildRenderTask(
-                renderState,
-                poseStack,
-                bakedModel,
-                model,
-                renderTasks,
-                cameraState,
-                overlayType,
-                packedLight,
-                packedOverlay,
-                dyeColor,
-                callback
-        );
-
-        renderTasks.submitCustomGeometry(poseStack, overlayType, (pose, vertexConsumer) -> {
-            final PoseStack poseStack2 = new PoseStack();
-            poseStack2.last().set(pose);
-
-            callback.run(renderState, bakedModel);
-
-            renderExtraBones(renderState, bakedModel, poseStack2, vertexConsumer, cameraState, packedLight, packedOverlay, dyeColor);
+            // Render extra bones ONLY if they are NOT already children of rendered segment roots
+            renderExtraBonesStatic(
+                    this, renderState, localPose, bakedModel, vertexConsumer, cameraState,
+                    packedLight, packedOverlay, 0xFFFFFFFF,
+                    slot,
+                    false // do not force; skip descendants to avoid duplicates
+            );
         });
     }
 
-    private boolean isDyed() {
-        if (!hasOverlayTextureFile) return false;
-        if (currentStack == null || currentStack.isEmpty()) return false;
-        if (!(currentStack.getItem() instanceof FAArmorItem armorItem)) return false;
+    // -----------------------------
+    // Shared helpers for base and overlay passes
+    // -----------------------------
 
-        return armorItem.hasCustomColor(currentStack);
-    }
+    public static <R extends HumanoidRenderState & GeoRenderState> void applyExtraBonesStatic(R renderState, BakedGeoModel bakedModel) {
+        final HumanoidModel<?> baseModelAny = renderState.getGeckolibData(DataTickets.HUMANOID_MODEL);
+        if (baseModelAny == null)
+            return;
 
-    private void renderExtraBones(
-            R renderState,
-            BakedGeoModel bakedModel,
-            PoseStack poseStack,
-            VertexConsumer buffer,
-            CameraRenderState cameraState,
-            int packedLight,
-            int packedOverlay,
-            int renderColor
-    ) {
-        renderExtraBone(renderState, bakedModel, "armorCape", poseStack, buffer, cameraState, packedLight, packedOverlay, renderColor);
-        renderExtraBone(renderState, bakedModel, "armorFrontCape", poseStack, buffer, cameraState, packedLight, packedOverlay, renderColor);
-        renderExtraBone(renderState, bakedModel, "armorLeftLegCloth", poseStack, buffer, cameraState, packedLight, packedOverlay, renderColor);
-        renderExtraBone(renderState, bakedModel, "armorRightLegCloth", poseStack, buffer, cameraState, packedLight, packedOverlay, renderColor);
-        renderExtraBone(renderState, bakedModel, "armorBraid", poseStack, buffer, cameraState, packedLight, packedOverlay, renderColor);
-    }
+        @SuppressWarnings("unchecked")
+        final HumanoidModel<R> baseModel = (HumanoidModel<R>) baseModelAny;
 
-    private void renderExtraBone(
-            R renderState,
-            BakedGeoModel bakedModel,
-            String boneName,
-            PoseStack poseStack,
-            VertexConsumer buffer,
-            CameraRenderState cameraState,
-            int packedLight,
-            int packedOverlay,
-            int renderColor
-    ) {
-        bakedModel.getBone(boneName).ifPresent(bone -> {
-            if (bone.isHidden()) return;
-            renderBone(renderState, poseStack, bone, buffer, cameraState, packedLight, packedOverlay, renderColor);
-        });
-    }
-
-    private void applyExtraBones(R renderState, BakedGeoModel bakedModel) {
-        final HumanoidModel<?> baseModel = renderState.getGeckolibData(DataTickets.HUMANOID_MODEL);
-        if (baseModel == null) return;
+        final EquipmentSlot slot = renderState.getGeckolibData(DataTickets.EQUIPMENT_SLOT);
 
         GeoBone cape = bakedModel.getBone("armorCape").orElse(null);
         GeoBone frontCape = bakedModel.getBone("armorFrontCape").orElse(null);
@@ -223,10 +162,9 @@ public class FAArmorRenderer<T extends FAArmorItem, R extends net.minecraft.clie
         GeoBone rightLegCloth = bakedModel.getBone("armorRightLegCloth").orElse(null);
         GeoBone braid = bakedModel.getBone("armorBraid").orElse(null);
 
-        switch (currentSlot) {
+        switch (slot) {
             case HEAD -> {
                 setHiddenSafe(braid, false);
-
                 setHiddenSafe(cape, true);
                 setHiddenSafe(frontCape, true);
                 setHiddenSafe(leftLegCloth, true);
@@ -234,11 +172,9 @@ public class FAArmorRenderer<T extends FAArmorItem, R extends net.minecraft.clie
             }
             case CHEST -> {
                 setHiddenSafe(cape, !FAConfigs.getMainConfig().showCapes);
-
                 setHiddenSafe(frontCape, false);
                 setHiddenSafe(leftLegCloth, false);
                 setHiddenSafe(rightLegCloth, false);
-
                 setHiddenSafe(braid, true);
             }
             case LEGS, FEET -> {
@@ -248,48 +184,146 @@ public class FAArmorRenderer<T extends FAArmorItem, R extends net.minecraft.clie
                 setHiddenSafe(leftLegCloth, true);
                 setHiddenSafe(rightLegCloth, true);
             }
-            default -> { }
+            default -> {}
         }
 
-        if (cape != null) {
+        if (cape != null && !cape.isHidden()) {
             ModelPart bodyPart = baseModel.body;
-            float yPos = (currentEntity != null && currentEntity.isCrouching()) ? bodyPart.y - 5.5f : bodyPart.y;
+
+            boolean crouching = renderState.isCrouching;
+            float yPos = crouching ? bodyPart.y - 5.5f : bodyPart.y;
+
             cape.updatePosition(bodyPart.x, yPos, bodyPart.z);
 
-            if (currentEntity instanceof Player && renderState instanceof AvatarRenderState avatarState) {
+            if (renderState instanceof AvatarRenderState avatarState) {
                 FARenderUtils.applyCapeRotation(avatarState, cape);
             } else {
                 cape.updateRotation((float) -Math.toRadians(5.0F), 0.0F, 0.0F);
             }
         }
 
-        if (frontCape != null) {
+        if (frontCape != null && !frontCape.isHidden()) {
             ModelPart leftLegPart = baseModel.leftLeg;
             frontCape.updatePosition(leftLegPart.x - 1.95f, 13 - leftLegPart.y, leftLegPart.z - 0.1f);
 
-            Optional<GeoBone> leftLegBone = bakedModel.getBone(getBoneNameForSegment(renderState, ArmorSegment.LEFT_LEG));
-            Optional<GeoBone> rightLegBone = bakedModel.getBone(getBoneNameForSegment(renderState, ArmorSegment.RIGHT_LEG));
+            Optional<GeoBone> leftLegBone = bakedModel.getBone("armorLeftLeg");
+            Optional<GeoBone> rightLegBone = bakedModel.getBone("armorRightLeg");
             FARenderUtils.setFrontLegCapeAngle(leftLegBone.orElse(null), rightLegBone.orElse(null), frontCape);
         }
 
-        if (leftLegCloth != null) {
+        if (leftLegCloth != null && !leftLegCloth.isHidden()) {
             ModelPart leftLegPart = baseModel.leftLeg;
             RenderUtil.matchModelPartRot(leftLegPart, leftLegCloth);
             leftLegCloth.updatePosition(leftLegPart.x - 2, 12 - leftLegPart.y, leftLegPart.z);
         }
 
-        if (rightLegCloth != null) {
+        if (rightLegCloth != null && !rightLegCloth.isHidden()) {
             ModelPart rightLegPart = baseModel.rightLeg;
             RenderUtil.matchModelPartRot(rightLegPart, rightLegCloth);
             rightLegCloth.updatePosition(rightLegPart.x + 2, 12 - rightLegPart.y, rightLegPart.z);
         }
 
-        if (braid != null && currentEntity instanceof Player && renderState instanceof AvatarRenderState avatarState) {
+        if (braid != null && !braid.isHidden() && renderState instanceof AvatarRenderState avatarState) {
             FARenderUtils.applyBraidRotation(avatarState, braid);
         }
     }
 
+    /**
+     * Render extra bones conditionally: only if they are not already rendered as descendants of segment roots.
+     */
+    public static <T extends net.minecraft.world.item.Item & software.bernie.geckolib.animatable.GeoItem,
+            R extends HumanoidRenderState & GeoRenderState>
+    void renderExtraBonesStatic(
+            GeoRenderer<T, GeoArmorRenderer.RenderData, R> renderer,
+            R renderState,
+            PoseStack poseStack,
+            BakedGeoModel bakedModel,
+            VertexConsumer buffer,
+            CameraRenderState cameraState,
+            int packedLight,
+            int packedOverlay,
+            int renderColor,
+            EquipmentSlot slot,
+            boolean forceRenderEvenIfDescendant
+    ) {
+        renderExtraBone(renderer, renderState, poseStack, bakedModel, buffer, cameraState, packedLight, packedOverlay, renderColor, slot, forceRenderEvenIfDescendant, "armorCape");
+        renderExtraBone(renderer, renderState, poseStack, bakedModel, buffer, cameraState, packedLight, packedOverlay, renderColor, slot, forceRenderEvenIfDescendant, "armorFrontCape");
+        renderExtraBone(renderer, renderState, poseStack, bakedModel, buffer, cameraState, packedLight, packedOverlay, renderColor, slot, forceRenderEvenIfDescendant, "armorLeftLegCloth");
+        renderExtraBone(renderer, renderState, poseStack, bakedModel, buffer, cameraState, packedLight, packedOverlay, renderColor, slot, forceRenderEvenIfDescendant, "armorRightLegCloth");
+        renderExtraBone(renderer, renderState, poseStack, bakedModel, buffer, cameraState, packedLight, packedOverlay, renderColor, slot, forceRenderEvenIfDescendant, "armorBraid");
+    }
+
+    private static <T extends net.minecraft.world.item.Item & software.bernie.geckolib.animatable.GeoItem,
+            R extends HumanoidRenderState & GeoRenderState>
+    void renderExtraBone(
+            GeoRenderer<T, GeoArmorRenderer.RenderData, R> renderer,
+            R renderState,
+            PoseStack poseStack,
+            BakedGeoModel bakedModel,
+            VertexConsumer buffer,
+            CameraRenderState cameraState,
+            int packedLight,
+            int packedOverlay,
+            int renderColor,
+            EquipmentSlot slot,
+            boolean forceRenderEvenIfDescendant,
+            String boneName
+    ) {
+        Optional<GeoBone> boneOpt = bakedModel.getBone(boneName);
+        if (boneOpt.isEmpty())
+            return;
+
+        GeoBone bone = boneOpt.get();
+        if (bone.isHidden())
+            return;
+
+        // If this bone is already a descendant of any rendered segment root, skip explicit rendering to avoid duplicates.
+        if (!forceRenderEvenIfDescendant && isRenderedBySegmentTree(renderState, bakedModel, slot, bone)) {
+            return;
+        }
+
+        renderer.renderBone(renderState, poseStack, bone, buffer, cameraState, packedLight, packedOverlay, renderColor);
+    }
+
+    /**
+     * Returns true if 'bone' is a descendant of any segment root bone that would be rendered for this slot.
+     */
+    private static <R extends HumanoidRenderState & GeoRenderState> boolean isRenderedBySegmentTree(
+            R renderState,
+            BakedGeoModel bakedModel,
+            EquipmentSlot slot,
+            GeoBone bone
+    ) {
+        // Collect root bone names for this slot according to GeoArmorRenderer defaults
+        // (You can override getBoneNameForSegment; this logic follows the default names.)
+        // If you override bone names, consider mirroring that mapping here.
+        final String[] roots = switch (slot) {
+            case HEAD -> new String[]{"armorHead"};
+            case CHEST -> new String[]{"armorBody", "armorLeftArm", "armorRightArm"};
+            case LEGS -> new String[]{"armorLeftLeg", "armorRightLeg"};
+            case FEET -> new String[]{"armorLeftBoot", "armorRightBoot"};
+            default -> new String[0];
+        };
+
+        // Walk upwards and see if we hit any root
+        GeoBone cursor = bone;
+        while (cursor != null) {
+            String name = cursor.getName();
+            for (String root : roots) {
+                if (root.equals(name)) {
+                    return true;
+                }
+            }
+
+            // GeoBone parent API: in GeckoLib 5 GeoBone has getParent()
+            cursor = cursor.getParent();
+        }
+
+        return false;
+    }
+
     private static void setHiddenSafe(@Nullable GeoBone bone, boolean hidden) {
-        if (bone != null) bone.setHidden(hidden);
+        if (bone != null)
+            bone.setHidden(hidden);
     }
 }
