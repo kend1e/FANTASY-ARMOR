@@ -54,7 +54,7 @@ public enum FAArmorSet {
     }
 
     public String getGeoPath() {
-        return "geo/" + name + "_armor.geo.json";
+        return name + "_armor";
     }
 
     public String getTexturePath() {
