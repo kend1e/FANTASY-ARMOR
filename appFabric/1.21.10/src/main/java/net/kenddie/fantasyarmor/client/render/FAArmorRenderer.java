@@ -101,28 +101,23 @@ public class FAArmorRenderer<T extends FAArmorItem, R extends HumanoidRenderStat
 
         renderTasks.submitCustomGeometry(poseStack, renderType, (pose, vertexConsumer) -> {
             final EquipmentSlot slot = renderState.getGeckolibData(DataTickets.EQUIPMENT_SLOT);
-
             final HumanoidModel<?> baseModelAny = renderState.getGeckolibData(DataTickets.HUMANOID_MODEL);
             if (baseModelAny == null)
                 return;
 
             @SuppressWarnings("unchecked")
             final HumanoidModel<R> baseModel = (HumanoidModel<R>) baseModelAny;
-
             final PoseStack localPose = new PoseStack();
             localPose.last().set(pose);
 
             callback.run(renderState, bakedModel);
-            baseModel.setupAnim(renderState);
 
             for (ArmorSegment segment : getSegmentsForSlot(renderState, slot)) {
                 bakedModel.getBone(getBoneNameForSegment(renderState, segment)).ifPresent(bone -> {
                     ModelPart modelPart = segment.modelPartGetter.apply(baseModel);
                     Vector3f bonePos = segment.modelPartMatcher.apply(new Vector3f(modelPart.x, modelPart.y, modelPart.z));
-
                     RenderUtil.matchModelPartRot(modelPart, bone);
                     bone.updatePosition(bonePos.x, bonePos.y, bonePos.z);
-
                     renderBone(renderState, localPose, bone, vertexConsumer, cameraState, packedLight, packedOverlay, renderColor);
                 });
             }
@@ -140,10 +135,8 @@ public class FAArmorRenderer<T extends FAArmorItem, R extends HumanoidRenderStat
         final HumanoidModel<?> baseModelAny = renderState.getGeckolibData(DataTickets.HUMANOID_MODEL);
         if (baseModelAny == null)
             return;
-
         @SuppressWarnings("unchecked")
         final HumanoidModel<R> baseModel = (HumanoidModel<R>) baseModelAny;
-
         final EquipmentSlot slot = renderState.getGeckolibData(DataTickets.EQUIPMENT_SLOT);
 
         GeoBone cape = bakedModel.getBone("armorCape").orElse(null);
@@ -152,6 +145,7 @@ public class FAArmorRenderer<T extends FAArmorItem, R extends HumanoidRenderStat
         GeoBone rightLegCloth = bakedModel.getBone("armorRightLegCloth").orElse(null);
         GeoBone braid = bakedModel.getBone("armorBraid").orElse(null);
 
+        // Visibility control
         switch (slot) {
             case HEAD -> {
                 setHiddenSafe(braid, false);
@@ -177,12 +171,14 @@ public class FAArmorRenderer<T extends FAArmorItem, R extends HumanoidRenderStat
             default -> {}
         }
 
+        baseModel.setupAnim(renderState);
+
+        boolean crouching = renderState.isCrouching;
+
+        // Cape positioning and rotation
         if (cape != null && !cape.isHidden()) {
             ModelPart bodyPart = baseModel.body;
-
-            boolean crouching = renderState.isCrouching;
             float yPos = crouching ? bodyPart.y - 5.5f : bodyPart.y;
-
             cape.updatePosition(bodyPart.x, yPos, bodyPart.z);
 
             if (renderState instanceof AvatarRenderState avatarState) {
@@ -192,27 +188,37 @@ public class FAArmorRenderer<T extends FAArmorItem, R extends HumanoidRenderStat
             }
         }
 
+        // Front cape positioning
         if (frontCape != null && !frontCape.isHidden()) {
             ModelPart leftLegPart = baseModel.leftLeg;
+            ModelPart rightLegPart = baseModel.rightLeg;
+
             frontCape.updatePosition(leftLegPart.x - 1.95f, 13 - leftLegPart.y, leftLegPart.z - 0.1f);
 
-            Optional<GeoBone> leftLegBone = bakedModel.getBone("armorLeftLeg");
-            Optional<GeoBone> rightLegBone = bakedModel.getBone("armorRightLeg");
-            FARenderUtils.setFrontLegCapeAngle(leftLegBone.orElse(null), rightLegBone.orElse(null), frontCape);
+            GeoBone leftLegBone = bakedModel.getBone("armorLeftLeg").orElse(null);
+            GeoBone rightLegBone = bakedModel.getBone("armorRightLeg").orElse(null);
+
+            if (leftLegBone != null)  RenderUtil.matchModelPartRot(leftLegPart, leftLegBone);
+            if (rightLegBone != null) RenderUtil.matchModelPartRot(rightLegPart, rightLegBone);
+
+            FARenderUtils.setFrontLegCapeAngle(leftLegBone, rightLegBone, frontCape);
         }
 
+        // Left leg cloth
         if (leftLegCloth != null && !leftLegCloth.isHidden()) {
             ModelPart leftLegPart = baseModel.leftLeg;
             RenderUtil.matchModelPartRot(leftLegPart, leftLegCloth);
             leftLegCloth.updatePosition(leftLegPart.x - 2, 12 - leftLegPart.y, leftLegPart.z);
         }
 
+        // Right leg cloth
         if (rightLegCloth != null && !rightLegCloth.isHidden()) {
             ModelPart rightLegPart = baseModel.rightLeg;
             RenderUtil.matchModelPartRot(rightLegPart, rightLegCloth);
             rightLegCloth.updatePosition(rightLegPart.x + 2, 12 - rightLegPart.y, rightLegPart.z);
         }
 
+        // Braid
         if (braid != null && !braid.isHidden() && renderState instanceof AvatarRenderState avatarState) {
             FARenderUtils.applyBraidRotation(avatarState, braid);
         }

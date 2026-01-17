@@ -17,6 +17,10 @@ public final class FARenderUtils {
         float lean = state.capeLean;
         float lean2 = state.capeLean2;
 
+        if (state.isCrouching) {
+            flap += 25f;
+        }
+
         bone.updateRotation(
                 (float) -Math.toRadians(6.0F + lean / 2.0F + flap),
                 (float) Math.toRadians(lean2 / 2.0F),
@@ -37,8 +41,8 @@ public final class FARenderUtils {
         float xRot = state.xRot;
         if (xRot > 60) {
             braid.setRotX(0);
-        } else if (xRot < -35) {
-            braid.setRotX((float) Math.toRadians(30));
+        } else if (xRot < -25) {
+            braid.setRotX((float) Math.toRadians(xRot));
         }
     }
 
