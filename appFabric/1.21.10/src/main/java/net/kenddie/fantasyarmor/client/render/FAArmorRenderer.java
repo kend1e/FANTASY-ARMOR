@@ -11,7 +11,6 @@ import net.minecraft.client.renderer.OrderedSubmitNodeCollector;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.state.AvatarRenderState;
 import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
-import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -39,15 +38,13 @@ public class FAArmorRenderer<T extends FAArmorItem, R extends HumanoidRenderStat
         this.hasOverlayTextureFile = hasOverlayTextureFile;
 
         if (hasOverlayTextureFile) {
-            //noinspection unchecked,rawtypes
-            this.withRenderLayer(r -> new FADyeableGeoLayer<>((GeoArmorRenderer) r));
+            this.withRenderLayer(r -> new FADyeableTextureLayer<>((GeoArmorRenderer) r));
         }
     }
 
     @Override
     public int getRenderColor(T animatable, RenderData renderData, float partialTick) {
-        // Base pass must not be tinted. Overlay pass uses tintColor from RenderState in the layer.
-        if (!hasOverlayTextureFile)
+        if (hasOverlayTextureFile)
             return 0xFFFFFFFF;
 
         if (!animatable.hasCustomColor(renderData.itemStack()))
@@ -64,17 +61,17 @@ public class FAArmorRenderer<T extends FAArmorItem, R extends HumanoidRenderStat
             return out;
 
         boolean dyed = animatable.hasCustomColor(renderData.itemStack());
-        out.addGeckolibData(FADyeableGeoLayer.HAS_DYE_TICKET, dyed);
+        out.addGeckolibData(FADyeableTextureLayer.HAS_DYE_TICKET, dyed);
 
         if (dyed) {
             int dyeColor = 0xFF000000 | animatable.getColor(renderData.itemStack());
-            out.addGeckolibData(FADyeableGeoLayer.DYE_COLOR_TICKET, dyeColor);
+            out.addGeckolibData(FADyeableTextureLayer.DYE_COLOR_TICKET, dyeColor);
 
             ResourceLocation overlayTex = ResourceLocation.fromNamespaceAndPath(
                     FantasyArmor.MOD_ID,
                     animatable.getArmorSet().getOverlayPath()
             );
-            out.addGeckolibData(FADyeableGeoLayer.OVERLAY_TEX_TICKET, overlayTex);
+            out.addGeckolibData(FADyeableTextureLayer.OVERLAY_TEX_TICKET, overlayTex);
         }
 
         return out;
@@ -118,7 +115,6 @@ public class FAArmorRenderer<T extends FAArmorItem, R extends HumanoidRenderStat
             callback.run(renderState, bakedModel);
             baseModel.setupAnim(renderState);
 
-            // Render standard segments (this will also render their children automatically)
             for (ArmorSegment segment : getSegmentsForSlot(renderState, slot)) {
                 bakedModel.getBone(getBoneNameForSegment(renderState, segment)).ifPresent(bone -> {
                     ModelPart modelPart = segment.modelPartGetter.apply(baseModel);
@@ -127,24 +123,18 @@ public class FAArmorRenderer<T extends FAArmorItem, R extends HumanoidRenderStat
                     RenderUtil.matchModelPartRot(modelPart, bone);
                     bone.updatePosition(bonePos.x, bonePos.y, bonePos.z);
 
-                    // Base pass must be white
-                    renderBone(renderState, localPose, bone, vertexConsumer, cameraState, packedLight, packedOverlay, 0xFFFFFFFF);
+                    renderBone(renderState, localPose, bone, vertexConsumer, cameraState, packedLight, packedOverlay, renderColor);
                 });
             }
 
-            // Render extra bones ONLY if they are NOT already children of rendered segment roots
             renderExtraBonesStatic(
                     this, renderState, localPose, bakedModel, vertexConsumer, cameraState,
-                    packedLight, packedOverlay, 0xFFFFFFFF,
+                    packedLight, packedOverlay, renderColor,
                     slot,
-                    false // do not force; skip descendants to avoid duplicates
+                    false
             );
         });
     }
-
-    // -----------------------------
-    // Shared helpers for base and overlay passes
-    // -----------------------------
 
     public static <R extends HumanoidRenderState & GeoRenderState> void applyExtraBonesStatic(R renderState, BakedGeoModel bakedModel) {
         final HumanoidModel<?> baseModelAny = renderState.getGeckolibData(DataTickets.HUMANOID_MODEL);
@@ -228,9 +218,6 @@ public class FAArmorRenderer<T extends FAArmorItem, R extends HumanoidRenderStat
         }
     }
 
-    /**
-     * Render extra bones conditionally: only if they are not already rendered as descendants of segment roots.
-     */
     public static <T extends net.minecraft.world.item.Item & software.bernie.geckolib.animatable.GeoItem,
             R extends HumanoidRenderState & GeoRenderState>
     void renderExtraBonesStatic(
@@ -277,26 +264,18 @@ public class FAArmorRenderer<T extends FAArmorItem, R extends HumanoidRenderStat
         if (bone.isHidden())
             return;
 
-        // If this bone is already a descendant of any rendered segment root, skip explicit rendering to avoid duplicates.
-        if (!forceRenderEvenIfDescendant && isRenderedBySegmentTree(renderState, bakedModel, slot, bone)) {
+        if (!forceRenderEvenIfDescendant && isRenderedBySegmentTree(renderState, slot, bone)) {
             return;
         }
 
         renderer.renderBone(renderState, poseStack, bone, buffer, cameraState, packedLight, packedOverlay, renderColor);
     }
 
-    /**
-     * Returns true if 'bone' is a descendant of any segment root bone that would be rendered for this slot.
-     */
     private static <R extends HumanoidRenderState & GeoRenderState> boolean isRenderedBySegmentTree(
             R renderState,
-            BakedGeoModel bakedModel,
             EquipmentSlot slot,
             GeoBone bone
     ) {
-        // Collect root bone names for this slot according to GeoArmorRenderer defaults
-        // (You can override getBoneNameForSegment; this logic follows the default names.)
-        // If you override bone names, consider mirroring that mapping here.
         final String[] roots = switch (slot) {
             case HEAD -> new String[]{"armorHead"};
             case CHEST -> new String[]{"armorBody", "armorLeftArm", "armorRightArm"};
@@ -305,7 +284,6 @@ public class FAArmorRenderer<T extends FAArmorItem, R extends HumanoidRenderStat
             default -> new String[0];
         };
 
-        // Walk upwards and see if we hit any root
         GeoBone cursor = bone;
         while (cursor != null) {
             String name = cursor.getName();
@@ -314,8 +292,6 @@ public class FAArmorRenderer<T extends FAArmorItem, R extends HumanoidRenderStat
                     return true;
                 }
             }
-
-            // GeoBone parent API: in GeckoLib 5 GeoBone has getParent()
             cursor = cursor.getParent();
         }
 
