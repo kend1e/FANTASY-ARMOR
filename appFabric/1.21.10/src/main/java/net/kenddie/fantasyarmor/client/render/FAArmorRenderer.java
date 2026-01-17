@@ -1,6 +1,7 @@
 package net.kenddie.fantasyarmor.client.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.kenddie.fantasyarmor.FantasyArmor;
 import net.kenddie.fantasyarmor.config.FAConfigs;
 import net.kenddie.fantasyarmor.item.armor.FAArmorItem;
@@ -10,14 +11,13 @@ import net.minecraft.client.renderer.OrderedSubmitNodeCollector;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.state.AvatarRenderState;
 import net.minecraft.client.renderer.state.CameraRenderState;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.component.DyedItemColor;
 import org.jetbrains.annotations.Nullable;
+import org.joml.Vector3f;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.constant.DataTickets;
@@ -25,14 +25,10 @@ import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;
 import software.bernie.geckolib.renderer.base.GeoRenderState;
 import software.bernie.geckolib.renderer.base.RenderModelPositioner;
+import software.bernie.geckolib.util.RenderUtil;
 
 import java.util.Optional;
 
-/**
- * GeckoLib 5+ compatible armor renderer.
- * Important: in 1.21.10 vanilla is state-based (AvatarRenderState etc),
- * and GeckoLib 5 builds submit tasks instead of immediate rendering.
- */
 public class FAArmorRenderer<T extends FAArmorItem, R extends net.minecraft.client.renderer.entity.state.HumanoidRenderState & GeoRenderState>
         extends GeoArmorRenderer<T, R> {
 
@@ -63,6 +59,11 @@ public class FAArmorRenderer<T extends FAArmorItem, R extends net.minecraft.clie
     }
 
     @Override
+    public int getRenderColor(T animatable, RenderData stackAndSlot, float partialTick) {
+        return 0xFFFFFFFF;
+    }
+
+    @Override
     public void buildRenderTask(
             R renderState,
             PoseStack poseStack,
@@ -78,31 +79,141 @@ public class FAArmorRenderer<T extends FAArmorItem, R extends net.minecraft.clie
     ) {
         if (renderType == null) return;
 
+        final EquipmentSlot slot = renderState.getGeckolibData(DataTickets.EQUIPMENT_SLOT);
+        final HumanoidModel<R> baseModel = renderState.getGeckolibData(DataTickets.HUMANOID_MODEL);
+        if (baseModel == null) return;
+
+        final boolean dyed = isDyed();
+
         RenderModelPositioner<R> callback = RenderModelPositioner.add(modelPositioner, (rs, bm) -> {
             model.handleAnimations(createAnimationState(rs));
-
             applyExtraBones(rs, bakedModel);
         });
 
-        super.buildRenderTask(renderState, poseStack, bakedModel, model, renderTasks, cameraState, renderType, packedLight, packedOverlay, renderColor, callback);
+        renderTasks.submitCustomGeometry(poseStack, renderType, (pose, vertexConsumer) -> {
+            final PoseStack poseStack2 = new PoseStack();
+            poseStack2.last().set(pose);
 
+            callback.run(renderState, bakedModel);
+
+            baseModel.setupAnim(renderState);
+
+            for (ArmorSegment segment : getSegmentsForSlot(renderState, slot)) {
+                bakedModel.getBone(getBoneNameForSegment(renderState, segment)).ifPresent(bone -> {
+                    ModelPart modelPart = segment.modelPartGetter.apply(baseModel);
+
+                    RenderUtil.matchModelPartRot(modelPart, bone);
+
+                    Vector3f bonePos = segment.modelPartMatcher.apply(new Vector3f(modelPart.x, modelPart.y, modelPart.z));
+                    bone.updatePosition(bonePos.x, bonePos.y, bonePos.z);
+
+                    renderBone(renderState, poseStack2, bone, vertexConsumer, cameraState, packedLight, packedOverlay, renderColor);
+                });
+            }
+
+            if (!dyed) {
+                renderExtraBones(renderState, bakedModel, poseStack2, vertexConsumer, cameraState, packedLight, packedOverlay, renderColor);
+            }
+        });
+
+        submitOverlayPass(renderState, poseStack, bakedModel, model, renderTasks, cameraState, packedLight, packedOverlay, modelPositioner);
+    }
+
+    private void submitOverlayPass(
+            R renderState,
+            PoseStack poseStack,
+            BakedGeoModel bakedModel,
+            GeoModel<T> model,
+            OrderedSubmitNodeCollector renderTasks,
+            CameraRenderState cameraState,
+            int packedLight,
+            int packedOverlay,
+            @Nullable RenderModelPositioner<R> modelPositioner
+    ) {
         if (!hasOverlayTextureFile) return;
-        if (currentStack == null || currentStack.isEmpty()) return;
-        if (!(currentStack.getItem() instanceof FAArmorItem armorItem)) return;
+        if (!isDyed()) return;
 
-        if (!armorItem.hasCustomColor(currentStack)) return;
+        final FAArmorItem armorItem = (FAArmorItem) currentStack.getItem();
 
-        ResourceLocation overlayTex = ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, armorItem.getArmorSet().getOverlayPath());
+        ResourceLocation overlayTex = ResourceLocation.fromNamespaceAndPath(
+                FantasyArmor.MOD_ID, armorItem.getArmorSet().getOverlayPath()
+        );
         RenderType overlayType = RenderType.armorCutoutNoCull(overlayTex);
 
         int dyeColor = 0xFF000000 | armorItem.getColor(currentStack);
 
-        super.buildRenderTask(renderState, poseStack, bakedModel, model, renderTasks, cameraState, overlayType, packedLight, packedOverlay, dyeColor, callback);
+        RenderModelPositioner<R> callback = RenderModelPositioner.add(modelPositioner, (rs, bm) -> {
+            model.handleAnimations(createAnimationState(rs));
+            applyExtraBones(rs, bakedModel);
+        });
+
+        super.buildRenderTask(
+                renderState,
+                poseStack,
+                bakedModel,
+                model,
+                renderTasks,
+                cameraState,
+                overlayType,
+                packedLight,
+                packedOverlay,
+                dyeColor,
+                callback
+        );
+
+        renderTasks.submitCustomGeometry(poseStack, overlayType, (pose, vertexConsumer) -> {
+            final PoseStack poseStack2 = new PoseStack();
+            poseStack2.last().set(pose);
+
+            callback.run(renderState, bakedModel);
+
+            renderExtraBones(renderState, bakedModel, poseStack2, vertexConsumer, cameraState, packedLight, packedOverlay, dyeColor);
+        });
+    }
+
+    private boolean isDyed() {
+        if (!hasOverlayTextureFile) return false;
+        if (currentStack == null || currentStack.isEmpty()) return false;
+        if (!(currentStack.getItem() instanceof FAArmorItem armorItem)) return false;
+
+        return armorItem.hasCustomColor(currentStack);
+    }
+
+    private void renderExtraBones(
+            R renderState,
+            BakedGeoModel bakedModel,
+            PoseStack poseStack,
+            VertexConsumer buffer,
+            CameraRenderState cameraState,
+            int packedLight,
+            int packedOverlay,
+            int renderColor
+    ) {
+        renderExtraBone(renderState, bakedModel, "armorCape", poseStack, buffer, cameraState, packedLight, packedOverlay, renderColor);
+        renderExtraBone(renderState, bakedModel, "armorFrontCape", poseStack, buffer, cameraState, packedLight, packedOverlay, renderColor);
+        renderExtraBone(renderState, bakedModel, "armorLeftLegCloth", poseStack, buffer, cameraState, packedLight, packedOverlay, renderColor);
+        renderExtraBone(renderState, bakedModel, "armorRightLegCloth", poseStack, buffer, cameraState, packedLight, packedOverlay, renderColor);
+        renderExtraBone(renderState, bakedModel, "armorBraid", poseStack, buffer, cameraState, packedLight, packedOverlay, renderColor);
+    }
+
+    private void renderExtraBone(
+            R renderState,
+            BakedGeoModel bakedModel,
+            String boneName,
+            PoseStack poseStack,
+            VertexConsumer buffer,
+            CameraRenderState cameraState,
+            int packedLight,
+            int packedOverlay,
+            int renderColor
+    ) {
+        bakedModel.getBone(boneName).ifPresent(bone -> {
+            if (bone.isHidden()) return;
+            renderBone(renderState, poseStack, bone, buffer, cameraState, packedLight, packedOverlay, renderColor);
+        });
     }
 
     private void applyExtraBones(R renderState, BakedGeoModel bakedModel) {
-        if (!(currentStack.getItem() instanceof FAArmorItem armorItem)) return;
-
         final HumanoidModel<?> baseModel = renderState.getGeckolibData(DataTickets.HUMANOID_MODEL);
         if (baseModel == null) return;
 
@@ -163,13 +274,13 @@ public class FAArmorRenderer<T extends FAArmorItem, R extends net.minecraft.clie
 
         if (leftLegCloth != null) {
             ModelPart leftLegPart = baseModel.leftLeg;
-            software.bernie.geckolib.util.RenderUtil.matchModelPartRot(leftLegPart, leftLegCloth);
+            RenderUtil.matchModelPartRot(leftLegPart, leftLegCloth);
             leftLegCloth.updatePosition(leftLegPart.x - 2, 12 - leftLegPart.y, leftLegPart.z);
         }
 
         if (rightLegCloth != null) {
             ModelPart rightLegPart = baseModel.rightLeg;
-            software.bernie.geckolib.util.RenderUtil.matchModelPartRot(rightLegPart, rightLegCloth);
+            RenderUtil.matchModelPartRot(rightLegPart, rightLegCloth);
             rightLegCloth.updatePosition(rightLegPart.x + 2, 12 - rightLegPart.y, rightLegPart.z);
         }
 
