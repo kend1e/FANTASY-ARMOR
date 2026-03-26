@@ -3,6 +3,7 @@ package net.kenddie.fantasyarmor.item.armor.lib;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.kenddie.fantasyarmor.config.FAConfig;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -36,9 +37,11 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
     private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
 
     private final Multimap<Attribute, AttributeModifier> attributeModifiers;
+    private final double durability;
 
     protected FAArmorItem(Type type, FAArmorAttributes armorAttributes) {
         super(ArmorMaterials.NETHERITE, type, new Properties().stacksTo(1).fireResistant());
+        this.durability = armorAttributes.durability();
 
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
 
@@ -78,12 +81,31 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
-        if (FAConfig.showDescriptions) {
-            super.appendHoverText(stack, world, tooltip, flag);
+    public int getMaxDamage(ItemStack stack) {
+        if (FAConfig.enableDurability && this.durability > 0) {
+            return (int) this.durability;
+        }
+        return super.getMaxDamage(stack);
+    }
 
+    @Override
+    public boolean isDamageable(ItemStack stack) {
+        return getMaxDamage(stack) > 0;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
+        super.appendHoverText(stack, world, tooltip, flag);
+
+        if (FAConfig.showDescriptions) {
             String translationKey = this.getDescriptionId() + ".tooltip";
             tooltip.add(Component.translatable(translationKey));
+        }
+
+        if (FAConfig.enableDurability && this.durability > 0) {
+            int maxDmg = (int) this.durability;
+            int remaining = maxDmg - stack.getDamageValue();
+            tooltip.add(Component.literal("Durability: " + remaining + " / " + maxDmg).withStyle(ChatFormatting.BLUE));
         }
     }
 

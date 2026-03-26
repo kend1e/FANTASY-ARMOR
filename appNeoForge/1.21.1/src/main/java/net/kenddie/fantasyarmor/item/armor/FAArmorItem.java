@@ -1,6 +1,7 @@
 package net.kenddie.fantasyarmor.item.armor;
 
 import net.kenddie.fantasyarmor.FantasyArmor;
+import net.minecraft.ChatFormatting;
 import net.kenddie.fantasyarmor.client.model.FAArmorModel;
 import net.kenddie.fantasyarmor.client.render.FAArmorRenderer;
 import net.kenddie.fantasyarmor.config.FAArmorEffectsConfig;
@@ -12,17 +13,20 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
@@ -48,6 +52,65 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
         super(ArmorMaterials.NETHERITE, type, new Properties().stacksTo(1).fireResistant());
         this.armorSet = armorSet;
         this.attributesSupplier = attributesSupplier;
+    }
+
+    private boolean isDurabilityEnabled() {
+        try {
+            return FAConfig.ENABLE_DURABILITY.get();
+        } catch (IllegalStateException ignored) {
+            return FAConfig.enableDurability;
+        }
+    }
+
+    private void syncDurabilityComponent(ItemStack stack) {
+        if (!isDurabilityEnabled()) {
+            stack.remove(DataComponents.MAX_DAMAGE);
+            stack.remove(DataComponents.DAMAGE);
+            return;
+        }
+
+        int durability = (int) attributesSupplier.get().durability();
+        if (durability > 0) {
+            if (stack.getOrDefault(DataComponents.MAX_DAMAGE, 0) != durability) {
+                stack.set(DataComponents.MAX_DAMAGE, durability);
+            }
+            if (!stack.has(DataComponents.DAMAGE)) {
+                stack.set(DataComponents.DAMAGE, 0);
+            }
+        }
+    }
+
+    @Override
+    public @NotNull ItemStack getDefaultInstance() {
+        ItemStack stack = super.getDefaultInstance();
+        syncDurabilityComponent(stack);
+        return stack;
+    }
+
+    @Override
+    public void onCraftedBy(@NotNull ItemStack stack, @NotNull Level level, @NotNull Player player) {
+        super.onCraftedBy(stack, level, player);
+        syncDurabilityComponent(stack);
+    }
+
+    @Override
+    public void inventoryTick(@NotNull ItemStack stack, @NotNull Level level, @NotNull Entity entity, int slotId, boolean isSelected) {
+        super.inventoryTick(stack, level, entity, slotId, isSelected);
+        syncDurabilityComponent(stack);
+    }
+
+    @Override
+    public int getMaxDamage(ItemStack stack) {
+        if (isDurabilityEnabled()) {
+            double dur = attributesSupplier.get().durability();
+            if (dur > 0) return (int) dur;
+        }
+        return super.getMaxDamage(stack);
+    }
+
+    @Override
+    public boolean isDamageable(ItemStack stack) {
+        return getMaxDamage(stack) > 0;
     }
 
     @Override
@@ -76,11 +139,20 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
 
     @Override
     public void appendHoverText(@NotNull ItemStack pStack, @NotNull TooltipContext pContext, @NotNull List<Component> pTooltipComponents, @NotNull TooltipFlag pTooltipFlag) {
-        if (!FAConfig.showDescriptions) return;
         super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
 
-        String translationKey = this.getDescriptionId() + ".tooltip";
-        pTooltipComponents.add(Component.translatable(translationKey));
+        if (FAConfig.showDescriptions) {
+            String translationKey = this.getDescriptionId() + ".tooltip";
+            pTooltipComponents.add(Component.translatable(translationKey));
+        }
+
+        if (isDurabilityEnabled()) {
+            int maxDmg = pStack.getOrDefault(DataComponents.MAX_DAMAGE, 0);
+            if (maxDmg > 0) {
+                int remaining = maxDmg - pStack.getOrDefault(DataComponents.DAMAGE, 0);
+                pTooltipComponents.add(Component.literal("Durability: " + remaining + " / " + maxDmg).withStyle(ChatFormatting.BLUE));
+            }
+        }
     }
 
     @Override

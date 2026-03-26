@@ -9,6 +9,7 @@ import net.kenddie.fantasyarmor.client.model.FAArmorModel;
 import net.kenddie.fantasyarmor.client.render.FAArmorRenderer;
 import net.kenddie.fantasyarmor.config.FAArmorEffectsConfig;
 import net.kenddie.fantasyarmor.config.FAConfigs;
+import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -57,16 +58,25 @@ public abstract class FAArmorItem extends DyeableArmorItem implements GeoItem {
     private Multimap<Attribute, AttributeModifier> cachedModifiers;
 
     protected FAArmorItem(FAArmorSet armorSet, Type type, Supplier<FAArmorAttributes> attributesSupplier) {
-        super(ArmorMaterials.NETHERITE, type, new Properties().stacksTo(1).fireResistant());
+        super(ArmorMaterials.NETHERITE, type, buildProperties(attributesSupplier));
         this.armorSet = armorSet;
         this.attributesSupplier = attributesSupplier;
     }
 
+    private static Properties buildProperties(Supplier<FAArmorAttributes> attributesSupplier) {
+        Properties props = new Properties().stacksTo(1).fireResistant();
+        FAArmorAttributes attrs = attributesSupplier.get();
+        if (FAConfigs.getMainConfig().enableDurability && attrs.durability() > 0) {
+            props = props.durability((int) attrs.durability());
+        }
+        return props;
+    }
+
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
-        if (FAConfigs.getMainConfig().showDescriptions) {
-            super.appendHoverText(stack, world, tooltip, flag);
+        super.appendHoverText(stack, world, tooltip, flag);
 
+        if (FAConfigs.getMainConfig().showDescriptions) {
             String translationKey = this.getDescriptionId() + ".tooltip";
             String translatedText = Component.translatable(translationKey).getString();
 
@@ -94,6 +104,14 @@ public abstract class FAArmorItem extends DyeableArmorItem implements GeoItem {
                 if (currentLine.length() > 0) {
                     tooltip.add(Component.literal(currentLine.toString()));
                 }
+            }
+        }
+
+        if (FAConfigs.getMainConfig().enableDurability) {
+            int maxDmg = stack.getMaxDamage();
+            if (maxDmg > 0) {
+                int remaining = maxDmg - stack.getDamageValue();
+                tooltip.add(Component.literal("Durability: " + remaining + " / " + maxDmg).withStyle(ChatFormatting.BLUE));
             }
         }
     }

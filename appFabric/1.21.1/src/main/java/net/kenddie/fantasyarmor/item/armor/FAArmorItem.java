@@ -7,6 +7,7 @@ import net.kenddie.fantasyarmor.client.model.FAArmorModel;
 import net.kenddie.fantasyarmor.client.render.FAArmorRenderer;
 import net.kenddie.fantasyarmor.config.FAArmorEffectsConfig;
 import net.kenddie.fantasyarmor.config.FAConfigs;
+import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -51,9 +52,18 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
     private ItemAttributeModifiers cachedModifiers;
 
     protected FAArmorItem(FAArmorSet armorSet, Type type, Supplier<FAArmorAttributes> attributesSupplier) {
-        super(ArmorMaterials.NETHERITE, type, new Properties().stacksTo(1).fireResistant());
+        super(ArmorMaterials.NETHERITE, type, buildProperties(attributesSupplier));
         this.armorSet = armorSet;
         this.attributesSupplier = attributesSupplier;
+    }
+
+    private static Properties buildProperties(Supplier<FAArmorAttributes> attributesSupplier) {
+        Properties props = new Properties().stacksTo(1).fireResistant();
+        FAArmorAttributes attrs = attributesSupplier.get();
+        if (FAConfigs.getMainConfig().enableDurability && attrs.durability() > 0) {
+            props = props.durability((int) attrs.durability());
+        }
+        return props;
     }
 
     @Override
@@ -82,38 +92,43 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
 
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
-        if (!FAConfigs.getMainConfig().showDescriptions) {
-            super.appendHoverText(stack, context, tooltip, flag);
-            return;
-        }
-
         super.appendHoverText(stack, context, tooltip, flag);
 
-        String translationKey = this.getDescriptionId() + ".tooltip";
-        String translatedText = Component.translatable(translationKey).getString();
+        if (FAConfigs.getMainConfig().showDescriptions) {
+            String translationKey = this.getDescriptionId() + ".tooltip";
+            String translatedText = Component.translatable(translationKey).getString();
 
-        Font font = Minecraft.getInstance().font;
-        String[] lines = translatedText.split("\n");
+            Font font = Minecraft.getInstance().font;
+            String[] lines = translatedText.split("\n");
 
-        for (String line : lines) {
-            StringBuilder currentLine = new StringBuilder();
-            String[] words = line.split(" ");
+            for (String line : lines) {
+                StringBuilder currentLine = new StringBuilder();
+                String[] words = line.split(" ");
 
-            for (String word : words) {
-                if (font.width(currentLine + word) > FAConfigs.getMainConfig().descriptionsLength) {
+                for (String word : words) {
+                    if (font.width(currentLine + word) > FAConfigs.getMainConfig().descriptionsLength) {
+                        tooltip.add(Component.literal(currentLine.toString()));
+                        currentLine = new StringBuilder();
+                        currentLine.append("§7");
+                    }
+                    if (currentLine.length() > 2) {
+                        currentLine.append(" ");
+                        currentLine.append("§7");
+                    }
+                    currentLine.append(word);
+                }
+
+                if (currentLine.length() > 0) {
                     tooltip.add(Component.literal(currentLine.toString()));
-                    currentLine = new StringBuilder();
-                    currentLine.append("§7");
                 }
-                if (currentLine.length() > 2) {
-                    currentLine.append(" ");
-                    currentLine.append("§7");
-                }
-                currentLine.append(word);
             }
+        }
 
-            if (currentLine.length() > 0) {
-                tooltip.add(Component.literal(currentLine.toString()));
+        if (FAConfigs.getMainConfig().enableDurability) {
+            int maxDmg = stack.getMaxDamage();
+            if (maxDmg > 0) {
+                int remaining = maxDmg - stack.getDamageValue();
+                tooltip.add(Component.literal("Durability: " + remaining + " / " + maxDmg).withStyle(ChatFormatting.BLUE));
             }
         }
     }
