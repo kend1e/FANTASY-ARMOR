@@ -129,13 +129,6 @@ public abstract class FAArmorItem extends Item implements GeoItem {
             }
         }
 
-        if (FAConfigs.getMainConfig().enableDurability) {
-            int maxDmg = stack.getMaxDamage();
-            if (maxDmg > 0) {
-                int remaining = maxDmg - stack.getDamageValue();
-                tooltipAdder.accept(Component.literal("Durability: " + remaining + " / " + maxDmg).withStyle(ChatFormatting.BLUE));
-            }
-        }
     }
 
 
