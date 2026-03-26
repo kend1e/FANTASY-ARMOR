@@ -43,6 +43,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.1)
                     .movementSpeed(0.1)
+                    .durability(407.0)
                     .build()));
 
     public static final RegistryObject<Item> ECLIPSE_SOLDIER_CHESTPLATE = ITEMS.register("eclipse_soldier_chestplate", () ->
@@ -50,6 +51,7 @@ public final class FAItems {
                     .armor(8.0)
                     .armorToughness(3.0)
                     .knockbackResistance(0.2)
+                    .durability(592.0)
                     .build()));
 
     public static final RegistryObject<Item> ECLIPSE_SOLDIER_LEGGINGS = ITEMS.register("eclipse_soldier_leggings", () ->
@@ -57,6 +59,7 @@ public final class FAItems {
                     .armor(6.0)
                     .armorToughness(3.0)
                     .knockbackResistance(0.2)
+                    .durability(555.0)
                     .build()));
 
     public static final RegistryObject<Item> ECLIPSE_SOLDIER_BOOTS = ITEMS.register("eclipse_soldier_boots", () ->
@@ -64,6 +67,7 @@ public final class FAItems {
                     .armor(3.0)
                     .armorToughness(3.0)
                     .knockbackResistance(0.1)
+                    .durability(481.0)
                     .build()));
 
     // DRAGONSLAYER
@@ -72,6 +76,7 @@ public final class FAItems {
                     .armor(3.0)
                     .armorToughness(3.0)
                     .knockbackResistance(0.2)
+                    .durability(407.0)
                     .build()));
 
     public static final RegistryObject<Item> DRAGONSLAYER_CHESTPLATE = ITEMS.register("dragonslayer_chestplate", () ->
@@ -80,6 +85,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.2)
                     .attackSpeed(0.1)
+                    .durability(592.0)
                     .build()));
 
     public static final RegistryObject<Item> DRAGONSLAYER_LEGGINGS = ITEMS.register("dragonslayer_leggings", () ->
@@ -87,6 +93,7 @@ public final class FAItems {
                     .armor(6.0)
                     .armorToughness(3.0)
                     .knockbackResistance(0.2)
+                    .durability(555.0)
                     .build()));
 
     public static final RegistryObject<Item> DRAGONSLAYER_BOOTS = ITEMS.register("dragonslayer_boots", () ->
@@ -94,6 +101,7 @@ public final class FAItems {
                     .armor(3.0)
                     .armorToughness(3.0)
                     .knockbackResistance(0.1)
+                    .durability(481.0)
                     .build()));
 
     // HERO
@@ -104,6 +112,7 @@ public final class FAItems {
                     .knockbackResistance(0.1)
                     .attackDamage(0.1)
                     .attackSpeed(0.1)
+                    .durability(407.0)
                     .build()));
 
     public static final RegistryObject<Item> HERO_CHESTPLATE = ITEMS.register("hero_chestplate", () ->
@@ -113,6 +122,7 @@ public final class FAItems {
                     .knockbackResistance(0.1)
                     .attackDamage(0.1)
                     .attackSpeed(0.1)
+                    .durability(592.0)
                     .build()));
 
     public static final RegistryObject<Item> HERO_LEGGINGS = ITEMS.register("hero_leggings", () ->
@@ -120,6 +130,7 @@ public final class FAItems {
                     .armor(6.0)
                     .armorToughness(3.0)
                     .knockbackResistance(0.1)
+                    .durability(555.0)
                     .build()));
 
     public static final RegistryObject<Item> HERO_BOOTS = ITEMS.register("hero_boots", () ->
@@ -127,6 +138,7 @@ public final class FAItems {
                     .armor(3.0)
                     .armorToughness(3.0)
                     .knockbackResistance(0.1)
+                    .durability(481.0)
                     .build()));
 
     // GOLDEN_HORNS
@@ -137,6 +149,7 @@ public final class FAItems {
                     .knockbackResistance(0.1)
                     .movementSpeed(0.03)
                     .attackSpeed(0.1)
+                    .durability(407.0)
                     .build()));
 
     public static final RegistryObject<Item> GOLDEN_HORNS_CHESTPLATE = ITEMS.register("golden_horns_chestplate", () ->
@@ -146,6 +159,7 @@ public final class FAItems {
                     .knockbackResistance(0.1)
                     .movementSpeed(0.01)
                     .attackSpeed(0.1)
+                    .durability(592.0)
                     .build()));
 
     public static final RegistryObject<Item> GOLDEN_HORNS_LEGGINGS = ITEMS.register("golden_horns_leggings", () ->
@@ -154,6 +168,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.1)
                     .movementSpeed(0.02)
+                    .durability(555.0)
                     .build()));
 
     public static final RegistryObject<Item> GOLDEN_HORNS_BOOTS = ITEMS.register("golden_horns_boots", () ->
@@ -162,6 +177,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.1)
                     .movementSpeed(0.04)
+                    .durability(481.0)
                     .build()));
 
     // THIEF
@@ -173,6 +189,7 @@ public final class FAItems {
                     .movementSpeed(0.05)
                     .attackSpeed(0.1)
                     .luck(1.0)
+                    .durability(407.0)
                     .build()));
 
     public static final RegistryObject<Item> THIEF_CHESTPLATE = ITEMS.register("thief_chestplate", () ->
@@ -182,6 +199,7 @@ public final class FAItems {
                     .knockbackResistance(0.1)
                     .movementSpeed(0.05)
                     .attackSpeed(0.1)
+                    .durability(592.0)
                     .build()));
 
     public static final RegistryObject<Item> THIEF_LEGGINGS = ITEMS.register("thief_leggings", () ->
@@ -191,6 +209,7 @@ public final class FAItems {
                     .knockbackResistance(0.1)
                     .movementSpeed(0.1)
                     .attackSpeed(0.1)
+                    .durability(555.0)
                     .build()));
 
     public static final RegistryObject<Item> THIEF_BOOTS = ITEMS.register("thief_boots", () ->
@@ -200,6 +219,7 @@ public final class FAItems {
                     .knockbackResistance(0.1)
                     .movementSpeed(0.1)
                     .attackSpeed(0.05)
+                    .durability(481.0)
                     .build()));
 
     // WANDERING_WIZARD
@@ -210,6 +230,7 @@ public final class FAItems {
                     .knockbackResistance(0.1)
                     .movementSpeed(0.05)
                     .luck(2.0)
+                    .durability(407.0)
                     .build()));
 
     public static final RegistryObject<Item> WANDERING_WIZARD_CHESTPLATE = ITEMS.register("wandering_wizard_chestplate", () ->
@@ -218,6 +239,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.1)
                     .movementSpeed(0.05)
+                    .durability(592.0)
                     .build()));
 
     public static final RegistryObject<Item> WANDERING_WIZARD_LEGGINGS = ITEMS.register("wandering_wizard_leggings", () ->
@@ -226,6 +248,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.1)
                     .movementSpeed(0.05)
+                    .durability(555.0)
                     .build()));
 
     public static final RegistryObject<Item> WANDERING_WIZARD_BOOTS = ITEMS.register("wandering_wizard_boots", () ->
@@ -234,6 +257,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.1)
                     .movementSpeed(0.05)
+                    .durability(481.0)
                     .build()));
 
     // CHESS_BOARD_KNIGHT
@@ -242,6 +266,7 @@ public final class FAItems {
                     .armor(3.0)
                     .armorToughness(3.0)
                     .knockbackResistance(0.2)
+                    .durability(407.0)
                     .build()));
 
     public static final RegistryObject<Item> CHESS_BOARD_KNIGHT_CHESTPLATE = ITEMS.register("chess_board_knight_chestplate", () ->
@@ -250,6 +275,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.2)
                     .maxHealth(2.0)
+                    .durability(592.0)
                     .build()));
 
     public static final RegistryObject<Item> CHESS_BOARD_KNIGHT_LEGGINGS = ITEMS.register("chess_board_knight_leggings", () ->
@@ -257,6 +283,7 @@ public final class FAItems {
                     .armor(6.0)
                     .armorToughness(3.0)
                     .knockbackResistance(0.2)
+                    .durability(555.0)
                     .build()));
 
     public static final RegistryObject<Item> CHESS_BOARD_KNIGHT_BOOTS = ITEMS.register("chess_board_knight_boots", () ->
@@ -265,6 +292,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.2)
                     .maxHealth(2.0)
+                    .durability(481.0)
                     .build()));
 
     // DARK_LORD
@@ -274,6 +302,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.1)
                     .attackSpeed(0.02)
+                    .durability(407.0)
                     .build()));
 
     public static final RegistryObject<Item> DARK_LORD_CHESTPLATE = ITEMS.register("dark_lord_chestplate", () ->
@@ -282,6 +311,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.2)
                     .attackSpeed(0.03)
+                    .durability(592.0)
                     .build()));
 
     public static final RegistryObject<Item> DARK_LORD_LEGGINGS = ITEMS.register("dark_lord_leggings", () ->
@@ -290,6 +320,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.2)
                     .attackSpeed(0.03)
+                    .durability(555.0)
                     .build()));
 
     public static final RegistryObject<Item> DARK_LORD_BOOTS = ITEMS.register("dark_lord_boots", () ->
@@ -298,6 +329,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.1)
                     .attackSpeed(0.02)
+                    .durability(481.0)
                     .build()));
 
     // SUNSET_WINGS
@@ -308,6 +340,7 @@ public final class FAItems {
                     .knockbackResistance(0.1)
                     .movementSpeed(0.05)
                     .maxHealth(1.0)
+                    .durability(407.0)
                     .build()));
 
     public static final RegistryObject<Item> SUNSET_WINGS_CHESTPLATE = ITEMS.register("sunset_wings_chestplate", () ->
@@ -317,6 +350,7 @@ public final class FAItems {
                     .knockbackResistance(0.1)
                     .movementSpeed(0.05)
                     .maxHealth(1.0)
+                    .durability(592.0)
                     .build()));
 
     public static final RegistryObject<Item> SUNSET_WINGS_LEGGINGS = ITEMS.register("sunset_wings_leggings", () ->
@@ -326,6 +360,7 @@ public final class FAItems {
                     .knockbackResistance(0.1)
                     .movementSpeed(0.05)
                     .maxHealth(1.0)
+                    .durability(555.0)
                     .build()));
 
     public static final RegistryObject<Item> SUNSET_WINGS_BOOTS = ITEMS.register("sunset_wings_boots", () ->
@@ -335,6 +370,7 @@ public final class FAItems {
                     .knockbackResistance(0.1)
                     .movementSpeed(0.05)
                     .maxHealth(1.0)
+                    .durability(481.0)
                     .build()));
 
     // FOG_GUARD
@@ -345,6 +381,7 @@ public final class FAItems {
                     .knockbackResistance(0.1)
                     .maxHealth(1.0)
                     .attackSpeed(0.1)
+                    .durability(407.0)
                     .build()));
 
     public static final RegistryObject<Item> FOG_GUARD_CHESTPLATE = ITEMS.register("fog_guard_chestplate", () ->
@@ -354,6 +391,7 @@ public final class FAItems {
                     .knockbackResistance(0.1)
                     .maxHealth(1.0)
                     .attackSpeed(0.01)
+                    .durability(592.0)
                     .build()));
 
     public static final RegistryObject<Item> FOG_GUARD_LEGGINGS = ITEMS.register("fog_guard_leggings", () ->
@@ -363,6 +401,7 @@ public final class FAItems {
                     .knockbackResistance(0.1)
                     .maxHealth(1.0)
                     .attackSpeed(0.02)
+                    .durability(555.0)
                     .build()));
 
     public static final RegistryObject<Item> FOG_GUARD_BOOTS = ITEMS.register("fog_guard_boots", () ->
@@ -372,6 +411,7 @@ public final class FAItems {
                     .knockbackResistance(0.1)
                     .maxHealth(1.0)
                     .attackSpeed(0.03)
+                    .durability(481.0)
                     .build()));
 
     // DARK_COVER
@@ -381,6 +421,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.1)
                     .maxHealth(2.0)
+                    .durability(407.0)
                     .build()));
 
     public static final RegistryObject<Item> DARK_COVER_CHESTPLATE = ITEMS.register("dark_cover_chestplate", () ->
@@ -389,6 +430,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.2)
                     .attackSpeed(0.1)
+                    .durability(592.0)
                     .build()));
 
     public static final RegistryObject<Item> DARK_COVER_LEGGINGS = ITEMS.register("dark_cover_leggings", () ->
@@ -397,6 +439,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.2)
                     .maxHealth(1.0)
+                    .durability(555.0)
                     .build()));
 
     public static final RegistryObject<Item> DARK_COVER_BOOTS = ITEMS.register("dark_cover_boots", () ->
@@ -404,6 +447,7 @@ public final class FAItems {
                     .armor(3.0)
                     .armorToughness(3.0)
                     .knockbackResistance(0.1)
+                    .durability(481.0)
                     .build()));
 
     // SPARK_OF_DAWN
@@ -414,6 +458,7 @@ public final class FAItems {
                     .knockbackResistance(0.1)
                     .maxHealth(1.0)
                     .attackSpeed(0.1)
+                    .durability(407.0)
                     .build()));
 
     public static final RegistryObject<Item> SPARK_OF_DAWN_CHESTPLATE = ITEMS.register("spark_of_dawn_chestplate", () ->
@@ -422,6 +467,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.1)
                     .attackSpeed(0.05)
+                    .durability(592.0)
                     .build()));
 
     public static final RegistryObject<Item> SPARK_OF_DAWN_LEGGINGS = ITEMS.register("spark_of_dawn_leggings", () ->
@@ -432,6 +478,7 @@ public final class FAItems {
                     .movementSpeed(0.05)
                     .maxHealth(1.0)
                     .attackSpeed(0.05)
+                    .durability(555.0)
                     .build()));
 
     public static final RegistryObject<Item> SPARK_OF_DAWN_BOOTS = ITEMS.register("spark_of_dawn_boots", () ->
@@ -440,6 +487,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.1)
                     .movementSpeed(0.05)
+                    .durability(481.0)
                     .build()));
 
     // GOLDEN_EXECUTION
@@ -450,6 +498,7 @@ public final class FAItems {
                     .knockbackResistance(0.2)
                     .maxHealth(2.0)
                     .attackSpeed(0.05)
+                    .durability(407.0)
                     .build()));
 
     public static final RegistryObject<Item> GOLDEN_EXECUTION_CHESTPLATE = ITEMS.register("golden_execution_chestplate", () ->
@@ -459,6 +508,7 @@ public final class FAItems {
                     .knockbackResistance(0.2)
                     .maxHealth(4.0)
                     .attackSpeed(0.05)
+                    .durability(592.0)
                     .build()));
 
     public static final RegistryObject<Item> GOLDEN_EXECUTION_LEGGINGS = ITEMS.register("golden_execution_leggings", () ->
@@ -467,6 +517,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.2)
                     .maxHealth(1.0)
+                    .durability(555.0)
                     .build()));
 
     public static final RegistryObject<Item> GOLDEN_EXECUTION_BOOTS = ITEMS.register("golden_execution_boots", () ->
@@ -475,6 +526,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.2)
                     .maxHealth(1.0)
+                    .durability(481.0)
                     .build()));
 
     // FORGOTTEN_TRACE
@@ -485,6 +537,7 @@ public final class FAItems {
                     .knockbackResistance(0.1)
                     .movementSpeed(0.05)
                     .luck(1.0)
+                    .durability(407.0)
                     .build()));
 
     public static final RegistryObject<Item> FORGOTTEN_TRACE_CHESTPLATE = ITEMS.register("forgotten_trace_chestplate", () ->
@@ -494,6 +547,7 @@ public final class FAItems {
                     .knockbackResistance(0.1)
                     .movementSpeed(0.03)
                     .maxHealth(2.0)
+                    .durability(592.0)
                     .build()));
 
     public static final RegistryObject<Item> FORGOTTEN_TRACE_LEGGINGS = ITEMS.register("forgotten_trace_leggings", () ->
@@ -503,6 +557,7 @@ public final class FAItems {
                     .knockbackResistance(0.1)
                     .movementSpeed(0.02)
                     .maxHealth(1.0)
+                    .durability(555.0)
                     .build()));
 
     public static final RegistryObject<Item> FORGOTTEN_TRACE_BOOTS = ITEMS.register("forgotten_trace_boots", () ->
@@ -513,6 +568,7 @@ public final class FAItems {
                     .movementSpeed(0.05)
                     .maxHealth(1.0)
                     .luck(1.0)
+                    .durability(481.0)
                     .build()));
 
     // REDEEMER
@@ -524,6 +580,7 @@ public final class FAItems {
                     .maxHealth(2.0)
                     .attackSpeed(0.05)
                     .luck(1.0)
+                    .durability(407.0)
                     .build()));
 
     public static final RegistryObject<Item> REDEEMER_CHESTPLATE = ITEMS.register("redeemer_chestplate", () ->
@@ -535,6 +592,7 @@ public final class FAItems {
                     .attackSpeed(0.03)
                     .movementSpeed(0.02)
                     .luck(1.0)
+                    .durability(592.0)
                     .build()));
 
     public static final RegistryObject<Item> REDEEMER_LEGGINGS = ITEMS.register("redeemer_leggings", () ->
@@ -543,6 +601,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.2)
                     .movementSpeed(0.04)
+                    .durability(555.0)
                     .build()));
 
     public static final RegistryObject<Item> REDEEMER_BOOTS = ITEMS.register("redeemer_boots", () ->
@@ -551,6 +610,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.1)
                     .movementSpeed(0.02)
+                    .durability(481.0)
                     .build()));
 
     // TWINNED
@@ -561,6 +621,7 @@ public final class FAItems {
                     .knockbackResistance(0.2)
                     .attackSpeed(0.1)
                     .movementSpeed(0.02)
+                    .durability(407.0)
                     .build()));
 
     public static final RegistryObject<Item> TWINNED_CHESTPLATE = ITEMS.register("twinned_chestplate", () ->
@@ -570,6 +631,7 @@ public final class FAItems {
                     .knockbackResistance(0.1)
                     .attackSpeed(0.02)
                     .movementSpeed(0.02)
+                    .durability(592.0)
                     .build()));
 
     public static final RegistryObject<Item> TWINNED_LEGGINGS = ITEMS.register("twinned_leggings", () ->
@@ -579,6 +641,7 @@ public final class FAItems {
                     .knockbackResistance(0.2)
                     .attackSpeed(0.05)
                     .movementSpeed(0.02)
+                    .durability(555.0)
                     .build()));
 
     public static final RegistryObject<Item> TWINNED_BOOTS = ITEMS.register("twinned_boots", () ->
@@ -588,6 +651,7 @@ public final class FAItems {
                     .knockbackResistance(0.1)
                     .attackSpeed(0.05)
                     .movementSpeed(0.02)
+                    .durability(481.0)
                     .build()));
 
     // GILDED_HUNT
@@ -598,6 +662,7 @@ public final class FAItems {
                     .knockbackResistance(0.1)
                     .maxHealth(1.0)
                     .attackSpeed(0.1)
+                    .durability(407.0)
                     .build()));
 
     public static final RegistryObject<Item> GILDED_HUNT_CHESTPLATE = ITEMS.register("gilded_hunt_chestplate", () ->
@@ -607,6 +672,7 @@ public final class FAItems {
                     .knockbackResistance(0.1)
                     .maxHealth(1.0)
                     .attackSpeed(0.1)
+                    .durability(592.0)
                     .build()));
 
     public static final RegistryObject<Item> GILDED_HUNT_LEGGINGS = ITEMS.register("gilded_hunt_leggings", () ->
@@ -614,6 +680,7 @@ public final class FAItems {
                     .armor(6.0)
                     .armorToughness(3.0)
                     .knockbackResistance(0.1)
+                    .durability(555.0)
                     .build()));
 
     public static final RegistryObject<Item> GILDED_HUNT_BOOTS = ITEMS.register("gilded_hunt_boots", () ->
@@ -621,6 +688,7 @@ public final class FAItems {
                     .armor(3.0)
                     .armorToughness(3.0)
                     .knockbackResistance(0.1)
+                    .durability(481.0)
                     .build()));
 
     // LADY_MARIA
@@ -631,6 +699,7 @@ public final class FAItems {
                     .knockbackResistance(0.1)
                     .attackSpeed(0.05)
                     .luck(1.0)
+                    .durability(407.0)
                     .build()));
 
     public static final RegistryObject<Item> LADY_MARIA_CHESTPLATE = ITEMS.register("lady_maria_chestplate", () ->
@@ -640,6 +709,7 @@ public final class FAItems {
                     .knockbackResistance(0.1)
                     .movementSpeed(0.05)
                     .attackSpeed(0.05)
+                    .durability(592.0)
                     .build()));
 
     public static final RegistryObject<Item> LADY_MARIA_LEGGINGS = ITEMS.register("lady_maria_leggings", () ->
@@ -648,6 +718,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.1)
                     .movementSpeed(0.05)
+                    .durability(555.0)
                     .build()));
 
     public static final RegistryObject<Item> LADY_MARIA_BOOTS = ITEMS.register("lady_maria_boots", () ->
@@ -656,6 +727,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.1)
                     .movementSpeed(0.03)
+                    .durability(481.0)
                     .build()));
 
     // CRUCIBLE_KNIGHT
@@ -664,6 +736,7 @@ public final class FAItems {
                     .armor(3.0)
                     .armorToughness(3.0)
                     .knockbackResistance(0.2)
+                    .durability(407.0)
                     .build()));
 
     public static final RegistryObject<Item> CRUCIBLE_KNIGHT_CHESTPLATE = ITEMS.register("crucible_knight_chestplate", () ->
@@ -672,6 +745,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.2)
                     .maxHealth(2.0)
+                    .durability(592.0)
                     .build()));
 
     public static final RegistryObject<Item> CRUCIBLE_KNIGHT_LEGGINGS = ITEMS.register("crucible_knight_leggings", () ->
@@ -679,6 +753,7 @@ public final class FAItems {
                     .armor(6.0)
                     .armorToughness(3.0)
                     .knockbackResistance(0.2)
+                    .durability(555.0)
                     .build()));
 
     public static final RegistryObject<Item> CRUCIBLE_KNIGHT_BOOTS = ITEMS.register("crucible_knight_boots", () ->
@@ -686,6 +761,7 @@ public final class FAItems {
                     .armor(3.0)
                     .armorToughness(3.0)
                     .knockbackResistance(0.1)
+                    .durability(481.0)
                     .build()));
 
     // EVENING_GHOST
@@ -696,6 +772,7 @@ public final class FAItems {
                     .knockbackResistance(0.1)
                     .movementSpeed(0.05)
                     .luck(1.0)
+                    .durability(407.0)
                     .build()));
 
     public static final RegistryObject<Item> EVENING_GHOST_CHESTPLATE = ITEMS.register("evening_ghost_chestplate", () ->
@@ -705,6 +782,7 @@ public final class FAItems {
                     .knockbackResistance(0.1)
                     .movementSpeed(0.03)
                     .luck(1.0)
+                    .durability(592.0)
                     .build()));
 
     public static final RegistryObject<Item> EVENING_GHOST_LEGGINGS = ITEMS.register("evening_ghost_leggings", () ->
@@ -713,6 +791,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.1)
                     .movementSpeed(0.04)
+                    .durability(555.0)
                     .build()));
 
     public static final RegistryObject<Item> EVENING_GHOST_BOOTS = ITEMS.register("evening_ghost_boots", () ->
@@ -721,6 +800,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.1)
                     .movementSpeed(0.05)
+                    .durability(481.0)
                     .build()));
 
     // RONIN
@@ -730,6 +810,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.1)
                     .attackSpeed(0.1)
+                    .durability(407.0)
                     .build()));
 
     public static final RegistryObject<Item> RONIN_CHESTPLATE = ITEMS.register("ronin_chestplate", () ->
@@ -738,6 +819,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.1)
                     .attackSpeed(0.1)
+                    .durability(592.0)
                     .build()));
 
     public static final RegistryObject<Item> RONIN_LEGGINGS = ITEMS.register("ronin_leggings", () ->
@@ -746,6 +828,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.1)
                     .movementSpeed(0.03)
+                    .durability(555.0)
                     .build()));
 
     public static final RegistryObject<Item> RONIN_BOOTS = ITEMS.register("ronin_boots", () ->
@@ -754,6 +837,7 @@ public final class FAItems {
                     .armorToughness(3.0)
                     .knockbackResistance(0.1)
                     .movementSpeed(0.05)
+                    .durability(481.0)
                     .build()));
 
     private FAItems() {
