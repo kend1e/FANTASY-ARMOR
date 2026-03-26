@@ -17,6 +17,7 @@ public class FAArmorAttributesConfig {
     public final ModConfigSpec.DoubleValue attackDamage;
     public final ModConfigSpec.DoubleValue attackSpeed;
     public final ModConfigSpec.DoubleValue luck;
+    public final ModConfigSpec.DoubleValue durability;
 
     private static final Map<FAArmorSet, Map<ArmorItem.Type, FAArmorAttributes>> DEFAULTS = new HashMap<>();
 
@@ -31,6 +32,7 @@ public class FAArmorAttributesConfig {
         attackDamage = builder.defineInRange("attackDamage", defaults.attackDamage(), 0.0, 100.0);
         attackSpeed = builder.defineInRange("attackSpeed", defaults.attackSpeed(), -1.0, 1.0);
         luck = builder.defineInRange("luck", defaults.luck(), -100.0, 100.0);
+        durability = builder.defineInRange("durability", getDefaultDurability(type), 0.0, 10000.0);
     }
 
     private FAArmorAttributes getGlobalDefaults(ArmorItem.Type type) {
@@ -38,6 +40,15 @@ public class FAArmorAttributesConfig {
             case HELMET, BOOTS -> new FAArmorAttributes.Builder().armor(3).armorToughness(2).knockbackResistance(0.1).build();
             case CHESTPLATE, BODY -> new FAArmorAttributes.Builder().armor(8).armorToughness(2).knockbackResistance(0.1).build();
             case LEGGINGS -> new FAArmorAttributes.Builder().armor(6).armorToughness(2).knockbackResistance(0.1).build();
+        };
+    }
+
+    private static double getDefaultDurability(ArmorItem.Type type) {
+        return switch (type) {
+            case HELMET -> 407.0;
+            case CHESTPLATE, BODY -> 592.0;
+            case LEGGINGS -> 555.0;
+            case BOOTS -> 481.0;
         };
     }
 

@@ -10,11 +10,13 @@ public class FAConfig {
     public static final ForgeConfigSpec.BooleanValue APPLY_MODIFIERS;
     public static final ForgeConfigSpec.BooleanValue SHOW_DESCRIPTIONS;
     public static final ForgeConfigSpec.BooleanValue SHOW_PARTICLES;
+    public static final ForgeConfigSpec.BooleanValue ENABLE_DURABILITY;
 
     public static boolean applyArmorEffects;
     public static boolean applyModifiers;
     public static boolean showDescriptions;
     public static boolean showParticles;
+    public static boolean enableDurability;
 
     static {
         BUILDER.push("General Settings");
@@ -35,6 +37,10 @@ public class FAConfig {
                 .comment("Show effect particles")
                 .define("showParticles", false);
 
+        ENABLE_DURABILITY = BUILDER
+                .comment("Enable durability on Fantasy Armor pieces. When false, armor is indestructible. Requires game restart.")
+                .define("enableDurability", false);
+
         BUILDER.pop();
         SPEC = BUILDER.build();
     }
@@ -44,5 +50,6 @@ public class FAConfig {
         applyModifiers = APPLY_MODIFIERS.get();
         showDescriptions = SHOW_DESCRIPTIONS.get();
         showParticles = SHOW_PARTICLES.get();
+        enableDurability = ENABLE_DURABILITY.get();
     }
 }

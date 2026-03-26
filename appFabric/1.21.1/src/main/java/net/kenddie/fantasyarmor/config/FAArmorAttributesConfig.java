@@ -33,6 +33,7 @@ public class FAArmorAttributesConfig implements ConfigData {
         public double attackDamage = 0.0;
         public double attackSpeed = 0.0;         // -1..1
         public double luck = 0.0;                // -100..100
+        public double durability = 0.0;
 
         public FAArmorAttributes toAttributes() {
             return new FAArmorAttributes.Builder()
@@ -44,6 +45,7 @@ public class FAArmorAttributesConfig implements ConfigData {
                     .attackDamage(attackDamage)
                     .attackSpeed(attackSpeed)
                     .luck(luck)
+                    .durability(durability)
                     .build();
         }
     }
@@ -924,6 +926,7 @@ public class FAArmorAttributesConfig implements ConfigData {
                     p.attackDamage = a.attackDamage();
                     p.attackSpeed = a.attackSpeed();
                     p.luck = a.luck();
+                    p.durability = a.durability() > 0 ? a.durability() : getDefaultDurability(type);
                     return p;
                 });
             }
@@ -953,6 +956,15 @@ public class FAArmorAttributesConfig implements ConfigData {
             case HELMET, BOOTS -> new FAArmorAttributes.Builder().armor(3).armorToughness(2).knockbackResistance(0.1).build();
             case CHESTPLATE, BODY -> new FAArmorAttributes.Builder().armor(8).armorToughness(2).knockbackResistance(0.1).build();
             case LEGGINGS -> new FAArmorAttributes.Builder().armor(6).armorToughness(2).knockbackResistance(0.1).build();
+        };
+    }
+
+    private static double getDefaultDurability(ArmorItem.Type type) {
+        return switch (type) {
+            case HELMET -> 407.0;
+            case CHESTPLATE, BODY -> 592.0;
+            case LEGGINGS -> 555.0;
+            case BOOTS -> 481.0;
         };
     }
 }
