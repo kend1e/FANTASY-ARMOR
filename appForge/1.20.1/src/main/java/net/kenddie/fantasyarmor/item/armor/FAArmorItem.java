@@ -86,13 +86,6 @@ public abstract class FAArmorItem extends DyeableArmorItem implements GeoItem {
             tooltip.add(Component.translatable(translationKey));
         }
 
-        if (FAConfig.enableDurability) {
-            int maxDmg = stack.getMaxDamage();
-            if (maxDmg > 0) {
-                int remaining = maxDmg - stack.getDamageValue();
-                tooltip.add(Component.literal("Durability: " + remaining + " / " + maxDmg).withStyle(ChatFormatting.BLUE));
-            }
-        }
     }
 
     @Override
