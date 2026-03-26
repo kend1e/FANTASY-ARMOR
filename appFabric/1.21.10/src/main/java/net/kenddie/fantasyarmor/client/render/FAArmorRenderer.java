@@ -31,47 +31,41 @@ import java.util.Optional;
 public class FAArmorRenderer<T extends FAArmorItem, R extends HumanoidRenderState & GeoRenderState>
         extends GeoArmorRenderer<T, R> {
 
-    private final boolean hasOverlayTextureFile;
+    private final boolean dyeable;
 
-    public FAArmorRenderer(GeoModel<T> model, boolean hasOverlayTextureFile) {
+    public FAArmorRenderer(GeoModel<T> model, boolean dyeable) {
         super(model);
-        this.hasOverlayTextureFile = hasOverlayTextureFile;
+        this.dyeable = dyeable;
 
-        if (hasOverlayTextureFile) {
-            this.withRenderLayer(r -> new FADyeableTextureLayer<>((GeoArmorRenderer) r));
+        if (dyeable) {
+            this.withRenderLayer(r -> new FADyeableGeoLayer<>((GeoArmorRenderer) r));
         }
     }
 
     @Override
     public int getRenderColor(T animatable, RenderData renderData, float partialTick) {
-        if (hasOverlayTextureFile)
-            return 0xFFFFFFFF;
-
-        if (!animatable.hasCustomColor(renderData.itemStack()))
-            return 0xFFFFFFFF;
-
-        return 0xFF000000 | animatable.getColor(renderData.itemStack());
+        return 0xFFFFFFFF;
     }
 
     @Override
     public R captureDefaultRenderState(T animatable, RenderData renderData, R renderState, float partialTick) {
         R out = super.captureDefaultRenderState(animatable, renderData, renderState, partialTick);
 
-        if (!hasOverlayTextureFile)
+        if (!dyeable)
             return out;
 
         boolean dyed = animatable.hasCustomColor(renderData.itemStack());
-        out.addGeckolibData(FADyeableTextureLayer.HAS_DYE_TICKET, dyed);
+        out.addGeckolibData(FADyeableGeoLayer.HAS_DYE_TICKET, dyed);
 
         if (dyed) {
             int dyeColor = 0xFF000000 | animatable.getColor(renderData.itemStack());
-            out.addGeckolibData(FADyeableTextureLayer.DYE_COLOR_TICKET, dyeColor);
+            out.addGeckolibData(FADyeableGeoLayer.DYE_COLOR_TICKET, dyeColor);
 
             ResourceLocation overlayTex = ResourceLocation.fromNamespaceAndPath(
                     FantasyArmor.MOD_ID,
                     animatable.getArmorSet().getOverlayPath()
             );
-            out.addGeckolibData(FADyeableTextureLayer.OVERLAY_TEX_TICKET, overlayTex);
+            out.addGeckolibData(FADyeableGeoLayer.OVERLAY_TEX_TICKET, overlayTex);
         }
 
         return out;

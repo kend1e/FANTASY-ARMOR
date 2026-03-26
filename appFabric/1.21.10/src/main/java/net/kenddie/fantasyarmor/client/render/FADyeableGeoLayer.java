@@ -11,7 +11,7 @@ import software.bernie.geckolib.renderer.base.GeoRenderState;
 import software.bernie.geckolib.renderer.layer.TextureLayerGeoLayer;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 
-public class FADyeableTextureLayer<
+public class FADyeableGeoLayer<
         T extends net.minecraft.world.item.Item & software.bernie.geckolib.animatable.GeoItem,
         R extends net.minecraft.client.renderer.entity.state.HumanoidRenderState & GeoRenderState
         > extends TextureLayerGeoLayer<T, GeoArmorRenderer.RenderData, R> {
@@ -23,7 +23,7 @@ public class FADyeableTextureLayer<
     public static final DataTicket<ResourceLocation> OVERLAY_TEX_TICKET =
             DataTicket.create("fantasyarmor_overlay_tex", ResourceLocation.class);
 
-    public FADyeableTextureLayer(GeoArmorRenderer<T, R> renderer) {
+    public FADyeableGeoLayer(GeoArmorRenderer<T, R> renderer) {
         super(renderer, net.minecraft.client.renderer.texture.MissingTextureAtlasSprite.getLocation());
     }
 
