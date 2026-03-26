@@ -32,23 +32,15 @@ public class FAArmorAttributesConfig {
         attackDamage = builder.defineInRange("attackDamage", defaults.attackDamage(), 0.0, 100.0);
         attackSpeed = builder.defineInRange("attackSpeed", defaults.attackSpeed(), -1.0, 1.0);
         luck = builder.defineInRange("luck", defaults.luck(), -100.0, 100.0);
-        durability = builder.defineInRange("durability", getDefaultDurability(type), 0.0, 10000.0);
+        durability = builder.defineInRange("durability", defaults.durability(), 0.0, 10000.0);
     }
 
     private FAArmorAttributes getGlobalDefaults(ArmorItem.Type type) {
         return switch (type) {
-            case HELMET, BOOTS -> new FAArmorAttributes.Builder().armor(3).armorToughness(2).knockbackResistance(0.1).build();
-            case CHESTPLATE, BODY -> new FAArmorAttributes.Builder().armor(8).armorToughness(2).knockbackResistance(0.1).build();
-            case LEGGINGS -> new FAArmorAttributes.Builder().armor(6).armorToughness(2).knockbackResistance(0.1).build();
-        };
-    }
-
-    private static double getDefaultDurability(ArmorItem.Type type) {
-        return switch (type) {
-            case HELMET -> 407.0;
-            case CHESTPLATE, BODY -> 592.0;
-            case LEGGINGS -> 555.0;
-            case BOOTS -> 481.0;
+            case BOOTS -> new FAArmorAttributes.Builder().armor(3.0).armorToughness(2).knockbackResistance(0.1).durability(440.0).build();
+            case HELMET -> new FAArmorAttributes.Builder().armor(3.0).armorToughness(2).knockbackResistance(0.1).durability(620.0).build();
+            case CHESTPLATE, BODY -> new FAArmorAttributes.Builder().armor(8.0).armorToughness(2).knockbackResistance(0.1).durability(580.0).build();
+            case LEGGINGS -> new FAArmorAttributes.Builder().armor(6.0).armorToughness(2).knockbackResistance(0.1).durability(500.0).build();
         };
     }
 
@@ -56,23 +48,28 @@ public class FAArmorAttributesConfig {
 // ECLIPSE_SOLDIER
         Map<ArmorItem.Type, FAArmorAttributes> eclipseSoldier = new HashMap<>();
         eclipseSoldier.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(440.0)
+                .durability(440.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .movementSpeed(0.1)
                 .build());
         eclipseSoldier.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
-                .armor(8)
+                .durability(620.0)
+                .armor(8.0)
                 .armorToughness(3)
                 .knockbackResistance(0.2)
                 .build());
         eclipseSoldier.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
-                .armor(6)
+                .durability(580.0)
+                .armor(6.0)
                 .armorToughness(3)
                 .knockbackResistance(0.2)
                 .build());
         eclipseSoldier.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(500.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .build());
@@ -81,23 +78,27 @@ public class FAArmorAttributesConfig {
 // DRAGONSLAYER
         Map<ArmorItem.Type, FAArmorAttributes> dragonslayer = new HashMap<>();
         dragonslayer.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(440.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.2)
                 .build());
         dragonslayer.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
-                .armor(8)
+                .durability(620.0)
+                .armor(8.0)
                 .armorToughness(3)
                 .knockbackResistance(0.2)
                 .attackSpeed(0.1)
                 .build());
         dragonslayer.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
-                .armor(6)
+                .durability(580.0)
+                .armor(6.0)
                 .armorToughness(3)
                 .knockbackResistance(0.2)
                 .build());
         dragonslayer.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(500.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .build());
@@ -106,26 +107,30 @@ public class FAArmorAttributesConfig {
 // HERO
         Map<ArmorItem.Type, FAArmorAttributes> hero = new HashMap<>();
         hero.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(440.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .attackDamage(0.1)
                 .attackSpeed(0.1)
                 .build());
         hero.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
-                .armor(8)
+                .durability(620.0)
+                .armor(8.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .attackDamage(0.1)
                 .attackSpeed(0.1)
                 .build());
         hero.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
-                .armor(6)
+                .durability(580.0)
+                .armor(6.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .build());
         hero.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(500.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .build());
@@ -134,27 +139,31 @@ public class FAArmorAttributesConfig {
 // GOLDEN_HORNS
         Map<ArmorItem.Type, FAArmorAttributes> goldenHorns = new HashMap<>();
         goldenHorns.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(440.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .movementSpeed(0.03)
                 .attackSpeed(0.1)
                 .build());
         goldenHorns.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
-                .armor(8)
+                .durability(620.0)
+                .armor(8.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .movementSpeed(0.01)
                 .attackSpeed(0.1)
                 .build());
         goldenHorns.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
-                .armor(6)
+                .durability(580.0)
+                .armor(6.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .movementSpeed(0.02)
                 .build());
         goldenHorns.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(500.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .movementSpeed(0.04)
@@ -164,7 +173,8 @@ public class FAArmorAttributesConfig {
 // THIEF
         Map<ArmorItem.Type, FAArmorAttributes> thief = new HashMap<>();
         thief.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(440.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .movementSpeed(0.05)
@@ -172,21 +182,24 @@ public class FAArmorAttributesConfig {
                 .luck(1.0)
                 .build());
         thief.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
-                .armor(8)
+                .durability(620.0)
+                .armor(8.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .movementSpeed(0.05)
                 .attackSpeed(0.1)
                 .build());
         thief.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
-                .armor(6)
+                .durability(580.0)
+                .armor(6.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .movementSpeed(0.1)
                 .attackSpeed(0.1)
                 .build());
         thief.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(500.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .movementSpeed(0.1)
@@ -197,26 +210,30 @@ public class FAArmorAttributesConfig {
 // WANDERING_WIZARD
         Map<ArmorItem.Type, FAArmorAttributes> wanderingWizard = new HashMap<>();
         wanderingWizard.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(440.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .movementSpeed(0.05)
                 .luck(2.0)
                 .build());
         wanderingWizard.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
-                .armor(8)
+                .durability(620.0)
+                .armor(8.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .movementSpeed(0.05)
                 .build());
         wanderingWizard.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
-                .armor(6)
+                .durability(580.0)
+                .armor(6.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .movementSpeed(0.05)
                 .build());
         wanderingWizard.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(500.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .movementSpeed(0.05)
@@ -226,23 +243,27 @@ public class FAArmorAttributesConfig {
 // CHESS_BOARD_KNIGHT
         Map<ArmorItem.Type, FAArmorAttributes> chessBoardKnight = new HashMap<>();
         chessBoardKnight.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(440.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.2)
                 .build());
         chessBoardKnight.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
-                .armor(8)
+                .durability(620.0)
+                .armor(8.0)
                 .armorToughness(3)
                 .knockbackResistance(0.2)
                 .maxHealth(2.0)
                 .build());
         chessBoardKnight.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
-                .armor(6)
+                .durability(580.0)
+                .armor(6.0)
                 .armorToughness(3)
                 .knockbackResistance(0.2)
                 .build());
         chessBoardKnight.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(500.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.2)
                 .maxHealth(2.0)
@@ -252,25 +273,29 @@ public class FAArmorAttributesConfig {
 // DARK_LORD
         Map<ArmorItem.Type, FAArmorAttributes> darkLord = new HashMap<>();
         darkLord.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(440.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .attackSpeed(0.02)
                 .build());
         darkLord.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
-                .armor(8)
+                .durability(620.0)
+                .armor(8.0)
                 .armorToughness(3)
                 .knockbackResistance(0.2)
                 .attackSpeed(0.03)
                 .build());
         darkLord.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
-                .armor(6)
+                .durability(580.0)
+                .armor(6.0)
                 .armorToughness(3)
                 .knockbackResistance(0.2)
                 .attackSpeed(0.03)
                 .build());
         darkLord.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(500.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .attackSpeed(0.02)
@@ -280,28 +305,32 @@ public class FAArmorAttributesConfig {
 // SUNSET_WINGS
         Map<ArmorItem.Type, FAArmorAttributes> sunsetWings = new HashMap<>();
         sunsetWings.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(440.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .movementSpeed(0.05)
                 .maxHealth(1.0)
                 .build());
         sunsetWings.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
-                .armor(8)
+                .durability(620.0)
+                .armor(8.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .movementSpeed(0.05)
                 .maxHealth(1.0)
                 .build());
         sunsetWings.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
-                .armor(6)
+                .durability(580.0)
+                .armor(6.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .movementSpeed(0.05)
                 .maxHealth(1.0)
                 .build());
         sunsetWings.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(500.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .movementSpeed(0.05)
@@ -312,28 +341,32 @@ public class FAArmorAttributesConfig {
 // FOG_GUARD
         Map<ArmorItem.Type, FAArmorAttributes> fogGuard = new HashMap<>();
         fogGuard.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(440.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .maxHealth(1.0)
                 .attackSpeed(0.1)
                 .build());
         fogGuard.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
-                .armor(8)
+                .durability(620.0)
+                .armor(8.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .maxHealth(1.0)
                 .attackSpeed(0.01)
                 .build());
         fogGuard.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
-                .armor(6)
+                .durability(580.0)
+                .armor(6.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .maxHealth(1.0)
                 .attackSpeed(0.02)
                 .build());
         fogGuard.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(500.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .maxHealth(1.0)
@@ -344,25 +377,29 @@ public class FAArmorAttributesConfig {
 // DARK_COVER
         Map<ArmorItem.Type, FAArmorAttributes> darkCover = new HashMap<>();
         darkCover.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(440.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .maxHealth(2.0)
                 .build());
         darkCover.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
-                .armor(8)
+                .durability(620.0)
+                .armor(8.0)
                 .armorToughness(3)
                 .knockbackResistance(0.2)
                 .attackSpeed(0.1)
                 .build());
         darkCover.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
-                .armor(6)
+                .durability(580.0)
+                .armor(6.0)
                 .armorToughness(3)
                 .knockbackResistance(0.2)
                 .maxHealth(1.0)
                 .build());
         darkCover.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(500.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .build());
@@ -371,20 +408,23 @@ public class FAArmorAttributesConfig {
 // SPARK_OF_DAWN
         Map<ArmorItem.Type, FAArmorAttributes> sparkOfDawn = new HashMap<>();
         sparkOfDawn.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(440.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .maxHealth(1.0)
                 .attackSpeed(0.1)
                 .build());
         sparkOfDawn.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
-                .armor(8)
+                .durability(620.0)
+                .armor(8.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .attackSpeed(0.05)
                 .build());
         sparkOfDawn.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
-                .armor(6)
+                .durability(580.0)
+                .armor(6.0)
                 .armorToughness(3)
                 .knockbackResistance(0.2)
                 .movementSpeed(0.05)
@@ -392,7 +432,8 @@ public class FAArmorAttributesConfig {
                 .attackSpeed(0.05)
                 .build());
         sparkOfDawn.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(500.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .movementSpeed(0.05)
@@ -402,27 +443,31 @@ public class FAArmorAttributesConfig {
 // GOLDEN_EXECUTION
         Map<ArmorItem.Type, FAArmorAttributes> goldenExecution = new HashMap<>();
         goldenExecution.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(440.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.2)
                 .maxHealth(2.0)
                 .attackSpeed(0.05)
                 .build());
         goldenExecution.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
-                .armor(8)
+                .durability(620.0)
+                .armor(8.0)
                 .armorToughness(3)
                 .knockbackResistance(0.2)
                 .maxHealth(4.0)
                 .attackSpeed(0.05)
                 .build());
         goldenExecution.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
-                .armor(6)
+                .durability(580.0)
+                .armor(6.0)
                 .armorToughness(3)
                 .knockbackResistance(0.2)
                 .maxHealth(1.0)
                 .build());
         goldenExecution.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(500.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.2)
                 .maxHealth(1.0)
@@ -432,28 +477,32 @@ public class FAArmorAttributesConfig {
 // FORGOTTEN_TRACE
         Map<ArmorItem.Type, FAArmorAttributes> forgottenTrace = new HashMap<>();
         forgottenTrace.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(440.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .movementSpeed(0.05)
                 .luck(1.0)
                 .build());
         forgottenTrace.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
-                .armor(8)
+                .durability(620.0)
+                .armor(8.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .movementSpeed(0.03)
                 .maxHealth(2.0)
                 .build());
         forgottenTrace.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
-                .armor(6)
+                .durability(580.0)
+                .armor(6.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .movementSpeed(0.02)
                 .maxHealth(1.0)
                 .build());
         forgottenTrace.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(500.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.2)
                 .movementSpeed(0.05)
@@ -465,7 +514,8 @@ public class FAArmorAttributesConfig {
 // REDEEMER
         Map<ArmorItem.Type, FAArmorAttributes> redeemer = new HashMap<>();
         redeemer.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(440.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .maxHealth(2.0)
@@ -473,7 +523,8 @@ public class FAArmorAttributesConfig {
                 .luck(1.0)
                 .build());
         redeemer.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
-                .armor(8)
+                .durability(620.0)
+                .armor(8.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .maxHealth(2.0)
@@ -482,13 +533,15 @@ public class FAArmorAttributesConfig {
                 .luck(1.0)
                 .build());
         redeemer.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
-                .armor(6)
+                .durability(580.0)
+                .armor(6.0)
                 .armorToughness(3)
                 .knockbackResistance(0.2)
                 .movementSpeed(0.04)
                 .build());
         redeemer.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
-                .armor(3)
+                .durability(500.0)
+                .armor(3.0)
                 .armorToughness(3)
                 .knockbackResistance(0.1)
                 .movementSpeed(0.02)
@@ -498,6 +551,7 @@ public class FAArmorAttributesConfig {
 // TWINNED
         Map<ArmorItem.Type, FAArmorAttributes> twinned = new HashMap<>();
         twinned.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
+                .durability(440.0)
                 .armor(3.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.2)
@@ -505,6 +559,7 @@ public class FAArmorAttributesConfig {
                 .movementSpeed(0.02)
                 .build());
         twinned.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
+                .durability(620.0)
                 .armor(8.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.1)
@@ -512,6 +567,7 @@ public class FAArmorAttributesConfig {
                 .movementSpeed(0.02)
                 .build());
         twinned.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
+                .durability(580.0)
                 .armor(6.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.2)
@@ -519,6 +575,7 @@ public class FAArmorAttributesConfig {
                 .movementSpeed(0.02)
                 .build());
         twinned.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
+                .durability(500.0)
                 .armor(3.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.1)
@@ -530,6 +587,7 @@ public class FAArmorAttributesConfig {
 // GILDED_HUNT
         Map<ArmorItem.Type, FAArmorAttributes> gildedHunt = new HashMap<>();
         gildedHunt.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
+                .durability(440.0)
                 .armor(3.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.1)
@@ -537,6 +595,7 @@ public class FAArmorAttributesConfig {
                 .attackSpeed(0.1)
                 .build());
         gildedHunt.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
+                .durability(620.0)
                 .armor(8.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.1)
@@ -544,11 +603,13 @@ public class FAArmorAttributesConfig {
                 .attackSpeed(0.1)
                 .build());
         gildedHunt.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
+                .durability(580.0)
                 .armor(6.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.1)
                 .build());
         gildedHunt.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
+                .durability(500.0)
                 .armor(3.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.1)
@@ -558,6 +619,7 @@ public class FAArmorAttributesConfig {
 // LADY_MARIA
         Map<ArmorItem.Type, FAArmorAttributes> ladyMaria = new HashMap<>();
         ladyMaria.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
+                .durability(440.0)
                 .armor(3.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.1)
@@ -565,6 +627,7 @@ public class FAArmorAttributesConfig {
                 .luck(1.0)
                 .build());
         ladyMaria.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
+                .durability(620.0)
                 .armor(8.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.1)
@@ -572,12 +635,14 @@ public class FAArmorAttributesConfig {
                 .attackSpeed(0.05)
                 .build());
         ladyMaria.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
+                .durability(580.0)
                 .armor(6.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.1)
                 .movementSpeed(0.05)
                 .build());
         ladyMaria.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
+                .durability(500.0)
                 .armor(3.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.1)
@@ -588,22 +653,26 @@ public class FAArmorAttributesConfig {
 // CRUCIBLE_KNIGHT
         Map<ArmorItem.Type, FAArmorAttributes> crucibleKnight = new HashMap<>();
         crucibleKnight.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
+                .durability(440.0)
                 .armor(3.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.2)
                 .build());
         crucibleKnight.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
+                .durability(620.0)
                 .armor(8.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.2)
                 .maxHealth(2.0)
                 .build());
         crucibleKnight.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
+                .durability(580.0)
                 .armor(6.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.2)
                 .build());
         crucibleKnight.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
+                .durability(500.0)
                 .armor(3.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.1)
@@ -613,6 +682,7 @@ public class FAArmorAttributesConfig {
 // EVENING_GHOST
         Map<ArmorItem.Type, FAArmorAttributes> eveningGhost = new HashMap<>();
         eveningGhost.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
+                .durability(440.0)
                 .armor(3.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.1)
@@ -620,6 +690,7 @@ public class FAArmorAttributesConfig {
                 .luck(1.0)
                 .build());
         eveningGhost.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
+                .durability(620.0)
                 .armor(8.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.1)
@@ -627,12 +698,14 @@ public class FAArmorAttributesConfig {
                 .luck(1.0)
                 .build());
         eveningGhost.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
+                .durability(580.0)
                 .armor(6.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.1)
                 .movementSpeed(0.04)
                 .build());
         eveningGhost.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
+                .durability(500.0)
                 .armor(3.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.1)
@@ -643,24 +716,28 @@ public class FAArmorAttributesConfig {
 // RONIN
         Map<ArmorItem.Type, FAArmorAttributes> ronin = new HashMap<>();
         ronin.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
+                .durability(440.0)
                 .armor(3.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.1)
                 .attackSpeed(0.1)
                 .build());
         ronin.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
+                .durability(620.0)
                 .armor(8.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.1)
                 .attackSpeed(0.1)
                 .build());
         ronin.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
+                .durability(580.0)
                 .armor(6.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.1)
                 .movementSpeed(0.03)
                 .build());
         ronin.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
+                .durability(500.0)
                 .armor(3.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.1)
@@ -671,6 +748,7 @@ public class FAArmorAttributesConfig {
 // MALENIA
         Map<ArmorItem.Type, FAArmorAttributes> malenia = new HashMap<>();
         malenia.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
+                .durability(440.0)
                 .armor(3.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.1)
@@ -678,6 +756,7 @@ public class FAArmorAttributesConfig {
                 .attackSpeed(0.05)
                 .build());
         malenia.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
+                .durability(620.0)
                 .armor(8.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.2)
@@ -685,12 +764,14 @@ public class FAArmorAttributesConfig {
                 .attackSpeed(0.05)
                 .build());
         malenia.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
+                .durability(580.0)
                 .armor(6.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.1)
                 .movementSpeed(0.05)
                 .build());
         malenia.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
+                .durability(500.0)
                 .armor(3.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.1)
@@ -701,24 +782,28 @@ public class FAArmorAttributesConfig {
 // OLD_KNIGHT
         Map<ArmorItem.Type, FAArmorAttributes> oldKnight = new HashMap<>();
         oldKnight.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
+                .durability(440.0)
                 .armor(3.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.2)
                 .maxHealth(1.0)
                 .build());
         oldKnight.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
+                .durability(620.0)
                 .armor(8.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.2)
                 .maxHealth(2.0)
                 .build());
         oldKnight.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
+                .durability(580.0)
                 .armor(6.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.2)
                 .maxHealth(1.0)
                 .build());
         oldKnight.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
+                .durability(500.0)
                 .armor(3.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.1)
@@ -728,6 +813,7 @@ public class FAArmorAttributesConfig {
 // SILVER_KNIGHT
         Map<ArmorItem.Type, FAArmorAttributes> silverKnight = new HashMap<>();
         silverKnight.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
+                .durability(440.0)
                 .armor(3.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.1)
@@ -735,6 +821,7 @@ public class FAArmorAttributesConfig {
                 .attackSpeed(0.03)
                 .build());
         silverKnight.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
+                .durability(620.0)
                 .armor(8.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.2)
@@ -742,12 +829,14 @@ public class FAArmorAttributesConfig {
                 .attackSpeed(0.03)
                 .build());
         silverKnight.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
+                .durability(580.0)
                 .armor(6.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.1)
                 .attackSpeed(0.02)
                 .build());
         silverKnight.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
+                .durability(500.0)
                 .armor(3.0)
                 .armorToughness(3.0)
                 .knockbackResistance(0.1)
@@ -758,24 +847,28 @@ public class FAArmorAttributesConfig {
 // DEAD_GLADIATOR
         Map<ArmorItem.Type, FAArmorAttributes> deadGladiator = new HashMap<>();
         deadGladiator.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
+                .durability(440.0)
                 .armor(3.0)
                 .armorToughness(2.0)
                 .knockbackResistance(0.1)
                 .attackDamage(0.05)
                 .build());
         deadGladiator.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
+                .durability(620.0)
                 .armor(8.0)
                 .armorToughness(2.0)
                 .knockbackResistance(0.2)
                 .attackDamage(0.1)
                 .build());
         deadGladiator.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
+                .durability(580.0)
                 .armor(6.0)
                 .armorToughness(2.0)
                 .knockbackResistance(0.1)
                 .attackDamage(0.05)
                 .build());
         deadGladiator.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
+                .durability(500.0)
                 .armor(3.0)
                 .armorToughness(2.0)
                 .knockbackResistance(0.1)
@@ -785,24 +878,28 @@ public class FAArmorAttributesConfig {
 // FLESH_OF_THE_FEASTER
         Map<ArmorItem.Type, FAArmorAttributes> fleshOfTheFeaster = new HashMap<>();
         fleshOfTheFeaster.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
+                .durability(440.0)
                 .armor(3.0)
                 .armorToughness(1.0)
                 .knockbackResistance(0.1)
                 .maxHealth(1.0)
                 .build());
         fleshOfTheFeaster.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
+                .durability(620.0)
                 .armor(8.0)
                 .armorToughness(1.0)
                 .knockbackResistance(0.2)
                 .maxHealth(2.0)
                 .build());
         fleshOfTheFeaster.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
+                .durability(580.0)
                 .armor(6.0)
                 .armorToughness(1.0)
                 .knockbackResistance(0.1)
                 .maxHealth(1.0)
                 .build());
         fleshOfTheFeaster.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
+                .durability(500.0)
                 .armor(3.0)
                 .armorToughness(1.0)
                 .knockbackResistance(0.1)
@@ -812,24 +909,28 @@ public class FAArmorAttributesConfig {
 // WIND_WORSHIPPER
         Map<ArmorItem.Type, FAArmorAttributes> windWorshipper = new HashMap<>();
         windWorshipper.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
+                .durability(440.0)
                 .armor(3.0)
                 .armorToughness(2.0)
                 .knockbackResistance(0.1)
                 .attackSpeed(0.03)
                 .build());
         windWorshipper.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
+                .durability(620.0)
                 .armor(8.0)
                 .armorToughness(2.0)
                 .knockbackResistance(0.2)
                 .attackSpeed(0.03)
                 .build());
         windWorshipper.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
+                .durability(580.0)
                 .armor(6.0)
                 .armorToughness(2.0)
                 .knockbackResistance(0.1)
                 .attackSpeed(0.02)
                 .build());
         windWorshipper.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
+                .durability(500.0)
                 .armor(3.0)
                 .armorToughness(2.0)
                 .knockbackResistance(0.1)
@@ -840,24 +941,28 @@ public class FAArmorAttributesConfig {
 // GRAVE_SENTINEL
         Map<ArmorItem.Type, FAArmorAttributes> graveSentinel = new HashMap<>();
         graveSentinel.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
+                .durability(440.0)
                 .armor(3.0)
                 .armorToughness(2.0)
                 .knockbackResistance(0.1)
                 .attackSpeed(0.03)
                 .build());
         graveSentinel.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
+                .durability(620.0)
                 .armor(8.0)
                 .armorToughness(2.0)
                 .knockbackResistance(0.2)
                 .attackSpeed(0.03)
                 .build());
         graveSentinel.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
+                .durability(580.0)
                 .armor(6.0)
                 .armorToughness(2.0)
                 .knockbackResistance(0.1)
                 .attackSpeed(0.02)
                 .build());
         graveSentinel.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
+                .durability(500.0)
                 .armor(3.0)
                 .armorToughness(2.0)
                 .knockbackResistance(0.2)
@@ -867,6 +972,7 @@ public class FAArmorAttributesConfig {
 // ORNSTEIN
         Map<ArmorItem.Type, FAArmorAttributes> ornstein = new HashMap<>();
         ornstein.put(ArmorItem.Type.HELMET, new FAArmorAttributes.Builder()
+                .durability(440.0)
                 .armor(3.0)
                 .armorToughness(2.0)
                 .knockbackResistance(0.1)
@@ -874,6 +980,7 @@ public class FAArmorAttributesConfig {
                 .maxHealth(2.0)
                 .build());
         ornstein.put(ArmorItem.Type.CHESTPLATE, new FAArmorAttributes.Builder()
+                .durability(620.0)
                 .armor(8.0)
                 .armorToughness(2.0)
                 .knockbackResistance(0.2)
@@ -881,6 +988,7 @@ public class FAArmorAttributesConfig {
                 .attackDamage(0.05)
                 .build());
         ornstein.put(ArmorItem.Type.LEGGINGS, new FAArmorAttributes.Builder()
+                .durability(580.0)
                 .armor(6.0)
                 .armorToughness(2.0)
                 .knockbackResistance(0.1)
@@ -888,6 +996,7 @@ public class FAArmorAttributesConfig {
                 .maxHealth(2.0)
                 .build());
         ornstein.put(ArmorItem.Type.BOOTS, new FAArmorAttributes.Builder()
+                .durability(500.0)
                 .armor(3.0)
                 .armorToughness(2.0)
                 .knockbackResistance(0.2)

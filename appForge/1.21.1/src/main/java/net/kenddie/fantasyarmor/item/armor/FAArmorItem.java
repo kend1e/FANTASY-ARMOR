@@ -39,6 +39,7 @@ import software.bernie.geckolib.animation.AnimatableManager;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;
 
 import java.util.List;
+import java.util.Properties;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -49,35 +50,15 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
     private ItemAttributeModifiers cachedModifiers;
 
     protected FAArmorItem(FAArmorSet armorSet, Type type, Supplier<FAArmorAttributes> attributesSupplier) {
-        super(ArmorMaterials.NETHERITE, type, new Properties().stacksTo(1).fireResistant());
+        super(
+            ArmorMaterials.NETHERITE, 
+            type, 
+            new Properties()
+                .stacksTo(1)
+                .fireResistant()
+        );
         this.armorSet = armorSet;
         this.attributesSupplier = attributesSupplier;
-    }
-
-    private boolean isDurabilityEnabled() {
-        try {
-            return FAConfig.ENABLE_DURABILITY.get();
-        } catch (IllegalStateException ignored) {
-            return FAConfig.enableDurability;
-        }
-    }
-
-    private void syncDurabilityComponent(ItemStack stack) {
-        if (!isDurabilityEnabled()) {
-            stack.remove(DataComponents.MAX_DAMAGE);
-            stack.remove(DataComponents.DAMAGE);
-            return;
-        }
-
-        int durability = (int) attributesSupplier.get().durability();
-        if (durability > 0) {
-            if (stack.getOrDefault(DataComponents.MAX_DAMAGE, 0) != durability) {
-                stack.set(DataComponents.MAX_DAMAGE, durability);
-            }
-            if (!stack.has(DataComponents.DAMAGE)) {
-                stack.set(DataComponents.DAMAGE, 0);
-            }
-        }
     }
 
     @Override
@@ -268,6 +249,32 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
 
     public FAArmorSet getArmorSet() {
         return armorSet;
+    }
+    
+    private boolean isDurabilityEnabled() {
+        try {
+            return FAConfig.ENABLE_DURABILITY.get();
+        } catch (IllegalStateException ignored) {
+            return FAConfig.enableDurability;
+        }
+    }
+
+    private void syncDurabilityComponent(ItemStack stack) {
+        if (!isDurabilityEnabled()) {
+            stack.remove(DataComponents.MAX_DAMAGE);
+            stack.remove(DataComponents.DAMAGE);
+            return;
+        }
+
+        int durability = (int) attributesSupplier.get().durability();
+        if (durability > 0) {
+            if (stack.getOrDefault(DataComponents.MAX_DAMAGE, 0) != durability) {
+                stack.set(DataComponents.MAX_DAMAGE, durability);
+            }
+            if (!stack.has(DataComponents.DAMAGE)) {
+                stack.set(DataComponents.DAMAGE, 0);
+            }
+        }
     }
 
     public static boolean resourceExists(ResourceLocation location) {
