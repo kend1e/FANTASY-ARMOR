@@ -40,4 +40,8 @@ public class FAConfig implements ConfigData {
     @ConfigEntry.Category("general")
     @ConfigEntry.Gui.Tooltip
     public boolean showEffectIcon = true;
+
+    @ConfigEntry.Category("general")
+    @ConfigEntry.Gui.Tooltip
+    public boolean enableDurability = false;
 }

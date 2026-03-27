@@ -12,6 +12,8 @@ import software.bernie.geckolib.renderer.GeoArmorRenderer;
 
 import java.util.List;
 
+import static net.kenddie.fantasyarmor.config.FAConfig.showParticles;
+
 public class SparkOfDawnArmorItem extends FAArmorItem {
 
     public SparkOfDawnArmorItem(Type type, FAArmorAttributes armorAttributes) {

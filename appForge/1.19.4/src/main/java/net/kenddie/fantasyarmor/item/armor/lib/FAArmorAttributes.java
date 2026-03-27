@@ -8,7 +8,8 @@ public record FAArmorAttributes(
         double maxHealth,
         double attackDamage,
         double attackSpeed,
-        double luck
+        double luck,
+        double durability
 ) {
 
     public static Builder builder() {
@@ -24,6 +25,7 @@ public record FAArmorAttributes(
         private double attackDamage = 0;
         private double attackSpeed = 0;
         private double luck = 0;
+        private double durability = 0;
 
         public Builder armor(double armor) {
             this.armor = armor;
@@ -65,6 +67,11 @@ public record FAArmorAttributes(
             return this;
         }
 
+        public Builder durability(double durability) {
+            this.durability = durability;
+            return this;
+        }
+
         public FAArmorAttributes build() {
             return new FAArmorAttributes(
                     armor,
@@ -74,7 +81,8 @@ public record FAArmorAttributes(
                     maxHealth,
                     attackDamage,
                     attackSpeed,
-                    luck
+                    luck,
+                    durability
             );
         }
     }

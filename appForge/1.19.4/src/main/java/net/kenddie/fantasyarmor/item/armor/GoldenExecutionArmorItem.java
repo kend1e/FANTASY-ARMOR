@@ -12,6 +12,8 @@ import software.bernie.geckolib.renderer.GeoArmorRenderer;
 
 import java.util.List;
 
+import static net.kenddie.fantasyarmor.config.FAConfig.showParticles;
+
 public class GoldenExecutionArmorItem extends FAArmorItem {
 
     public GoldenExecutionArmorItem(Type type, FAArmorAttributes armorAttributes) {

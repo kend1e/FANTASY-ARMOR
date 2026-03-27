@@ -14,6 +14,7 @@ public class FAConfig {
     public static final ModConfigSpec.BooleanValue SHOW_PARTICLES;
     public static final ModConfigSpec.IntValue EFFECTS_INTERVAL;
     public static final ModConfigSpec.BooleanValue SHOW_EFFECT_ICON;
+    public static final ModConfigSpec.BooleanValue ENABLE_DURABILITY;
 
     public static boolean applyArmorEffects;
     public static boolean applyModifiers;
@@ -23,6 +24,7 @@ public class FAConfig {
     public static boolean showParticles;
     public static int effectsInterval;
     public static boolean showEffectIcon;
+    public static boolean enableDurability;
 
     static {
         BUILDER.push("General Settings");
@@ -59,6 +61,10 @@ public class FAConfig {
                 .comment("Show effect icon or not")
                 .define("showEffectIcon", true);
 
+        ENABLE_DURABILITY = BUILDER
+                .comment("Enable durability on Fantasy Armor pieces. When false, armor is indestructible. Requires game restart.")
+                .define("enableDurability", false);
+
         BUILDER.pop();
         SPEC = BUILDER.build();
     }
@@ -72,5 +78,6 @@ public class FAConfig {
         showParticles = SHOW_PARTICLES.get();
         effectsInterval = EFFECTS_INTERVAL.get();
         showEffectIcon = SHOW_EFFECT_ICON.get();
+        enableDurability = ENABLE_DURABILITY.get();
     }
 }

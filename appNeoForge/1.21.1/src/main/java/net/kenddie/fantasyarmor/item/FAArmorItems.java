@@ -43,6 +43,7 @@ public final class FAArmorItems {
                         .attackDamage(config.attackDamage.get())
                         .attackSpeed(config.attackSpeed.get())
                         .luck(config.luck.get())
+                        .durability(config.durability.get())
                         .build();
 
                 DeferredItem<Item> item = FAItems.ITEMS.register(name, () -> set.create(type, attributesSupplier));

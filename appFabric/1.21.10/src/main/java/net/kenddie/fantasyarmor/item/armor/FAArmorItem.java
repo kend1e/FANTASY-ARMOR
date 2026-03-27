@@ -7,6 +7,7 @@ import net.kenddie.fantasyarmor.client.model.FAArmorModel;
 import net.kenddie.fantasyarmor.client.render.FAArmorRenderer;
 import net.kenddie.fantasyarmor.config.FAArmorEffectsConfig;
 import net.kenddie.fantasyarmor.config.FAConfigs;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.model.HumanoidModel;
@@ -58,11 +59,17 @@ public abstract class FAArmorItem extends Item implements GeoItem {
     private static Item.Properties buildProperties(Item.Properties properties, ArmorType armorType, FAArmorAttributes armorAttributes) {
         ItemAttributeModifiers modifiers = buildAttributeModifiers(armorType, armorAttributes);
 
-        return properties
+        properties = properties
                 .stacksTo(1)
                 .fireResistant()
                 .humanoidArmor(ArmorMaterials.NETHERITE, armorType)
                 .component(DataComponents.ATTRIBUTE_MODIFIERS, modifiers);
+
+        if (FAConfigs.getMainConfig().enableDurability && armorAttributes.durability() > 0) {
+            properties = properties.durability((int) armorAttributes.durability());
+        }
+
+        return properties;
     }
 
     public FAArmorSet getArmorSet() {
@@ -92,38 +99,36 @@ public abstract class FAArmorItem extends Item implements GeoItem {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltipAdder, TooltipFlag flag) {
-        if (!FAConfigs.getMainConfig().showDescriptions) {
-            super.appendHoverText(stack, context, tooltipDisplay, tooltipAdder, flag);
-            return;
-        }
-
         super.appendHoverText(stack, context, tooltipDisplay, tooltipAdder, flag);
 
-        String translationKey = this.getDescriptionId() + ".tooltip";
-        String translatedText = Component.translatable(translationKey).getString();
+        if (FAConfigs.getMainConfig().showDescriptions) {
+            String translationKey = this.getDescriptionId() + ".tooltip";
+            String translatedText = Component.translatable(translationKey).getString();
 
-        Font font = Minecraft.getInstance().font;
-        String[] lines = translatedText.split("\n");
+            Font font = Minecraft.getInstance().font;
+            String[] lines = translatedText.split("\n");
 
-        for (String line : lines) {
-            StringBuilder currentLine = new StringBuilder();
-            String[] words = line.split(" ");
+            for (String line : lines) {
+                StringBuilder currentLine = new StringBuilder();
+                String[] words = line.split(" ");
 
-            for (String word : words) {
-                if (font.width(currentLine + word) > FAConfigs.getMainConfig().descriptionsLength) {
+                for (String word : words) {
+                    if (font.width(currentLine + word) > FAConfigs.getMainConfig().descriptionsLength) {
+                        tooltipAdder.accept(Component.literal(currentLine.toString()));
+                        currentLine = new StringBuilder("§7");
+                    }
+                    if (currentLine.length() > 2) {
+                        currentLine.append(" §7");
+                    }
+                    currentLine.append(word);
+                }
+
+                if (!currentLine.isEmpty()) {
                     tooltipAdder.accept(Component.literal(currentLine.toString()));
-                    currentLine = new StringBuilder("§7");
                 }
-                if (currentLine.length() > 2) {
-                    currentLine.append(" §7");
-                }
-                currentLine.append(word);
-            }
-
-            if (!currentLine.isEmpty()) {
-                tooltipAdder.accept(Component.literal(currentLine.toString()));
             }
         }
+
     }
 
 
