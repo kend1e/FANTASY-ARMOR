@@ -2,6 +2,7 @@ package net.kenddie.fantasyarmor.item.armor;
 
 import net.minecraft.world.item.ArmorItem;
 
+import java.util.Locale;
 import java.util.function.Supplier;
 
 public enum FAArmorSet {
@@ -40,7 +41,7 @@ public enum FAArmorSet {
 
     FAArmorSet(TriFunction<FAArmorSet, ArmorItem.Type, Supplier<FAArmorAttributes>, FAArmorItem> factory) {
         this.factory = factory;
-        this.name = name().toLowerCase();
+        this.name = name().toLowerCase(Locale.ENGLISH);
     }
 
     FAArmorSet(TriFunction<FAArmorSet, ArmorItem.Type, Supplier<FAArmorAttributes>, FAArmorItem> factory, String name) {

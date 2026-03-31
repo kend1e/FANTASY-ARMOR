@@ -4,6 +4,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.equipment.ArmorType;
 import org.apache.commons.lang3.function.TriFunction;
 
+import java.util.Locale;
 import java.util.function.Supplier;
 
 public enum FAArmorSet {
@@ -42,7 +43,7 @@ public enum FAArmorSet {
 
     FAArmorSet(QuadFunction<FAArmorSet, ArmorType, Supplier<FAArmorAttributes>, Item.Properties, FAArmorItem> factory) {
         this.factory = factory;
-        this.name = name().toLowerCase();
+        this.name = name().toLowerCase(Locale.ENGLISH);
     }
 
     public String getName() {
