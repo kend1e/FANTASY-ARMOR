@@ -2,6 +2,7 @@ package net.kenddie.fantasyarmor.item.armor;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.kenddie.fantasyarmor.FantasyArmor;
 import net.kenddie.fantasyarmor.client.model.FAArmorModel;
 import net.kenddie.fantasyarmor.client.render.FAArmorRenderer;
@@ -100,6 +101,8 @@ public abstract class FAArmorItem extends Item implements GeoItem {
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltipAdder, TooltipFlag flag) {
         super.appendHoverText(stack, context, tooltipDisplay, tooltipAdder, flag);
+
+        if (!RenderSystem.isOnRenderThread()) return;
 
         if (FAConfigs.getMainConfig().showDescriptions) {
             String translationKey = this.getDescriptionId() + ".tooltip";
