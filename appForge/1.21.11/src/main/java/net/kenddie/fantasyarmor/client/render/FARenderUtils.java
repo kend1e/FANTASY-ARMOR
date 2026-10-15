@@ -1,60 +1,47 @@
 package net.kenddie.fantasyarmor.client.render;
 
 import net.kenddie.fantasyarmor.shared.client.CapePhysics;
-import net.minecraft.client.model.PlayerModel;
-import net.minecraft.util.Mth;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import software.bernie.geckolib.animatable.GeoItem;
-import software.bernie.geckolib.cache.object.GeoBone;
-import software.bernie.geckolib.renderer.GeoArmorRenderer;
+import net.minecraft.client.model.player.PlayerModel;
+import net.minecraft.client.renderer.entity.state.AvatarRenderState;
+import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animation.state.BoneSnapshot;
 
-@OnlyIn(Dist.CLIENT)
 public final class FARenderUtils {
-    public static void applyCapeRotation(Player player, GeoBone bone, float partialTick) {
-        double dx = Mth.lerp(partialTick, player.xCloakO, player.xCloak)
-                - Mth.lerp(partialTick, player.xo, player.getX());
-        double dy = Mth.lerp(partialTick, player.yCloakO, player.yCloak)
-                - Mth.lerp(partialTick, player.yo, player.getY());
-        double dz = Mth.lerp(partialTick, player.zCloakO, player.zCloak)
-                - Mth.lerp(partialTick, player.zo, player.getZ());
 
-        float bodyRot = Mth.rotLerp(partialTick, player.yBodyRotO, player.yBodyRot);
-        float walkBob = Mth.lerp(partialTick, player.oBob, player.bob);
-        float walkDist = Mth.lerp(partialTick, player.walkDistO, player.walkDist);
-
-        float[] motion = CapePhysics.computeCapeMotion(dx, dy, dz, bodyRot, walkBob, walkDist);
-        CapePhysics.CapeRotation rot = CapePhysics.computeCapeRotation(motion[0], motion[1], motion[2], false);
-        bone.updateRotation(rot.rotX(), rot.rotY(), rot.rotZ());
+    /** Reuses vanilla cape motion captured in the avatar render state. */
+    public static void applyCapeRotation(AvatarRenderState state, BoneSnapshot bone) {
+        CapePhysics.CapeRotation rot = CapePhysics.computeCapeRotation(
+                state.capeFlap, state.capeLean, state.capeLean2, state.isCrouching);
+        bone.setRotation(rot.rotX(), rot.rotY(), rot.rotZ());
     }
 
-    public static <T extends Item & GeoItem> void setFrontLegCapeAngle(GeoArmorRenderer<T> renderer, GeoBone bone) {
-        if(renderer.getLeftLegBone(renderer.getGeoModel()) == null || renderer.getRightLegBone(renderer.getGeoModel()) == null) {
-            return;
-        }
-        GeoBone leftLegBone = renderer.getLeftLegBone(renderer.getGeoModel());
-        GeoBone rightLegBone = renderer.getRightLegBone(renderer.getGeoModel());
-        if (leftLegBone == null || rightLegBone == null) return;
-        bone.setRotX(CapePhysics.computeFrontCapeAngle(leftLegBone.getRotX(), rightLegBone.getRotX()));
+    public static void setFrontLegCapeAngle(@Nullable BoneSnapshot leftLeg, @Nullable BoneSnapshot rightLeg, BoneSnapshot frontCape) {
+        if (leftLeg == null || rightLeg == null) return;
+
+        frontCape.setRotX(CapePhysics.computeFrontCapeAngle(leftLeg.getRotX(), rightLeg.getRotX()));
     }
 
-    public static void applyBraidRotation(Player player, GeoBone braid, float partialTick) {
-        applyCapeRotation(player, braid, partialTick);
-        if (player.getXRot() > 60) {
+    public static void applyBraidRotation(AvatarRenderState state, BoneSnapshot braid) {
+        applyCapeRotation(state, braid);
+
+        float xRot = state.xRot;
+        if (xRot > 60) {
             braid.setRotX(0);
-        } else if (player.getXRot() < -35) {
-            braid.setRotX(30);
+        } else if (xRot < -25) {
+            braid.setRotX((float) Math.toRadians(xRot));
         }
     }
 
-    //TODO: Set cloak visibility false if armor has a cloak.
-    public static <T extends LivingEntity> void setArmsVisibility(PlayerModel<T> model, boolean visible) {
+    public static void setArmsVisibility(PlayerModel model, boolean visible) {
         model.rightArm.visible = visible;
         model.rightSleeve.visible = visible;
         model.leftArm.visible = visible;
         model.leftSleeve.visible = visible;
     }
+
+    public static void matchModelPartRot(net.minecraft.client.model.geom.ModelPart part, BoneSnapshot snapshot) {
+        snapshot.setRotation(-part.xRot, -part.yRot, part.zRot);
+    }
+
+    private FARenderUtils() {}
 }

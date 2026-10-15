@@ -4,7 +4,7 @@ import net.kenddie.fantasyarmor.item.armor.FAArmorSet;
 import net.kenddie.fantasyarmor.shared.config.FAEffectDefaults;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraftforge.common.ForgeConfigSpec;
@@ -36,7 +36,6 @@ public class FAArmorEffectsConfig {
         return Map.copyOf(result);
     }
 
-
     private final ForgeConfigSpec.ConfigValue<List<? extends String>> effectsList;
 
     static {
@@ -58,7 +57,7 @@ public class FAArmorEffectsConfig {
     }
 
     public FAArmorEffectsConfig(ForgeConfigSpec.Builder builder, List<String> defaultEffects) {
-        effectsList = builder.defineList(
+        effectsList = builder.worldRestart().defineListAllowEmpty(
                 "effects",
                 defaultEffects,
                 o -> o instanceof String
@@ -71,23 +70,25 @@ public class FAArmorEffectsConfig {
             String[] parts = entry.split(",");
             if (parts.length < 3) continue;
 
-            ResourceLocation id = ResourceLocation.tryParse(parts[0]);
+            Identifier id = Identifier.tryParse(parts[0].trim());
             if (id == null) continue;
 
             int duration;
             int amplifier;
             try {
-                duration = Integer.parseInt(parts[1]);
-                amplifier = Integer.parseInt(parts[2]);
+                duration = Integer.parseInt(parts[1].trim());
+                amplifier = Integer.parseInt(parts[2].trim());
             } catch (NumberFormatException ex) {
                 continue;
             }
 
-            Optional<Holder.Reference<MobEffect>> holderOpt = BuiltInRegistries.MOB_EFFECT.getHolder(id);
+            if ((duration <= 0 && duration != -1) || amplifier < 0 || amplifier > 255) continue;
+
+            Optional<Holder.Reference<MobEffect>> holderOpt = BuiltInRegistries.MOB_EFFECT.get(id);
             if (holderOpt.isEmpty()) continue;
             Holder<MobEffect> effectHolder = holderOpt.get();
 
-            result.add(new MobEffectInstance(effectHolder, duration, amplifier, true, FAConfig.showParticles, true));
+            result.add(new MobEffectInstance(effectHolder, duration, amplifier, true, FAConfig.showParticles, FAConfig.showEffectIcon));
         }
         return result;
     }

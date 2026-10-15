@@ -1,73 +1,34 @@
 package net.kenddie.fantasyarmor.client.render;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
-import net.kenddie.fantasyarmor.FantasyArmor;
 import net.kenddie.fantasyarmor.item.armor.FAArmorItem;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.ItemRenderer;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
-import software.bernie.geckolib.cache.object.BakedGeoModel;
+import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
+import net.minecraft.resources.Identifier;
+import software.bernie.geckolib.constant.dataticket.DataTicket;
+import software.bernie.geckolib.renderer.GeoArmorRenderer;
+import software.bernie.geckolib.renderer.base.GeoRenderState;
+import software.bernie.geckolib.renderer.base.RenderPassInfo;
 import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
 
-import javax.annotation.Nullable;
-import java.util.Map;
+public final class FADyeableGeoLayer<T extends FAArmorItem, R extends HumanoidRenderState & GeoRenderState>
+        extends GeoRenderLayer<T, GeoArmorRenderer.RenderData, R> {
+    public static final DataTicket<Boolean> HAS_DYE_TICKET = DataTicket.create("fantasyarmor_has_dye", Boolean.class);
+    public static final DataTicket<Integer> DYE_COLOR_TICKET = DataTicket.create("fantasyarmor_dye_color", Integer.class);
+    public static final DataTicket<Identifier> OVERLAY_TEX_TICKET = DataTicket.create("fantasyarmor_overlay_tex", Identifier.class);
+    private final FAArmorRenderer<T, R> armorRenderer;
 
-public class FADyeableGeoLayer<T extends FAArmorItem> extends GeoRenderLayer<T> {
-    protected static final Map<String, ResourceLocation> ARMOR_PATH_CACHE = new Object2ObjectOpenHashMap<>();
-
-    public FADyeableGeoLayer(FAArmorRenderer<T> renderer) {
+    public FADyeableGeoLayer(FAArmorRenderer<T, R> renderer) {
         super(renderer);
+        this.armorRenderer = renderer;
     }
 
     @Override
-    public void render(PoseStack poseStack, T animatable, BakedGeoModel bakedModel,
-                       RenderType baseRenderType, MultiBufferSource bufferSource,
-                       VertexConsumer buffer, float partialTick,
-                       int packedLight, int packedOverlay) {
-
-        if (animatable == null) return;
-
-        FAArmorRenderer<T> armorRenderer = (FAArmorRenderer<T>) this.renderer;
-        ItemStack stack = armorRenderer.getCurrentStack();
-
-        if (!animatable.hasCustomColor(stack)) return;
-
-        ResourceLocation overlayTex = getArmorResource(animatable);
-        RenderType overlayType = RenderType.armorCutoutNoCull(overlayTex);
-
-        VertexConsumer overlayBuffer = ItemRenderer.getArmorFoilBuffer(bufferSource, overlayType, stack.hasFoil());
-
-        int color = 0xFF000000 | animatable.getColor(stack);
-
-        this.renderer.reRender(
-                bakedModel,
-                poseStack,
-                bufferSource,
-                animatable,
-                overlayType,
-                overlayBuffer,
-                partialTick,
-                packedLight,
-                packedOverlay,
-                color
-        );
-    }
-
-
-    public ResourceLocation getArmorResource(FAArmorItem armorItem) {
-        String texture = FantasyArmor.MOD_ID + ":" + armorItem.getArmorSet().getOverlayPath();
-
-        return ARMOR_PATH_CACHE.computeIfAbsent(texture, ResourceLocation::parse);
-    }
-
-    protected VertexConsumer getArmorBuffer(MultiBufferSource bufferSource, @Nullable RenderType renderType, @Nullable ResourceLocation texturePath, boolean enchanted) {
-        if (renderType == null)
-            renderType = RenderType.armorCutoutNoCull(texturePath);
-
-        return ItemRenderer.getArmorFoilBuffer(bufferSource, renderType, enchanted);
+    public void submitRenderTask(RenderPassInfo<R> pass, SubmitNodeCollector tasks) {
+        if (!pass.willRender() || !pass.getOrDefaultGeckolibData(HAS_DYE_TICKET, false)) return;
+        Identifier texture = pass.getGeckolibData(OVERLAY_TEX_TICKET);
+        if (texture == null) return;
+        armorRenderer.submitArmorGeometry(pass, tasks.order(1), RenderTypes.armorCutoutNoCull(texture),
+                pass.getOrDefaultGeckolibData(DYE_COLOR_TICKET, 0xFFFFFFFF));
     }
 }

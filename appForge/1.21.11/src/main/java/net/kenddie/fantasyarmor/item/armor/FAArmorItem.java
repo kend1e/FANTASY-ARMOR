@@ -5,89 +5,93 @@ import net.kenddie.fantasyarmor.shared.armor.FAArmorAttributes;
 import net.kenddie.fantasyarmor.FantasyArmor;
 import net.kenddie.fantasyarmor.client.model.FAArmorModel;
 import net.kenddie.fantasyarmor.client.render.FAArmorRenderer;
-import net.kenddie.fantasyarmor.config.FAArmorEffectsConfig;
-import net.kenddie.fantasyarmor.config.FAConfig;
-import net.minecraft.ChatFormatting;
+import net.kenddie.fantasyarmor.config.FAClientConfig;
+import net.kenddie.fantasyarmor.config.FAServerSettings;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterials;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
-import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.world.item.component.TooltipDisplay;
+import net.minecraft.world.item.equipment.ArmorMaterials;
+import net.minecraft.world.item.equipment.ArmorType;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.animatable.client.GeoRenderProvider;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animatable.instance.SingletonAnimatableInstanceCache;
-import software.bernie.geckolib.animation.AnimatableManager;
+import software.bernie.geckolib.animatable.manager.AnimatableManager;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;
 
 import java.util.List;
-import java.util.Properties;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public abstract class FAArmorItem extends ArmorItem implements GeoItem {
-    private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
-    private final FAArmorSet armorSet;
-    private final Supplier<FAArmorAttributes> attributesSupplier;
-    private ItemAttributeModifiers cachedModifiers;
+public abstract class FAArmorItem extends Item implements GeoItem {
+    public static final int DEFAULT_COLOR = 0xA06540;
+    private static final boolean DEFAULT_UNBREAKABLE = true;
 
-    protected FAArmorItem(FAArmorSet armorSet, Type type, Supplier<FAArmorAttributes> attributesSupplier) {
-        super(
-            ArmorMaterials.NETHERITE, 
-            type, 
-            new Properties()
+    private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
+
+    private final FAArmorSet armorSet;
+    private final ArmorType armorType;
+    private final ItemAttributeModifiers defaultModifiers;
+    private final int defaultMaxDamage;
+
+    protected FAArmorItem(FAArmorSet armorSet, ArmorType armorType, Supplier<FAArmorAttributes> attributesSupplier, Item.Properties properties) {
+        super(buildProperties(properties, armorType, attributesSupplier.get()));
+        this.armorSet = armorSet;
+        this.armorType = armorType;
+        this.defaultModifiers = buildAttributeModifiers(armorType, attributesSupplier.get());
+        this.defaultMaxDamage = Math.max(1, (int) attributesSupplier.get().durability());
+    }
+
+    private static Item.Properties buildProperties(Item.Properties properties, ArmorType armorType, FAArmorAttributes armorAttributes) {
+        ItemAttributeModifiers modifiers = buildAttributeModifiers(armorType, armorAttributes);
+
+        properties = properties
                 .stacksTo(1)
                 .fireResistant()
-        );
-        this.armorSet = armorSet;
-        this.attributesSupplier = attributesSupplier;
+                .humanoidArmor(ArmorMaterials.NETHERITE, armorType)
+                .component(DataComponents.ATTRIBUTE_MODIFIERS, modifiers);
+
+        // Configuration is world-specific and is applied to stacks on the server.
+        properties.durability(Math.max(1, (int) armorAttributes.durability()));
+        if (DEFAULT_UNBREAKABLE) {
+            properties.component(DataComponents.UNBREAKABLE, net.minecraft.util.Unit.INSTANCE);
+        }
+
+        return properties;
     }
 
     @Override
-    public @NotNull ItemStack getDefaultInstance() {
-        ItemStack stack = super.getDefaultInstance();
-        syncDurabilityComponent(stack);
-        return stack;
+    public void inventoryTick(ItemStack stack, net.minecraft.server.level.ServerLevel level,
+                              net.minecraft.world.entity.Entity entity, @Nullable EquipmentSlot slot) {
+        super.inventoryTick(stack, level, entity, slot);
+        net.kenddie.fantasyarmor.item.armor.FAArmorComponents.update(stack);
     }
 
-    @Override
-    public void onCraftedBy(@NotNull ItemStack stack, @NotNull Level level, @NotNull Player player) {
-        super.onCraftedBy(stack, level, player);
-        syncDurabilityComponent(stack);
+    public ItemAttributeModifiers defaultModifiers() { return defaultModifiers; }
+    public int defaultMaxDamage() { return defaultMaxDamage; }
+    public boolean defaultUnbreakable() { return DEFAULT_UNBREAKABLE; }
+
+    public FAArmorSet getArmorSet() {
+        return armorSet;
     }
 
-    @Override
-    public void inventoryTick(@NotNull ItemStack stack, @NotNull Level level, @NotNull Entity entity, int slotId, boolean isSelected) {
-        super.inventoryTick(stack, level, entity, slotId, isSelected);
-        syncDurabilityComponent(stack);
+    public ArmorType getArmorType() {
+        return armorType;
     }
-
-    @Override
-    public boolean isEnchantable(ItemStack itemStack) {
-        return true;
-    }
-
-    public static final int DEFAULT_COLOR = 0xA06540;
 
     public boolean hasCustomColor(ItemStack stack) {
         return stack.has(DataComponents.DYED_COLOR);
@@ -99,7 +103,7 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
     }
 
     public void setColor(ItemStack stack, int color) {
-        stack.set(DataComponents.DYED_COLOR, new DyedItemColor(color, false));
+        stack.set(DataComponents.DYED_COLOR, new DyedItemColor(color));
     }
 
     public void clearColor(ItemStack stack) {
@@ -107,121 +111,112 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
     }
 
     @Override
-    public void appendHoverText(@NotNull ItemStack pStack, @NotNull TooltipContext pContext, @NotNull List<Component> pTooltipComponents, @NotNull TooltipFlag pTooltipFlag) {
-        super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+    public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltipAdder, TooltipFlag flag) {
+        super.appendHoverText(stack, context, tooltipDisplay, tooltipAdder, flag);
 
-        if (FAConfig.showDescriptions) {
-            String translationKey = this.getDescriptionId() + ".tooltip";
-            pTooltipComponents.add(Component.translatable(translationKey));
+        if (FAClientConfig.SHOW_DESCRIPTIONS.get()) {
+            tooltipAdder.accept(Component.translatable(getDescriptionId() + ".tooltip"));
         }
-
     }
 
-    @Override
-    public void createGeoRenderer(Consumer<GeoRenderProvider> consumer) {
-        consumer.accept(new GeoRenderProvider() {
-            private GeoArmorRenderer<? extends FAArmorItem> renderer;
-
-            @Override
-            public <T extends LivingEntity> HumanoidModel<?> getGeoArmorRenderer(@Nullable T livingEntity, ItemStack itemStack, @Nullable EquipmentSlot equipmentSlot, @Nullable HumanoidModel<T> original) {
-                if (this.renderer == null) {
-                    this.renderer = createArmorRenderer();
-                }
-
-                //renderer.prepForRender(livingEntity, itemStack, equipmentSlot, original);
-                return this.renderer;
-            }
-        });
-    }
-
-    public ItemAttributeModifiers getDefaultAttributeModifiers() {
-        if (!FAConfig.applyModifiers) {
-            return super.getDefaultAttributeModifiers();
-        }
-
-        if (cachedModifiers == null) {
-            cachedModifiers = buildModifiers();
-        }
-
-        return cachedModifiers;
-    }
-
-    private ItemAttributeModifiers buildModifiers() {
-        FAArmorAttributes armorAttributes = attributesSupplier.get();
+    public static ItemAttributeModifiers buildAttributeModifiers(ArmorType armorType, FAArmorAttributes armorAttributes) {
         ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder();
 
-        EquipmentSlotGroup slotGroup = EquipmentSlotGroup.bySlot(this.type.getSlot());
-        String slotName = this.type.getName();
+        EquipmentSlotGroup slotGroup = EquipmentSlotGroup.bySlot(armorType.getSlot());
+        String slotName = armorType.getName();
 
         if (armorAttributes.armor() != 0) {
             builder.add(
                     Attributes.ARMOR,
-                    new AttributeModifier(ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, slotName + "_armor"),
+                    new AttributeModifier(
+                            Identifier.fromNamespaceAndPath(FantasyArmor.MOD_ID, slotName + "_armor"),
                             armorAttributes.armor(),
-                            AttributeModifier.Operation.ADD_VALUE),
+                            AttributeModifier.Operation.ADD_VALUE
+                    ),
                     slotGroup
             );
         }
+
         if (armorAttributes.armorToughness() != 0) {
             builder.add(
                     Attributes.ARMOR_TOUGHNESS,
-                    new AttributeModifier(ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, slotName + "_armor_toughness"),
+                    new AttributeModifier(
+                            Identifier.fromNamespaceAndPath(FantasyArmor.MOD_ID, slotName + "_armor_toughness"),
                             armorAttributes.armorToughness(),
-                            AttributeModifier.Operation.ADD_VALUE),
+                            AttributeModifier.Operation.ADD_VALUE
+                    ),
                     slotGroup
             );
         }
+
         if (armorAttributes.knockbackResistance() != 0) {
             builder.add(
                     Attributes.KNOCKBACK_RESISTANCE,
-                    new AttributeModifier(ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, slotName + "_knockback"),
+                    new AttributeModifier(
+                            Identifier.fromNamespaceAndPath(FantasyArmor.MOD_ID, slotName + "_knockback"),
                             armorAttributes.knockbackResistance(),
-                            AttributeModifier.Operation.ADD_VALUE),
+                            AttributeModifier.Operation.ADD_VALUE
+                    ),
                     slotGroup
             );
         }
+
         if (armorAttributes.movementSpeed() != 0) {
             builder.add(
                     Attributes.MOVEMENT_SPEED,
-                    new AttributeModifier(ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, slotName + "_speed"),
+                    new AttributeModifier(
+                            Identifier.fromNamespaceAndPath(FantasyArmor.MOD_ID, slotName + "_speed"),
                             armorAttributes.movementSpeed(),
-                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+                    ),
                     slotGroup
             );
         }
+
         if (armorAttributes.maxHealth() != 0) {
             builder.add(
                     Attributes.MAX_HEALTH,
-                    new AttributeModifier(ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, slotName + "_health"),
+                    new AttributeModifier(
+                            Identifier.fromNamespaceAndPath(FantasyArmor.MOD_ID, slotName + "_health"),
                             armorAttributes.maxHealth(),
-                            AttributeModifier.Operation.ADD_VALUE),
+                            AttributeModifier.Operation.ADD_VALUE
+                    ),
                     slotGroup
             );
         }
+
         if (armorAttributes.attackDamage() != 0) {
             builder.add(
                     Attributes.ATTACK_DAMAGE,
-                    new AttributeModifier(ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, slotName + "_attack_damage"),
+                    new AttributeModifier(
+                            Identifier.fromNamespaceAndPath(FantasyArmor.MOD_ID, slotName + "_attack_damage"),
                             armorAttributes.attackDamage(),
-                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+                    ),
                     slotGroup
             );
         }
+
         if (armorAttributes.attackSpeed() != 0) {
             builder.add(
                     Attributes.ATTACK_SPEED,
-                    new AttributeModifier(ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, slotName + "_attack_speed"),
+                    new AttributeModifier(
+                            Identifier.fromNamespaceAndPath(FantasyArmor.MOD_ID, slotName + "_attack_speed"),
                             armorAttributes.attackSpeed(),
-                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+                    ),
                     slotGroup
             );
         }
+
         if (armorAttributes.luck() != 0) {
             builder.add(
                     Attributes.LUCK,
-                    new AttributeModifier(ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, slotName + "_luck"),
+                    new AttributeModifier(
+                            Identifier.fromNamespaceAndPath(FantasyArmor.MOD_ID, slotName + "_luck"),
                             armorAttributes.luck(),
-                            AttributeModifier.Operation.ADD_VALUE),
+                            AttributeModifier.Operation.ADD_VALUE
+                    ),
                     slotGroup
             );
         }
@@ -229,8 +224,13 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
         return builder.build();
     }
 
+    public List<MobEffectInstance> getFullSetEffects() {
+        return FAServerSettings.effectsFor(armorSet);
+    }
+
     @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+        // No controllers yet
     }
 
     @Override
@@ -238,48 +238,24 @@ public abstract class FAArmorItem extends ArmorItem implements GeoItem {
         return cache;
     }
 
-    @OnlyIn(Dist.CLIENT)
-    protected GeoArmorRenderer<? extends FAArmorItem> createArmorRenderer() {
-        boolean dyeable = resourceExists(ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, armorSet.getOverlayPath()));
+    @Override
+    public void createGeoRenderer(Consumer<GeoRenderProvider> consumer) {
+        consumer.accept(new GeoRenderProvider() {
+            private GeoArmorRenderer<?, ?> renderer;
 
-        return new FAArmorRenderer<>(new FAArmorModel<>(armorSet.getGeoPath(), armorSet.getTexturePath()), dyeable);
-    }
+            @Override
+            public @Nullable GeoArmorRenderer<?, ?> getGeoArmorRenderer(ItemStack itemStack, EquipmentSlot equipmentSlot) {
+                if (this.renderer == null) {
+                    boolean dyeable = resourceExists(Identifier.fromNamespaceAndPath(FantasyArmor.MOD_ID, armorSet.getOverlayPath()));
+                    this.renderer = new FAArmorRenderer<>(new FAArmorModel<>(armorSet.getGeoPath(), armorSet.getTexturePath()), dyeable);
+                }
 
-    public List<MobEffectInstance> getFullSetEffects() {
-        return FAArmorEffectsConfig.ARMOR_EFFECTS_CONFIGS.getOrDefault(armorSet.getName(), null).getEffects();
-    }
-
-    public FAArmorSet getArmorSet() {
-        return armorSet;
-    }
-    
-    private boolean isDurabilityEnabled() {
-        try {
-            return FAConfig.ENABLE_DURABILITY.get();
-        } catch (IllegalStateException ignored) {
-            return FAConfig.enableDurability;
-        }
-    }
-
-    private void syncDurabilityComponent(ItemStack stack) {
-        if (!isDurabilityEnabled()) {
-            stack.remove(DataComponents.MAX_DAMAGE);
-            stack.remove(DataComponents.DAMAGE);
-            return;
-        }
-
-        int durability = (int) attributesSupplier.get().durability();
-        if (durability > 0) {
-            if (stack.getOrDefault(DataComponents.MAX_DAMAGE, 0) != durability) {
-                stack.set(DataComponents.MAX_DAMAGE, durability);
+                return this.renderer;
             }
-            if (!stack.has(DataComponents.DAMAGE)) {
-                stack.set(DataComponents.DAMAGE, 0);
-            }
-        }
+        });
     }
 
-    public static boolean resourceExists(ResourceLocation location) {
+    public static boolean resourceExists(Identifier location) {
         ResourceManager resourceManager = Minecraft.getInstance().getResourceManager();
         try {
             return resourceManager.getResource(location).isPresent();

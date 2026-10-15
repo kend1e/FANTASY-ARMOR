@@ -44,12 +44,11 @@ minecraft {
     runs {
         configureEach {
             workingDir = layout.projectDirectory.dir('run')
+            args '--mixin.config=fantasy_armor.mixins.json'
             systemProperty 'eventbus.api.strictRuntimeChecks', 'true'
-            systemProperty 'forge.enabledGameTestNamespaces', mod_id
         }
         register('client')
         register('server') { args '--nogui' }
-        register('gameTestServer')
         register('data') {
             workingDir = layout.projectDirectory.dir('run-data')
             args '--mod', mod_id, '--all', '--output', layout.projectDirectory.dir('src/generated/resources'), '--existing', layout.projectDirectory.dir('src/main/resources')
@@ -72,6 +71,7 @@ repositories {
 dependencies {
     implementation minecraft.dependency("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
     annotationProcessor 'net.minecraftforge:eventbus-validator:7.0.5'
+    annotationProcessor 'org.spongepowered:mixin:0.8.7:processor'
     implementation "software.bernie.geckolib:geckolib-forge-${minecraft_version}:${geckolib_version}"
     compileOnly project(':appCommon')
 }
@@ -104,4 +104,8 @@ tasks.named('processResources', ProcessResources).configure {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
+}
+
+tasks.named('jar', Jar) {
+    manifest.attributes('MixinConfigs': 'fantasy_armor.mixins.json')
 }
