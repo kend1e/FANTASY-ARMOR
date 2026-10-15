@@ -1,0 +1,8 @@
+package net.kenddie.fantasyarmor.item.armor;
+
+import net.kenddie.fantasyarmor.shared.armor.FAArmorAttributes;
+
+%%SETS_EXTRA_IMPORT%%import java.util.function.Supplier;
+
+public class FAArmorSets {
+%%INNER_CLASSES%%}

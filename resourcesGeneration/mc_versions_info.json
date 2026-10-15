@@ -1,14 +1,75 @@
 {
   "1.19.4": {
-    "recipes_dir": "recipes"
+    "recipes_dir": "recipes",
+    "generate_java": true,
+    "armor_type_class": "ArmorItem.Type",
+    "armor_type_import": "net.minecraft.world.item.ArmorItem",
+    "factory_type": "TriFunction",
+    "factory_type_params": "A, B, C, R",
+    "factory_apply_params": "A a, B b, C c",
+    "factory_field_generics": "FAArmorSet, ArmorItem.Type, Supplier<FAArmorAttributes>, FAArmorItem",
+    "create_params": "ArmorItem.Type type, Supplier<FAArmorAttributes> attributesSupplier",
+    "create_call": "factory.apply(this, type, attributesSupplier)",
+    "geo_path_expr": "\"geo/\" + name + \"_armor.geo.json\"",
+    "extra_imports": "",
+    "sets_type_param": "Type",
+    "sets_extra_import": "",
+    "sets_constructor_params": "FAArmorSet armorSet, Type type, Supplier<FAArmorAttributes> armorAttributes",
+    "sets_super_params": "armorSet, type, armorAttributes",
+    "has_name_constructor": true
   },
   "1.20.1": {
-    "recipes_dir": "recipes"
+    "recipes_dir": "recipes",
+    "armor_type_class": "ArmorItem.Type",
+    "armor_type_import": "net.minecraft.world.item.ArmorItem",
+    "factory_type": "TriFunction",
+    "factory_type_params": "A, B, C, R",
+    "factory_apply_params": "A a, B b, C c",
+    "factory_field_generics": "FAArmorSet, ArmorItem.Type, Supplier<FAArmorAttributes>, FAArmorItem",
+    "create_params": "ArmorItem.Type type, Supplier<FAArmorAttributes> attributesSupplier",
+    "create_call": "factory.apply(this, type, attributesSupplier)",
+    "geo_path_expr": "\"geo/\" + name + \"_armor.geo.json\"",
+    "extra_imports": "",
+    "sets_type_param": "Type",
+    "sets_extra_import": "",
+    "sets_constructor_params": "FAArmorSet armorSet, Type type, Supplier<FAArmorAttributes> armorAttributes",
+    "sets_super_params": "armorSet, type, armorAttributes",
+    "has_name_constructor": true
   },
   "1.21.1": {
-    "recipes_dir": "recipe"
+    "recipes_dir": "recipe",
+    "armor_type_class": "ArmorItem.Type",
+    "armor_type_import": "net.minecraft.world.item.ArmorItem",
+    "factory_type": "TriFunction",
+    "factory_type_params": "A, B, C, R",
+    "factory_apply_params": "A a, B b, C c",
+    "factory_field_generics": "FAArmorSet, ArmorItem.Type, Supplier<FAArmorAttributes>, FAArmorItem",
+    "create_params": "ArmorItem.Type type, Supplier<FAArmorAttributes> attributesSupplier",
+    "create_call": "factory.apply(this, type, attributesSupplier)",
+    "geo_path_expr": "\"geo/\" + name + \"_armor.geo.json\"",
+    "extra_imports": "",
+    "sets_type_param": "Type",
+    "sets_extra_import": "",
+    "sets_constructor_params": "FAArmorSet armorSet, Type type, Supplier<FAArmorAttributes> armorAttributes",
+    "sets_super_params": "armorSet, type, armorAttributes",
+    "has_name_constructor": true
   },
   "1.21.10": {
-    "recipes_dir": "recipe"
+    "recipes_dir": "recipe",
+    "armor_type_class": "ArmorType",
+    "armor_type_import": "net.minecraft.world.item.equipment.ArmorType",
+    "factory_type": "QuadFunction",
+    "factory_type_params": "A, B, C, D, R",
+    "factory_apply_params": "A a, B b, C c, D d",
+    "factory_field_generics": "FAArmorSet, ArmorType, Supplier<FAArmorAttributes>, Item.Properties, FAArmorItem",
+    "create_params": "ArmorType type, Supplier<FAArmorAttributes> attributesSupplier, Item.Properties properties",
+    "create_call": "factory.apply(this, type, attributesSupplier, properties)",
+    "geo_path_expr": "name + \"_armor\"",
+    "extra_imports": "import net.minecraft.world.item.Item;\n",
+    "sets_type_param": "ArmorType",
+    "sets_extra_import": "import net.minecraft.world.item.Item;\nimport net.minecraft.world.item.equipment.ArmorType;\n",
+    "sets_constructor_params": "FAArmorSet armorSet, ArmorType type, Supplier<FAArmorAttributes> armorAttributes, Item.Properties properties",
+    "sets_super_params": "armorSet, type, armorAttributes, properties",
+    "has_name_constructor": false
   }
 }

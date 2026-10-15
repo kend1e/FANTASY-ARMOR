@@ -2,7 +2,7 @@ package net.kenddie.fantasyarmor.config;
 
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
-import net.kenddie.fantasyarmor.item.armor.FAArmorAttributes;
+import net.kenddie.fantasyarmor.shared.armor.FAArmorAttributes;
 import net.kenddie.fantasyarmor.item.armor.FAArmorSet;
 import net.minecraft.world.item.equipment.ArmorType;
 

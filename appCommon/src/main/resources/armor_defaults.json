@@ -1,0 +1,176 @@
+{
+  "eclipse_soldier": {
+    "helmet": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.1, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 440.0 },
+    "chestplate": { "armor": 8.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 640.0 },
+    "leggings": { "armor": 6.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 580.0 },
+    "boots": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 500.0 }
+  },
+  "dragonslayer": {
+    "helmet": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 440.0 },
+    "chestplate": { "armor": 8.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.1, "luck": 0.0, "durability": 640.0 },
+    "leggings": { "armor": 6.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 580.0 },
+    "boots": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 500.0 }
+  },
+  "hero": {
+    "helmet": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.1, "attackSpeed": 0.1, "luck": 0.0, "durability": 440.0 },
+    "chestplate": { "armor": 8.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.1, "attackSpeed": 0.1, "luck": 0.0, "durability": 640.0 },
+    "leggings": { "armor": 6.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 580.0 },
+    "boots": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 500.0 }
+  },
+  "golden_horns": {
+    "helmet": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.03, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.1, "luck": 0.0, "durability": 440.0 },
+    "chestplate": { "armor": 8.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.01, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.1, "luck": 0.0, "durability": 640.0 },
+    "leggings": { "armor": 6.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.02, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 580.0 },
+    "boots": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.04, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 500.0 }
+  },
+  "thief": {
+    "helmet": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.05, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.1, "luck": 1.0, "durability": 440.0 },
+    "chestplate": { "armor": 8.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.05, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.1, "luck": 0.0, "durability": 640.0 },
+    "leggings": { "armor": 6.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.1, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.1, "luck": 0.0, "durability": 580.0 },
+    "boots": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.1, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.05, "luck": 0.0, "durability": 500.0 }
+  },
+  "wandering_wizard": {
+    "helmet": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.05, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 2.0, "durability": 440.0 },
+    "chestplate": { "armor": 8.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.05, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 640.0 },
+    "leggings": { "armor": 6.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.05, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 580.0 },
+    "boots": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.05, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 500.0 }
+  },
+  "chess_board_knight": {
+    "helmet": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 440.0 },
+    "chestplate": { "armor": 8.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.0, "maxHealth": 2.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 640.0 },
+    "leggings": { "armor": 6.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 580.0 },
+    "boots": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.0, "maxHealth": 2.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 500.0 }
+  },
+  "dark_lord": {
+    "helmet": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.02, "luck": 0.0, "durability": 440.0 },
+    "chestplate": { "armor": 8.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.03, "luck": 0.0, "durability": 640.0 },
+    "leggings": { "armor": 6.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.03, "luck": 0.0, "durability": 580.0 },
+    "boots": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.02, "luck": 0.0, "durability": 500.0 }
+  },
+  "sunset_wings": {
+    "helmet": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.05, "maxHealth": 1.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 440.0 },
+    "chestplate": { "armor": 8.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.05, "maxHealth": 1.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 640.0 },
+    "leggings": { "armor": 6.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.05, "maxHealth": 1.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 580.0 },
+    "boots": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.05, "maxHealth": 1.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 500.0 }
+  },
+  "fog_guard": {
+    "helmet": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 1.0, "attackDamage": 0.0, "attackSpeed": 0.1, "luck": 0.0, "durability": 440.0 },
+    "chestplate": { "armor": 8.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 1.0, "attackDamage": 0.0, "attackSpeed": 0.01, "luck": 0.0, "durability": 640.0 },
+    "leggings": { "armor": 6.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 1.0, "attackDamage": 0.0, "attackSpeed": 0.02, "luck": 0.0, "durability": 580.0 },
+    "boots": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 1.0, "attackDamage": 0.0, "attackSpeed": 0.03, "luck": 0.0, "durability": 500.0 }
+  },
+  "dark_cover": {
+    "helmet": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 2.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 440.0 },
+    "chestplate": { "armor": 8.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.1, "luck": 0.0, "durability": 640.0 },
+    "leggings": { "armor": 6.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.0, "maxHealth": 1.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 580.0 },
+    "boots": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 500.0 }
+  },
+  "spark_of_dawn": {
+    "helmet": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 1.0, "attackDamage": 0.0, "attackSpeed": 0.1, "luck": 0.0, "durability": 440.0 },
+    "chestplate": { "armor": 8.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.05, "luck": 0.0, "durability": 640.0 },
+    "leggings": { "armor": 6.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.05, "maxHealth": 1.0, "attackDamage": 0.0, "attackSpeed": 0.05, "luck": 0.0, "durability": 580.0 },
+    "boots": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.05, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 500.0 }
+  },
+  "golden_execution": {
+    "helmet": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.0, "maxHealth": 2.0, "attackDamage": 0.0, "attackSpeed": 0.05, "luck": 0.0, "durability": 440.0 },
+    "chestplate": { "armor": 8.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.0, "maxHealth": 4.0, "attackDamage": 0.0, "attackSpeed": 0.05, "luck": 0.0, "durability": 640.0 },
+    "leggings": { "armor": 6.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.0, "maxHealth": 1.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 580.0 },
+    "boots": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.0, "maxHealth": 1.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 500.0 }
+  },
+  "forgotten_trace": {
+    "helmet": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.05, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 1.0, "durability": 440.0 },
+    "chestplate": { "armor": 8.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.03, "maxHealth": 2.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 640.0 },
+    "leggings": { "armor": 6.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.02, "maxHealth": 1.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 580.0 },
+    "boots": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.05, "maxHealth": 1.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 1.0, "durability": 500.0 }
+  },
+  "redeemer": {
+    "helmet": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 2.0, "attackDamage": 0.0, "attackSpeed": 0.05, "luck": 1.0, "durability": 440.0 },
+    "chestplate": { "armor": 8.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.02, "maxHealth": 2.0, "attackDamage": 0.0, "attackSpeed": 0.03, "luck": 1.0, "durability": 640.0 },
+    "leggings": { "armor": 6.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.04, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 580.0 },
+    "boots": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.02, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 500.0 }
+  },
+  "twinned": {
+    "helmet": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.02, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.1, "luck": 0.0, "durability": 440.0 },
+    "chestplate": { "armor": 8.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.02, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.02, "luck": 0.0, "durability": 640.0 },
+    "leggings": { "armor": 6.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.02, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.05, "luck": 0.0, "durability": 580.0 },
+    "boots": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.02, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.05, "luck": 0.0, "durability": 500.0 }
+  },
+  "gilded_hunt": {
+    "helmet": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 1.0, "attackDamage": 0.0, "attackSpeed": 0.1, "luck": 0.0, "durability": 440.0 },
+    "chestplate": { "armor": 8.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 1.0, "attackDamage": 0.0, "attackSpeed": 0.1, "luck": 0.0, "durability": 640.0 },
+    "leggings": { "armor": 6.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 580.0 },
+    "boots": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 500.0 }
+  },
+  "lady_maria": {
+    "helmet": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.05, "luck": 1.0, "durability": 440.0 },
+    "chestplate": { "armor": 8.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.05, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.05, "luck": 0.0, "durability": 640.0 },
+    "leggings": { "armor": 6.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.05, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 580.0 },
+    "boots": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.03, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 500.0 }
+  },
+  "crucible_knight": {
+    "helmet": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 440.0 },
+    "chestplate": { "armor": 8.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.0, "maxHealth": 2.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 640.0 },
+    "leggings": { "armor": 6.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 580.0 },
+    "boots": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 500.0 }
+  },
+  "evening_ghost": {
+    "helmet": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.05, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 1.0, "durability": 440.0 },
+    "chestplate": { "armor": 8.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.03, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 1.0, "durability": 640.0 },
+    "leggings": { "armor": 6.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.04, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 580.0 },
+    "boots": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.05, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 500.0 }
+  },
+  "ronin": {
+    "helmet": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.1, "luck": 0.0, "durability": 440.0 },
+    "chestplate": { "armor": 8.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.1, "luck": 0.0, "durability": 640.0 },
+    "leggings": { "armor": 6.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.03, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 580.0 },
+    "boots": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.05, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 500.0 }
+  },
+  "malenia": {
+    "helmet": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.07, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.05, "luck": 0.0, "durability": 440.0 },
+    "chestplate": { "armor": 8.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.05, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.05, "luck": 0.0, "durability": 640.0 },
+    "leggings": { "armor": 6.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.05, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 580.0 },
+    "boots": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.08, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 500.0 }
+  },
+  "old_knight": {
+    "helmet": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.0, "maxHealth": 1.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 440.0 },
+    "chestplate": { "armor": 8.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.0, "maxHealth": 2.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 640.0 },
+    "leggings": { "armor": 6.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.0, "maxHealth": 1.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 580.0 },
+    "boots": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 500.0 }
+  },
+  "silver_knight": {
+    "helmet": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.03, "luck": 1.0, "durability": 440.0 },
+    "chestplate": { "armor": 8.0, "armorToughness": 3.0, "knockbackResistance": 0.2, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.03, "luck": 1.0, "durability": 640.0 },
+    "leggings": { "armor": 6.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.02, "luck": 0.0, "durability": 580.0 },
+    "boots": { "armor": 3.0, "armorToughness": 3.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 1.0, "durability": 500.0 }
+  },
+  "dead_gladiator": {
+    "helmet": { "armor": 3.0, "armorToughness": 2.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.05, "attackSpeed": 0.0, "luck": 0.0, "durability": 440.0 },
+    "chestplate": { "armor": 8.0, "armorToughness": 2.0, "knockbackResistance": 0.2, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.1, "attackSpeed": 0.0, "luck": 0.0, "durability": 640.0 },
+    "leggings": { "armor": 6.0, "armorToughness": 2.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.05, "attackSpeed": 0.0, "luck": 0.0, "durability": 580.0 },
+    "boots": { "armor": 3.0, "armorToughness": 2.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 500.0 }
+  },
+  "flesh_of_the_feaster": {
+    "helmet": { "armor": 3.0, "armorToughness": 1.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 1.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 440.0 },
+    "chestplate": { "armor": 8.0, "armorToughness": 1.0, "knockbackResistance": 0.2, "movementSpeed": 0.0, "maxHealth": 2.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 640.0 },
+    "leggings": { "armor": 6.0, "armorToughness": 1.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 1.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 580.0 },
+    "boots": { "armor": 3.0, "armorToughness": 1.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 500.0 }
+  },
+  "wind_worshipper": {
+    "helmet": { "armor": 3.0, "armorToughness": 2.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.03, "luck": 0.0, "durability": 440.0 },
+    "chestplate": { "armor": 8.0, "armorToughness": 2.0, "knockbackResistance": 0.2, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.03, "luck": 0.0, "durability": 640.0 },
+    "leggings": { "armor": 6.0, "armorToughness": 2.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.02, "luck": 0.0, "durability": 580.0 },
+    "boots": { "armor": 3.0, "armorToughness": 2.0, "knockbackResistance": 0.1, "movementSpeed": 0.03, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 500.0 }
+  },
+  "grave_sentinel": {
+    "helmet": { "armor": 3.0, "armorToughness": 2.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.03, "luck": 0.0, "durability": 440.0 },
+    "chestplate": { "armor": 8.0, "armorToughness": 2.0, "knockbackResistance": 0.2, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.03, "luck": 0.0, "durability": 640.0 },
+    "leggings": { "armor": 6.0, "armorToughness": 2.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.02, "luck": 0.0, "durability": 580.0 },
+    "boots": { "armor": 3.0, "armorToughness": 2.0, "knockbackResistance": 0.2, "movementSpeed": 0.03, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 500.0 }
+  },
+  "ornstein": {
+    "helmet": { "armor": 3.0, "armorToughness": 2.0, "knockbackResistance": 0.1, "movementSpeed": 0.0, "maxHealth": 2.0, "attackDamage": 0.05, "attackSpeed": 0.0, "luck": 0.0, "durability": 440.0 },
+    "chestplate": { "armor": 8.0, "armorToughness": 2.0, "knockbackResistance": 0.2, "movementSpeed": 0.0, "maxHealth": 2.0, "attackDamage": 0.05, "attackSpeed": 0.0, "luck": 0.0, "durability": 640.0 },
+    "leggings": { "armor": 6.0, "armorToughness": 2.0, "knockbackResistance": 0.1, "movementSpeed": 0.03, "maxHealth": 2.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 580.0 },
+    "boots": { "armor": 3.0, "armorToughness": 2.0, "knockbackResistance": 0.2, "movementSpeed": 0.03, "maxHealth": 0.0, "attackDamage": 0.0, "attackSpeed": 0.0, "luck": 0.0, "durability": 500.0 }
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "wind_worshipper": [
+    { "id": "minecraft:jump_boost", "duration": 259, "amplifier": 0 }
+  ],
+  "wandering_wizard": [
+    { "id": "minecraft:water_breathing", "duration": 259, "amplifier": 0 },
+    { "id": "minecraft:night_vision", "duration": 259, "amplifier": 0 },
+    { "id": "minecraft:fire_resistance", "duration": 259, "amplifier": 0 }
+  ],
+  "twinned": [
+    { "id": "minecraft:regeneration", "duration": 259, "amplifier": 0 },
+    { "id": "minecraft:haste", "duration": 259, "amplifier": 1 }
+  ],
+  "thief": [
+    { "id": "minecraft:jump_boost", "duration": 259, "amplifier": 0 }
+  ],
+  "sunset_wings": [
+    { "id": "minecraft:jump_boost", "duration": 259, "amplifier": 0 }
+  ],
+  "ronin": [
+    { "id": "minecraft:jump_boost", "duration": 259, "amplifier": 0 }
+  ],
+  "spark_of_dawn": [
+    { "id": "minecraft:night_vision", "duration": 259, "amplifier": 0 },
+    { "id": "minecraft:fire_resistance", "duration": 259, "amplifier": 0 }
+  ],
+  "silver_knight": [
+    { "id": "minecraft:luck", "duration": 259, "amplifier": 0 },
+    { "id": "minecraft:strength", "duration": 259, "amplifier": 0 }
+  ],
+  "redeemer": [
+    { "id": "minecraft:strength", "duration": 259, "amplifier": 0 },
+    { "id": "minecraft:fire_resistance", "duration": 259, "amplifier": 0 }
+  ],
+  "grave_sentinel": [
+    { "id": "minecraft:strength", "duration": 259, "amplifier": 0 },
+    { "id": "minecraft:fire_resistance", "duration": 259, "amplifier": 0 }
+  ],
+  "dragonslayer": [
+    { "id": "minecraft:strength", "duration": 259, "amplifier": 0 },
+    { "id": "minecraft:fire_resistance", "duration": 259, "amplifier": 0 }
+  ],
+  "old_knight": [
+    { "id": "minecraft:strength", "duration": 259, "amplifier": 0 },
+    { "id": "minecraft:resistance", "duration": 259, "amplifier": 0 }
+  ],
+  "eclipse_soldier": [
+    { "id": "minecraft:strength", "duration": 259, "amplifier": 0 },
+    { "id": "minecraft:resistance", "duration": 259, "amplifier": 0 }
+  ],
+  "malenia": [
+    { "id": "minecraft:regeneration", "duration": 259, "amplifier": 0 }
+  ],
+  "hero": [
+    { "id": "minecraft:regeneration", "duration": 259, "amplifier": 0 }
+  ],
+  "dead_gladiator": [
+    { "id": "minecraft:regeneration", "duration": 259, "amplifier": 0 }
+  ],
+  "lady_maria": [
+    { "id": "minecraft:strength", "duration": 259, "amplifier": 0 },
+    { "id": "minecraft:regeneration", "duration": 259, "amplifier": 0 }
+  ],
+  "golden_horns": [
+    { "id": "minecraft:haste", "duration": 259, "amplifier": 1 }
+  ],
+  "golden_execution": [
+    { "id": "minecraft:strength", "duration": 259, "amplifier": 0 }
+  ],
+  "gilded_hunt": [
+    { "id": "minecraft:jump_boost", "duration": 259, "amplifier": 0 },
+    { "id": "minecraft:strength", "duration": 259, "amplifier": 0 }
+  ],
+  "forgotten_trace": [
+    { "id": "minecraft:haste", "duration": 259, "amplifier": 0 },
+    { "id": "minecraft:regeneration", "duration": 259, "amplifier": 0 }
+  ],
+  "fog_guard": [
+    { "id": "minecraft:fire_resistance", "duration": 259, "amplifier": 0 },
+    { "id": "minecraft:resistance", "duration": 259, "amplifier": 0 }
+  ],
+  "flesh_of_the_feaster": [
+    { "id": "minecraft:resistance", "duration": 259, "amplifier": 0 }
+  ],
+  "evening_ghost": [
+    { "id": "minecraft:regeneration", "duration": 259, "amplifier": 0 },
+    { "id": "minecraft:night_vision", "duration": 259, "amplifier": 0 }
+  ],
+  "dark_lord": [
+    { "id": "minecraft:strength", "duration": 259, "amplifier": 0 },
+    { "id": "minecraft:night_vision", "duration": 259, "amplifier": 0 },
+    { "id": "minecraft:fire_resistance", "duration": 259, "amplifier": 0 }
+  ],
+  "dark_cover": [
+    { "id": "minecraft:regeneration", "duration": 259, "amplifier": 0 },
+    { "id": "minecraft:strength", "duration": 259, "amplifier": 0 }
+  ],
+  "crucible_knight": [
+    { "id": "minecraft:fire_resistance", "duration": 259, "amplifier": 0 },
+    { "id": "minecraft:regeneration", "duration": 259, "amplifier": 0 }
+  ],
+  "chess_board_knight": [
+    { "id": "minecraft:haste", "duration": 259, "amplifier": 0 },
+    { "id": "minecraft:regeneration", "duration": 259, "amplifier": 0 },
+    { "id": "minecraft:strength", "duration": 259, "amplifier": 0 }
+  ],
+  "ornstein": [
+    { "id": "minecraft:regeneration", "duration": 259, "amplifier": 0 },
+    { "id": "minecraft:resistance", "duration": 259, "amplifier": 0 }
+  ]
+}

@@ -178,6 +178,117 @@ fun getArmorSets(): List<String>? {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
+
+val armorSetInnerClasses = listOf(
+    "ChessBoardKnight", "CrucibleKnight", "DarkCover", "DarkLord",
+    "DeadGladiator", "Dragonslayer", "EclipseSoldier", "EveningGhost",
+    "Feaster", "FogGuard", "ForgottenTrace", "GildedHunt",
+    "GoldenExecution", "GoldenHorns", "GraveSentinel", "Hero",
+    "LadyMaria", "Malenia", "OldKnight", "Redeemer",
+    "Ronin", "SilverKnight", "SparkOfDawn", "SunsetWings",
+    "Thief", "Twinned", "WanderingWizard", "WindWorshipper",
+    "Ornstein"
+)
+
+val nameConstructorBlock = """
+    FAArmorSet(%%FACTORY_TYPE%%<%%FACTORY_FIELD_GENERICS%%> factory, String name) {
+        this.factory = factory;
+        this.name = name;
+    }
+"""
+
+@Suppress("UNCHECKED_CAST")
+fun getVersionInfo(version: String): Map<String, Any>? {
+    val infoFile = File(mcVersionsInfoFile)
+    if (!infoFile.exists()) return null
+    val infoJson = JsonSlurper().parse(infoFile) as Map<String, Map<String, Any>>
+    return infoJson[version]
+}
+
+tasks.register("generateJavaSources") {
+    doLast {
+        val armorSetTemplate = File("$javaTemplatesDir${File.separator}FAArmorSet.java.template").readText()
+        val armorSetsTemplate = File("$javaTemplatesDir${File.separator}FAArmorSets.java.template").readText()
+
+        val projectVersions = getProjectVersions()
+
+        projectVersions.forEach { version ->
+            val info = getVersionInfo(version) ?: run {
+                println("No version info for [$version], skipping Java generation")
+                return@forEach
+            }
+
+            // Skip versions that don't use generated Java sources
+            if (info["generate_java"] == false || info["armor_type_class"] == null) {
+                println("Skipping Java generation for [$version]")
+                return@forEach
+            }
+
+            val versionDirs = getVersionDirsByVersion(version)
+
+            // --- Generate FAArmorSet.java ---
+            var setFile = armorSetTemplate
+                .replace("%%ARMOR_TYPE_IMPORT%%", info["armor_type_import"] as String)
+                .replace("%%EXTRA_IMPORTS%%", info["extra_imports"] as String)
+                .replace("%%FACTORY_TYPE%%", info["factory_type"] as String)
+                .replace("%%FACTORY_FIELD_GENERICS%%", info["factory_field_generics"] as String)
+                .replace("%%FACTORY_TYPE_PARAMS%%", info["factory_type_params"] as String)
+                .replace("%%FACTORY_APPLY_PARAMS%%", info["factory_apply_params"] as String)
+                .replace("%%CREATE_PARAMS%%", info["create_params"] as String)
+                .replace("%%CREATE_CALL%%", info["create_call"] as String)
+                .replace("%%GEO_PATH_EXPR%%", info["geo_path_expr"] as String)
+
+            val hasNameConstructor = info["has_name_constructor"] as Boolean
+            if (hasNameConstructor) {
+                var nameCtorFilled = nameConstructorBlock
+                    .replace("%%FACTORY_TYPE%%", info["factory_type"] as String)
+                    .replace("%%FACTORY_FIELD_GENERICS%%", info["factory_field_generics"] as String)
+                setFile = setFile.replace("%%NAME_CONSTRUCTOR%%", nameCtorFilled)
+            } else {
+                setFile = setFile.replace(Regex("\\s*%%NAME_CONSTRUCTOR%%\\s*\n"), "\n")
+            }
+
+            // --- Generate FAArmorSets.java ---
+            val setsConstructorParams = info["sets_constructor_params"] as String
+            val setsSuperParams = info["sets_super_params"] as String
+            val setsExtraImport = info["sets_extra_import"] as String
+
+            val innerClassesText = armorSetInnerClasses.joinToString("\n") { className ->
+                """    public static class ${className}ArmorItem extends FAArmorItem {
+        public ${className}ArmorItem($setsConstructorParams) {
+            super($setsSuperParams);
+        }
+    }
+"""
+            }
+
+            val setsFile = armorSetsTemplate
+                .replace("%%SETS_EXTRA_IMPORT%%", setsExtraImport)
+                .replace("%%INNER_CLASSES%%", innerClassesText)
+
+            // Write to all version directories
+            versionDirs.forEach { projectDir ->
+                val outputDir = File("$projectDir${File.separator}$javaOutputPackageDir")
+                outputDir.mkdirs()
+
+                File(outputDir, "FAArmorSet.java").writeText(setFile)
+                File(outputDir, "FAArmorSets.java").writeText(setsFile)
+                println("Generated FAArmorSet.java + FAArmorSets.java in [$projectDir]")
+            }
+        }
+    }
+}
+
+tasks.register("generateAll") {
+    dependsOn("generateRecipesData")
+    dependsOn("generateTagsData")
+    dependsOn("generateEnchantableArmorTags")
+    dependsOn("generateSharedItemDefinitions")
+    dependsOn("generateSharedItemModels")
+    dependsOn("generateJavaSources")
+}
+
+//----------------------------------------------------------------------------------------------------------------------
 val genInfoDir = "resourcesGeneration"
 val armorSetsFile = "${genInfoDir}${File.separator}armor_sets.json"
 val recipesInfoDir = "${genInfoDir}${File.separator}recipes"
@@ -186,6 +297,8 @@ val recipesFile = "$recipesInfoDir${File.separator}armor_recipes.json"
 val mcVersionsInfoFile = "$genInfoDir${File.separator}mc_versions_info.json"
 val recipesTemplatesDir = "$recipesInfoDir${File.separator}templates"
 val itemModelsTemplatesDir = "$itemModelsInfoDir${File.separator}templates"
+val javaTemplatesDir = "${genInfoDir}${File.separator}java_templates"
+val javaOutputPackageDir = "src${File.separator}main${File.separator}java${File.separator}net${File.separator}kenddie${File.separator}fantasyarmor${File.separator}item${File.separator}armor"
 
 val itemModelsOutputDir = "shared${File.separator}resources${File.separator}item_models"
 val tagsOutputDir = "shared${File.separator}resources${File.separator}tags"

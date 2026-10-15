@@ -1,8 +1,9 @@
 package net.kenddie.fantasyarmor.item.armor;
 
-import net.minecraft.world.item.Item;
+import net.kenddie.fantasyarmor.shared.armor.FAArmorAttributes;
+
 import net.minecraft.world.item.equipment.ArmorType;
-import org.apache.commons.lang3.function.TriFunction;
+import net.minecraft.world.item.Item;
 
 import java.util.Locale;
 import java.util.function.Supplier;
@@ -45,7 +46,6 @@ public enum FAArmorSet {
         this.factory = factory;
         this.name = name().toLowerCase(Locale.ENGLISH);
     }
-
     public String getName() {
         return name;
     }

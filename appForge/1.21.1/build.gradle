@@ -32,6 +32,13 @@ minecraft {
             property 'forge.logging.markers', 'REGISTRIES'
 
             property 'forge.logging.console.level', 'debug'
+
+            mods {
+                "${mod_id}" {
+                    source sourceSets.main
+                    source project(':appCommon').sourceSets.main
+                }
+            }
         }
 
         client {
@@ -60,7 +67,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 repositories {
     maven {
         name = 'GeckoLib'
-        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
         content {
             includeGroupByRegex("software\\.bernie.*")
             includeGroup("com.eliotlash.mclib")
@@ -88,9 +95,19 @@ tasks.named('processResources', ProcessResources).configure {
 
     filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
         expand replaceProperties + [project: project]
-    }}
+    }
+
+    from("${rootProject.projectDir}/shared/resources/item_models") { into 'assets/fantasy_armor/models/item' }
+    from("${rootProject.projectDir}/shared/resources/icons") { into 'assets/fantasy_armor/textures/item' }
+    from("${rootProject.projectDir}/shared/resources/armor") { into 'assets/fantasy_armor/textures/armor' }
+    from("${rootProject.projectDir}/shared/resources/geo") { into 'assets/fantasy_armor/geo' }
+    from("${rootProject.projectDir}/shared/resources/lang_forge") { into 'assets/fantasy_armor/lang' }
+    from("${rootProject.projectDir}/shared/resources/tags") { into 'data/minecraft/tags/item' }
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
 
 tasks.named('jar', Jar).configure {
+    from project(':appCommon').sourceSets.main.output
     manifest {
         attributes([
                 "Specification-Title": mod_id,
@@ -111,6 +128,7 @@ tasks.withType(JavaCompile).configureEach {
 dependencies {
     implementation fg.deobf("software.bernie.geckolib:geckolib-forge-${minecraft_version}:${geckolib_version}")
     implementation libs.mclib
+    implementation project(':appCommon')
 }
 
 // Merge the resources and classes into the same directory.

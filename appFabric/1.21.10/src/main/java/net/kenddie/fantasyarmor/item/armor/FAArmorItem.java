@@ -1,5 +1,7 @@
 package net.kenddie.fantasyarmor.item.armor;
 
+import net.kenddie.fantasyarmor.shared.armor.FAArmorAttributes;
+
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import com.mojang.blaze3d.systems.RenderSystem;

@@ -2,7 +2,7 @@ package net.kenddie.fantasyarmor.item;
 
 import net.kenddie.fantasyarmor.FantasyArmor;
 import net.kenddie.fantasyarmor.config.FAConfigs;
-import net.kenddie.fantasyarmor.item.armor.FAArmorAttributes;
+import net.kenddie.fantasyarmor.shared.armor.FAArmorAttributes;
 import net.kenddie.fantasyarmor.item.armor.FAArmorItem;
 import net.kenddie.fantasyarmor.item.armor.FAArmorSet;
 import net.minecraft.core.Registry;

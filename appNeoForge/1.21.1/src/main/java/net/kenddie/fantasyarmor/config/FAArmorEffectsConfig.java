@@ -1,6 +1,7 @@
 package net.kenddie.fantasyarmor.config;
 
 import net.kenddie.fantasyarmor.item.armor.FAArmorSet;
+import net.kenddie.fantasyarmor.shared.config.FAEffectDefaults;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -20,97 +21,20 @@ public class FAArmorEffectsConfig {
     public static final ModConfigSpec SPEC;
 
     public static final Map<String, FAArmorEffectsConfig> ARMOR_EFFECTS_CONFIGS = new HashMap<>();
-    private static final Map<FAArmorSet, List<String>> DEFAULT_EFFECTS = Map.ofEntries(
-            Map.entry(FAArmorSet.WIND_WORSHIPPER, List.of("minecraft:jump_boost,259,0")),
-            Map.entry(FAArmorSet.WANDERING_WIZARD, List.of(
-                    "minecraft:water_breathing,259,0",
-                    "minecraft:night_vision,259,0",
-                    "minecraft:fire_resistance,259,0"
-            )),
-            Map.entry(FAArmorSet.TWINNED, List.of(
-                    "minecraft:regeneration,259,0",
-                    "minecraft:haste,259,1"
-            )),
-            Map.entry(FAArmorSet.THIEF, List.of("minecraft:jump_boost,259,0")),
-            Map.entry(FAArmorSet.SUNSET_WINGS, List.of("minecraft:jump_boost,259,0")),
-            Map.entry(FAArmorSet.RONIN, List.of("minecraft:jump_boost,259,0")),
-            Map.entry(FAArmorSet.SPARK_OF_DAWN, List.of(
-                    "minecraft:night_vision,259,0",
-                    "minecraft:fire_resistance,259,0"
-            )),
-            Map.entry(FAArmorSet.SILVER_KNIGHT, List.of(
-                    "minecraft:luck,259,0",
-                    "minecraft:strength,259,0"
-            )),
-            Map.entry(FAArmorSet.REDEEMER, List.of(
-                    "minecraft:strength,259,0",
-                    "minecraft:fire_resistance,259,0"
-            )),
-            Map.entry(FAArmorSet.GRAVE_SENTINEL, List.of(
-                    "minecraft:strength,259,0",
-                    "minecraft:fire_resistance,259,0"
-            )),
-            Map.entry(FAArmorSet.DRAGONSLAYER, List.of(
-                    "minecraft:strength,259,0",
-                    "minecraft:fire_resistance,259,0"
-            )),
-            Map.entry(FAArmorSet.OLD_KNIGHT, List.of(
-                    "minecraft:strength,259,0",
-                    "minecraft:resistance,259,0"
-            )),
-            Map.entry(FAArmorSet.ECLIPSE_SOLDIER, List.of(
-                    "minecraft:strength,259,0",
-                    "minecraft:resistance,259,0"
-            )),
-            Map.entry(FAArmorSet.MALENIA, List.of("minecraft:regeneration,259,0")),
-            Map.entry(FAArmorSet.HERO, List.of("minecraft:regeneration,259,0")),
-            Map.entry(FAArmorSet.DEAD_GLADIATOR, List.of("minecraft:regeneration,259,0")),
-            Map.entry(FAArmorSet.LADY_MARIA, List.of(
-                    "minecraft:strength,259,0",
-                    "minecraft:regeneration,259,0"
-            )),
-            Map.entry(FAArmorSet.GOLDEN_HORNS, List.of("minecraft:haste,259,1")),
-            Map.entry(FAArmorSet.GOLDEN_EXECUTION, List.of("minecraft:strength,259,0")),
-            Map.entry(FAArmorSet.GILDED_HUNT, List.of(
-                    "minecraft:jump_boost,259,0",
-                    "minecraft:strength,259,0"
-            )),
-            Map.entry(FAArmorSet.FORGOTTEN_TRACE, List.of(
-                    "minecraft:haste,259,0",
-                    "minecraft:regeneration,259,0"
-            )),
-            Map.entry(FAArmorSet.FOG_GUARD, List.of(
-                    "minecraft:fire_resistance,259,0",
-                    "minecraft:resistance,259,0"
-            )),
-            Map.entry(FAArmorSet.FLESH_OF_THE_FEASTER, List.of("minecraft:resistance,259,0")),
-            Map.entry(FAArmorSet.EVENING_GHOST, List.of(
-                    "minecraft:regeneration,259,0",
-                    "minecraft:night_vision,259,0"
-            )),
-            Map.entry(FAArmorSet.DARK_LORD, List.of(
-                    "minecraft:strength,259,0",
-                    "minecraft:night_vision,259,0",
-                    "minecraft:fire_resistance,259,0"
-            )),
-            Map.entry(FAArmorSet.DARK_COVER, List.of(
-                    "minecraft:regeneration,259,0",
-                    "minecraft:strength,259,0"
-            )),
-            Map.entry(FAArmorSet.CRUCIBLE_KNIGHT, List.of(
-                    "minecraft:fire_resistance,259,0",
-                    "minecraft:regeneration,259,0"
-            )),
-            Map.entry(FAArmorSet.CHESS_BOARD_KNIGHT, List.of(
-                    "minecraft:haste,259,0",
-                    "minecraft:regeneration,259,0",
-                    "minecraft:strength,259,0"
-            )),
-            Map.entry(FAArmorSet.ORNSTEIN, List.of(
-                    "minecraft:regeneration,259,0",
-                    "minecraft:resistance,259,0"
-            ))
-    );
+    private static final Map<FAArmorSet, List<String>> DEFAULT_EFFECTS = buildDefaultEffects();
+
+    private static Map<FAArmorSet, List<String>> buildDefaultEffects() {
+        Map<FAArmorSet, List<String>> result = new HashMap<>();
+        for (FAArmorSet set : FAArmorSet.values()) {
+            var entries = FAEffectDefaults.get(set.getName());
+            if (!entries.isEmpty()) {
+                result.put(set, entries.stream()
+                    .map(e -> e.id() + "," + e.duration() + "," + e.amplifier())
+                    .toList());
+            }
+        }
+        return Map.copyOf(result);
+    }
 
 
     private final ModConfigSpec.ConfigValue<List<? extends String>> effectsList;

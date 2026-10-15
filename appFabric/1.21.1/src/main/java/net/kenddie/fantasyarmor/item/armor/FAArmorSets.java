@@ -1,6 +1,6 @@
 package net.kenddie.fantasyarmor.item.armor;
 
-import net.minecraft.world.item.ArmorItem.Type;
+import net.kenddie.fantasyarmor.shared.armor.FAArmorAttributes;
 
 import java.util.function.Supplier;
 

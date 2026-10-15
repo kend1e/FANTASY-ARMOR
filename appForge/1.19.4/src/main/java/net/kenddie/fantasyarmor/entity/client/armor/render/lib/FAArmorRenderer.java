@@ -2,7 +2,7 @@ package net.kenddie.fantasyarmor.entity.client.armor.render.lib;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.kenddie.fantasyarmor.item.armor.lib.FAArmorItem;
+import net.kenddie.fantasyarmor.item.armor.FAArmorItem;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;

@@ -1,5 +1,7 @@
 package net.kenddie.fantasyarmor.item.armor;
 
+import net.kenddie.fantasyarmor.shared.armor.FAArmorAttributes;
+
 import net.kenddie.fantasyarmor.FantasyArmor;
 import net.kenddie.fantasyarmor.client.model.FAArmorModel;
 import net.kenddie.fantasyarmor.client.render.FAArmorRenderer;

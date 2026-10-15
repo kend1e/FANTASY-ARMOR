@@ -1,5 +1,6 @@
 package net.kenddie.fantasyarmor.client.render;
 
+import net.kenddie.fantasyarmor.shared.client.CapePhysics;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.renderer.entity.state.AvatarRenderState;
 import net.minecraft.util.Mth;
@@ -13,26 +14,15 @@ public final class FARenderUtils {
      * We reuse the same "final rotation idea" you used previously, but based on state values.
      */
     public static void applyCapeRotation(AvatarRenderState state, GeoBone bone) {
-        float flap = state.capeFlap;
-        float lean = state.capeLean;
-        float lean2 = state.capeLean2;
-
-        if (state.isCrouching) {
-            flap += 25f;
-        }
-
-        bone.updateRotation(
-                (float) -Math.toRadians(6.0F + lean / 2.0F + flap),
-                (float) Math.toRadians(lean2 / 2.0F),
-                (float) Math.toRadians(lean2 / 2.0F)
-        );
+        CapePhysics.CapeRotation rot = CapePhysics.computeCapeRotation(
+                state.capeFlap, state.capeLean, state.capeLean2, state.isCrouching);
+        bone.updateRotation(rot.rotX(), rot.rotY(), rot.rotZ());
     }
 
     public static void setFrontLegCapeAngle(@Nullable GeoBone leftLeg, @Nullable GeoBone rightLeg, GeoBone frontCape) {
         if (leftLeg == null || rightLeg == null) return;
 
-        float legRot = Math.min(leftLeg.getRotX(), rightLeg.getRotX());
-        frontCape.setRotX((legRot > 0 ? 0 : legRot) * -1.2f);
+        frontCape.setRotX(CapePhysics.computeFrontCapeAngle(leftLeg.getRotX(), rightLeg.getRotX()));
     }
 
     public static void applyBraidRotation(AvatarRenderState state, GeoBone braid) {

@@ -4,6 +4,7 @@ import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import net.kenddie.fantasyarmor.item.armor.FAArmorSet;
+import net.kenddie.fantasyarmor.shared.config.FAEffectDefaults;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
@@ -37,115 +38,13 @@ public class FAArmorEffectsConfig implements ConfigData {
 
     public static Map<String, List<EffectEntry>> defaults() {
         Map<String, List<EffectEntry>> map = new HashMap<>();
-        map.put(FAArmorSet.WIND_WORSHIPPER.getName(), List.of(
-                new EffectEntry("minecraft:jump_boost", 259, 0)
-        ));
-        map.put(FAArmorSet.WANDERING_WIZARD.getName(), List.of(
-                new EffectEntry("minecraft:water_breathing", 259, 0),
-                new EffectEntry("minecraft:night_vision", 259, 0),
-                new EffectEntry("minecraft:fire_resistance", 259, 0)
-        ));
-        map.put(FAArmorSet.TWINNED.getName(), List.of(
-                new EffectEntry("minecraft:regeneration", 259, 0),
-                new EffectEntry("minecraft:haste", 259, 1)
-        ));
-        map.put(FAArmorSet.THIEF.getName(), List.of(
-                new EffectEntry("minecraft:jump_boost", 259, 0)
-        ));
-        map.put(FAArmorSet.SUNSET_WINGS.getName(), List.of(
-                new EffectEntry("minecraft:jump_boost", 259, 0)
-        ));
-        map.put(FAArmorSet.RONIN.getName(), List.of(
-                new EffectEntry("minecraft:jump_boost", 259, 0)
-        ));
-        map.put(FAArmorSet.SPARK_OF_DAWN.getName(), List.of(
-                new EffectEntry("minecraft:night_vision", 259, 0),
-                new EffectEntry("minecraft:fire_resistance", 259, 0)
-        ));
-        map.put(FAArmorSet.SILVER_KNIGHT.getName(), List.of(
-                new EffectEntry("minecraft:luck", 259, 0),
-                new EffectEntry("minecraft:strength", 259, 0)
-        ));
-        map.put(FAArmorSet.REDEEMER.getName(), List.of(
-                new EffectEntry("minecraft:strength", 259, 0),
-                new EffectEntry("minecraft:fire_resistance", 259, 0)
-        ));
-        map.put(FAArmorSet.GRAVE_SENTINEL.getName(), List.of(
-                new EffectEntry("minecraft:strength", 259, 0),
-                new EffectEntry("minecraft:fire_resistance", 259, 0)
-        ));
-        map.put(FAArmorSet.DRAGONSLAYER.getName(), List.of(
-                new EffectEntry("minecraft:strength", 259, 0),
-                new EffectEntry("minecraft:fire_resistance", 259, 0)
-        ));
-        map.put(FAArmorSet.OLD_KNIGHT.getName(), List.of(
-                new EffectEntry("minecraft:strength", 259, 0),
-                new EffectEntry("minecraft:resistance", 259, 0)
-        ));
-        map.put(FAArmorSet.ECLIPSE_SOLDIER.getName(), List.of(
-                new EffectEntry("minecraft:strength", 259, 0),
-                new EffectEntry("minecraft:resistance", 259, 0)
-        ));
-        map.put(FAArmorSet.MALENIA.getName(), List.of(
-                new EffectEntry("minecraft:regeneration", 259, 0)
-        ));
-        map.put(FAArmorSet.HERO.getName(), List.of(
-                new EffectEntry("minecraft:regeneration", 259, 0)
-        ));
-        map.put(FAArmorSet.DEAD_GLADIATOR.getName(), List.of(
-                new EffectEntry("minecraft:regeneration", 259, 0)
-        ));
-        map.put(FAArmorSet.LADY_MARIA.getName(), List.of(
-                new EffectEntry("minecraft:strength", 259, 0),
-                new EffectEntry("minecraft:regeneration", 259, 0)
-        ));
-        map.put(FAArmorSet.GOLDEN_HORNS.getName(), List.of(
-                new EffectEntry("minecraft:haste", 259, 1)
-        ));
-        map.put(FAArmorSet.GOLDEN_EXECUTION.getName(), List.of(
-                new EffectEntry("minecraft:strength", 259, 0)
-        ));
-        map.put(FAArmorSet.GILDED_HUNT.getName(), List.of(
-                new EffectEntry("minecraft:jump_boost", 259, 0),
-                new EffectEntry("minecraft:strength", 259, 0)
-        ));
-        map.put(FAArmorSet.FORGOTTEN_TRACE.getName(), List.of(
-                new EffectEntry("minecraft:haste", 259, 0),
-                new EffectEntry("minecraft:regeneration", 259, 0)
-        ));
-        map.put(FAArmorSet.FOG_GUARD.getName(), List.of(
-                new EffectEntry("minecraft:fire_resistance", 259, 0),
-                new EffectEntry("minecraft:resistance", 259, 0)
-        ));
-        map.put(FAArmorSet.FLESH_OF_THE_FEASTER.getName(), List.of(
-                new EffectEntry("minecraft:resistance", 259, 0)
-        ));
-        map.put(FAArmorSet.EVENING_GHOST.getName(), List.of(
-                new EffectEntry("minecraft:regeneration", 259, 0),
-                new EffectEntry("minecraft:night_vision", 259, 0)
-        ));
-        map.put(FAArmorSet.DARK_LORD.getName(), List.of(
-                new EffectEntry("minecraft:strength", 259, 0),
-                new EffectEntry("minecraft:night_vision", 259, 0),
-                new EffectEntry("minecraft:fire_resistance", 259, 0)
-        ));
-        map.put(FAArmorSet.DARK_COVER.getName(), List.of(
-                new EffectEntry("minecraft:regeneration", 259, 0),
-                new EffectEntry("minecraft:strength", 259, 0)
-        ));
-        map.put(FAArmorSet.CRUCIBLE_KNIGHT.getName(), List.of(
-                new EffectEntry("minecraft:fire_resistance", 259, 0),
-                new EffectEntry("minecraft:regeneration", 259, 0)
-        ));
-        map.put(FAArmorSet.CHESS_BOARD_KNIGHT.getName(), List.of(
-                new EffectEntry("minecraft:haste", 259, 0),
-                new EffectEntry("minecraft:regeneration", 259, 0),
-                new EffectEntry("minecraft:strength", 259, 0)
-        ));
-        map.put(FAArmorSet.ORNSTEIN.getName(), List.of(
-                new EffectEntry("minecraft:regeneration", 259, 0),
-                new EffectEntry("minecraft:resistance", 259, 0)
-        ));
+        for (var entry : FAEffectDefaults.load().entrySet()) {
+            List<EffectEntry> local = new ArrayList<>();
+            for (var e : entry.getValue()) {
+                local.add(new EffectEntry(e.id(), e.duration(), e.amplifier()));
+            }
+            map.put(entry.getKey(), local);
+        }
         return map;
     }
 
