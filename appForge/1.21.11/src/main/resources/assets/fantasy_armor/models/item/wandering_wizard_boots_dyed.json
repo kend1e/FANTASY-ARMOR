@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "fantasy_armor:item/wandering_wizard_boots",
+    "layer1": "fantasy_armor:item/wandering_wizard_boots_overlay"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "fantasy_armor:item/grave_sentinel_boots",
+    "layer1": "fantasy_armor:item/grave_sentinel_boots_overlay"
+  }
+}

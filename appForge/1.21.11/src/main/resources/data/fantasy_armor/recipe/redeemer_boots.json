@@ -1,0 +1,8 @@
+{
+    "type": "minecraft:smithing_transform",
+    "category": "equipment",
+    "template": "minecraft:emerald",
+    "base": "minecraft:netherite_boots",
+    "addition": "fantasy_armor:moon_crystal",
+    "result": "fantasy_armor:redeemer_boots"
+}

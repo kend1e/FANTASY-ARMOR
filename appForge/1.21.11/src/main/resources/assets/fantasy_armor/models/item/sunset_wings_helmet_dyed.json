@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "fantasy_armor:item/sunset_wings_helmet",
+    "layer1": "fantasy_armor:item/sunset_wings_helmet_overlay"
+  }
+}

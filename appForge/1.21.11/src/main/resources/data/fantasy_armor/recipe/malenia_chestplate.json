@@ -1,0 +1,8 @@
+{
+    "type": "minecraft:smithing_transform",
+    "category": "equipment",
+    "template": "minecraft:ghast_tear",
+    "base": "minecraft:netherite_chestplate",
+    "addition": "fantasy_armor:moon_crystal",
+    "result": "fantasy_armor:malenia_chestplate"
+}

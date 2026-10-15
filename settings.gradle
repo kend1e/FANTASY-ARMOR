@@ -16,7 +16,7 @@ pluginManagement {
 }
 
 plugins {
-    id 'org.gradle.toolchains.foojay-resolver-convention' version '0.8.0'
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
 }
 
 include(':appCommon')
@@ -27,3 +27,4 @@ include(':appForge:1.19.4')
 include(':appFabric:1.20.1')
 include(':appFabric:1.21.1')
 include(':appFabric:1.21.10')
+include(':appForge:1.21.11')

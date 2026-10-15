@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "fantasy_armor:item/redeemer_boots",
+    "layer1": "fantasy_armor:item/redeemer_boots_overlay"
+  }
+}

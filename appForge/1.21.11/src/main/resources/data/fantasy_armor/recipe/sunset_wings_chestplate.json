@@ -1,0 +1,8 @@
+{
+    "type": "minecraft:smithing_transform",
+    "category": "equipment",
+    "template": "minecraft:gunpowder",
+    "base": "minecraft:netherite_chestplate",
+    "addition": "fantasy_armor:moon_crystal",
+    "result": "fantasy_armor:sunset_wings_chestplate"
+}

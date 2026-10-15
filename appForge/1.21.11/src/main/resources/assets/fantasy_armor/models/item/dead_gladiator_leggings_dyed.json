@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "fantasy_armor:item/dead_gladiator_leggings",
+    "layer1": "fantasy_armor:item/dead_gladiator_leggings_overlay"
+  }
+}

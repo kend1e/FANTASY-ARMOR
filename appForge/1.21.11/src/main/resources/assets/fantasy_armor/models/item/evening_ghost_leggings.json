@@ -1,0 +1,14 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "fantasy_armor:item/evening_ghost_leggings"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "fantasy_armor:dyed": 1.0
+      },
+      "model": "fantasy_armor:item/evening_ghost_leggings_dyed"
+    }
+  ]
+}

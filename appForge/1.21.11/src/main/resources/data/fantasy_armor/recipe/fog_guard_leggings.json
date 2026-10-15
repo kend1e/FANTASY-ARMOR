@@ -1,0 +1,8 @@
+{
+    "type": "minecraft:smithing_transform",
+    "category": "equipment",
+    "template": "minecraft:phantom_membrane",
+    "base": "minecraft:netherite_leggings",
+    "addition": "fantasy_armor:moon_crystal",
+    "result": "fantasy_armor:fog_guard_leggings"
+}

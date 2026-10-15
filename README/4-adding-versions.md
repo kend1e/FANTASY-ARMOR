@@ -2,6 +2,34 @@
 
 So a new Minecraft version dropped and you want to add support? Here's the process.
 
+## Centralized Gradle build
+
+All loader/version modules are included in the root `settings.gradle` and use
+one Gradle 9.5.0 wrapper. Import the root project in IntelliJ IDEA and choose
+JDK 21 as the Gradle JVM. Java toolchains select Java 17 or 21 per module.
+Plugin versions are centralized in `gradle/libs.versions.toml`.
+
+Forge modules use ForgeGradle 7. Parchment mappings are supported directly;
+do not apply the old Librarian or MixinGradle plugins. Forge 1.19.4 and 1.20.1
+also use `net.minecraftforge.renamer` to remap GeckoLib for development and
+produce SRG release jars with the `srg` classifier. Their `assemble` tasks
+include `renameJar`; distribute the `-srg.jar`, not the development jar.
+Forge 1.21.1 and newer use official names at runtime and need no Renamer.
+
+```bash
+./gradlew projects
+./gradlew :appForge:1.20.1:build
+./gradlew :appForge:1.21.11:processResources
+./gradlew :appForge:1.21.11:compileJava
+./gradlew :appForge:1.21.11:runClient
+```
+
+Forge builds compile shared `appCommon` sources into each mod's source set so
+both development runs and packaged jars contain the shared code/resources.
+Fabric and NeoForge continue to depend on `appCommon` as a Java library.
+The Forge 1.21.11 source port is still in progress: configuring the build and
+processing resources do not imply that its old Java APIs compile successfully.
+
 ## Prerequisites
 
 Before diving in, gather these:
@@ -40,7 +68,9 @@ java_version=21
 
 ## Step 3: build.gradle
 
-Copy from closest existing version. Key sections:
+Start from a module using the same build-plugin generation as the target MDK.
+Copying an old ForgeGradle 6 script into this ForgeGradle 7 build is not supported.
+Key sections:
 
 ### NeoForge (ModDevGradle)
 ```gradle
@@ -64,7 +94,9 @@ dependencies {
 }
 ```
 
-### Required in all loaders:
+### Shared code and resources:
+
+For Fabric and NeoForge:
 ```gradle
 implementation project(':appCommon')
 jar { from project(':appCommon').sourceSets.main.output }
@@ -90,7 +122,7 @@ include(':appNeoForge:1.22.0')
 
 ```json
 {
-  "appNeoForge/1.22.0": {
+  "1.22.0": {
     "recipes_dir": "recipe",
     "armor_type_class": "ArmorType",
     "armor_type_import": "net.minecraft.world.item.equipment.ArmorType",

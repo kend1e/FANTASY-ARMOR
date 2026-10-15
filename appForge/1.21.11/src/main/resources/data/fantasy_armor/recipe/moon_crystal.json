@@ -1,0 +1,13 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#X#",
+        "###"
+    ],
+    "key": {
+        "#": "minecraft:glow_ink_sac",
+        "X": "minecraft:amethyst_shard"
+    },
+    "result": { "id": "fantasy_armor:moon_crystal" }
+}

@@ -1,0 +1,8 @@
+{
+    "type": "minecraft:smithing_transform",
+    "category": "equipment",
+    "template": "minecraft:prismarine_crystals",
+    "base": "minecraft:netherite_leggings",
+    "addition": "fantasy_armor:moon_crystal",
+    "result": "fantasy_armor:forgotten_trace_leggings"
+}
