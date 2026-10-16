@@ -49,6 +49,7 @@ import java.util.function.Supplier;
 public class FAArmorItem extends ArmorItem implements GeoItem {
     private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
     private final FAArmorSet armorSet;
+    private FAArmorAttributes cachedAttributes;
     private final Supplier<FAArmorAttributes> attributesSupplier;
     private ItemAttributeModifiers cachedModifiers;
 
@@ -67,21 +68,20 @@ public class FAArmorItem extends ArmorItem implements GeoItem {
     }
 
     private void syncDurabilityComponent(ItemStack stack) {
-        if (!isDurabilityEnabled()) {
-            stack.remove(DataComponents.MAX_DAMAGE);
-            stack.remove(DataComponents.DAMAGE);
-            return;
+        int configured = (int) attributesSupplier.get().durability();
+        int maximum = Math.max(1, configured);
+        if (stack.getOrDefault(DataComponents.MAX_DAMAGE, 0) != maximum) {
+            stack.set(DataComponents.MAX_DAMAGE, maximum);
         }
-
-        int durability = (int) attributesSupplier.get().durability();
-        if (durability > 0) {
-            if (stack.getOrDefault(DataComponents.MAX_DAMAGE, 0) != durability) {
-                stack.set(DataComponents.MAX_DAMAGE, durability);
+        if (!isDurabilityEnabled() || configured <= 0) {
+            if (!stack.has(DataComponents.UNBREAKABLE)) {
+                stack.set(DataComponents.UNBREAKABLE, new net.minecraft.world.item.component.Unbreakable(false));
             }
-            if (!stack.has(DataComponents.DAMAGE)) {
-                stack.set(DataComponents.DAMAGE, 0);
-            }
+        } else {
+            stack.remove(DataComponents.UNBREAKABLE);
         }
+        // Preserve absolute wear when durability is disabled or its maximum changes.
+        if (!stack.has(DataComponents.DAMAGE)) stack.set(DataComponents.DAMAGE, 0);
     }
 
     @Override
@@ -114,7 +114,8 @@ public class FAArmorItem extends ArmorItem implements GeoItem {
 
     @Override
     public boolean isDamageable(ItemStack stack) {
-        return getMaxDamage(stack) > 0;
+        return isDurabilityEnabled() && attributesSupplier.get().durability() > 0
+                && !stack.has(DataComponents.UNBREAKABLE);
     }
 
     @Override
@@ -171,19 +172,16 @@ public class FAArmorItem extends ArmorItem implements GeoItem {
 
     @Override
     public ItemAttributeModifiers getDefaultAttributeModifiers() {
-        if (!FAConfig.applyModifiers) {
-            return super.getDefaultAttributeModifiers();
-        }
-
-        if (cachedModifiers == null) {
-            cachedModifiers = buildModifiers();
+        FAArmorAttributes effective = attributesSupplier.get().withBonuses(FAConfig.applyModifiers);
+        if (cachedModifiers == null || !effective.equals(cachedAttributes)) {
+            cachedModifiers = buildModifiers(effective);
+            cachedAttributes = effective;
         }
 
         return cachedModifiers;
     }
 
-    private ItemAttributeModifiers buildModifiers() {
-        FAArmorAttributes armorAttributes = attributesSupplier.get();
+    private ItemAttributeModifiers buildModifiers(FAArmorAttributes armorAttributes) {
         ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder();
 
         EquipmentSlotGroup slotGroup = EquipmentSlotGroup.bySlot(this.type.getSlot());

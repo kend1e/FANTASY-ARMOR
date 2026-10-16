@@ -12,6 +12,13 @@ public record FAArmorAttributes(
         double durability
 ) {
 
+    /** Keeps the configured protection and durability when optional bonuses are disabled. */
+    public FAArmorAttributes withBonuses(boolean enabled) {
+        return enabled ? this : new FAArmorAttributes(
+                armor, armorToughness, knockbackResistance,
+                0, 0, 0, 0, 0, durability);
+    }
+
     public static Builder builder() {
         return new Builder();
     }

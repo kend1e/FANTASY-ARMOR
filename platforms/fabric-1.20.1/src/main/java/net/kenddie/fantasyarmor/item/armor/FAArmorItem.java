@@ -58,6 +58,7 @@ public class FAArmorItem extends DyeableArmorItem implements GeoItem {
 
     private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
     private final FAArmorSet armorSet;
+    private FAArmorAttributes cachedAttributes;
     private final Supplier<FAArmorAttributes> attributesSupplier;
     private Multimap<Attribute, AttributeModifier> cachedModifiers;
 
@@ -135,19 +136,20 @@ public class FAArmorItem extends DyeableArmorItem implements GeoItem {
 
     @Override
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(ItemStack stack, EquipmentSlot slot) {
-        if (slot != this.type.getSlot() || !FAConfigs.getMainConfig().applyModifiers) {
+        if (slot != this.type.getSlot()) {
             return super.getAttributeModifiers(stack, slot);
         }
 
-        if (cachedModifiers == null) {
-            cachedModifiers = buildModifiers();
+        FAArmorAttributes effective = attributesSupplier.get().withBonuses(FAConfigs.getMainConfig().applyModifiers);
+        if (cachedModifiers == null || !effective.equals(cachedAttributes)) {
+            cachedModifiers = buildModifiers(effective);
+            cachedAttributes = effective;
         }
 
         return cachedModifiers;
     }
 
-    private Multimap<Attribute, AttributeModifier> buildModifiers() {
-        FAArmorAttributes armorAttributes = attributesSupplier.get();
+    private Multimap<Attribute, AttributeModifier> buildModifiers(FAArmorAttributes armorAttributes) {
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
 
         UUID uuid = ARMOR_MODIFIER_UUID_PER_TYPE.get(this.type);

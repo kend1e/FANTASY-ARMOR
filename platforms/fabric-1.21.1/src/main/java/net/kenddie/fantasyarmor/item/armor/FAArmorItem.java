@@ -52,6 +52,7 @@ import java.util.function.Supplier;
 public class FAArmorItem extends ArmorItem implements GeoItem {
     private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
     private final FAArmorSet armorSet;
+    private FAArmorAttributes cachedAttributes;
     private final Supplier<FAArmorAttributes> attributesSupplier;
     private ItemAttributeModifiers cachedModifiers;
 
@@ -150,19 +151,16 @@ public class FAArmorItem extends ArmorItem implements GeoItem {
 
     @Override
     public ItemAttributeModifiers getDefaultAttributeModifiers() {
-        if (!FAConfigs.getMainConfig().applyModifiers) {
-            return super.getDefaultAttributeModifiers();
-        }
-
-        if (cachedModifiers == null) {
-            cachedModifiers = buildModifiers();
+        FAArmorAttributes effective = attributesSupplier.get().withBonuses(FAConfigs.getMainConfig().applyModifiers);
+        if (cachedModifiers == null || !effective.equals(cachedAttributes)) {
+            cachedModifiers = buildModifiers(effective);
+            cachedAttributes = effective;
         }
 
         return cachedModifiers;
     }
 
-    private ItemAttributeModifiers buildModifiers() {
-        FAArmorAttributes armorAttributes = attributesSupplier.get();
+    private ItemAttributeModifiers buildModifiers(FAArmorAttributes armorAttributes) {
         ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder();
 
         EquipmentSlotGroup slotGroup = EquipmentSlotGroup.bySlot(this.type.getSlot());

@@ -36,7 +36,7 @@ public final class FAServerSettings {
                 var config = FAArmorConfig.ARMOR_CONFIGS.get(set.getName()).get(type.getName());
                 var attributes = config.read();
                 pieces.put(type, new ArmorSettings(
-                        FAConfig.applyModifiers ? FAArmorItem.buildAttributeModifiers(type, attributes) : ItemAttributeModifiers.EMPTY,
+                        FAArmorItem.buildAttributeModifiers(type, attributes.withBonuses(FAConfig.applyModifiers)),
                         Math.max(1, (int) attributes.durability()),
                         !FAConfig.enableDurability || attributes.durability() <= 0));
             }

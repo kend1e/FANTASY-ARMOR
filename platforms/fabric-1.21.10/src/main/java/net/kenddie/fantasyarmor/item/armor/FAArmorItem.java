@@ -140,9 +140,7 @@ public class FAArmorItem extends Item implements GeoItem {
 
 
     private static ItemAttributeModifiers buildAttributeModifiers(ArmorType armorType, FAArmorAttributes armorAttributes) {
-        if (!FAConfigs.getMainConfig().applyModifiers) {
-            return ItemAttributeModifiers.builder().build();
-        }
+        armorAttributes = armorAttributes.withBonuses(FAConfigs.getMainConfig().applyModifiers);
 
         ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder();
 

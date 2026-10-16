@@ -13,11 +13,8 @@ import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
-/** Tracks only this mod's last applied values. External overrides are never reasserted. */
+/** Applies our server settings once per world session, preserving unrelated stack data. */
 public final class FAArmorComponents {
     public record Applied(String revision, ItemAttributeModifiers modifiers, int maxDamage, boolean unbreakable,
                           boolean manageAttributes, boolean manageDurability) {
@@ -43,49 +40,17 @@ public final class FAArmorComponents {
         if (previous != null && previous.revision().equals(settings.revision())) return;
 
         var target = settings.armor().get(item.getArmorSet()).get(item.getArmorType());
-        ItemAttributeModifiers actual = stack.getOrDefault(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY);
-        ItemAttributeModifiers expected = previous == null ? item.defaultModifiers() : previous.modifiers();
-        boolean manageAttributes = (previous == null || previous.manageAttributes())
-                && owned(actual).equals(owned(expected));
-        // Explicit first-time stack patches may come from commands or another mod.
-        if (previous == null && stack.getComponentsPatch().get(DataComponents.ATTRIBUTE_MODIFIERS) != null)
-            manageAttributes = false;
-
-        int actualMaxDamage = stack.getOrDefault(DataComponents.MAX_DAMAGE, 0);
-        boolean actualUnbreakable = stack.has(DataComponents.UNBREAKABLE);
-        boolean manageDurability = (previous == null || previous.manageDurability())
-                && actualMaxDamage == (previous == null ? item.defaultMaxDamage() : previous.maxDamage())
-                && actualUnbreakable == (previous == null ? item.defaultUnbreakable() : previous.unbreakable());
-        if (previous == null && (stack.getComponentsPatch().get(DataComponents.MAX_DAMAGE) != null
-                || stack.getComponentsPatch().get(DataComponents.UNBREAKABLE) != null)) manageDurability = false;
-
-        if (manageAttributes) {
-            List<ItemAttributeModifiers.Entry> merged = new ArrayList<>(actual.modifiers());
-            merged.removeIf(FAArmorComponents::isOwned);
-            merged.addAll(target.modifiers().modifiers());
-            ItemAttributeModifiers replacement = new ItemAttributeModifiers(List.copyOf(merged));
-            if (!Objects.equals(actual, replacement)) stack.set(DataComponents.ATTRIBUTE_MODIFIERS, replacement);
-            actual = replacement;
+        stack.set(DataComponents.ATTRIBUTE_MODIFIERS, target.modifiers());
+        stack.set(DataComponents.MAX_DAMAGE, target.maxDamage());
+        if (target.unbreakable()) {
+            stack.set(DataComponents.UNBREAKABLE, Unit.INSTANCE);
+        } else {
+            stack.remove(DataComponents.UNBREAKABLE);
         }
-        if (manageDurability) {
-            if (actualMaxDamage != target.maxDamage()) stack.set(DataComponents.MAX_DAMAGE, target.maxDamage());
-            if (target.unbreakable()) {
-                if (!actualUnbreakable) stack.set(DataComponents.UNBREAKABLE, Unit.INSTANCE);
-            } else if (actualUnbreakable) stack.remove(DataComponents.UNBREAKABLE);
-            actualMaxDamage = target.maxDamage();
-            actualUnbreakable = target.unbreakable();
-            // DAMAGE is intentionally untouched: keep absolute wear, including while unbreakable.
-        }
-        stack.set(APPLIED.get(), new Applied(settings.revision(), new ItemAttributeModifiers(owned(actual)),
-                actualMaxDamage, actualUnbreakable, manageAttributes, manageDurability));
-    }
-
-    private static boolean isOwned(ItemAttributeModifiers.Entry entry) {
-        return entry.modifier().id().getNamespace().equals(FantasyArmor.MOD_ID);
-    }
-
-    private static List<ItemAttributeModifiers.Entry> owned(ItemAttributeModifiers modifiers) {
-        return modifiers.modifiers().stream().filter(FAArmorComponents::isOwned).toList();
+        // Do not reset or clamp DAMAGE: absolute wear survives configuration changes.
+        // Keep the existing codec shape so previously saved stacks remain readable.
+        stack.set(APPLIED.get(), new Applied(settings.revision(), target.modifiers(),
+                target.maxDamage(), target.unbreakable(), true, true));
     }
 
     private FAArmorComponents() {}
