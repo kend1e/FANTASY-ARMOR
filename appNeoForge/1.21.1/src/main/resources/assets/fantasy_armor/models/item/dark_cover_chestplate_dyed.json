@@ -1,7 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "fantasy_armor:item/dark_cover_chestplate",
-    "layer1": "fantasy_armor:item/dark_cover_chestplate_overlay"
-  }
-}

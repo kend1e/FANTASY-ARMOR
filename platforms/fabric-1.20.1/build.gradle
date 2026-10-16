@@ -1,0 +1,96 @@
+plugins {
+    id 'fantasy.platform'
+	alias(libs.plugins.fabricLoom)
+	id 'maven-publish'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+	archivesName = project.archives_base_name
+}
+
+repositories {
+	maven {
+		name = 'ParchmentMC'
+		url = 'https://maven.parchmentmc.org'
+	}
+    maven {
+        name = 'GeckoLib'
+        url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content {
+            includeGroupByRegex("software\\.bernie.*")
+            includeGroup("com.eliotlash.mclib")
+        }
+    }
+    maven { url = "https://maven.shedaniel.me/" }
+    maven { url = "https://maven.terraformersmc.com/releases/" }
+}
+
+fabricApi {
+	configureDataGeneration {
+        addToResources = false
+        outputDirectory = layout.buildDirectory.file('generated/resources/datagen')
+    }
+}
+
+// Loom 1.13.6 otherwise resolves source directories eagerly and loses task dependencies.
+sourceSets.main.resources.srcDir layout.buildDirectory.dir('generated/resources/datagen')
+
+dependencies {
+	// To change the versions see the gradle.properties file
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings loom.layered() {
+         officialMojangMappings()
+         parchment("org.parchmentmc.data:parchment-${project.minecraft_version}:${project.parchment_mappings_version}@zip")
+     }
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+	// Fabric API. This is technically optional, but you probably want it anyway.
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	modImplementation "software.bernie.geckolib:geckolib-fabric-${project.minecraft_version}:${project.geckolib_version}"
+    implementation "com.eliotlash.mclib:mclib:20"
+    modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
+        exclude(group: "net.fabricmc.fabric-api")
+    }
+	implementation project(':core')
+}
+
+def resourceVersion = project.version.toString()
+processResources {
+	inputs.property "version", project.version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": resourceVersion
+	}
+
+	duplicatesStrategy = DuplicatesStrategy.FAIL
+}
+
+java { withSourcesJar() }
+
+jar {
+	from project(':core').sourceSets.main.output
+	from("LICENSE") {
+		rename { "${it}_${project.base.archivesName.get()}"}
+	}
+}
+
+// configure the maven publication
+publishing {
+	publications {
+		create("mavenJava", MavenPublication) {
+			artifactId = project.archives_base_name
+			from components.java
+		}
+	}
+
+	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+	repositories {
+		// Add repositories to publish to here.
+		// Notice: This block does NOT have the same function as the block in the top level.
+		// The repositories here will be used for publishing your artifact, not for
+		// retrieving dependencies.
+	}
+}

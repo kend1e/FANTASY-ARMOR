@@ -1,7 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "fantasy_armor:item/gilded_hunt_chestplate",
-    "layer1": "fantasy_armor:item/gilded_hunt_chestplate_overlay"
-  }
-}

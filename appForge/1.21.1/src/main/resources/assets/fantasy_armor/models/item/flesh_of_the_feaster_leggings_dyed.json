@@ -1,7 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "fantasy_armor:item/flesh_of_the_feaster_leggings",
-    "layer1": "fantasy_armor:item/flesh_of_the_feaster_leggings_overlay"
-  }
-}

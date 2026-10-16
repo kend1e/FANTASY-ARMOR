@@ -1,8 +1,0 @@
-{
-    "type": "minecraft:smithing_transform",
-    "category": "equipment",
-    "template": "TEMPLATE_ITEM",
-    "base": "BASE_ITEM",
-    "addition": "ADDITION_ITEM",
-    "result": "RESULT_ITEM"
-}

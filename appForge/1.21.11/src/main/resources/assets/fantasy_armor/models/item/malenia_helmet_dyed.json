@@ -1,7 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "fantasy_armor:item/malenia_helmet",
-    "layer1": "fantasy_armor:item/malenia_helmet_overlay"
-  }
-}

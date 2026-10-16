@@ -1,7 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "fantasy_armor:item/thief_leggings",
-    "layer1": "fantasy_armor:item/thief_leggings_overlay"
-  }
-}
