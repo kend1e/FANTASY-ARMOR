@@ -60,7 +60,16 @@ dependencies {
     // The "userdev" classifier will be requested and setup by ForgeGradle.
     // If the group id is "net.minecraft" and the artifact id is one of ["client", "server", "joined"],
     // then special handling is done to allow a setup of a vanilla dependency without the use of an external repository.
-    implementation minecraft.dependency(project.name, "net.minecraftforge:forge:${minecraft_version}-${forge_version}")
+    // FG 7 also resolves this dependency in a detached dev-launch configuration.
+    // Declare its variant explicitly; that configuration has no Java attributes.
+    implementation minecraft.dependency(project.name, "net.minecraftforge:forge:${minecraft_version}-${forge_version}") {
+        attributes {
+            attribute(org.gradle.api.attributes.Usage.USAGE_ATTRIBUTE, objects.named(org.gradle.api.attributes.Usage, org.gradle.api.attributes.Usage.JAVA_RUNTIME))
+            attribute(org.gradle.api.attributes.Category.CATEGORY_ATTRIBUTE, objects.named(org.gradle.api.attributes.Category, org.gradle.api.attributes.Category.LIBRARY))
+            attribute(org.gradle.api.attributes.Attribute.of('net.minecraftforge.mappings.channel', String), 'official')
+            attribute(org.gradle.api.attributes.Attribute.of('net.minecraftforge.mappings.version', String), minecraft_version.toString())
+        }
+    }
 
     }
 
@@ -127,3 +136,15 @@ dependencies {
 // Shared sources belong to the mod in dev runs as well as the published jar.
 sourceSets.main.java.srcDir rootProject.file('core/src/main/java')
 sourceSets.main.resources.srcDir project(':core').tasks.named('processResources')
+
+// Dependency refmaps use SRG names; dev Minecraft uses official names.
+def devRefmapMappings = renamer.convert('devRefmapMappings', minecraft.getDependency(project.name).toSrgFile, 'srg') {
+    reverse = true
+}
+minecraft.runs.configureEach {
+    systemProperty 'mixin.env.remapRefMap', 'true'
+    systemProperty 'mixin.env.refMapRemappingFile', devRefmapMappings.flatMap { it.output }.map { it.asFile.absolutePath }
+}
+tasks.matching { it.name == 'runClient' || it.name == 'runServer' }.configureEach {
+    dependsOn devRefmapMappings
+}

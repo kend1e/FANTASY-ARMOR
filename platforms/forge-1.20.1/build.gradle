@@ -48,7 +48,16 @@ repositories {
 }
 
 dependencies {
-    implementation minecraft.dependency(project.name, "net.minecraftforge:forge:${minecraft_version}-${forge_version}")
+    // FG 7 also resolves this dependency in a detached dev-launch configuration.
+    // Declare its variant explicitly; that configuration has no Java attributes.
+    implementation minecraft.dependency(project.name, "net.minecraftforge:forge:${minecraft_version}-${forge_version}") {
+        attributes {
+            attribute(org.gradle.api.attributes.Usage.USAGE_ATTRIBUTE, objects.named(org.gradle.api.attributes.Usage, org.gradle.api.attributes.Usage.JAVA_RUNTIME))
+            attribute(org.gradle.api.attributes.Category.CATEGORY_ATTRIBUTE, objects.named(org.gradle.api.attributes.Category, org.gradle.api.attributes.Category.LIBRARY))
+            attribute(org.gradle.api.attributes.Attribute.of('net.minecraftforge.mappings.channel', String), 'official')
+            attribute(org.gradle.api.attributes.Attribute.of('net.minecraftforge.mappings.version', String), minecraft_version.toString())
+        }
+    }
 }
 
 tasks.named('processResources', ProcessResources).configure {
@@ -103,3 +112,15 @@ renamer.classes(tasks.named('jar', Jar)) {
     archiveClassifier = 'srg'
 }
 tasks.named('assemble') { dependsOn tasks.named('renameJar') }
+
+// Dependency refmaps use SRG names; dev Minecraft uses official names.
+def devRefmapMappings = renamer.convert('devRefmapMappings', minecraft.getDependency(project.name).toSrgFile, 'srg') {
+    reverse = true
+}
+minecraft.runs.configureEach {
+    systemProperty 'mixin.env.remapRefMap', 'true'
+    systemProperty 'mixin.env.refMapRemappingFile', devRefmapMappings.flatMap { it.output }.map { it.asFile.absolutePath }
+}
+tasks.matching { it.name == 'runClient' || it.name == 'runServer' }.configureEach {
+    dependsOn devRefmapMappings
+}

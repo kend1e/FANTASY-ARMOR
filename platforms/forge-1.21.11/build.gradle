@@ -48,7 +48,16 @@ repositories {
 }
 
 dependencies {
-    implementation minecraft.dependency(project.name, "net.minecraftforge:forge:${minecraft_version}-${forge_version}")
+    // FG 7 also resolves this dependency in a detached dev-launch configuration.
+    // Declare its variant explicitly; that configuration has no Java attributes.
+    implementation minecraft.dependency(project.name, "net.minecraftforge:forge:${minecraft_version}-${forge_version}") {
+        attributes {
+            attribute(org.gradle.api.attributes.Usage.USAGE_ATTRIBUTE, objects.named(org.gradle.api.attributes.Usage, org.gradle.api.attributes.Usage.JAVA_RUNTIME))
+            attribute(org.gradle.api.attributes.Category.CATEGORY_ATTRIBUTE, objects.named(org.gradle.api.attributes.Category, org.gradle.api.attributes.Category.LIBRARY))
+            attribute(org.gradle.api.attributes.Attribute.of('net.minecraftforge.mappings.channel', String), 'official')
+            attribute(org.gradle.api.attributes.Attribute.of('net.minecraftforge.mappings.version', String), minecraft_version.toString())
+        }
+    }
     annotationProcessor 'net.minecraftforge:eventbus-validator:7.0.5'
     annotationProcessor 'org.spongepowered:mixin:0.8.7:processor'
     implementation "software.bernie.geckolib:geckolib-forge-${minecraft_version}:${geckolib_version}"
