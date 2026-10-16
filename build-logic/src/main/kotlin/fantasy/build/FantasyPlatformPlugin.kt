@@ -58,11 +58,14 @@ class FantasyPlatformPlugin : Plugin<Project> {
             duplicatesStrategy = DuplicatesStrategy.FAIL
         }
         val content = tasks.register<GenerateResources>("generateContentResources") {
-            contents.set(contentResources(target.resources, target.loader))
+            contents.set(contentResources(target.resources))
             outputDirectory.set(layout.buildDirectory.dir("generated/resources/content"))
         }
         extensions.getByType<SourceSetContainer>().named("main") {
             java.srcDir(rootProject.layout.projectDirectory.dir("minecraft/${target.minecraft}/src/main/java"))
+            if (target.loader == Loader.FABRIC) {
+                java.srcDir(rootProject.layout.projectDirectory.dir("loaders/fabric/src/main/java"))
+            }
             resources.srcDir(shared)
             resources.srcDir(content.flatMap { it.outputDirectory })
         }
@@ -79,13 +82,13 @@ class FantasyPlatformPlugin : Plugin<Project> {
         val releaseFile = rootProject.layout.projectDirectory.file("dist/$releaseName")
         val producer = when {
             target.loader == Loader.FABRIC -> "remapJar"
-            target.legacyForge -> "renameJar"
+            target.srgRemapping -> "renameJar"
             else -> "jar"
         }
         val export = tasks.register<ExportRelease>("exportRelease") {
             group = "build"
             description = "Copies the installable ${target.name} artifact into root dist."
-            if (target.legacyForge) {
+            if (target.srgRemapping) {
                 // RenameJar exposes one @OutputFile; it is not an AbstractArchiveTask.
                 artifact.set(layout.file(tasks.named(producer).map { it.outputs.files.singleFile }))
             } else {

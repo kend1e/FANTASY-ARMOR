@@ -17,8 +17,14 @@ data class Target(
     val loaderRange: String = "[${loaderVersion.substringBefore('.')},)",
     val fabricApi: String = "",
     val clothConfig: String = "",
+    val srgRemapping: Boolean = false,
 ) {
     val name: String get() = "${loader.id}-$minecraft"
     val path: String get() = ":platforms:$name"
-    val legacyForge: Boolean get() = loader == Loader.FORGE && resources == ResourceProfile.LEGACY
+    init {
+        require(!srgRemapping || loader == Loader.FORGE) { "SRG remapping requires Forge: $name" }
+        require(loader != Loader.FABRIC || (fabricApi.isNotBlank() && clothConfig.isNotBlank())) {
+            "Fabric API and Cloth Config versions are required for $name"
+        }
+    }
 }

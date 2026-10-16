@@ -7,9 +7,9 @@ import fantasy.build.Target
 // Explicitly supported combinations; adding a version does not imply all loaders support it.
 val targets = listOf(
     Target(FORGE, "1.19.4", 17, "1.2.3-1.19.4", "45.3.9", "4.2", LEGACY,
-        minecraftRange = "[1.19.4,1.20)"),
+        minecraftRange = "[1.19.4,1.20)", srgRemapping = true),
     Target(FORGE, "1.20.1", 17, "1.2.4-1.20.1", "47.3.12", "4.4.7", LEGACY,
-        minecraftRange = "[1.20.1,1.21)"),
+        minecraftRange = "[1.20.1,1.21)", srgRemapping = true),
     Target(FABRIC, "1.20.1", 17, "1.2.4-1.20.1", "0.16.7", "4.4.7", LEGACY,
         fabricApi = "0.92.2+1.20.1", clothConfig = "11.1.136"),
     Target(FORGE, "1.21.1", 21, "1.2.4-1.21.1", "52.1.3", "4.7.7", COMPONENTS,

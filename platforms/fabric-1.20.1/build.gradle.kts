@@ -62,7 +62,7 @@ val archiveName = base.archivesName
 tasks.jar {
     from(coreSourceSets.named("main").map { it.output })
     inputs.property("archivesName", archiveName)
-    from("LICENSE") {
+    from(rootProject.layout.projectDirectory.file("LICENSE.md")) {
         rename { "${it}_${archiveName.get()}" }
     }
 }

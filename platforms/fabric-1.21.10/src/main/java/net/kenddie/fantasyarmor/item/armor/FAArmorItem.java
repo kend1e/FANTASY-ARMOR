@@ -14,7 +14,7 @@ import net.kenddie.fantasyarmor.config.FAArmorEffectsConfig;
 import net.kenddie.fantasyarmor.config.FAConfigs;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Font;
+import net.kenddie.fantasyarmor.client.FATooltips;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
@@ -143,31 +143,11 @@ public class FAArmorItem extends Item implements GeoItem {
         if (!RenderSystem.isOnRenderThread()) return;
 
         if (FAConfigs.getMainConfig().showDescriptions) {
-            String translationKey = this.getDescriptionId() + ".tooltip";
-            String translatedText = Component.translatable(translationKey).getString();
-
-            Font font = Minecraft.getInstance().font;
-            String[] lines = translatedText.split("\n");
-
-            for (String line : lines) {
-                StringBuilder currentLine = new StringBuilder();
-                String[] words = line.split(" ");
-
-                for (String word : words) {
-                    if (font.width(currentLine + word) > FAConfigs.getMainConfig().descriptionsLength) {
-                        tooltipAdder.accept(Component.literal(currentLine.toString()));
-                        currentLine = new StringBuilder("§7");
-                    }
-                    if (currentLine.length() > 2) {
-                        currentLine.append(" §7");
-                    }
-                    currentLine.append(word);
-                }
-
-                if (!currentLine.isEmpty()) {
-                    tooltipAdder.accept(Component.literal(currentLine.toString()));
-                }
-            }
+            FATooltips.append(
+                    Component.translatable(getDescriptionId() + ".tooltip"),
+                    Minecraft.getInstance().font.getSplitter(),
+                    FAConfigs.getMainConfig().descriptionsLength,
+                    tooltipAdder);
         }
 
     }
