@@ -2,6 +2,7 @@ package net.kenddie.fantasyarmor.config;
 
 import net.kenddie.fantasyarmor.shared.armor.FAArmorSet;
 import net.kenddie.fantasyarmor.shared.config.FAEffectDefaults;
+import net.kenddie.fantasyarmor.shared.config.EffectEntry;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -29,7 +30,7 @@ public class FAArmorEffectsConfig {
             var entries = FAEffectDefaults.get(set.getName());
             if (!entries.isEmpty()) {
                 result.put(set, entries.stream()
-                    .map(e -> e.id() + "," + e.duration() + "," + e.amplifier())
+                    .map(EffectEntry::toConfigValue)
                     .toList());
             }
         }
@@ -58,36 +59,20 @@ public class FAArmorEffectsConfig {
     }
 
     public FAArmorEffectsConfig(ForgeConfigSpec.Builder builder, List<String> defaultEffects) {
-        effectsList = builder.defineList(
-                "effects",
-                defaultEffects,
-                o -> o instanceof String
-        );
+        effectsList = builder.worldRestart().defineListAllowEmpty(
+                List.of("effects"), () -> defaultEffects, EffectEntry::isValidConfigValue);
     }
 
     public List<MobEffectInstance> getEffects() {
         List<MobEffectInstance> result = new ArrayList<>();
-        for (String entry : effectsList.get()) {
-            String[] parts = entry.split(",");
-            if (parts.length < 3) continue;
-
-            ResourceLocation id = ResourceLocation.tryParse(parts[0]);
-            if (id == null) continue;
-
-            int duration;
-            int amplifier;
-            try {
-                duration = Integer.parseInt(parts[1]);
-                amplifier = Integer.parseInt(parts[2]);
-            } catch (NumberFormatException ex) {
-                continue;
-            }
-
-            Optional<Holder.Reference<MobEffect>> holderOpt = BuiltInRegistries.MOB_EFFECT.getHolder(id);
-            if (holderOpt.isEmpty()) continue;
-            Holder<MobEffect> effectHolder = holderOpt.get();
-
-            result.add(new MobEffectInstance(effectHolder, duration, amplifier, true, FAConfig.showParticles, true));
+        for (String entry : SPEC.isLoaded() ? effectsList.get() : effectsList.getDefault()) {
+            var parsed = EffectEntry.parse(entry);
+            if (parsed.isEmpty()) continue;
+            var effectEntry = parsed.get();
+            var holder = BuiltInRegistries.MOB_EFFECT.getHolder(ResourceLocation.tryParse(effectEntry.id()));
+            if (holder.isEmpty()) continue;
+            result.add(new MobEffectInstance(holder.get(), effectEntry.duration(), effectEntry.amplifier(),
+                    true, FAConfig.showParticles, FAConfig.showEffectIcon));
         }
         return result;
     }

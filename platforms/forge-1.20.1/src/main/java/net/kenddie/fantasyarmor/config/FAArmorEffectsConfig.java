@@ -2,6 +2,7 @@ package net.kenddie.fantasyarmor.config;
 
 import net.kenddie.fantasyarmor.shared.armor.FAArmorSet;
 import net.kenddie.fantasyarmor.shared.config.FAEffectDefaults;
+import net.kenddie.fantasyarmor.shared.config.EffectEntry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
@@ -27,7 +28,7 @@ public class FAArmorEffectsConfig {
             var entries = FAEffectDefaults.get(set.getName());
             if (!entries.isEmpty()) {
                 result.put(set, entries.stream()
-                    .map(e -> e.id() + "," + e.duration() + "," + e.amplifier())
+                    .map(EffectEntry::toConfigValue)
                     .toList());
             }
         }
@@ -56,26 +57,20 @@ public class FAArmorEffectsConfig {
     }
 
     public FAArmorEffectsConfig(ForgeConfigSpec.Builder builder, List<String> defaultEffects) {
-        effectsList = builder.defineList(
-                "effects",
-                defaultEffects,
-                o -> o instanceof String
-        );
+        effectsList = builder.worldRestart().defineListAllowEmpty(
+                List.of("effects"), () -> defaultEffects, EffectEntry::isValidConfigValue);
     }
 
     public List<MobEffectInstance> getEffects() {
         List<MobEffectInstance> result = new ArrayList<>();
-        for (String entry : effectsList.get()) {
-            String[] parts = entry.split(",");
-            if (parts.length >= 3) {
-                ResourceLocation id = new ResourceLocation(parts[0]);
-                MobEffect effect = BuiltInRegistries.MOB_EFFECT.get(id);
-                if (effect != null) {
-                    int duration = Integer.parseInt(parts[1]);
-                    int amplifier = Integer.parseInt(parts[2]);
-                    result.add(new MobEffectInstance(effect, duration, amplifier, true, FAConfig.showParticles, true));
-                }
-            }
+        for (String entry : SPEC.isLoaded() ? effectsList.get() : effectsList.getDefault()) {
+            var parsed = EffectEntry.parse(entry);
+            if (parsed.isEmpty()) continue;
+            var effectEntry = parsed.get();
+            var effect = BuiltInRegistries.MOB_EFFECT.get(ResourceLocation.tryParse(effectEntry.id()));
+            if (effect == null) continue;
+            result.add(new MobEffectInstance(effect, effectEntry.duration(), effectEntry.amplifier(),
+                    true, FAConfig.showParticles, FAConfig.showEffectIcon));
         }
         return result;
     }

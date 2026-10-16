@@ -26,7 +26,8 @@ public final class FAArmorItems {
 
                 FAArmorAttributesConfig config = FAArmorConfig.ARMOR_CONFIGS.get(set.getName()).get(type.getName());
 
-                Supplier<FAArmorAttributes> attributesSupplier = () -> new FAArmorAttributes.Builder()
+                Supplier<FAArmorAttributes> attributesSupplier = () -> !FAArmorConfig.SPEC.isLoaded()
+                        ? set.defaults().get(type.getName()) : new FAArmorAttributes.Builder()
                         .armor(config.armor.get())
                         .armorToughness(config.armorToughness.get())
                         .knockbackResistance(config.knockbackResistance.get())

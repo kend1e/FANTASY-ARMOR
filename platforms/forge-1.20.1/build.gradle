@@ -48,7 +48,7 @@ repositories {
 }
 
 dependencies {
-    implementation minecraft.dependency("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
+    implementation minecraft.dependency(project.name, "net.minecraftforge:forge:${minecraft_version}-${forge_version}")
 }
 
 tasks.named('processResources', ProcessResources).configure {
@@ -98,7 +98,7 @@ sourceSets.main.java.srcDir rootProject.file('core/src/main/java')
 sourceSets.main.resources.srcDir project(':core').tasks.named('processResources')
 
 // Legacy Forge loads SRG names. Keep the development jar separate from the release jar.
-renamer.mappings.from minecraft.dependency.toSrgFile
+renamer.mappings.from minecraft.getDependency(project.name).toSrgFile
 renamer.classes(tasks.named('jar', Jar)) {
     archiveClassifier = 'srg'
 }

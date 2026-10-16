@@ -57,12 +57,19 @@ public class FAArmorEffectsConfig implements ConfigData {
         }
     }
 
-    public static List<MobEffectInstance> getEffectsFor(String armorSetName, boolean showParticles, boolean showIcon) {
+    public static List<MobEffectInstance> getEffectsFor(String armorSetName) {
+        var main = FAConfigs.getMainConfig();
+        boolean showParticles = main.showParticles;
+        boolean showIcon = main.showEffectIcon;
         var cfg = me.shedaniel.autoconfig.AutoConfig.getConfigHolder(FAArmorEffectsConfig.class).getConfig();
         var list = cfg.effects.getOrDefault(armorSetName, Collections.emptyList());
+        if (list == null) return List.of();
         List<MobEffectInstance> out = new ArrayList<>(list.size());
         for (EffectEntry e : list) {
-            ResourceLocation id = new ResourceLocation(e.id);
+            if (e == null) continue;
+            var parsed = net.kenddie.fantasyarmor.shared.config.EffectEntry.parse(e.id + "," + e.duration + "," + e.amplifier);
+            if (parsed.isEmpty()) continue;
+            ResourceLocation id = new ResourceLocation(parsed.get().id());
             MobEffect effect = BuiltInRegistries.MOB_EFFECT.get(id);
             if (effect != null) {
                 out.add(new MobEffectInstance(effect, e.duration, e.amplifier, true, showParticles, showIcon));

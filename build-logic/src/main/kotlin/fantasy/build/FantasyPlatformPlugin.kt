@@ -24,10 +24,9 @@ class FantasyPlatformPlugin : Plugin<Project> {
             "mod_version" to target.modVersion, "geckolib_version" to target.geckolib,
             "forge_version" to target.loaderVersion, "forge_version_range" to target.loaderRange,
             "neo_version" to target.loaderVersion, "loader_version" to target.loaderVersion,
-            "loader_version_range" to target.loaderRange, "mapping_channel" to target.mappingChannel,
-            "mapping_version" to target.mappingVersion, "fabric_version" to target.fabricApi,
+            "loader_version_range" to target.loaderRange, "mapping_channel" to "official",
+            "mapping_version" to target.minecraft, "fabric_version" to target.fabricApi,
             "fabric_api_version" to target.fabricApi, "cloth_config_version" to target.clothConfig,
-            "parchment_minecraft_version" to target.minecraft, "parchment_mappings_version" to target.parchment,
             "maven_group" to property("mod_group_id"), "archives_base_name" to property("mod_id"),
         )
         properties.forEach { (name, value) -> extensions.extraProperties.set(name, value) }

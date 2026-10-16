@@ -48,7 +48,7 @@ repositories {
 }
 
 dependencies {
-    implementation minecraft.dependency("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
+    implementation minecraft.dependency(project.name, "net.minecraftforge:forge:${minecraft_version}-${forge_version}")
     annotationProcessor 'net.minecraftforge:eventbus-validator:7.0.5'
     annotationProcessor 'org.spongepowered:mixin:0.8.7:processor'
     implementation "software.bernie.geckolib:geckolib-forge-${minecraft_version}:${geckolib_version}"

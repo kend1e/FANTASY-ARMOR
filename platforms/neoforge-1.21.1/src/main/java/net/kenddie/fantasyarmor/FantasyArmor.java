@@ -26,9 +26,10 @@ public class FantasyArmor {
     public FantasyArmor(IEventBus modEventBus, ModContainer modContainer) {
         ModLoadingContext modLoadingContext = ModLoadingContext.get();
 
-        modContainer.registerConfig(ModConfig.Type.COMMON, FAConfig.SPEC, "fantasy_armor-common.toml");
-        modContainer.registerConfig(ModConfig.Type.COMMON, FAArmorConfig.SPEC, "fantasy_armor-armor_attributes.toml");
-        modContainer.registerConfig(ModConfig.Type.COMMON, FAArmorEffectsConfig.SPEC, "fantasy_armor-armor_effects.toml");
+        modContainer.registerConfig(ModConfig.Type.SERVER, FAConfig.SPEC, "fantasy_armor-server.toml");
+        modContainer.registerConfig(ModConfig.Type.CLIENT, FAConfig.CLIENT_SPEC, "fantasy_armor-client.toml");
+        modContainer.registerConfig(ModConfig.Type.SERVER, FAArmorConfig.SPEC, "fantasy_armor-armor_attributes.toml");
+        modContainer.registerConfig(ModConfig.Type.SERVER, FAArmorEffectsConfig.SPEC, "fantasy_armor-armor_effects.toml");
 
         FAItems.register(modEventBus);
         FAArmorItems.register(modEventBus);
@@ -38,10 +39,14 @@ public class FantasyArmor {
 
         modEventBus.addListener(this::onConfigLoad);
         modEventBus.addListener(this::onConfigReload);
+        modEventBus.addListener(this::onConfigUnload);
     }
 
     @SubscribeEvent
     public void onConfigLoad(final ModConfigEvent.Loading event) {
+        if (event.getConfig().getSpec() == FAConfig.CLIENT_SPEC) {
+            FAConfig.applyClientValues();
+        }
         if (event.getConfig().getSpec() == FAConfig.SPEC) {
             FAConfig.applyConfigValues();
         }
@@ -49,8 +54,14 @@ public class FantasyArmor {
 
     @SubscribeEvent
     public void onConfigReload(final ModConfigEvent.Reloading event) {
+        if (event.getConfig().getSpec() == FAConfig.CLIENT_SPEC) {
+            FAConfig.applyClientValues();
+        }
         if (event.getConfig().getSpec() == FAConfig.SPEC) {
             FAConfig.applyConfigValues();
         }
+    }
+    private void onConfigUnload(final ModConfigEvent.Unloading event) {
+        if (event.getConfig().getSpec() == FAConfig.SPEC) FAConfig.resetServerValues();
     }
 }

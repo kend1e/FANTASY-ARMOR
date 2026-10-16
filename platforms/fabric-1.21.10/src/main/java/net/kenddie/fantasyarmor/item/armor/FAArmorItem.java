@@ -53,12 +53,16 @@ public class FAArmorItem extends Item implements GeoItem {
 
     private final FAArmorSet armorSet;
     private final ArmorType armorType;
+    private final Supplier<FAArmorAttributes> attributesSupplier;
+    private FAArmorAttributes cachedAttributes;
+    private ItemAttributeModifiers cachedModifiers;
 
 
     public FAArmorItem(FAArmorSet armorSet, ArmorType armorType, Supplier<FAArmorAttributes> attributesSupplier, Item.Properties properties) {
         super(buildProperties(properties, armorType, attributesSupplier.get()));
         this.armorSet = armorSet;
         this.armorType = armorType;
+        this.attributesSupplier = attributesSupplier;
     }
 
     private static Item.Properties buildProperties(Item.Properties properties, ArmorType armorType, FAArmorAttributes armorAttributes) {
@@ -83,6 +87,36 @@ public class FAArmorItem extends Item implements GeoItem {
 
     public ArmorType getArmorType() {
         return armorType;
+    }
+
+
+    @Override
+    public void inventoryTick(ItemStack stack, net.minecraft.server.level.ServerLevel level, net.minecraft.world.entity.Entity entity, @Nullable EquipmentSlot slot) {
+        super.inventoryTick(stack, level, entity, slot);
+        applyServerSettings(stack);
+    }
+
+    /** Server-owned components are synchronized by vanilla inventory packets. */
+    private void applyServerSettings(ItemStack stack) {
+        var effective = attributesSupplier.get().withBonuses(FAConfigs.getMainConfig().applyModifiers);
+        if (!effective.equals(cachedAttributes)) {
+            cachedModifiers = buildAttributeModifiers(armorType, effective);
+            cachedAttributes = effective;
+        }
+        var modifiers = cachedModifiers;
+        if (!modifiers.equals(stack.get(DataComponents.ATTRIBUTE_MODIFIERS))) {
+            stack.set(DataComponents.ATTRIBUTE_MODIFIERS, modifiers);
+        }
+        int durability = Math.max(1, (int) attributesSupplier.get().durability());
+        if (stack.getOrDefault(DataComponents.MAX_DAMAGE, 0) != durability) {
+            stack.set(DataComponents.MAX_DAMAGE, durability);
+        }
+        if (!stack.has(DataComponents.DAMAGE)) stack.set(DataComponents.DAMAGE, 0);
+        if (FAConfigs.getMainConfig().enableDurability && attributesSupplier.get().durability() > 0) {
+            stack.remove(DataComponents.UNBREAKABLE);
+        } else if (!stack.has(DataComponents.UNBREAKABLE)) {
+            stack.set(DataComponents.UNBREAKABLE, net.minecraft.util.Unit.INSTANCE);
+        }
     }
 
     public boolean hasCustomColor(ItemStack stack) {
@@ -247,11 +281,7 @@ public class FAArmorItem extends Item implements GeoItem {
     }
 
     public List<MobEffectInstance> getFullSetEffects() {
-        return FAArmorEffectsConfig.getEffectsFor(
-                armorSet.getName(),
-                FAConfigs.getMainConfig().showParticles,
-                FAConfigs.getMainConfig().showEffectIcon
-        );
+        return FAArmorEffectsConfig.getEffectsFor(armorSet.getName());
     }
 
     @Override

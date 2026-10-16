@@ -48,7 +48,7 @@ public class FAArmorEffectHandler {
             MobEffect effect = effectInstance.getEffect();
             MobEffectInstance existingEffect = player.getEffect(effect);
 
-            if (existingEffect == null || existingEffect.getDuration() < FAConfigs.getMainConfig().effectsInterval) {
+            if (existingEffect == null || (existingEffect.getDuration() != -1 && existingEffect.getDuration() < FAConfigs.getMainConfig().effectsInterval)) {
                 player.addEffect(new MobEffectInstance(
                         effect,
                         effectInstance.getDuration(),

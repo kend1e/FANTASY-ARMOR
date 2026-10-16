@@ -13,13 +13,6 @@ public class FAConfig {
     public static final ForgeConfigSpec.BooleanValue SHOW_EFFECT_ICON;
     public static final ForgeConfigSpec.BooleanValue ENABLE_DURABILITY;
 
-    public static boolean applyArmorEffects;
-    public static boolean applyModifiers;
-    public static boolean showParticles;
-    public static int effectsInterval;
-    public static boolean showEffectIcon;
-    public static boolean enableDurability;
-
     static {
         BUILDER.push("General Settings");
 
@@ -51,12 +44,14 @@ public class FAConfig {
         SPEC = BUILDER.build();
     }
 
-    public static void applyConfigValues() {
-        applyArmorEffects = APPLY_ARMOR_EFFECTS.get();
-        applyModifiers = APPLY_MODIFIERS.get();
-        showParticles = SHOW_PARTICLES.get();
-        effectsInterval = EFFECTS_INTERVAL.get();
-        showEffectIcon = SHOW_EFFECT_ICON.get();
-        enableDurability = ENABLE_DURABILITY.get();
+    private static <T> T value(ForgeConfigSpec.ConfigValue<T> setting) {
+        return SPEC.isLoaded() ? setting.get() : setting.getDefault();
     }
+
+    public static boolean applyArmorEffects() { return value(APPLY_ARMOR_EFFECTS); }
+    public static boolean applyModifiers() { return value(APPLY_MODIFIERS); }
+    public static boolean showParticles() { return value(SHOW_PARTICLES); }
+    public static boolean showEffectIcon() { return value(SHOW_EFFECT_ICON); }
+    public static boolean enableDurability() { return value(ENABLE_DURABILITY); }
+    public static int effectsInterval() { return value(EFFECTS_INTERVAL); }
 }

@@ -78,6 +78,31 @@ public class FAArmorItem extends ArmorItem implements GeoItem {
 
     public static final int DEFAULT_COLOR = 0xA06540;
 
+
+    @Override
+    public void inventoryTick(ItemStack stack, net.minecraft.world.level.Level level, net.minecraft.world.entity.Entity entity, int slot, boolean selected) {
+        super.inventoryTick(stack, level, entity, slot, selected);
+        if (!level.isClientSide) applyServerSettings(stack);
+    }
+
+    /** Server-owned components are synchronized by vanilla inventory packets. */
+    private void applyServerSettings(ItemStack stack) {
+        var modifiers = getDefaultAttributeModifiers();
+        if (!modifiers.equals(stack.get(DataComponents.ATTRIBUTE_MODIFIERS))) {
+            stack.set(DataComponents.ATTRIBUTE_MODIFIERS, modifiers);
+        }
+        int durability = Math.max(1, (int) attributesSupplier.get().durability());
+        if (stack.getOrDefault(DataComponents.MAX_DAMAGE, 0) != durability) {
+            stack.set(DataComponents.MAX_DAMAGE, durability);
+        }
+        if (!stack.has(DataComponents.DAMAGE)) stack.set(DataComponents.DAMAGE, 0);
+        if (FAConfigs.getMainConfig().enableDurability && attributesSupplier.get().durability() > 0) {
+            stack.remove(DataComponents.UNBREAKABLE);
+        } else if (!stack.has(DataComponents.UNBREAKABLE)) {
+            stack.set(DataComponents.UNBREAKABLE, new net.minecraft.world.item.component.Unbreakable(false));
+        }
+    }
+
     public boolean hasCustomColor(ItemStack stack) {
         return stack.has(DataComponents.DYED_COLOR);
     }
@@ -262,11 +287,7 @@ public class FAArmorItem extends ArmorItem implements GeoItem {
     }
 
     public List<MobEffectInstance> getFullSetEffects() {
-        return FAArmorEffectsConfig.getEffectsFor(
-                armorSet.getName(),
-                FAConfigs.getMainConfig().showParticles,
-                FAConfigs.getMainConfig().showEffectIcon
-        );
+        return FAArmorEffectsConfig.getEffectsFor(armorSet.getName());
     }
 
     public FAArmorSet getArmorSet() {

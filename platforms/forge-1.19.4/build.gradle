@@ -60,7 +60,7 @@ dependencies {
     // The "userdev" classifier will be requested and setup by ForgeGradle.
     // If the group id is "net.minecraft" and the artifact id is one of ["client", "server", "joined"],
     // then special handling is done to allow a setup of a vanilla dependency without the use of an external repository.
-    implementation minecraft.dependency("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
+    implementation minecraft.dependency(project.name, "net.minecraftforge:forge:${minecraft_version}-${forge_version}")
 
     }
 
@@ -99,7 +99,7 @@ tasks.named('jar', Jar).configure {
 }
 
 // Legacy Forge loads SRG names. Keep the development jar separate from the release jar.
-renamer.mappings.from minecraft.dependency.toSrgFile
+renamer.mappings.from minecraft.getDependency(project.name).toSrgFile
 renamer.classes(tasks.named('jar', Jar)) {
     archiveClassifier = 'srg'
 }

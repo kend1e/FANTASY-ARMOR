@@ -6,7 +6,6 @@ pluginManagement {
         maven("https://maven.fabricmc.net/")
         mavenCentral()
         maven("https://repo.spongepowered.org/repository/maven-public/")
-        maven("https://maven.parchmentmc.org")
     }
 }
 

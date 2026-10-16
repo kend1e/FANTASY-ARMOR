@@ -5,6 +5,8 @@ import net.minecraftforge.common.ForgeConfigSpec;
 public class FAConfig {
     public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
     public static final ForgeConfigSpec SPEC;
+    public static final ForgeConfigSpec.Builder CLIENT_BUILDER = new ForgeConfigSpec.Builder();
+    public static final ForgeConfigSpec CLIENT_SPEC;
 
     public static final ForgeConfigSpec.BooleanValue APPLY_ARMOR_EFFECTS;
     public static final ForgeConfigSpec.BooleanValue APPLY_MODIFIERS;
@@ -14,12 +16,12 @@ public class FAConfig {
     public static final ForgeConfigSpec.BooleanValue SHOW_EFFECT_ICON;
     public static final ForgeConfigSpec.BooleanValue ENABLE_DURABILITY;
 
-    public static boolean applyArmorEffects;
-    public static boolean applyModifiers;
-    public static boolean showDescriptions;
+    public static boolean applyArmorEffects = true;
+    public static boolean applyModifiers = true;
+    public static boolean showDescriptions = true;
     public static boolean showParticles;
-    public static int effectsInterval;
-    public static boolean showEffectIcon;
+    public static int effectsInterval = 241;
+    public static boolean showEffectIcon = true;
     public static boolean enableDurability;
 
     static {
@@ -33,7 +35,7 @@ public class FAConfig {
                 .comment("Apply attribute modifiers")
                 .define("applyModifiers", true);
 
-        SHOW_DESCRIPTIONS = BUILDER
+        SHOW_DESCRIPTIONS = CLIENT_BUILDER
                 .comment("Show item descriptions")
                 .define("showDescriptions", true);
 
@@ -50,20 +52,32 @@ public class FAConfig {
                 .define("showEffectIcon", true);
 
         ENABLE_DURABILITY = BUILDER
-                .comment("Enable durability on Fantasy Armor pieces. When false, armor is indestructible. Requires game restart.")
+                .comment("Enable durability on Fantasy Armor pieces. When false, armor is indestructible. Requires world restart.")
                 .define("enableDurability", false);
 
         BUILDER.pop();
         SPEC = BUILDER.build();
+        CLIENT_SPEC = CLIENT_BUILDER.build();
+    }
+
+    public static void applyClientValues() {
+        showDescriptions = SHOW_DESCRIPTIONS.get();
     }
 
     public static void applyConfigValues() {
         applyArmorEffects = APPLY_ARMOR_EFFECTS.get();
         applyModifiers = APPLY_MODIFIERS.get();
-        showDescriptions = SHOW_DESCRIPTIONS.get();
         showParticles = SHOW_PARTICLES.get();
         effectsInterval = EFFECTS_INTERVAL.get();
         showEffectIcon = SHOW_EFFECT_ICON.get();
         enableDurability = ENABLE_DURABILITY.get();
+    }
+    public static void resetServerValues() {
+        applyArmorEffects = APPLY_ARMOR_EFFECTS.getDefault();
+        applyModifiers = APPLY_MODIFIERS.getDefault();
+        showParticles = SHOW_PARTICLES.getDefault();
+        effectsInterval = EFFECTS_INTERVAL.getDefault();
+        showEffectIcon = SHOW_EFFECT_ICON.getDefault();
+        enableDurability = ENABLE_DURABILITY.getDefault();
     }
 }

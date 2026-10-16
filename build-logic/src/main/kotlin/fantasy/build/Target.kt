@@ -15,11 +15,8 @@ data class Target(
     val resources: ResourceProfile,
     val minecraftRange: String = "[$minecraft]",
     val loaderRange: String = "[${loaderVersion.substringBefore('.')},)",
-    val mappingChannel: String = "official",
-    val mappingVersion: String = minecraft,
     val fabricApi: String = "",
     val clothConfig: String = "",
-    val parchment: String = "",
 ) {
     val name: String get() = "${loader.id}-$minecraft"
     val path: String get() = ":platforms:$name"

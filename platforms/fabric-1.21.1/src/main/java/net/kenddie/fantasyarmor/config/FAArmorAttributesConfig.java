@@ -60,7 +60,7 @@ public class FAArmorAttributesConfig implements ConfigData {
             Map<String, FAArmorAttributes> setDefaults = allDefaults.get(setKey);
             if (setDefaults == null) continue;
             Map<ArmorItem.Type, FAArmorAttributes> pieceMap = new HashMap<>();
-            for (ArmorItem.Type type : ArmorItem.Type.values()) {
+            for (ArmorItem.Type type : java.util.List.of(ArmorItem.Type.HELMET, ArmorItem.Type.CHESTPLATE, ArmorItem.Type.LEGGINGS, ArmorItem.Type.BOOTS)) {
                 String pieceKey = type.name().toLowerCase();
                 FAArmorAttributes attrs = setDefaults.get(pieceKey);
                 if (attrs != null) pieceMap.put(type, attrs);
@@ -111,7 +111,7 @@ public class FAArmorAttributesConfig implements ConfigData {
     }
 
     private static ArmorItem.Type resolveType(String piece) {
-        for (ArmorItem.Type t : ArmorItem.Type.values()) if (t.getName().equals(piece)) return t;
+        for (ArmorItem.Type t : java.util.List.of(ArmorItem.Type.HELMET, ArmorItem.Type.CHESTPLATE, ArmorItem.Type.LEGGINGS, ArmorItem.Type.BOOTS)) if (t.getName().equals(piece)) return t;
         return ArmorItem.Type.HELMET;
     }
 

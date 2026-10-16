@@ -20,7 +20,7 @@ public class FAArmorConfig {
             BUILDER.push(armorSet.getName());
             Map<String, FAArmorAttributesConfig> pieces = new HashMap<>();
 
-            for (ArmorItem.Type type : ArmorItem.Type.values()) {
+            for (ArmorItem.Type type : java.util.List.of(ArmorItem.Type.HELMET, ArmorItem.Type.CHESTPLATE, ArmorItem.Type.LEGGINGS, ArmorItem.Type.BOOTS)) {
                 BUILDER.push(type.getName());
                 FAArmorAttributesConfig attributesConfig = new FAArmorAttributesConfig(BUILDER, armorSet.getName(), type.getName());
                 pieces.put(type.getName(), attributesConfig);

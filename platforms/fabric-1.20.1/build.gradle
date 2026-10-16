@@ -12,10 +12,6 @@ base {
 }
 
 repositories {
-	maven {
-		name = 'ParchmentMC'
-		url = 'https://maven.parchmentmc.org'
-	}
     maven {
         name = 'GeckoLib'
         url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
@@ -41,10 +37,7 @@ sourceSets.main.resources.srcDir layout.buildDirectory.dir('generated/resources/
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings loom.layered() {
-         officialMojangMappings()
-         parchment("org.parchmentmc.data:parchment-${project.minecraft_version}:${project.parchment_mappings_version}@zip")
-     }
+	mappings loom.officialMojangMappings()
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
@@ -60,9 +53,10 @@ dependencies {
 def resourceVersion = project.version.toString()
 processResources {
 	inputs.property "version", project.version
+    inputs.property "preserveJsonEscapes", true
 
 	filesMatching("fabric.mod.json") {
-		expand "version": resourceVersion
+		expand([version: resourceVersion]) { escapeBackslash = true }
 	}
 
 	duplicatesStrategy = DuplicatesStrategy.FAIL

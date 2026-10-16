@@ -8,7 +8,7 @@ import net.kenddie.fantasyarmor.FantasyArmor;
 import net.kenddie.fantasyarmor.client.model.FAArmorModel;
 import net.kenddie.fantasyarmor.client.render.FAArmorRenderer;
 import net.kenddie.fantasyarmor.config.FAClientConfig;
-import net.kenddie.fantasyarmor.config.FAServerSettings;
+import net.kenddie.fantasyarmor.config.FAArmorEffectsConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
@@ -227,7 +227,7 @@ public class FAArmorItem extends Item implements GeoItem {
     }
 
     public List<MobEffectInstance> getFullSetEffects() {
-        return FAServerSettings.effectsFor(armorSet);
+        return FAArmorEffectsConfig.ARMOR_EFFECTS_CONFIGS.get(armorSet.getName()).getEffects();
     }
 
     @Override

@@ -3,7 +3,8 @@ package net.kenddie.fantasyarmor.item.armor;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.kenddie.fantasyarmor.FantasyArmor;
-import net.kenddie.fantasyarmor.config.FAServerSettings;
+import net.kenddie.fantasyarmor.config.FAArmorConfig;
+import net.kenddie.fantasyarmor.config.FAConfig;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
@@ -14,7 +15,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
 
-/** Applies our server settings once per world session, preserving unrelated stack data. */
+/** Applies native config values to our armor, preserving absolute wear. */
 public final class FAArmorComponents {
     public record Applied(String revision, ItemAttributeModifiers modifiers, int maxDamage, boolean unbreakable,
                           boolean manageAttributes, boolean manageDurability) {
@@ -34,23 +35,25 @@ public final class FAArmorComponents {
             () -> DataComponentType.<Applied>builder().persistent(Applied.CODEC).build());
 
     public static void update(ItemStack stack) {
-        var settings = FAServerSettings.current();
-        if (settings == null || !(stack.getItem() instanceof FAArmorItem item)) return;
-        Applied previous = stack.get(APPLIED.get());
-        if (previous != null && previous.revision().equals(settings.revision())) return;
-
-        var target = settings.armor().get(item.getArmorSet()).get(item.getArmorType());
-        stack.set(DataComponents.ATTRIBUTE_MODIFIERS, target.modifiers());
-        stack.set(DataComponents.MAX_DAMAGE, target.maxDamage());
-        if (target.unbreakable()) {
-            stack.set(DataComponents.UNBREAKABLE, Unit.INSTANCE);
+        if (!FAArmorConfig.SPEC.isLoaded() || !(stack.getItem() instanceof FAArmorItem item)) return;
+        var attributes = FAArmorConfig.ARMOR_CONFIGS.get(item.getArmorSet().getName())
+                .get(item.getArmorType().getName()).read().withBonuses(FAConfig.applyModifiers());
+        var modifiers = FAArmorItem.buildAttributeModifiers(item.getArmorType(), attributes);
+        if (!modifiers.equals(stack.get(DataComponents.ATTRIBUTE_MODIFIERS))) {
+            stack.set(DataComponents.ATTRIBUTE_MODIFIERS, modifiers);
+        }
+        int maxDamage = Math.max(1, (int) attributes.durability());
+        if (stack.getOrDefault(DataComponents.MAX_DAMAGE, 0) != maxDamage) {
+            stack.set(DataComponents.MAX_DAMAGE, maxDamage);
+        }
+        if (!stack.has(DataComponents.DAMAGE)) stack.set(DataComponents.DAMAGE, 0);
+        if (!FAConfig.enableDurability() || attributes.durability() <= 0) {
+            if (!stack.has(DataComponents.UNBREAKABLE)) stack.set(DataComponents.UNBREAKABLE, Unit.INSTANCE);
         } else {
             stack.remove(DataComponents.UNBREAKABLE);
         }
-        // Do not reset or clamp DAMAGE: absolute wear survives configuration changes.
-        // Keep the existing codec shape so previously saved stacks remain readable.
-        stack.set(APPLIED.get(), new Applied(settings.revision(), target.modifiers(),
-                target.maxDamage(), target.unbreakable(), true, true));
+        // Keep the codec registration to read old saves, but no longer persist session markers.
+        stack.remove(APPLIED.get());
     }
 
     private FAArmorComponents() {}

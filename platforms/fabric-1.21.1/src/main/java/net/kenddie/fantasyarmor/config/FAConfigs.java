@@ -9,34 +9,28 @@ import net.minecraft.world.item.ArmorItem;
 import java.util.function.Supplier;
 
 public final class FAConfigs {
-    private static FAArmorEffectsConfig effectsConfig;
-    private static FAConfig mainConfig;
-    private static FAArmorAttributesConfig armorConfig;
 
     public static void init() {
         AutoConfig.register(FAConfig.class, GsonConfigSerializer::new);
-        mainConfig = AutoConfig.getConfigHolder(FAConfig.class).getConfig();
 
         AutoConfig.register(FAArmorEffectsConfig.class, GsonConfigSerializer::new);
-        effectsConfig = AutoConfig.getConfigHolder(FAArmorEffectsConfig.class).getConfig();
 
         AutoConfig.register(FAArmorAttributesConfig.class, GsonConfigSerializer::new);
-        armorConfig = AutoConfig.getConfigHolder(FAArmorAttributesConfig.class).getConfig();
     }
 
     public static FAConfig getMainConfig() {
-        return mainConfig;
+        return AutoConfig.getConfigHolder(FAConfig.class).getConfig();
     }
 
     public static FAArmorEffectsConfig getEffectsConfig() {
-        return effectsConfig;
+        return AutoConfig.getConfigHolder(FAArmorEffectsConfig.class).getConfig();
     }
 
     public static FAArmorAttributesConfig getArmorConfig() {
-        return armorConfig;
+        return AutoConfig.getConfigHolder(FAArmorAttributesConfig.class).getConfig();
     }
 
     public static Supplier<FAArmorAttributes> armorSupplier(FAArmorSet set, ArmorItem.Type type) {
-        return () -> armorConfig.getAttributes(set.getName(), type.getName());
+        return () -> getArmorConfig().getAttributes(set.getName(), type.getName());
     }
 }

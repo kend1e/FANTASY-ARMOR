@@ -77,6 +77,11 @@ public class FAArmorItem extends DyeableArmorItem implements GeoItem {
         return props;
     }
 
+    public int configuredMaxDamage() {
+        return FAConfigs.getMainConfig().enableDurability
+                ? Math.max(0, (int) attributesSupplier.get().durability()) : 0;
+    }
+
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
@@ -205,11 +210,7 @@ public class FAArmorItem extends DyeableArmorItem implements GeoItem {
     }
 
     public List<MobEffectInstance> getFullSetEffects() {
-        return FAArmorEffectsConfig.getEffectsFor(
-                armorSet.getName(),
-                FAConfigs.getMainConfig().showParticles,
-                FAConfigs.getMainConfig().showEffectIcon
-        );
+        return FAArmorEffectsConfig.getEffectsFor(armorSet.getName());
     }
 
     public FAArmorSet getArmorSet() {

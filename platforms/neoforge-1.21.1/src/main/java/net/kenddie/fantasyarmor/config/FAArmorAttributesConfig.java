@@ -47,7 +47,7 @@ public class FAArmorAttributesConfig {
             Map<String, FAArmorAttributes> setDefaults = allDefaults.get(setKey);
             if (setDefaults == null) continue;
             Map<ArmorItem.Type, FAArmorAttributes> pieceMap = new HashMap<>();
-            for (ArmorItem.Type type : ArmorItem.Type.values()) {
+            for (ArmorItem.Type type : java.util.List.of(ArmorItem.Type.HELMET, ArmorItem.Type.CHESTPLATE, ArmorItem.Type.LEGGINGS, ArmorItem.Type.BOOTS)) {
                 String pieceKey = type.name().toLowerCase();
                 FAArmorAttributes attrs = setDefaults.get(pieceKey);
                 if (attrs != null) pieceMap.put(type, attrs);

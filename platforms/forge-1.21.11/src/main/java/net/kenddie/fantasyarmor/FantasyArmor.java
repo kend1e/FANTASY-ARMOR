@@ -27,8 +27,5 @@ public class FantasyArmor {
         FAArmorItems.register(modBus);
         FACreativeModTabs.register(modBus);
         isEpicFightLoaded = ModList.get().isLoaded(EPIC_FIGHT_MOD_ID);
-        net.minecraftforge.event.server.ServerAboutToStartEvent.BUS.addListener(event -> FAServerSettings.onConfigLoaded());
-        net.minecraftforge.event.server.ServerStoppedEvent.BUS.addListener(event -> FAServerSettings.clear());
-        // Live reload deliberately does not change a running world's rules.
     }
 }

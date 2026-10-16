@@ -1,6 +1,6 @@
 package net.kenddie.fantasyarmor.item.armor;
 
-import net.kenddie.fantasyarmor.config.FAServerSettings;
+import net.kenddie.fantasyarmor.config.FAConfig;
 import net.kenddie.fantasyarmor.FantasyArmor;
 import net.minecraft.core.Holder;
 import net.minecraft.world.effect.MobEffect;
@@ -21,7 +21,7 @@ public class FAArmorEffectHandler {
         if (event.side() == net.minecraftforge.fml.LogicalSide.SERVER) {
             Player player = event.player();
 
-            if (FAServerSettings.current() != null && FAServerSettings.current().applyEffects() && hasFullSet(player)) {
+            if (FAConfig.applyArmorEffects() && hasFullSet(player)) {
                 applyFullSetEffects(player);
             }
         }
@@ -52,20 +52,20 @@ public class FAArmorEffectHandler {
         ItemStack helmet = player.getItemBySlot(EquipmentSlot.HEAD);
         FAArmorItem armorItem = (FAArmorItem) helmet.getItem();
 
-        for (var effectInstance : FAServerSettings.current().effects().getOrDefault(armorItem.getArmorSet(), java.util.List.of())) {
-            Holder<MobEffect> effectHolder = effectInstance.effect();
+        for (var effectInstance : armorItem.getFullSetEffects()) {
+            Holder<MobEffect> effectHolder = effectInstance.getEffect();
 
             MobEffectInstance existingEffect = player.getEffect(effectHolder);
 
             if (existingEffect == null || (!existingEffect.isInfiniteDuration()
-                    && existingEffect.getDuration() < FAServerSettings.current().effectsInterval())) {
+                    && existingEffect.getDuration() < FAConfig.effectsInterval())) {
                 player.addEffect(new MobEffectInstance(
                         effectHolder,
-                        effectInstance.duration(),
-                        effectInstance.amplifier(),
+                        effectInstance.getDuration(),
+                        effectInstance.getAmplifier(),
                         true,
-                        FAServerSettings.current().particles(),
-                        FAServerSettings.current().effectIcon()
+                        FAConfig.showParticles(),
+                        FAConfig.showEffectIcon()
                 ));
             }
         }
