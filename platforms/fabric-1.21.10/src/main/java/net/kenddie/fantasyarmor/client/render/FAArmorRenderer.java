@@ -139,6 +139,10 @@ public class FAArmorRenderer<T extends FAArmorItem, R extends HumanoidRenderStat
         GeoBone rightLegCloth = bakedModel.getBone("armorRightLegCloth").orElse(null);
         GeoBone braid = bakedModel.getBone("armorBraid").orElse(null);
 
+        // This alternative cape is a child of armorBody and would render with the chest.
+        // Fabric uses the animated armorCape instead; also hide the alternative's children.
+        bakedModel.getBone("armorCapeEpicFight").ifPresent(bone -> bone.setHidden(true));
+
         // Visibility control
         switch (slot) {
             case HEAD -> {

@@ -19,6 +19,7 @@ import software.bernie.geckolib.util.RenderUtil;
 
 public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> {
     protected GeoBone cape = null;
+    protected GeoBone epicFightCape = null;
     protected GeoBone frontCape = null;
     protected GeoBone leftLegCloth = null;
     protected GeoBone rightLegCloth = null;
@@ -66,6 +67,9 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
 
         GeoModel<T> model = getGeoModel();
         cape = getCapeBone(model);
+        // Shared geometry includes an alternative cape for the Epic Fight renderer.
+        epicFightCape = model.getBone("armorCapeEpicFight").orElse(null);
+        setBoneVisible(epicFightCape, false);
         frontCape = getFrontCapeBone(model);
         leftLegCloth = getLeftLegClothBone(model);
         rightLegCloth = getRightLegClothBone(model);
@@ -75,6 +79,7 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
     @Override
     protected void applyBoneVisibilityBySlot(EquipmentSlot currentSlot) {
         super.applyBoneVisibilityBySlot(currentSlot);
+        setBoneVisible(epicFightCape, false);
 
         switch (currentSlot) {
             case HEAD -> {
@@ -107,6 +112,7 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
 
     public void applyBoneVisibilityByPart(EquipmentSlot currentSlot, ModelPart currentPart, HumanoidModel<?> model) {
         super.applyBoneVisibilityByPart(currentSlot, currentPart, model);
+        setBoneVisible(epicFightCape, false);
 
         if(currentPart == model.body) {
             if (cape != null) cape.setHidden(!FAConfigs.getMainConfig().showCapes);
@@ -176,6 +182,7 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
     @Override
     public void setAllVisible(boolean pVisible) {
         super.setAllVisible(pVisible);
+        setBoneVisible(epicFightCape, false);
 
         setBoneVisible(cape, pVisible && FAConfigs.getMainConfig().showCapes);
         setBoneVisible(frontCape, pVisible);
