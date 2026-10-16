@@ -58,7 +58,7 @@ class FantasyPlatformPlugin : Plugin<Project> {
             duplicatesStrategy = DuplicatesStrategy.FAIL
         }
         val content = tasks.register<GenerateResources>("generateContentResources") {
-            contents.set(contentResources(target.resources))
+            contents.set(contentResources(target.resources, target.loader))
             outputDirectory.set(layout.buildDirectory.dir("generated/resources/content"))
         }
         extensions.getByType<SourceSetContainer>().named("main") {

@@ -44,14 +44,19 @@ fun defaultResources(): Map<String, String> = mapOf(
     "effect_defaults.json" to json(armor.associate { set -> set.id to set.effects }),
 )
 
-fun contentResources(profile: ResourceProfile): Map<String, String> = buildMap {
+fun contentResources(profile: ResourceProfile, loader: Loader): Map<String, String> = buildMap {
     val namespace = "fantasy_armor"
     val assets = "assets/$namespace"
     val modern = profile == ResourceProfile.ITEM_DEFINITIONS
     fun ingredient(id: String): Any = if (modern) id else mapOf("item" to id)
     fun model(id: String) = mapOf("type" to "minecraft:model", "model" to "$namespace:item/$id")
 
-    for ((locale, entries) in languages) put("$assets/lang/$locale.json", json(entries))
+    for ((locale, entries) in languages) {
+        val translations = if (loader == Loader.FABRIC) {
+            entries.mapValues { (_, value) -> repeatFormattingAfterNewlines(value) }
+        } else entries
+        put("$assets/lang/$locale.json", json(translations))
+    }
     for (set in armor) for (piece in Piece.entries) {
         val id = "${set.id}_${piece.id}"
         put("data/$namespace/${profile.recipeDirectory}/$id.json", json(linkedMapOf(

@@ -28,3 +28,31 @@ class StyledText internal constructor(private val styles: List<TextStyle> = empt
 }
 
 fun text(configure: StyledText.() -> Unit): String = StyledText().apply(configure).build()
+
+/** Fabric tooltips render explicit lines independently, so each needs its active section codes. */
+fun repeatFormattingAfterNewlines(text: String): String = buildString {
+    var color: Char? = null
+    val decorations = linkedSetOf<Char>()
+    var index = 0
+    while (index < text.length) {
+        val character = text[index++]
+        append(character)
+        if (character == '§' && index < text.length) {
+            val code = text[index++].also { append(it) }.lowercaseChar()
+            when (code) {
+                in '0'..'9', in 'a'..'f' -> {
+                    color = code
+                    decorations.clear()
+                }
+                in 'k'..'o' -> decorations.add(code)
+                'r' -> {
+                    color = null
+                    decorations.clear()
+                }
+            }
+        } else if (character == '\n' && index < text.length) {
+            color?.let { append('§').append(it) }
+            decorations.forEach { append('§').append(it) }
+        }
+    }
+}
