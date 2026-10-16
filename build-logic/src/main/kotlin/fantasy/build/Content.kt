@@ -136,34 +136,3 @@ fun armorCatalog(
     require(defaults.keys == Piece.entries.toSet()) { "Defaults must define all four armor pieces" }
     return ArmorCatalog(defaults.toMap()).apply(configure).build()
 }
-
-@ContentDsl
-class Translations {
-    private val languages = linkedMapOf<String, Map<String, String>>()
-    fun language(locale: String, configure: Language.() -> Unit) {
-        require(locale.matches(Regex("[a-z]{2,3}_[a-z0-9_]+"))) { "Invalid locale: $locale" }
-        require(locale !in languages) { "Duplicate locale: $locale" }
-        languages[locale] = Language().apply(configure).entries.toMap()
-    }
-    fun build(): Map<String, Map<String, String>> = languages.toMap()
-}
-
-@ContentDsl
-class Language {
-    internal val entries = linkedMapOf<String, String>()
-
-    /** One localized description shared by all four items in an armor set. */
-    fun armorDescription(setId: String, value: String) {
-        require(setId.matches(Regex("[a-z0-9_]+"))) { "Invalid armor ID: $setId" }
-        for (piece in Piece.entries) {
-            entry("item.$RESOURCE_NAMESPACE.${setId}_${piece.id}.tooltip", value)
-        }
-    }
-
-    fun entry(key: String, value: String) {
-        require(entries.putIfAbsent(key, value) == null) { "Duplicate translation key: $key" }
-    }
-}
-
-fun translations(configure: Translations.() -> Unit): Map<String, Map<String, String>> =
-    Translations().apply(configure).build()

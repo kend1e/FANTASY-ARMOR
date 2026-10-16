@@ -19,4 +19,4 @@ internal fun tagResources(armor: List<ArmorDefinition>, profile: ResourceProfile
     }
 }
 
-private fun tag(values: List<String>): String = json(mapOf("replace" to false, "values" to values))
+private fun tag(values: List<String>): String = json(TagResource(values))

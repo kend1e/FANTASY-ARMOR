@@ -14,47 +14,33 @@ internal fun modelResources(armor: List<ArmorDefinition>, profile: ResourceProfi
         }
     }
     if (itemDefinitions) {
-        put("$assets/items/moon_crystal.json", json(mapOf("model" to modelReference("moon_crystal"))))
+        put("$assets/items/moon_crystal.json", json(ItemDefinition(modelReference("moon_crystal"))))
     }
 }
 
-private fun baseItemModel(id: String, itemDefinitions: Boolean): Map<String, Any> = buildMap {
-    put("parent", "item/generated")
-    put("textures", mapOf("layer0" to "$RESOURCE_NAMESPACE:item/$id"))
-    if (!itemDefinitions) {
-        put("overrides", listOf(mapOf(
-            "predicate" to mapOf("$RESOURCE_NAMESPACE:dyed" to 1.0),
-            "model" to "$RESOURCE_NAMESPACE:item/${id}_dyed",
-        )))
-    }
-}
+private fun baseItemModel(id: String, itemDefinitions: Boolean) = ItemModelResource(
+    textures = mapOf("layer0" to "$RESOURCE_NAMESPACE:item/$id"),
+    overrides = if (itemDefinitions) null else listOf(ModelOverride(
+        predicate = mapOf("$RESOURCE_NAMESPACE:dyed" to 1.0),
+        model = "$RESOURCE_NAMESPACE:item/${id}_dyed",
+    )),
+)
 
-private fun dyedItemModel(id: String): Map<String, Any> = mapOf(
-    "parent" to "item/generated",
-    "textures" to mapOf(
+private fun dyedItemModel(id: String) = ItemModelResource(
+    textures = mapOf(
         "layer0" to "$RESOURCE_NAMESPACE:item/$id",
         "layer1" to "$RESOURCE_NAMESPACE:item/${id}_overlay",
     ),
 )
 
-private fun modelReference(id: String): Map<String, Any> = mapOf(
-    "type" to "minecraft:model",
-    "model" to "$RESOURCE_NAMESPACE:item/$id",
-)
+private fun modelReference(id: String) = ModelReference("$RESOURCE_NAMESPACE:item/$id")
 
-private fun dyedItemDefinition(id: String): Map<String, Any> {
-    val dyedModel = modelReference("${id}_dyed") + mapOf(
-        "tints" to listOf(
-            mapOf("type" to "minecraft:constant", "value" to -1),
-            mapOf("type" to "minecraft:dye", "default" to -1),
+private fun dyedItemDefinition(id: String) = ItemDefinition(
+    DyedCondition(
+        onTrue = ModelReference(
+            model = "$RESOURCE_NAMESPACE:item/${id}_dyed",
+            tints = listOf(ConstantTint(-1), DyeTint()),
         ),
-    )
-    val condition = mapOf(
-        "type" to "minecraft:condition",
-        "property" to "minecraft:has_component",
-        "component" to "minecraft:dyed_color",
-        "on_true" to dyedModel,
-        "on_false" to modelReference(id),
-    )
-    return mapOf("model" to condition)
-}
+        onFalse = modelReference(id),
+    ),
+)

@@ -5,33 +5,37 @@ internal fun recipeResources(armor: List<ArmorDefinition>, profile: ResourceProf
     for (set in armor) {
         for (piece in Piece.entries) {
             val id = "${set.id}_${piece.id}"
-            put("$directory/$id.json", json(smithingRecipe(set, piece, profile)))
+            put("$directory/$id.json", smithingRecipe(set, piece, profile))
         }
     }
-    put("$directory/moon_crystal.json", json(moonCrystalRecipe(profile)))
+    put("$directory/moon_crystal.json", moonCrystalRecipe(profile))
 }
 
-private fun ingredient(id: String, profile: ResourceProfile): Any =
-    if (profile == ResourceProfile.ITEM_DEFINITIONS) id else mapOf("item" to id)
-
-private fun smithingRecipe(set: ArmorDefinition, piece: Piece, profile: ResourceProfile): Map<String, Any> {
+private fun smithingRecipe(set: ArmorDefinition, piece: Piece, profile: ResourceProfile): String {
+    val base = "minecraft:netherite_${piece.id}"
     val result = "$RESOURCE_NAMESPACE:${set.id}_${piece.id}"
-    return mapOf(
-        "type" to "minecraft:smithing_transform",
-        "category" to "equipment",
-        "template" to ingredient(set.template, profile),
-        "base" to ingredient("minecraft:netherite_${piece.id}", profile),
-        "addition" to ingredient(set.addition, profile),
-        "result" to if (profile == ResourceProfile.ITEM_DEFINITIONS) result else mapOf(profile.resultKey to result),
-    )
+    return when (profile) {
+        ResourceProfile.LEGACY -> json(SmithingRecipe(
+            ItemIngredient(set.template), ItemIngredient(base), ItemIngredient(set.addition), LegacyResult(result),
+        ))
+        ResourceProfile.COMPONENTS -> json(SmithingRecipe(
+            ItemIngredient(set.template), ItemIngredient(base), ItemIngredient(set.addition), ComponentResult(result),
+        ))
+        ResourceProfile.ITEM_DEFINITIONS -> json(SmithingRecipe(set.template, base, set.addition, result))
+    }
 }
 
-private fun moonCrystalRecipe(profile: ResourceProfile): Map<String, Any> = mapOf(
-    "type" to "minecraft:crafting_shaped",
-    "pattern" to listOf("###", "#X#", "###"),
-    "key" to mapOf(
-        "#" to ingredient("minecraft:glow_ink_sac", profile),
-        "X" to ingredient("minecraft:amethyst_shard", profile),
-    ),
-    "result" to mapOf(profile.resultKey to "$RESOURCE_NAMESPACE:moon_crystal"),
-)
+private fun moonCrystalRecipe(profile: ResourceProfile): String {
+    val pattern = listOf("###", "#X#", "###")
+    val ingredients = mapOf("#" to "minecraft:glow_ink_sac", "X" to "minecraft:amethyst_shard")
+    val result = "$RESOURCE_NAMESPACE:moon_crystal"
+    return when (profile) {
+        ResourceProfile.LEGACY -> json(ShapedRecipe(
+            pattern, ingredients.mapValues { ItemIngredient(it.value) }, LegacyResult(result),
+        ))
+        ResourceProfile.COMPONENTS -> json(ShapedRecipe(
+            pattern, ingredients.mapValues { ItemIngredient(it.value) }, ComponentResult(result),
+        ))
+        ResourceProfile.ITEM_DEFINITIONS -> json(ShapedRecipe(pattern, ingredients, ComponentResult(result)))
+    }
+}

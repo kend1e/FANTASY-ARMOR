@@ -1,8 +1,8 @@
 package fantasy.build
 
 enum class Loader(val id: String) { FORGE("forge"), NEOFORGE("neoforge"), FABRIC("fabric") }
-enum class ResourceProfile(val recipeDirectory: String, val resultKey: String) {
-    LEGACY("recipes", "item"), COMPONENTS("recipe", "id"), ITEM_DEFINITIONS("recipe", "id")
+enum class ResourceProfile(val recipeDirectory: String) {
+    LEGACY("recipes"), COMPONENTS("recipe"), ITEM_DEFINITIONS("recipe")
 }
 
 data class Target(
