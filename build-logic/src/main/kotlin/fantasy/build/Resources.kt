@@ -2,7 +2,7 @@ package fantasy.build
 
 import fantasy.definitions.armor
 import fantasy.definitions.languages
-import groovy.json.JsonOutput
+import com.google.gson.GsonBuilder
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.file.FileSystemOperations
@@ -10,7 +10,9 @@ import org.gradle.api.provider.MapProperty
 import org.gradle.api.tasks.*
 import javax.inject.Inject
 
-fun json(value: Any): String = JsonOutput.prettyPrint(JsonOutput.toJson(value)) + "\n"
+private val resourceGson = GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create()
+
+fun json(value: Any): String = resourceGson.toJson(value) + "\n"
 
 @CacheableTask
 abstract class GenerateResources : DefaultTask() {
@@ -37,9 +39,9 @@ abstract class GenerateResources : DefaultTask() {
 
 fun defaultResources(): Map<String, String> = mapOf(
     "armor_defaults.json" to json(armor.associate { set ->
-        set.id to set.pieces.mapKeys { it.key.id }.mapValues { it.value.json() }
+        set.id to set.pieces.mapKeys { it.key.id }
     }),
-    "effect_defaults.json" to json(armor.associate { set -> set.id to set.effects.map { it.json() } }),
+    "effect_defaults.json" to json(armor.associate { set -> set.id to set.effects }),
 )
 
 fun contentResources(profile: ResourceProfile): Map<String, String> = buildMap {
