@@ -1,24 +1,41 @@
 # Fantasy Armor
 
-Один Gradle multi-project build для Forge, NeoForge и Fabric. Импортируйте
-`settings.gradle.kts` в IntelliJ IDEA. Для запуска Gradle используйте JDK 21;
-Java toolchains выбирают Java 17 или 21 для платформенных исходников.
+A Minecraft mod with armor sets and effects for Forge, NeoForge, and Fabric.
+
+| Loader   | Minecraft                       |
+|----------|---------------------------------|
+| Forge    | 1.19.4, 1.20.1, 1.21.1, 1.21.11 |
+| NeoForge | 1.21.1                          |
+| Fabric   | 1.20.1, 1.21.1, 1.21.10         |
+
+Project needs JDK 21 to run Gradle. Toolchains select Java 17 or 21 for each target.
 
 ```bash
+# Build all platforms
 ./gradlew assemble
+
+# Build one platform
 ./gradlew :platforms:fabric-1.21.1:assemble
-./gradlew :platforms:forge-1.21.11:runClient
-./gradlew generateAll
+
+# Run a development client or server
+./gradlew :platforms:fabric-1.21.1:runClient
+./gradlew :platforms:fabric-1.21.1:runServer
 ```
 
-Готовые устанавливаемые моды находятся в `dist/`. `generateAll` подготавливает
-ресурсы; перед сборкой или Gradle dev-запуском вызывать его вручную не нужно.
+Result JARs go to `dist/`.
+`./gradlew clean` removes build outputs and `dist/`.
 
-- [Структура, сборка и добавление контента](docs/architecture.md)
-- [Состояние миграции и следующие шаги](docs/migration.md)
-- [Определения комплектов](definitions/armor.kt)
-- [Поддерживаемые цели и версии зависимостей](definitions/targets.kt)
-- [Переводы](definitions/translations.kt)
+Content structure:
 
-В `README/5-neoforge-api-changes.md` и `README/6-fabric-api-changes.md` сохранены
-исторические заметки об API. Актуальные инструкции находятся в `docs/`.
+- [definitions/armor.kt](definitions/armor.kt) - armor sets, attributes, effects, and recipe ingredients.
+- [definitions/translations.kt](definitions/translations.kt) - localized names and descriptions.
+- [definitions/targets.kt](definitions/targets.kt) - build targets and mod dependency versions.
+- [gradle/libs.versions.toml](gradle/libs.versions.toml) - Gradle plugin versions.
+- `resources/` - shared textures, geometry, and logo.
+- `core/` - logic without Minecraft APIs.
+- `minecraft/` and `loaders/` - shared version and loader sources.
+- `platforms/` - code for individual targets.
+- `build-logic/` - Gradle plugins, content DSL, and resource generators.
+
+Resources are generated automatically into each module's `build/generated/` during builds and Gradle game launches. 
+To generate content separately `./gradlew generateAll` exists.
