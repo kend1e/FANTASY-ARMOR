@@ -151,6 +151,15 @@ class Translations {
 @ContentDsl
 class Language {
     internal val entries = linkedMapOf<String, String>()
+
+    /** One localized description shared by all four items in an armor set. */
+    fun armorDescription(setId: String, value: String) {
+        require(setId.matches(Regex("[a-z0-9_]+"))) { "Invalid armor ID: $setId" }
+        for (piece in Piece.entries) {
+            entry("item.$RESOURCE_NAMESPACE.${setId}_${piece.id}.tooltip", value)
+        }
+    }
+
     fun entry(key: String, value: String) {
         require(entries.putIfAbsent(key, value) == null) { "Duplicate translation key: $key" }
     }
