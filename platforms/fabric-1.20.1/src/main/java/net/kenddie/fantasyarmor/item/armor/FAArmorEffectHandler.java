@@ -1,6 +1,7 @@
 package net.kenddie.fantasyarmor.item.armor;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.kenddie.fantasyarmor.shared.config.EffectEntry;
 import net.kenddie.fantasyarmor.config.FAConfigs;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -48,7 +49,7 @@ public class FAArmorEffectHandler {
             MobEffect effect = effectInstance.getEffect();
             MobEffectInstance existingEffect = player.getEffect(effect);
 
-            if (existingEffect == null || (existingEffect.getDuration() != -1 && existingEffect.getDuration() < FAConfigs.getMainConfig().effectsInterval)) {
+            if (existingEffect == null || EffectEntry.shouldRefresh(existingEffect.getDuration(), FAConfigs.getMainConfig().effectsInterval)) {
                 player.addEffect(new MobEffectInstance(
                         effect,
                         effectInstance.getDuration(),

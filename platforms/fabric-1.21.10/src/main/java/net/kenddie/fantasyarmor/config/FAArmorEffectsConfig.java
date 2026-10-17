@@ -69,7 +69,7 @@ public class FAArmorEffectsConfig implements ConfigData {
         List<MobEffectInstance> out = new ArrayList<>(list.size());
         for (EffectEntry e : list) {
             if (e == null) continue;
-            var parsed = net.kenddie.fantasyarmor.shared.config.EffectEntry.parse(e.id + "," + e.duration + "," + e.amplifier);
+            var parsed = net.kenddie.fantasyarmor.shared.config.EffectEntry.validated(e.id, e.duration, e.amplifier);
             if (parsed.isEmpty()) continue;
             ResourceLocation id = ResourceLocation.parse(parsed.get().id());
 

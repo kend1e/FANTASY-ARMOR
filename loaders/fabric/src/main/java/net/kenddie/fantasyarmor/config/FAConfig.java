@@ -44,4 +44,9 @@ public class FAConfig implements ConfigData {
     @ConfigEntry.Category("general")
     @ConfigEntry.Gui.Tooltip
     public boolean enableDurability = false;
+    @Override
+    public void validatePostLoad() {
+        if (effectsInterval < 1) effectsInterval = 241;
+        if (descriptionsLength < 20 || descriptionsLength > 1000) descriptionsLength = 250;
+    }
 }

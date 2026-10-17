@@ -74,7 +74,7 @@ public class FAArmorItem extends DyeableArmorItem implements GeoItem {
             double dur = attributesSupplier.get().durability();
             if (dur > 0) return (int) dur;
         }
-        return super.getMaxDamage(stack);
+        return 0;
     }
 
     @Override

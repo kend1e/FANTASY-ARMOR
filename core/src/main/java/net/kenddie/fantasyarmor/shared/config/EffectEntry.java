@@ -23,14 +23,27 @@ public record EffectEntry(String id, int duration, int amplifier) {
         if (!(value instanceof String text)) return Optional.empty();
         var parts = text.split(",", -1);
         if (parts.length != 3) return Optional.empty();
-        var id = parts[0].trim();
+        try {
+            return validated(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+        } catch (NumberFormatException exception) {
+            return Optional.empty();
+        }
+    }
+
+    public static Optional<EffectEntry> validated(String id, int duration, int amplifier) {
+        if (id == null) return Optional.empty();
+        id = id.trim();
         if (!id.contains(":")) id = "minecraft:" + id;
         try {
-            return Optional.of(new EffectEntry(id, Integer.parseInt(parts[1].trim()),
-                    Integer.parseInt(parts[2].trim())));
+            return Optional.of(new EffectEntry(id, duration, amplifier));
         } catch (IllegalArgumentException exception) {
             return Optional.empty();
         }
+    }
+
+    /** The configured interval is a remaining-duration threshold, not a tick schedule. */
+    public static boolean shouldRefresh(int remainingDuration, int threshold) {
+        return remainingDuration != -1 && remainingDuration < threshold;
     }
 
     public static boolean isValidConfigValue(Object value) {

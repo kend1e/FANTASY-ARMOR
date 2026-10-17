@@ -46,10 +46,6 @@ public final class CapePhysics {
         float lean = clamp((float) (dx * sinRot + dz * cosRot) * 100.0f, 0.0f, 150.0f);
         float lean2 = clamp((float) (dx * cosRot - dz * sinRot) * 100.0f, -20.0f, 20.0f);
 
-        if (lean < 0.0f) {
-            lean = 0.0f;
-        }
-
         flap += (float) Math.sin(walkDist * 6.0f) * 32.0f * walkBob;
 
         return new float[]{flap, lean, lean2};
@@ -60,7 +56,14 @@ public final class CapePhysics {
      */
     public static float computeFrontCapeAngle(float leftLegRotX, float rightLegRotX) {
         float legRot = Math.min(leftLegRotX, rightLegRotX);
-        return (legRot > 0 ? 0 : legRot) * -1.2f;
+        return Math.min(legRot, 0) * -1.2f;
+    }
+
+    /** Uses the cape angle at neutral pitch; follows the head when looking up. */
+    public static float computeBraidAngle(float capeRotX, float headPitchDegrees) {
+        if (headPitchDegrees > 60) return 0;
+        if (headPitchDegrees < -25) return (float) Math.toRadians(headPitchDegrees);
+        return capeRotX;
     }
 
     private static float clamp(float value, float min, float max) {

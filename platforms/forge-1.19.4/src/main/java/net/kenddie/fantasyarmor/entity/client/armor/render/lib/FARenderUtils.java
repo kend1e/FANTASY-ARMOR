@@ -38,7 +38,11 @@ public final class FARenderUtils {
         bone.setRotX(CapePhysics.computeFrontCapeAngle(renderer.getLeftLegBone().getRotX(), renderer.getRightLegBone().getRotX()));
     }
 
-    //TODO: Set cloak visibility false if armor has a cloak.
+    public static void applyBraidRotation(Player player, GeoBone braid, float partialTick) {
+        applyCapeRotation(player, braid, partialTick);
+        braid.setRotX(CapePhysics.computeBraidAngle(braid.getRotX(), player.getXRot()));
+    }
+
     public static <T extends LivingEntity> void setArmsVisibility(PlayerModel<T> model, boolean visible) {
         model.rightArm.visible = visible;
         model.rightSleeve.visible = visible;

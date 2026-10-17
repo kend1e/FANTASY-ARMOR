@@ -1,4 +1,4 @@
-package net.kenddie.fantasyarmor.client.render;
+package net.kenddie.fantasyarmor.entity.client.armor.render.lib;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -28,46 +28,44 @@ public class FADyeableGeoLayer<T extends FAArmorItem> extends GeoRenderLayer<T> 
                        RenderType baseRenderType, MultiBufferSource bufferSource,
                        VertexConsumer buffer, float partialTick,
                        int packedLight, int packedOverlay) {
-
         if (animatable == null) return;
+        ResourceLocation textureResLoc = getArmorResource(animatable);
 
         FAArmorRenderer<T> armorRenderer = (FAArmorRenderer<T>) this.renderer;
-        ItemStack stack = armorRenderer.getCurrentStack();
+        ItemStack armorItemStack = armorRenderer.getCurrentStack();
 
-        if (!animatable.hasCustomColor(stack)) return;
+        if (!animatable.hasCustomColor(armorItemStack)) return;
 
-        ResourceLocation overlayTex = getArmorResource(animatable);
-        RenderType overlayType = RenderType.armorCutoutNoCull(overlayTex);
+        int color = animatable.getColor(armorItemStack);
+        float r = ((color >> 16) & 255) / 255f;
+        float g = ((color >> 8) & 255) / 255f;
+        float b = (color & 255) / 255f;
 
-        VertexConsumer overlayBuffer = ItemRenderer.getArmorFoilBuffer(bufferSource, overlayType, stack.hasFoil());
-
-        int color = 0xFF000000 | animatable.getColor(stack);
-
+        VertexConsumer vertexConsumer = getArmorBuffer(bufferSource, null, textureResLoc, armorItemStack.hasFoil());
         this.renderer.reRender(
                 bakedModel,
                 poseStack,
                 bufferSource,
                 animatable,
-                overlayType,
-                overlayBuffer,
+                baseRenderType,
+                vertexConsumer,
                 partialTick,
                 packedLight,
                 packedOverlay,
-                color
+                r, g, b, 1.0f
         );
     }
-
 
     public ResourceLocation getArmorResource(FAArmorItem armorItem) {
         String texture = FantasyArmor.MOD_ID + ":" + armorItem.getArmorSet().getOverlayPath();
 
-        return ARMOR_PATH_CACHE.computeIfAbsent(texture, ResourceLocation::parse);
+        return ARMOR_PATH_CACHE.computeIfAbsent(texture, ResourceLocation::new);
     }
 
     protected VertexConsumer getArmorBuffer(MultiBufferSource bufferSource, @Nullable RenderType renderType, @Nullable ResourceLocation texturePath, boolean enchanted) {
         if (renderType == null)
             renderType = RenderType.armorCutoutNoCull(texturePath);
 
-        return ItemRenderer.getArmorFoilBuffer(bufferSource, renderType, enchanted);
+        return ItemRenderer.getArmorFoilBuffer(bufferSource, renderType, false, enchanted);
     }
 }

@@ -1,13 +1,12 @@
 package net.kenddie.fantasyarmor.config;
 
 import net.kenddie.fantasyarmor.shared.armor.FAArmorAttributes;
+import static net.kenddie.fantasyarmor.shared.config.ArmorAttributeLimits.*;
 import net.kenddie.fantasyarmor.shared.config.FAArmorDefaults;
 import net.kenddie.fantasyarmor.shared.armor.FAArmorSet;
 import net.minecraft.world.item.ArmorItem;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class FAArmorAttributesConfig {
     public final ModConfigSpec.DoubleValue armor;
@@ -20,39 +19,18 @@ public class FAArmorAttributesConfig {
     public final ModConfigSpec.DoubleValue luck;
     public final ModConfigSpec.DoubleValue durability;
 
-    private static final Map<FAArmorSet, Map<ArmorItem.Type, FAArmorAttributes>> DEFAULTS = new HashMap<>();
-
     public FAArmorAttributesConfig(ModConfigSpec.Builder builder, FAArmorSet armorSet, ArmorItem.Type type) {
-        FAArmorAttributes defaults = DEFAULTS.getOrDefault(armorSet, Map.of()).getOrDefault(type, getGlobalDefaults(type));
+        FAArmorAttributes defaults = FAArmorDefaults.get(armorSet.getName(), type.getName());
 
-        armor = builder.defineInRange("armor", defaults.armor(), 0.0, 100.0);
-        armorToughness = builder.defineInRange("armorToughness", defaults.armorToughness(), 0.0, 100.0);
-        knockbackResistance = builder.defineInRange("knockbackResistance", defaults.knockbackResistance(), 0.0, 1.0);
-        movementSpeed = builder.defineInRange("movementSpeed", defaults.movementSpeed(), -1.0, 1.0);
-        maxHealth = builder.defineInRange("maxHealth", defaults.maxHealth(), 0.0, 100.0);
-        attackDamage = builder.defineInRange("attackDamage", defaults.attackDamage(), 0.0, 100.0);
-        attackSpeed = builder.defineInRange("attackSpeed", defaults.attackSpeed(), -1.0, 1.0);
-        luck = builder.defineInRange("luck", defaults.luck(), -100.0, 100.0);
-        durability = builder.defineInRange("durability", defaults.durability(), 0.0, 10000.0);
+        armor = builder.worldRestart().defineInRange("armor", defaults.armor(), ARMOR.min(), ARMOR.max());
+        armorToughness = builder.worldRestart().defineInRange("armorToughness", defaults.armorToughness(), ARMOR_TOUGHNESS.min(), ARMOR_TOUGHNESS.max());
+        knockbackResistance = builder.worldRestart().defineInRange("knockbackResistance", defaults.knockbackResistance(), KNOCKBACK_RESISTANCE.min(), KNOCKBACK_RESISTANCE.max());
+        movementSpeed = builder.worldRestart().defineInRange("movementSpeed", defaults.movementSpeed(), MOVEMENT_SPEED.min(), MOVEMENT_SPEED.max());
+        maxHealth = builder.worldRestart().defineInRange("maxHealth", defaults.maxHealth(), MAX_HEALTH.min(), MAX_HEALTH.max());
+        attackDamage = builder.worldRestart().defineInRange("attackDamage", defaults.attackDamage(), ATTACK_DAMAGE.min(), ATTACK_DAMAGE.max());
+        attackSpeed = builder.worldRestart().defineInRange("attackSpeed", defaults.attackSpeed(), ATTACK_SPEED.min(), ATTACK_SPEED.max());
+        luck = builder.worldRestart().defineInRange("luck", defaults.luck(), LUCK.min(), LUCK.max());
+        durability = builder.worldRestart().defineInRange("durability", defaults.durability(), DURABILITY.min(), DURABILITY.max());
     }
 
-    private FAArmorAttributes getGlobalDefaults(ArmorItem.Type type) {
-        return FAArmorDefaults.fallback(type.name().toLowerCase());
-    }
-
-    static {
-        Map<String, Map<String, FAArmorAttributes>> allDefaults = FAArmorDefaults.load();
-        for (FAArmorSet set : FAArmorSet.values()) {
-            String setKey = set.getName();
-            Map<String, FAArmorAttributes> setDefaults = allDefaults.get(setKey);
-            if (setDefaults == null) continue;
-            Map<ArmorItem.Type, FAArmorAttributes> pieceMap = new HashMap<>();
-            for (ArmorItem.Type type : java.util.List.of(ArmorItem.Type.HELMET, ArmorItem.Type.CHESTPLATE, ArmorItem.Type.LEGGINGS, ArmorItem.Type.BOOTS)) {
-                String pieceKey = type.name().toLowerCase();
-                FAArmorAttributes attrs = setDefaults.get(pieceKey);
-                if (attrs != null) pieceMap.put(type, attrs);
-            }
-            DEFAULTS.put(set, pieceMap);
-        }
-    }
 }

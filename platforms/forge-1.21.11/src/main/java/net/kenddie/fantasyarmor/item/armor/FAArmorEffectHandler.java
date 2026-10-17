@@ -1,5 +1,6 @@
 package net.kenddie.fantasyarmor.item.armor;
 
+import net.kenddie.fantasyarmor.shared.config.EffectEntry;
 import net.kenddie.fantasyarmor.config.FAConfig;
 import net.kenddie.fantasyarmor.FantasyArmor;
 import net.minecraft.core.Holder;
@@ -57,8 +58,7 @@ public class FAArmorEffectHandler {
 
             MobEffectInstance existingEffect = player.getEffect(effectHolder);
 
-            if (existingEffect == null || (!existingEffect.isInfiniteDuration()
-                    && existingEffect.getDuration() < FAConfig.effectsInterval())) {
+            if (existingEffect == null || EffectEntry.shouldRefresh(existingEffect.getDuration(), FAConfig.effectsInterval())) {
                 player.addEffect(new MobEffectInstance(
                         effectHolder,
                         effectInstance.getDuration(),

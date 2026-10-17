@@ -94,13 +94,13 @@ public class FAArmorItem extends ArmorItem implements GeoItem {
     @Override
     public void onCraftedBy(@NotNull ItemStack stack, @NotNull Level level, @NotNull Player player) {
         super.onCraftedBy(stack, level, player);
-        syncDurabilityComponent(stack);
+        if (!level.isClientSide) syncDurabilityComponent(stack);
     }
 
     @Override
     public void inventoryTick(@NotNull ItemStack stack, @NotNull Level level, @NotNull Entity entity, int slotId, boolean isSelected) {
         super.inventoryTick(stack, level, entity, slotId, isSelected);
-        syncDurabilityComponent(stack);
+        if (!level.isClientSide) syncDurabilityComponent(stack);
     }
 
     @Override

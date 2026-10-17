@@ -1,6 +1,7 @@
 package net.kenddie.fantasyarmor.config;
 
 import net.kenddie.fantasyarmor.shared.armor.FAArmorAttributes;
+import static net.kenddie.fantasyarmor.shared.config.ArmorAttributeLimits.*;
 import net.kenddie.fantasyarmor.shared.config.FAArmorDefaults;
 import net.minecraftforge.common.ForgeConfigSpec;
 
@@ -18,14 +19,14 @@ public class FAArmorAttributesConfig {
     public FAArmorAttributesConfig(ForgeConfigSpec.Builder builder, String setName, String pieceName) {
         FAArmorAttributes defaults = FAArmorDefaults.get(setName, pieceName);
 
-        armor = builder.defineInRange("armor", defaults.armor(), 0.0, 1000.0);
-        armorToughness = builder.defineInRange("armorToughness", defaults.armorToughness(), 0.0, 1000.0);
-        knockbackResistance = builder.defineInRange("knockbackResistance", defaults.knockbackResistance(), 0.0, 100.0);
-        movementSpeed = builder.defineInRange("movementSpeed", defaults.movementSpeed(), 0.0, 100.0);
-        maxHealth = builder.defineInRange("maxHealth", defaults.maxHealth(), 0.0, 10000.0);
-        attackDamage = builder.defineInRange("attackDamage", defaults.attackDamage(), 0.0, 10000.0);
-        attackSpeed = builder.defineInRange("attackSpeed", defaults.attackSpeed(), 0.0, 100.0);
-        luck = builder.defineInRange("luck", defaults.luck(), 0.0, 10000.0);
-        durability = builder.defineInRange("durability", defaults.durability(), 0.0, 100000.0);
+        armor = builder.worldRestart().defineInRange("armor", defaults.armor(), ARMOR.min(), ARMOR.max());
+        armorToughness = builder.worldRestart().defineInRange("armorToughness", defaults.armorToughness(), ARMOR_TOUGHNESS.min(), ARMOR_TOUGHNESS.max());
+        knockbackResistance = builder.worldRestart().defineInRange("knockbackResistance", defaults.knockbackResistance(), KNOCKBACK_RESISTANCE.min(), KNOCKBACK_RESISTANCE.max());
+        movementSpeed = builder.worldRestart().defineInRange("movementSpeed", defaults.movementSpeed(), MOVEMENT_SPEED.min(), MOVEMENT_SPEED.max());
+        maxHealth = builder.worldRestart().defineInRange("maxHealth", defaults.maxHealth(), MAX_HEALTH.min(), MAX_HEALTH.max());
+        attackDamage = builder.worldRestart().defineInRange("attackDamage", defaults.attackDamage(), ATTACK_DAMAGE.min(), ATTACK_DAMAGE.max());
+        attackSpeed = builder.worldRestart().defineInRange("attackSpeed", defaults.attackSpeed(), ATTACK_SPEED.min(), ATTACK_SPEED.max());
+        luck = builder.worldRestart().defineInRange("luck", defaults.luck(), LUCK.min(), LUCK.max());
+        durability = builder.worldRestart().defineInRange("durability", defaults.durability(), DURABILITY.min(), DURABILITY.max());
     }
 }

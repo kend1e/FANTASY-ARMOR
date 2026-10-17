@@ -31,11 +31,11 @@ public class FAConfig {
     static {
         BUILDER.push("General Settings");
 
-        APPLY_ARMOR_EFFECTS = BUILDER
+        APPLY_ARMOR_EFFECTS = BUILDER.worldRestart()
                 .comment("Apply armor effects")
                 .define("applyArmorEffects", true);
 
-        APPLY_MODIFIERS = BUILDER
+        APPLY_MODIFIERS = BUILDER.worldRestart()
                 .comment("Apply attribute modifiers")
                 .define("applyModifiers", true);
 
@@ -51,19 +51,19 @@ public class FAConfig {
                 .comment("Do not make capes static if Epic Fight is loaded. It is not implemented yet completely")
                 .define("epicFightNotStaticCapes", false);
 
-        SHOW_PARTICLES = BUILDER
+        SHOW_PARTICLES = BUILDER.worldRestart()
                 .comment("Show effect particles")
                 .define("showParticles", false);
 
-        EFFECTS_INTERVAL = BUILDER
+        EFFECTS_INTERVAL = BUILDER.worldRestart()
                 .comment("The minimum duration of the existing effect, after which it will be given again")
                 .defineInRange("effectsInterval", 241, 1, Integer.MAX_VALUE);
 
-        SHOW_EFFECT_ICON = BUILDER
+        SHOW_EFFECT_ICON = BUILDER.worldRestart()
                 .comment("Show effect icon or not")
                 .define("showEffectIcon", true);
 
-        ENABLE_DURABILITY = BUILDER
+        ENABLE_DURABILITY = BUILDER.worldRestart()
                 .comment("Enable durability on Fantasy Armor pieces. When false, armor is indestructible. Requires world restart.")
                 .define("enableDurability", false);
 

@@ -17,7 +17,10 @@ public class FantasyArmor {
 
     public static final String MOD_ID = "fantasy_armor";
 
+    public static boolean isEpicFightLoaded;
+
     public FantasyArmor(FMLJavaModLoadingContext modLoadingContext) {
+        isEpicFightLoaded = net.minecraftforge.fml.ModList.get().isLoaded("epicfight");
         IEventBus modEventBus = modLoadingContext.getModEventBus();
 
         modLoadingContext.registerConfig(ModConfig.Type.SERVER, FAConfig.SPEC, "fantasy_armor-server.toml");

@@ -24,12 +24,7 @@ public final class FARenderUtils {
     public static void applyBraidRotation(AvatarRenderState state, BoneSnapshot braid) {
         applyCapeRotation(state, braid);
 
-        float xRot = state.xRot;
-        if (xRot > 60) {
-            braid.setRotX(0);
-        } else if (xRot < -25) {
-            braid.setRotX((float) Math.toRadians(xRot));
-        }
+        braid.setRotX(CapePhysics.computeBraidAngle(braid.getRotX(), state.xRot));
     }
 
     public static void setArmsVisibility(PlayerModel model, boolean visible) {

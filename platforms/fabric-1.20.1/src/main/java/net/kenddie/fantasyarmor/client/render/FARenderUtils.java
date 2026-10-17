@@ -37,14 +37,9 @@ public final class FARenderUtils {
 
     public static void applyBraidRotation(Player player, GeoBone braid, float partialTick) {
         applyCapeRotation(player, braid, partialTick);
-        if (player.getXRot() > 60) {
-            braid.setRotX(0);
-        } else if (player.getXRot() < -35) {
-            braid.setRotX(30);
-        }
+        braid.setRotX(CapePhysics.computeBraidAngle(braid.getRotX(), player.getXRot()));
     }
 
-    //TODO: Set cloak visibility false if armor has a cloak.
     public static <T extends LivingEntity> void setArmsVisibility(PlayerModel<T> model, boolean visible) {
         model.rightArm.visible = visible;
         model.rightSleeve.visible = visible;

@@ -11,9 +11,13 @@ import net.kenddie.fantasyarmor.entity.client.armor.model.lib.FAArmorModel;
 import net.kenddie.fantasyarmor.entity.client.armor.render.lib.FAArmorRenderer;
 import net.kenddie.fantasyarmor.config.FAArmorEffectsConfig;
 import net.kenddie.fantasyarmor.config.FAConfig;
+import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -22,6 +26,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterials;
+import net.minecraft.world.item.DyeableArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -43,7 +48,7 @@ import java.util.UUID;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public class FAArmorItem extends ArmorItem implements GeoItem {
+public class FAArmorItem extends DyeableArmorItem implements GeoItem {
     private static final Map<Type, UUID> ARMOR_MODIFIER_UUID_PER_TYPE = Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
         map.put(ArmorItem.Type.BOOTS, UUID.fromString("845DB27C-C624-495F-8C9F-6020A9A58B6B"));
         map.put(ArmorItem.Type.LEGGINGS, UUID.fromString("D8499B04-0E66-4726-AB29-64469D734E0D"));
@@ -69,7 +74,7 @@ public class FAArmorItem extends ArmorItem implements GeoItem {
             double dur = attributesSupplier.get().durability();
             if (dur > 0) return (int) dur;
         }
-        return super.getMaxDamage(stack);
+        return 0;
     }
 
     @Override
@@ -85,6 +90,7 @@ public class FAArmorItem extends ArmorItem implements GeoItem {
             String translationKey = this.getDescriptionId() + ".tooltip";
             tooltip.add(Component.translatable(translationKey));
         }
+
     }
 
     @Override
@@ -163,7 +169,9 @@ public class FAArmorItem extends ArmorItem implements GeoItem {
 
     @OnlyIn(Dist.CLIENT)
     protected GeoArmorRenderer<? extends FAArmorItem> createArmorRenderer() {
-        return new FAArmorRenderer<>(new FAArmorModel<>("geo/" + armorSet.getGeoPath() + ".geo.json", armorSet.getTexturePath()));
+        boolean dyeable = resourceExists(new ResourceLocation(FantasyArmor.MOD_ID, armorSet.getOverlayPath()));
+
+        return new FAArmorRenderer<>(new FAArmorModel<>("geo/" + armorSet.getGeoPath() + ".geo.json", armorSet.getTexturePath()), dyeable);
     }
 
     public List<MobEffectInstance> getFullSetEffects() {
@@ -172,5 +180,14 @@ public class FAArmorItem extends ArmorItem implements GeoItem {
 
     public FAArmorSet getArmorSet() {
         return armorSet;
+    }
+
+    public static boolean resourceExists(ResourceLocation location) {
+        ResourceManager resourceManager = Minecraft.getInstance().getResourceManager();
+        try {
+            return resourceManager.getResource(location).isPresent();
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
