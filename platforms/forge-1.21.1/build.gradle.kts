@@ -82,8 +82,9 @@ val metadata = mapOf(
     "mod_description" to providers.gradleProperty("mod_description").get(),
 )
 tasks.processResources {
-    inputs.properties(metadata)
-    filesMatching(listOf("META-INF/mods.toml", "pack.mcmeta")) { expand(metadata) }
+    val replacements = metadata
+    inputs.properties(replacements)
+    filesMatching(listOf("META-INF/mods.toml", "pack.mcmeta")) { expand(replacements) }
     duplicatesStrategy = DuplicatesStrategy.FAIL
 }
 

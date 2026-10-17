@@ -275,6 +275,10 @@ val languages = translations {
         armor("grave_sentinel", name = "墓所の番人") {
             description = "§7死者の眠りを守る鎧\nかつては高貴な誓いを立てたが、時とともにその務めは、塵と静寂の中で沈黙の番人へと変わった"
         }
+
+        armor("ornstein", name = "オーンスタイン") {
+            description = "§7獅子をかたどった黄金の鎧。\n最初の王に仕えた最も勇猛な竜狩りのために鍛えられ、今も雷の力を宿している。\n一式を身に纏う者は、古竜の石の鱗すら貫く槍の一撃、その残響を感じるだろう。"
+        }
     }
 
     language("ru_ru") {
@@ -660,6 +664,10 @@ val languages = translations {
         armor("grave_sentinel", name = "墓穴哨兵") {
             description = "§7守护亡者长眠的铠甲。\n它们曾立下崇高誓言，却在时光中渐次扭曲，化作尘寂之中的缄默守望。"
             bootsDescription = "§7守护亡者长眠的铠甲。 \n它们曾立下崇高誓言，却在时光中渐次扭曲，化作尘寂之中的缄默守望。"
+        }
+
+        armor("ornstein", name = "翁斯坦") {
+            description = "§7以雄狮为形锻造的黄金铠甲。\n它为初始之王麾下最勇猛的猎龙者而铸，至今仍萦绕着雷电的余威。\n穿齐整套铠甲的人，能感受到足以贯穿古龙石鳞的长枪一击所留下的回响。"
         }
     }
 

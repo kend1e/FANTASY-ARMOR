@@ -36,10 +36,11 @@ dependencies {
 
 val resourceVersion = project.version.toString()
 tasks.processResources {
+    val replacements = mapOf("version" to resourceVersion)
     inputs.property("version", resourceVersion)
     inputs.property("preserveJsonEscapes", true)
     filesMatching("fabric.mod.json") {
-        expand(mapOf("version" to resourceVersion)) { escapeBackslash = true }
+        expand(replacements) { escapeBackslash = true }
     }
     duplicatesStrategy = DuplicatesStrategy.FAIL
 }
@@ -48,10 +49,11 @@ java { withSourcesJar() }
 
 val archiveName = base.archivesName
 tasks.jar {
+    val licenseName = "LICENSE.md_${archiveName.get()}"
     from(coreSourceSets.named("main").map { it.output })
     inputs.property("archivesName", archiveName)
     from(rootProject.layout.projectDirectory.file("LICENSE.md")) {
-        rename { "${it}_${archiveName.get()}" }
+        rename { licenseName }
     }
 }
 

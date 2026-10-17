@@ -90,6 +90,7 @@ val generateModMetadata by tasks.registering(ProcessResources::class) {
 }
 sourceSets.main { resources.srcDir(generateModMetadata) }
 neoForge.ideSyncTask(generateModMetadata)
+rootProject.tasks.named("generateAll") { dependsOn(generateModMetadata) }
 
 publishing {
     publications {
