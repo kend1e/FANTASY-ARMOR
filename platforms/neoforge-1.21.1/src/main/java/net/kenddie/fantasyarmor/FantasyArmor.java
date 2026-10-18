@@ -18,7 +18,7 @@ import net.neoforged.fml.event.config.ModConfigEvent;
 @Mod(FantasyArmor.MOD_ID)
 public class FantasyArmor {
 
-    public static final String MOD_ID = "fantasy_armor";
+    public static final String MOD_ID = net.kenddie.fantasyarmor.shared.ModConstants.MOD_ID;
     public static final String EPIC_FIGHT_MOD_ID = "epicfight";
     public static boolean isEpicFightLoaded;
 

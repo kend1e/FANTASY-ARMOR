@@ -249,7 +249,8 @@ public class FAArmorItem extends Item implements GeoItem {
             public @Nullable GeoArmorRenderer<?, ?> getGeoArmorRenderer(ItemStack itemStack, EquipmentSlot equipmentSlot) {
                 if (this.renderer == null) {
                     boolean dyeable = resourceExists(Identifier.fromNamespaceAndPath(FantasyArmor.MOD_ID, armorSet.getOverlayPath()));
-                    this.renderer = new FAArmorRenderer<>(new FAArmorModel<>(armorSet.getGeoPath(), armorSet.getTexturePath()), dyeable);
+                    this.renderer = new FAArmorRenderer<>(new FAArmorModel<>(armorSet.getGeoPath(), armorSet.getTexturePath()), dyeable,
+                            FAClientConfig.SHOW_CAPES::get, () -> FantasyArmor.isEpicFightLoaded && !FAClientConfig.EPIC_FIGHT_NOT_STATIC_CAPES.get());
                 }
 
                 return this.renderer;

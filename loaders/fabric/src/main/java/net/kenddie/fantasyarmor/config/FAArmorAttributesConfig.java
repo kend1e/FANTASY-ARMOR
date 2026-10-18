@@ -23,7 +23,7 @@ public class FAArmorAttributesConfig implements ConfigData {
         public Double luck;
         public Double durability;
 
-        private FAArmorAttributes resolve(FAArmorAttributes defaults) {
+        private void validate(FAArmorAttributes defaults) {
             armor = ARMOR.orDefault(armor, defaults.armor());
             armorToughness = ARMOR_TOUGHNESS.orDefault(armorToughness, defaults.armorToughness());
             knockbackResistance = KNOCKBACK_RESISTANCE.orDefault(knockbackResistance, defaults.knockbackResistance());
@@ -33,6 +33,9 @@ public class FAArmorAttributesConfig implements ConfigData {
             attackSpeed = ATTACK_SPEED.orDefault(attackSpeed, defaults.attackSpeed());
             luck = LUCK.orDefault(luck, defaults.luck());
             durability = DURABILITY.orDefault(durability, defaults.durability());
+        }
+
+        private FAArmorAttributes toAttributes() {
             return new FAArmorAttributes(armor, armorToughness, knockbackResistance, movementSpeed, maxHealth, attackDamage, attackSpeed, luck, durability);
         }
     }
@@ -43,15 +46,13 @@ public class FAArmorAttributesConfig implements ConfigData {
         FAArmorDefaults.load().forEach((set, pieces) -> {
             Map<String, Piece> configured = sets.computeIfAbsent(set, key -> new LinkedHashMap<>());
             pieces.forEach((piece, defaults) ->
-                    configured.computeIfAbsent(piece, key -> new Piece()).resolve(defaults));
+                    configured.computeIfAbsent(piece, key -> new Piece()).validate(defaults));
         });
     }
 
     public FAArmorAttributes getAttributes(String setName, String pieceName) {
-        FAArmorAttributes defaults = FAArmorDefaults.get(setName, pieceName);
         Map<String, Piece> set = sets.get(setName);
-        if (set == null) return defaults;
-        Piece piece = set.get(pieceName);
-        return piece == null ? defaults : piece.resolve(defaults);
+        Piece piece = set == null ? null : set.get(pieceName);
+        return piece != null ? piece.toAttributes() : FAArmorDefaults.get(setName, pieceName);
     }
 }

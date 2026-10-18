@@ -1,6 +1,6 @@
 package net.kenddie.fantasyarmor.client.model;
 
-import net.kenddie.fantasyarmor.FantasyArmor;
+import net.kenddie.fantasyarmor.shared.ModConstants;
 import net.kenddie.fantasyarmor.item.armor.FAArmorItem;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.GeoModel;
@@ -22,18 +22,18 @@ public class FAArmorModel <T extends FAArmorItem> extends GeoModel<T> {
 
     @Override
     public ResourceLocation getModelResource(T animatable) {
-        return ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, modelPath);
+        return ResourceLocation.fromNamespaceAndPath(ModConstants.MOD_ID, modelPath);
     }
 
     @Override
     public ResourceLocation getTextureResource(T animatable) {
-        return ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, texturePath);
+        return ResourceLocation.fromNamespaceAndPath(ModConstants.MOD_ID, texturePath);
     }
 
     @Override
     public ResourceLocation getAnimationResource(T animatable) {
         if (animationPath != null) {
-            return ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, animationPath);
+            return ResourceLocation.fromNamespaceAndPath(ModConstants.MOD_ID, animationPath);
         }
         return null;
     }

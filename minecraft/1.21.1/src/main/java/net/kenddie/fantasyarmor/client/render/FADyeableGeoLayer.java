@@ -3,7 +3,7 @@ package net.kenddie.fantasyarmor.client.render;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
-import net.kenddie.fantasyarmor.FantasyArmor;
+import net.kenddie.fantasyarmor.shared.ModConstants;
 import net.kenddie.fantasyarmor.item.armor.FAArmorItem;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -59,7 +59,7 @@ public class FADyeableGeoLayer<T extends FAArmorItem> extends GeoRenderLayer<T> 
 
 
     public ResourceLocation getArmorResource(FAArmorItem armorItem) {
-        String texture = FantasyArmor.MOD_ID + ":" + armorItem.getArmorSet().getOverlayPath();
+        String texture = ModConstants.MOD_ID + ":" + armorItem.getArmorSet().getOverlayPath();
 
         return ARMOR_PATH_CACHE.computeIfAbsent(texture, ResourceLocation::parse);
     }

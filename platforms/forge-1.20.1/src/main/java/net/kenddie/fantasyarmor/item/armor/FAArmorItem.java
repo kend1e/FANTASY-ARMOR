@@ -171,7 +171,8 @@ public class FAArmorItem extends DyeableArmorItem implements GeoItem {
     protected GeoArmorRenderer<? extends FAArmorItem> createArmorRenderer() {
         boolean dyeable = resourceExists(new ResourceLocation(FantasyArmor.MOD_ID, armorSet.getOverlayPath()));
 
-        return new FAArmorRenderer<>(new FAArmorModel<>("geo/" + armorSet.getGeoPath() + ".geo.json", armorSet.getTexturePath()), dyeable);
+        return new FAArmorRenderer<>(new FAArmorModel<>("geo/" + armorSet.getGeoPath() + ".geo.json", armorSet.getTexturePath()), dyeable,
+                            () -> FAConfig.showCapes, () -> FantasyArmor.isEpicFightLoaded && !FAConfig.epicFightNotStaticCapes, 3.5f);
     }
 
     public List<MobEffectInstance> getFullSetEffects() {

@@ -13,12 +13,8 @@ public final class CapePhysics {
      * @param flap       vertical bounce component (capeFlap)
      * @param lean       forward lean component (capeLean)
      * @param lean2      lateral lean component (capeLean2)
-     * @param isCrouching whether the player is crouching (adds 25 to flap)
      */
-    public static CapeRotation computeCapeRotation(float flap, float lean, float lean2, boolean isCrouching) {
-        if (isCrouching) {
-            flap += 25.0f;
-        }
+    public static CapeRotation computeCapeRotation(float flap, float lean, float lean2) {
         float rotX = (float) -Math.toRadians(6.0f + lean / 2.0f + flap);
         float rotY = (float) Math.toRadians(lean2 / 2.0f);
         float rotZ = (float) Math.toRadians(lean2 / 2.0f);
@@ -60,9 +56,10 @@ public final class CapePhysics {
     }
 
     /** Uses the cape angle at neutral pitch; follows the head when looking up. */
-    public static float computeBraidAngle(float capeRotX, float headPitchDegrees) {
+    public static float computeBraidAngle(float capeRotX, float headPitchDegrees, boolean isCrouching) {
         if (headPitchDegrees > 60) return 0;
         if (headPitchDegrees < -25) return (float) Math.toRadians(headPitchDegrees);
+        if (isCrouching) return capeRotX + 25f;
         return capeRotX;
     }
 

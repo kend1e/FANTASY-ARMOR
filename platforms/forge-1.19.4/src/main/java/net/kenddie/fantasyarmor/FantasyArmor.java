@@ -15,7 +15,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 @Mod(FantasyArmor.MOD_ID)
 public class FantasyArmor {
 
-    public static final String MOD_ID = "fantasy_armor";
+    public static final String MOD_ID = net.kenddie.fantasyarmor.shared.ModConstants.MOD_ID;
 
     public static boolean isEpicFightLoaded;
 

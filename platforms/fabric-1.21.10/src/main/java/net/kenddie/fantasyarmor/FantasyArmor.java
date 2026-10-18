@@ -10,7 +10,7 @@ import net.kenddie.fantasyarmor.item.armor.FAArmorEffectHandler;
 import org.slf4j.Logger;
 
 public class FantasyArmor implements ModInitializer {
-	public static final String MOD_ID = "fantasy_armor";
+	public static final String MOD_ID = net.kenddie.fantasyarmor.shared.ModConstants.MOD_ID;
 	public static final Logger LOGGER = LogUtils.getLogger();
 
 	@Override
