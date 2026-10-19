@@ -1,8 +1,8 @@
 package fantasy.build
 
-internal fun modelResources(armor: List<ArmorDefinition>, profile: ResourceProfile): Map<String, String> = buildMap {
+internal fun modelResources(armor: List<ArmorDefinition>, format: ItemModelFormat): Map<String, String> = buildMap {
     val assets = "assets/$RESOURCE_NAMESPACE"
-    val itemDefinitions = profile == ResourceProfile.ITEM_DEFINITIONS
+    val itemDefinitions = format == ItemModelFormat.ITEM_DEFINITIONS
     for (set in armor) {
         for (piece in Piece.entries) {
             val id = "${set.id}_${piece.id}"

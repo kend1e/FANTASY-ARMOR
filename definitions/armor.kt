@@ -12,7 +12,7 @@ private val baseArmor = mapOf(
 
 val armor = armorCatalog(defaults = baseArmor) {
     armor("eclipse_soldier") {
-        template = "minecraft:gold_nugget"
+        upgradeIngredient = "minecraft:gold_nugget"
         helmet {
             movementSpeed = 0.1
         }
@@ -27,7 +27,7 @@ val armor = armorCatalog(defaults = baseArmor) {
     }
 
     armor("dragonslayer") {
-        template = "minecraft:nether_wart"
+        upgradeIngredient = "minecraft:nether_wart"
         helmet {
             knockbackResistance = 0.2
         }
@@ -43,7 +43,7 @@ val armor = armorCatalog(defaults = baseArmor) {
     }
 
     armor("hero") {
-        template = "minecraft:iron_ingot"
+        upgradeIngredient = "minecraft:iron_ingot"
         helmet {
             attackDamage = 0.1
             attackSpeed = 0.1
@@ -56,7 +56,7 @@ val armor = armorCatalog(defaults = baseArmor) {
     }
 
     armor("golden_horns") {
-        template = "minecraft:flint"
+        upgradeIngredient = "minecraft:flint"
         helmet {
             movementSpeed = 0.03
             attackSpeed = 0.1
@@ -75,7 +75,7 @@ val armor = armorCatalog(defaults = baseArmor) {
     }
 
     armor("thief") {
-        template = "minecraft:leather"
+        upgradeIngredient = "minecraft:leather"
         helmet {
             movementSpeed = 0.05
             attackSpeed = 0.1
@@ -97,7 +97,7 @@ val armor = armorCatalog(defaults = baseArmor) {
     }
 
     armor("wandering_wizard") {
-        template = "minecraft:spider_eye"
+        upgradeIngredient = "minecraft:spider_eye"
         defaults {
             movementSpeed = 0.05
         }
@@ -110,7 +110,7 @@ val armor = armorCatalog(defaults = baseArmor) {
     }
 
     armor("chess_board_knight") {
-        template = "minecraft:honeycomb"
+        upgradeIngredient = "minecraft:honeycomb"
         defaults {
             knockbackResistance = 0.2
         }
@@ -126,7 +126,7 @@ val armor = armorCatalog(defaults = baseArmor) {
     }
 
     armor("dark_lord") {
-        template = "minecraft:bone"
+        upgradeIngredient = "minecraft:bone"
         helmet {
             attackSpeed = 0.02
         }
@@ -147,7 +147,7 @@ val armor = armorCatalog(defaults = baseArmor) {
     }
 
     armor("sunset_wings") {
-        template = "minecraft:gunpowder"
+        upgradeIngredient = "minecraft:gunpowder"
         defaults {
             movementSpeed = 0.05
             maxHealth = 1.0
@@ -156,7 +156,7 @@ val armor = armorCatalog(defaults = baseArmor) {
     }
 
     armor("fog_guard") {
-        template = "minecraft:phantom_membrane"
+        upgradeIngredient = "minecraft:phantom_membrane"
         defaults {
             maxHealth = 1.0
         }
@@ -177,7 +177,7 @@ val armor = armorCatalog(defaults = baseArmor) {
     }
 
     armor("dark_cover") {
-        template = "minecraft:coal"
+        upgradeIngredient = "minecraft:coal"
         helmet {
             maxHealth = 2.0
         }
@@ -194,7 +194,7 @@ val armor = armorCatalog(defaults = baseArmor) {
     }
 
     armor("spark_of_dawn") {
-        template = "minecraft:amethyst_shard"
+        upgradeIngredient = "minecraft:amethyst_shard"
         helmet {
             maxHealth = 1.0
             attackSpeed = 0.1
@@ -216,7 +216,7 @@ val armor = armorCatalog(defaults = baseArmor) {
     }
 
     armor("golden_execution") {
-        template = "minecraft:ender_pearl"
+        upgradeIngredient = "minecraft:ender_pearl"
         defaults {
             knockbackResistance = 0.2
         }
@@ -238,7 +238,7 @@ val armor = armorCatalog(defaults = baseArmor) {
     }
 
     armor("forgotten_trace") {
-        template = "minecraft:prismarine_crystals"
+        upgradeIngredient = "minecraft:prismarine_crystals"
         helmet {
             movementSpeed = 0.05
             luck = 1.0
@@ -262,7 +262,7 @@ val armor = armorCatalog(defaults = baseArmor) {
     }
 
     armor("redeemer") {
-        template = "minecraft:emerald"
+        upgradeIngredient = "minecraft:emerald"
         helmet {
             maxHealth = 2.0
             attackSpeed = 0.05
@@ -286,7 +286,7 @@ val armor = armorCatalog(defaults = baseArmor) {
     }
 
     armor("twinned") {
-        template = "minecraft:quartz"
+        upgradeIngredient = "minecraft:quartz"
         defaults {
             movementSpeed = 0.02
         }
@@ -309,7 +309,7 @@ val armor = armorCatalog(defaults = baseArmor) {
     }
 
     armor("gilded_hunt") {
-        template = "minecraft:raw_gold"
+        upgradeIngredient = "minecraft:raw_gold"
         helmet {
             maxHealth = 1.0
             attackSpeed = 0.1
@@ -323,7 +323,7 @@ val armor = armorCatalog(defaults = baseArmor) {
     }
 
     armor("lady_maria") {
-        template = "minecraft:feather"
+        upgradeIngredient = "minecraft:feather"
         helmet {
             attackSpeed = 0.05
             luck = 1.0
@@ -343,7 +343,7 @@ val armor = armorCatalog(defaults = baseArmor) {
     }
 
     armor("crucible_knight") {
-        template = "minecraft:blaze_powder"
+        upgradeIngredient = "minecraft:blaze_powder"
         helmet {
             knockbackResistance = 0.2
         }
@@ -359,7 +359,7 @@ val armor = armorCatalog(defaults = baseArmor) {
     }
 
     armor("evening_ghost") {
-        template = "minecraft:dried_kelp"
+        upgradeIngredient = "minecraft:dried_kelp"
         helmet {
             movementSpeed = 0.05
             luck = 1.0
@@ -379,7 +379,7 @@ val armor = armorCatalog(defaults = baseArmor) {
     }
 
     armor("ronin") {
-        template = "minecraft:sugar_cane"
+        upgradeIngredient = "minecraft:sugar_cane"
         helmet {
             attackSpeed = 0.1
         }
@@ -396,7 +396,7 @@ val armor = armorCatalog(defaults = baseArmor) {
     }
 
     armor("malenia") {
-        template = "minecraft:ghast_tear"
+        upgradeIngredient = "minecraft:ghast_tear"
         helmet {
             movementSpeed = 0.07
             attackSpeed = 0.05
@@ -416,7 +416,7 @@ val armor = armorCatalog(defaults = baseArmor) {
     }
 
     armor("old_knight") {
-        template = "minecraft:obsidian"
+        upgradeIngredient = "minecraft:obsidian"
         helmet {
             knockbackResistance = 0.2
             maxHealth = 1.0
@@ -434,7 +434,7 @@ val armor = armorCatalog(defaults = baseArmor) {
     }
 
     armor("silver_knight") {
-        template = "minecraft:snowball"
+        upgradeIngredient = "minecraft:snowball"
         helmet {
             attackSpeed = 0.03
             luck = 1.0
@@ -455,7 +455,7 @@ val armor = armorCatalog(defaults = baseArmor) {
     }
 
     armor("dead_gladiator") {
-        template = "minecraft:red_sand"
+        upgradeIngredient = "minecraft:red_sand"
         defaults {
             armorToughness = 2.0
         }
@@ -473,7 +473,7 @@ val armor = armorCatalog(defaults = baseArmor) {
     }
 
     armor("flesh_of_the_feaster") {
-        template = "minecraft:slime_ball"
+        upgradeIngredient = "minecraft:slime_ball"
         defaults {
             armorToughness = 1.0
         }
@@ -491,7 +491,7 @@ val armor = armorCatalog(defaults = baseArmor) {
     }
 
     armor("wind_worshipper") {
-        template = "minecraft:paper"
+        upgradeIngredient = "minecraft:paper"
         defaults {
             armorToughness = 2.0
         }
@@ -512,7 +512,7 @@ val armor = armorCatalog(defaults = baseArmor) {
     }
 
     armor("grave_sentinel") {
-        template = "minecraft:lily_of_the_valley"
+        upgradeIngredient = "minecraft:lily_of_the_valley"
         defaults {
             armorToughness = 2.0
         }
@@ -535,7 +535,7 @@ val armor = armorCatalog(defaults = baseArmor) {
     }
 
     armor("ornstein") {
-        template = "minecraft:gold_ingot"
+        upgradeIngredient = "minecraft:gold_ingot"
         defaults {
             armorToughness = 2.0
         }

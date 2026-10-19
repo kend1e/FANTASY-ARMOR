@@ -69,10 +69,7 @@ class FantasyPlatformPlugin : Plugin<Project> {
         val shared = tasks.register<Sync>("prepareSharedResources") {
             from(resourcesRoot) { exclude("assets/fantasy_armor/geo/**") }
             from(resourcesRoot.dir("assets/fantasy_armor/geo")) {
-                val modelDirectory = when (target.resources) {
-                    ResourceProfile.ITEM_DEFINITIONS -> "assets/fantasy_armor/geckolib/models"
-                    else -> "assets/fantasy_armor/geo"
-                }
+                val modelDirectory = "assets/$RESOURCE_NAMESPACE/${target.geometryDirectory}"
                 into(modelDirectory)
             }
             into(layout.buildDirectory.dir("generated/resources/shared"))

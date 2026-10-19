@@ -1,47 +1,50 @@
 package fantasy.build
 
-internal fun recipeResources(armor: List<ArmorDefinition>, profile: ResourceProfile): Map<String, String> = buildMap {
-    val directory = "data/$RESOURCE_NAMESPACE/${profile.recipeDirectory}"
+internal fun recipeResources(armor: List<ArmorDefinition>, format: RecipeFormat): Map<String, String> = buildMap {
+    val directory = "data/$RESOURCE_NAMESPACE/${format.directory}"
     for (set in armor) {
         for (piece in Piece.entries) {
             val id = "${set.id}_${piece.id}"
-            put("$directory/$id.json", armorRecipe(set, piece, profile))
+            put("$directory/$id.json", armorRecipe(set, piece, format))
         }
     }
-    put("$directory/moon_crystal.json", moonCrystalRecipe(profile))
+    put("$directory/moon_crystal.json", moonCrystalRecipe(format))
 }
 
-private fun armorRecipe(set: ArmorDefinition, piece: Piece, profile: ResourceProfile): String {
+private fun armorRecipe(set: ArmorDefinition, piece: Piece, format: RecipeFormat): String {
     val base = "minecraft:netherite_${piece.id}"
     val result = "$RESOURCE_NAMESPACE:${set.id}_${piece.id}"
-    return when (profile) {
-        ResourceProfile.LEGACY_CRAFTING -> json(ShapedRecipe(
+    return when (val method = format.armor) {
+        ArmorRecipeMethod.CraftingTable -> json(ShapedRecipe(
             listOf("TBA"),
-            mapOf("T" to ItemIngredient(set.template), "B" to ItemIngredient(base),
-                "A" to ItemIngredient(set.addition)),
-            LegacyResult(result),
+            mapOf("T" to format.ingredients.encode(set.upgradeIngredient), "B" to format.ingredients.encode(base),
+                "A" to format.ingredients.encode(set.addition)),
+            format.craftingResult.encode(result),
         ))
-        ResourceProfile.LEGACY -> json(SmithingRecipe(
-            ItemIngredient(set.template), ItemIngredient(base), ItemIngredient(set.addition), LegacyResult(result),
+        is ArmorRecipeMethod.SmithingTransform -> json(SmithingRecipe(
+            format.ingredients.encode(set.upgradeIngredient), format.ingredients.encode(base),
+            format.ingredients.encode(set.addition), method.result.encode(result),
         ))
-        ResourceProfile.COMPONENTS -> json(SmithingRecipe(
-            ItemIngredient(set.template), ItemIngredient(base), ItemIngredient(set.addition), ComponentResult(result),
-        ))
-        ResourceProfile.ITEM_DEFINITIONS -> json(SmithingRecipe(set.template, base, set.addition, result))
     }
 }
 
-private fun moonCrystalRecipe(profile: ResourceProfile): String {
-    val pattern = listOf("###", "#X#", "###")
+private fun moonCrystalRecipe(format: RecipeFormat): String {
     val ingredients = mapOf("#" to "minecraft:glow_ink_sac", "X" to "minecraft:amethyst_shard")
-    val result = "$RESOURCE_NAMESPACE:moon_crystal"
-    return when (profile) {
-        ResourceProfile.LEGACY_CRAFTING, ResourceProfile.LEGACY -> json(ShapedRecipe(
-            pattern, ingredients.mapValues { ItemIngredient(it.value) }, LegacyResult(result),
-        ))
-        ResourceProfile.COMPONENTS -> json(ShapedRecipe(
-            pattern, ingredients.mapValues { ItemIngredient(it.value) }, ComponentResult(result),
-        ))
-        ResourceProfile.ITEM_DEFINITIONS -> json(ShapedRecipe(pattern, ingredients, ComponentResult(result)))
-    }
+    return json(ShapedRecipe(
+        listOf("###", "#X#", "###"),
+        ingredients.mapValues { format.ingredients.encode(it.value) },
+        format.craftingResult.encode("$RESOURCE_NAMESPACE:moon_crystal"),
+    ))
+}
+
+// The JSON boundary deliberately supports both strings and small object DTOs.
+private fun IngredientEncoding.encode(id: String): Any = when (this) {
+    IngredientEncoding.ITEM_OBJECT -> ItemIngredient(id)
+    IngredientEncoding.ITEM_ID -> id
+}
+
+private fun ResultEncoding.encode(id: String): Any = when (this) {
+    ResultEncoding.ITEM_FIELD -> ItemFieldResult(id)
+    ResultEncoding.ID_FIELD -> IdFieldResult(id)
+    ResultEncoding.ITEM_ID -> id
 }

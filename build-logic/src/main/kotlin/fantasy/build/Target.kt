@@ -1,4 +1,3 @@
-
 package fantasy.build
 
 enum class Loader(val id: String) {
@@ -18,25 +17,25 @@ enum class Loader(val id: String) {
     }
 }
 
-enum class ResourceProfile(val recipeDirectory: String) {
-    LEGACY_CRAFTING("recipes"),
-    LEGACY("recipes"),
-    COMPONENTS("recipe"),
-    ITEM_DEFINITIONS("recipe")
-}
-
 data class Target(
     val loader: Loader,
-    val minecraft: String,
-    val java: Int,
+    val minecraftVersion: MinecraftVersion,
     val modVersion: String,
     val loaderVersion: String,
     val geckolib: String,
-    val resources: ResourceProfile,
     val fabricApi: String = "",
     val clothConfig: String = "",
     val srgRemapping: Boolean = false
 ) {
+    val minecraft get() = minecraftVersion.id
+    val java get() = minecraftVersion.java
+    val resources get() = minecraftVersion.resources
+    val geometryDirectory get() = when (geckolib.substringBefore('.')) {
+        "4" -> "geo"
+        "5" -> "geckolib/models"
+        else -> error("Unsupported GeckoLib resource layout: $geckolib")
+    }
+
     val name get() = "${loader.id}-$minecraft"
     val path get() = ":platforms:$name"
 

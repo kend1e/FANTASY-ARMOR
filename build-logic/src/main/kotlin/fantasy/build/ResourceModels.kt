@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 // Only the resource structures emitted by this mod, not a general Minecraft schema.
 internal data class ItemIngredient(val item: String)
-internal data class LegacyResult(val item: String)
-internal data class ComponentResult(val id: String)
+internal data class ItemFieldResult(val item: String)
+internal data class IdFieldResult(val id: String)
 
 internal data class SmithingRecipe<I, R>(
     val template: I,

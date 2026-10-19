@@ -1,7 +1,7 @@
 package fantasy.build
 
-internal fun tagResources(armor: List<ArmorDefinition>, profile: ResourceProfile): Map<String, String> = buildMap {
-    if (profile == ResourceProfile.LEGACY_CRAFTING || profile == ResourceProfile.LEGACY) return@buildMap
+internal fun tagResources(armor: List<ArmorDefinition>, format: ArmorTagFormat): Map<String, String> = buildMap {
+    if (format == ArmorTagFormat.NONE) return@buildMap
 
     put("data/minecraft/tags/item/dyeable.json", tag(armor.flatMap { set ->
         Piece.entries.map { "$RESOURCE_NAMESPACE:${set.id}_${it.id}" }

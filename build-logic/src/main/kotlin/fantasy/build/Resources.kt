@@ -17,12 +17,12 @@ fun defaultResources(): Map<String, String> = mapOf(
     "effect_defaults.json" to json(armor.associate { set -> set.id to set.effects }),
 )
 
-fun contentResources(profile: ResourceProfile): Map<String, String> = buildMap {
+fun contentResources(formats: MinecraftResources): Map<String, String> = buildMap {
     val groups = listOf(
         translationResources(languages),
-        recipeResources(armor, profile),
-        modelResources(armor, profile),
-        tagResources(armor, profile),
+        recipeResources(armor, formats.recipes),
+        modelResources(armor, formats.itemModels),
+        tagResources(armor, formats.armorTags),
     )
     for (resources in groups) {
         for ((path, contents) in resources) {

@@ -41,7 +41,7 @@ data class ArmorDefinition(
     val id: String,
     val pieces: Map<Piece, Attributes>,
     val effects: List<Effect>,
-    val template: String,
+    val upgradeIngredient: String,
     val addition: String,
 )
 
@@ -79,7 +79,7 @@ class ArmorBuilder internal constructor(
     private var defaults: AttributeOverrides? = null
     private val pieces = linkedMapOf<Piece, AttributeOverrides>()
     private val effects = mutableListOf<Effect>()
-    var template: String = ""
+    var upgradeIngredient: String = ""
     var addition: String = "fantasy_armor:moon_crystal"
 
     fun defaults(configure: AttributeOverrides.() -> Unit) {
@@ -103,7 +103,7 @@ class ArmorBuilder internal constructor(
 
     internal fun build(): ArmorDefinition {
         require(id.matches(Regex("[a-z0-9_]+"))) { "Invalid armor ID: $id" }
-        for (ingredient in listOf(template, addition)) {
+        for (ingredient in listOf(upgradeIngredient, addition)) {
             require(ingredient.matches(Regex("[a-z0-9_.-]+:[a-z0-9_./-]+"))) {
                 "Invalid ingredient in $id: $ingredient"
             }
@@ -113,7 +113,7 @@ class ArmorBuilder internal constructor(
             val common = defaults?.applyTo(base) ?: base
             pieces[piece]?.applyTo(common) ?: common
         }
-        return ArmorDefinition(id, resolved, effects.toList(), template, addition)
+        return ArmorDefinition(id, resolved, effects.toList(), upgradeIngredient, addition)
     }
 }
 
