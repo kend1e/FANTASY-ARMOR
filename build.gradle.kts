@@ -12,10 +12,7 @@ tasks.named("assemble") {
 tasks.register("generateAll") {
     group = "build"
     description = "Prepares all resources without writing into source directories."
-    dependsOn(":core:generateArmorDefaults")
-    dependsOn(platformProjects.flatMap {
-        listOf("${it.path}:prepareSharedResources", "${it.path}:generateContentResources")
-    })
+    dependsOn(platformProjects.map { "${it.path}:generateResources" })
 }
 
 tasks.named<Delete>("clean") {

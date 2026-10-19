@@ -24,8 +24,29 @@ class FantasyPlatformPlugin : Plugin<Project> {
         extensions.configure<BasePluginExtension> {
             archivesName.set(providers.gradleProperty("mod_id"))
         }
+        val coreSourcesDependencies = configurations.dependencyScope("coreSourcesDependencies")
+        val coreSources = configurations.resolvable("coreSources") {
+            extendsFrom(coreSourcesDependencies.get())
+            isTransitive = false
+        }
+        val coreResourcesDependencies = configurations.dependencyScope("coreResourcesDependencies")
+        val coreResources = configurations.resolvable("coreResources") {
+            extendsFrom(coreResourcesDependencies.get())
+            isTransitive = false
+        }
+        dependencies.add(coreSourcesDependencies.name, dependencies.project(mapOf("path" to ":core", "configuration" to "sharedSources")))
+        dependencies.add(coreResourcesDependencies.name, dependencies.project(mapOf("path" to ":core", "configuration" to "sharedResources")))
+        extensions.getByType<SourceSetContainer>().named("main") {
+            java.srcDir(coreSources)
+            resources.srcDir(coreResources)
+        }
         configureJava(target)
         configureResources(target)
+        tasks.register("generateResources") {
+            group = "build"
+            description = "Prepares shared resources, content, defaults, and mod metadata."
+            dependsOn(coreResources, tasks.named("prepareSharedResources"), tasks.named("generateContentResources"))
+        }
         configureRelease(target)
     }
 

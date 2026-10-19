@@ -19,7 +19,7 @@ val targets = listOf(
     Target(FABRIC, "1.21.1", 21, "1.2.4-1.21.1", "0.18.2", "4.8.2", COMPONENTS,
         fabricApi = "0.116.7+1.21.1", clothConfig = "15.0.140"),
     Target(FABRIC, "1.21.10", 21, "1.2.4-1.21.10", "0.18.4", "5.3-alpha-3", ITEM_DEFINITIONS,
-        fabricApi = "0.138.4+1.21.10", clothConfig = "20.0.149"),
+        fabricApi = "0.138.4+1.21.10", clothConfig = "20.0.149", loaderRange = ">=0.18.2"),
     Target(FORGE, "1.21.11", 21, "1.2.5-1.21.11", "61.2.0", "5.4.5", ITEM_DEFINITIONS,
         minecraftRange = "[1.21.11,1.22)"),
 )

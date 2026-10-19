@@ -1,11 +1,10 @@
 import fantasy.build.Target
 
 plugins {
-    id("fantasy.platform")
+    id("fantasy.forge")
     java
     idea
     eclipse
-    `maven-publish`
     alias(libs.plugins.forgeGradle)
 }
 
@@ -39,13 +38,7 @@ repositories {
     maven(fg.forgeMaven)
     maven(fg.minecraftLibsMaven)
     mavenCentral()
-    maven("https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/") {
-        name = "GeckoLib"
-        content {
-            includeGroupByRegex("software\\.bernie.*")
-            includeGroup("com.eliotlash.mclib")
-        }
-    }
+
 }
 
 dependencies {
@@ -65,27 +58,6 @@ dependencies {
     }
     implementation("software.bernie.geckolib:geckolib-forge-${platform.minecraft}:${platform.geckolib}")
     implementation(libs.mclib)
-    compileOnly(project(":core"))
-}
-
-val metadata = mapOf(
-    "minecraft_version" to platform.minecraft,
-    "minecraft_version_range" to platform.minecraftRange,
-    "forge_version" to platform.loaderVersion,
-    "forge_version_range" to platform.loaderRange,
-    "loader_version_range" to platform.loaderRange,
-    "mod_id" to modId,
-    "mod_name" to providers.gradleProperty("mod_name").get(),
-    "mod_license" to providers.gradleProperty("mod_license").get(),
-    "mod_version" to platform.modVersion,
-    "mod_authors" to modAuthors,
-    "mod_description" to providers.gradleProperty("mod_description").get(),
-)
-tasks.processResources {
-    val replacements = metadata
-    inputs.properties(replacements)
-    filesMatching(listOf("META-INF/mods.toml", "pack.mcmeta")) { expand(replacements) }
-    duplicatesStrategy = DuplicatesStrategy.FAIL
 }
 
 tasks.jar {
@@ -99,9 +71,6 @@ tasks.jar {
     )
 }
 
-// Shared sources must belong to the mod in both dev runs and release jars.
 sourceSets.main {
-    java.srcDir(rootProject.file("core/src/main/java"))
-    resources.srcDir(project(":core").tasks.named("processResources"))
     resources.srcDir(layout.buildDirectory.dir("generated/resources/datagen"))
 }

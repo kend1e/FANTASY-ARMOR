@@ -19,6 +19,18 @@ kotlin {
 
 gradlePlugin {
     plugins {
+        register("fabric") {
+            id = "fantasy.fabric"
+            implementationClass = "fantasy.build.FantasyFabricPlugin"
+        }
+        register("forge") {
+            id = "fantasy.forge"
+            implementationClass = "fantasy.build.FantasyForgePlugin"
+        }
+        register("neoforge") {
+            id = "fantasy.neoforge"
+            implementationClass = "fantasy.build.FantasyNeoForgePlugin"
+        }
         register("settings") {
             id = "fantasy.settings"
             implementationClass = "fantasy.build.FantasySettingsPlugin"

@@ -13,11 +13,14 @@ data class Target(
     val loaderVersion: String,
     val geckolib: String,
     val resources: ResourceProfile,
-    val minecraftRange: String = "[$minecraft]",
-    val loaderRange: String = "[${loaderVersion.substringBefore('.')},)",
+    val minecraftRange: String = if (loader == Loader.FABRIC) "~$minecraft" else "[$minecraft]",
+    val loaderRange: String = if (loader == Loader.FABRIC) ">=$loaderVersion" else "[${loaderVersion.substringBefore('.')},)",
     val fabricApi: String = "",
     val clothConfig: String = "",
     val srgRemapping: Boolean = false,
+    val geckolibRange: String = ">=$geckolib",
+    val fabricApiRange: String = "*",
+    val clothConfigRange: String = "*",
 ) {
     val name: String get() = "${loader.id}-$minecraft"
     val path: String get() = ":platforms:$name"

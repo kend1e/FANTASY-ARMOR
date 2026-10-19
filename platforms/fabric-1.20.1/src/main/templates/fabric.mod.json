@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "entrypoints": {
+    "main": [
+      "net.kenddie.fantasyarmor.FantasyArmor"
+    ],
+    "client": [
+      "net.kenddie.fantasyarmor.client.render.FAClientEventHandler"
+    ]
+  },
+  "mixins": [
+    "fantasy_armor.mixins.json"
+  ]
+}

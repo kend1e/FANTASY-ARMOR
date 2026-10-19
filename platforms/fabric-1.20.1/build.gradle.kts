@@ -1,25 +1,11 @@
 import fantasy.build.Target
 
 plugins {
-    id("fantasy.platform")
+    id("fantasy.fabric")
     alias(libs.plugins.fabricLoom)
-    `maven-publish`
 }
 
 val platform = extensions.getByType<Target>()
-val coreSourceSets = project(":core").extensions.getByType<SourceSetContainer>()
-
-repositories {
-    maven("https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/") {
-        name = "GeckoLib"
-        content {
-            includeGroupByRegex("software\\.bernie.*")
-            includeGroup("com.eliotlash.mclib")
-        }
-    }
-    maven("https://maven.shedaniel.me/")
-    maven("https://maven.terraformersmc.com/releases/")
-}
 
 fabricApi {
     configureDataGeneration {
@@ -42,38 +28,5 @@ dependencies {
     implementation(libs.mclib)
     modApi("me.shedaniel.cloth:cloth-config-fabric:${platform.clothConfig}") {
         exclude(group = "net.fabricmc.fabric-api")
-    }
-    implementation(project(":core"))
-}
-
-val resourceVersion = project.version.toString()
-tasks.processResources {
-    val replacements = mapOf("version" to resourceVersion)
-    inputs.property("version", resourceVersion)
-    inputs.property("preserveJsonEscapes", true)
-    filesMatching("fabric.mod.json") {
-        expand(replacements) { escapeBackslash = true }
-    }
-    duplicatesStrategy = DuplicatesStrategy.FAIL
-}
-
-java { withSourcesJar() }
-
-val archiveName = base.archivesName
-tasks.jar {
-    val licenseName = "LICENSE.md_${archiveName.get()}"
-    from(coreSourceSets.named("main").map { it.output })
-    inputs.property("archivesName", archiveName)
-    from(rootProject.layout.projectDirectory.file("LICENSE.md")) {
-        rename { licenseName }
-    }
-}
-
-publishing {
-    publications {
-        create<MavenPublication>("mavenJava") {
-            artifactId = archiveName.get()
-            from(components["java"])
-        }
     }
 }
