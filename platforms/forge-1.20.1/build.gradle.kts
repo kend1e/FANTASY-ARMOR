@@ -1,4 +1,7 @@
+import net.minecraftforge.renamer.gradle.RenameJar
 import fantasy.build.Target
+import fantasy.build.registerReleaseExport
+import fantasy.build.ModMetadata
 
 plugins {
     id("fantasy.forge")
@@ -10,8 +13,9 @@ plugins {
 }
 
 val platform = extensions.getByType<Target>()
-val modId = providers.gradleProperty("mod_id").get()
-val modAuthors = providers.gradleProperty("mod_authors").get()
+val metadata = extensions.getByType<ModMetadata>()
+val modId = metadata.id
+val modAuthors = metadata.authors
 
 minecraft {
     mappings("official", platform.minecraft)
@@ -64,7 +68,6 @@ tasks.jar {
 // Legacy Forge releases use SRG names, while development uses official names.
 renamer.mappings.from(minecraft.getDependency(project.name).toSrgFile)
 renamer.classes(tasks.jar) { archiveClassifier.set("srg") }
-tasks.assemble { dependsOn(tasks.named("renameJar")) }
 
 val devRefmapMappings = renamer.convert(
     "devRefmapMappings", minecraft.getDependency(project.name).toSrgFile, "srg"
@@ -82,3 +85,5 @@ idea.module {
     isDownloadSources = true
     isDownloadJavadoc = true
 }
+
+registerReleaseExport(tasks.named<RenameJar>("renameJar").flatMap { it.output })

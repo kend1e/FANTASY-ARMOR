@@ -80,7 +80,7 @@ class ArmorBuilder internal constructor(
     private val pieces = linkedMapOf<Piece, AttributeOverrides>()
     private val effects = mutableListOf<Effect>()
     var upgradeIngredient: String = ""
-    var addition: String = "fantasy_armor:moon_crystal"
+    var addition: String = "$RESOURCE_NAMESPACE:moon_crystal"
 
     fun defaults(configure: AttributeOverrides.() -> Unit) {
         require(defaults == null) { "Duplicate defaults in $id" }

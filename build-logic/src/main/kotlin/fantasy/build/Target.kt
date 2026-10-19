@@ -17,16 +17,45 @@ enum class Loader(val id: String) {
     }
 }
 
+sealed interface LoaderSettings {
+    val loader: Loader
+    val version: String
+}
+
+data class ForgeSettings(override val version: String) : LoaderSettings {
+    override val loader get() = Loader.FORGE
+}
+
+data class NeoForgeSettings(override val version: String) : LoaderSettings {
+    override val loader get() = Loader.NEOFORGE
+}
+
+data class FabricSettings(
+    override val version: String,
+    val fabricApi: String,
+    val clothConfig: String,
+) : LoaderSettings {
+    override val loader get() = Loader.FABRIC
+    val fabricApiRange get() = loader.minimumVersion(fabricApi)
+    val clothConfigRange get() = loader.minimumVersion(clothConfig)
+
+    init {
+        require(listOf(version, fabricApi, clothConfig).all { it.isNotBlank() }) {
+            "Fabric loader, API and Cloth Config versions must not be blank"
+        }
+    }
+}
+
 data class Target(
-    val loader: Loader,
+    val settings: LoaderSettings,
     val minecraftVersion: MinecraftVersion,
-    val modVersion: String,
-    val loaderVersion: String,
+    val releaseVersion: String,
     val geckolib: String,
-    val fabricApi: String = "",
-    val clothConfig: String = "",
-    val srgRemapping: Boolean = false
 ) {
+    val loader get() = settings.loader
+    val loaderVersion get() = settings.version
+    val modVersion get() = "$releaseVersion-$minecraft"
+    val releaseFileName get() = "fantasy-armor-$releaseVersion-$minecraft-${loader.id}.jar"
     val minecraft get() = minecraftVersion.id
     val java get() = minecraftVersion.java
     val resources get() = minecraftVersion.resources
@@ -47,17 +76,4 @@ data class Target(
     val loaderRange get() = loader.languageVersion(loaderVersion)
     val loaderDependencyRange get() = loader.minimumVersion(loaderVersion)
     val geckolibRange get() = loader.minimumVersion(geckolib)
-    val fabricApiRange get() = loader.minimumVersion(fabricApi)
-    val clothConfigRange get() = loader.minimumVersion(clothConfig)
-
-    init {
-        require(!srgRemapping || loader == Loader.FORGE) {
-            "SRG remapping requires Forge: $name"
-        }
-
-        require(loader != Loader.FABRIC ||
-                (fabricApi.isNotBlank() && clothConfig.isNotBlank())) {
-            "Fabric API and Cloth Config versions are required for $name"
-        }
-    }
 }

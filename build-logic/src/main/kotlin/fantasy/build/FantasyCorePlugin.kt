@@ -1,5 +1,7 @@
 package fantasy.build
 
+import fantasy.definitions.armor
+
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPluginExtension
@@ -20,7 +22,7 @@ class FantasyCorePlugin : Plugin<Project> {
             type = "directory"
         }
         val defaults = tasks.register<GenerateResources>("generateArmorDefaults") {
-            contents.set(defaultResources())
+            contents.set(defaultResources(armor))
             outputDirectory.set(layout.buildDirectory.dir("generated/resources/defaults"))
         }
         extensions.getByType<SourceSetContainer>().named("main") {

@@ -1,4 +1,6 @@
 import fantasy.build.Target
+import fantasy.build.registerReleaseExport
+import fantasy.build.ModMetadata
 
 plugins {
     id("fantasy.forge")
@@ -9,7 +11,8 @@ plugins {
 }
 
 val platform = extensions.getByType<Target>()
-val modId = providers.gradleProperty("mod_id").get()
+val metadata = extensions.getByType<ModMetadata>()
+val modId = metadata.id
 
 minecraft {
     mappings("official", platform.minecraft)
@@ -57,3 +60,5 @@ dependencies {
 tasks.jar {
     manifest.attributes("MixinConfigs" to "fantasy_armor.mixins.json")
 }
+
+registerReleaseExport(tasks.jar.flatMap { it.archiveFile })

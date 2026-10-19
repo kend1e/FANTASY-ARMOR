@@ -1,6 +1,9 @@
 package fantasy.build
 
 import fantasy.definitions.targets
+import fantasy.definitions.armor
+import fantasy.definitions.languages
+import fantasy.definitions.craftingRecipes
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.file.DuplicatesStrategy
@@ -19,10 +22,13 @@ class FantasyPlatformPlugin : Plugin<Project> {
         val target = targets.single { it.path == path }
         pluginManager.apply("java")
         version = target.modVersion
-        group = providers.gradleProperty("mod_group_id").get()
+        val metadata = ModMetadata.read(providers)
+        require(metadata.id == RESOURCE_NAMESPACE) { "mod_id must match resource namespace $RESOURCE_NAMESPACE" }
+        group = metadata.group
+        extensions.add(ModMetadata::class.java, "modMetadata", metadata)
         extensions.add(Target::class.java, "platformTarget", target)
         extensions.configure<BasePluginExtension> {
-            archivesName.set(providers.gradleProperty("mod_id"))
+            archivesName.set(metadata.id)
         }
         val coreSourcesDependencies = configurations.dependencyScope("coreSourcesDependencies")
         val coreSources = configurations.resolvable("coreSources") {
@@ -47,7 +53,6 @@ class FantasyPlatformPlugin : Plugin<Project> {
             description = "Prepares shared resources, content, defaults, and mod metadata."
             dependsOn(coreResources, tasks.named("prepareSharedResources"), tasks.named("generateContentResources"))
         }
-        configureRelease(target)
     }
 
     private fun Project.configureJava(target: Target) {
@@ -67,8 +72,8 @@ class FantasyPlatformPlugin : Plugin<Project> {
     private fun Project.configureResources(target: Target) {
         val resourcesRoot = rootProject.layout.projectDirectory.dir("resources")
         val shared = tasks.register<Sync>("prepareSharedResources") {
-            from(resourcesRoot) { exclude("assets/fantasy_armor/geo/**") }
-            from(resourcesRoot.dir("assets/fantasy_armor/geo")) {
+            from(resourcesRoot) { exclude("assets/$RESOURCE_NAMESPACE/geo/**") }
+            from(resourcesRoot.dir("assets/$RESOURCE_NAMESPACE/geo")) {
                 val modelDirectory = "assets/$RESOURCE_NAMESPACE/${target.geometryDirectory}"
                 into(modelDirectory)
             }
@@ -76,7 +81,7 @@ class FantasyPlatformPlugin : Plugin<Project> {
             duplicatesStrategy = DuplicatesStrategy.FAIL
         }
         val content = tasks.register<GenerateResources>("generateContentResources") {
-            contents.set(contentResources(target.resources))
+            contents.set(contentResources(armor, languages, craftingRecipes, target.resources))
             outputDirectory.set(layout.buildDirectory.dir("generated/resources/content"))
         }
         extensions.getByType<SourceSetContainer>().named("main") {
@@ -90,28 +95,5 @@ class FantasyPlatformPlugin : Plugin<Project> {
         tasks.matching { it.name == "runClient" || it.name == "runServer" }.configureEach {
             dependsOn(tasks.named("classes"))
         }
-    }
-
-    private fun Project.configureRelease(target: Target) {
-        val releaseVersion = target.modVersion.removeSuffix("-${target.minecraft}")
-        val releaseName = "fantasy-armor-$releaseVersion-${target.minecraft}-${target.loader.id}.jar"
-        val releaseFile = rootProject.layout.projectDirectory.file("dist/$releaseName")
-        val producer = when {
-            target.loader == Loader.FABRIC -> "remapJar"
-            target.srgRemapping -> "renameJar"
-            else -> "jar"
-        }
-        val export = tasks.register<ExportRelease>("exportRelease") {
-            group = "build"
-            description = "Copies the installable ${target.name} artifact into root dist."
-            if (target.srgRemapping) {
-                // RenameJar exposes one @OutputFile; it is not an AbstractArchiveTask.
-                artifact.set(layout.file(tasks.named(producer).map { it.outputs.files.singleFile }))
-            } else {
-                artifact.set(tasks.named<AbstractArchiveTask>(producer).flatMap { it.archiveFile })
-            }
-            destination.set(releaseFile)
-        }
-        tasks.named("assemble") { dependsOn(export) }
     }
 }

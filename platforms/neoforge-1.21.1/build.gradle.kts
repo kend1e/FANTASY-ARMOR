@@ -1,4 +1,6 @@
 import fantasy.build.Target
+import fantasy.build.registerReleaseExport
+import fantasy.build.ModMetadata
 import org.slf4j.event.Level
 
 plugins {
@@ -9,7 +11,8 @@ plugins {
 }
 
 val platform = extensions.getByType<Target>()
-val modId = providers.gradleProperty("mod_id").get()
+val metadata = extensions.getByType<ModMetadata>()
+val modId = metadata.id
 
 neoForge {
     version = platform.loaderVersion
@@ -52,8 +55,6 @@ sourceSets.main {
 }
 
 tasks.processResources { duplicatesStrategy = DuplicatesStrategy.FAIL }
-val localRuntime by configurations.creating
-configurations.runtimeClasspath { extendsFrom(localRuntime) }
 
 dependencies {
     implementation("software.bernie.geckolib:geckolib-neoforge-${platform.minecraft}:${platform.geckolib}")
@@ -65,3 +66,5 @@ idea.module {
     isDownloadSources = true
     isDownloadJavadoc = true
 }
+
+registerReleaseExport(tasks.jar.flatMap { it.archiveFile })

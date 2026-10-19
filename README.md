@@ -29,7 +29,9 @@ Content structure:
 
 - [definitions/armor.kt](definitions/armor.kt) - armor sets, attributes, effects, and recipe ingredients.
 - [definitions/translations.kt](definitions/translations.kt) - localized names and descriptions.
-- [definitions/targets.kt](definitions/targets.kt) - build targets and mod dependency versions.
+- [definitions/recipes.kt](definitions/recipes.kt) - shared crafting recipes.
+- [definitions/minecraft.kt](definitions/minecraft.kt) - Minecraft resource formats and Java versions.
+- [definitions/targets.kt](definitions/targets.kt) - release versions and typed Forge, NeoForge, and Fabric dependency settings.
 - [gradle/libs.versions.toml](gradle/libs.versions.toml) - Gradle plugin versions.
 - `resources/` - shared textures, geometry, and logo.
 - `core/` - logic without Minecraft APIs.

@@ -1,4 +1,6 @@
 import fantasy.build.Target
+import fantasy.build.registerReleaseExport
+import fantasy.build.ModMetadata
 
 plugins {
     id("fantasy.forge")
@@ -9,8 +11,9 @@ plugins {
 }
 
 val platform = extensions.getByType<Target>()
-val modId = providers.gradleProperty("mod_id").get()
-val modAuthors = providers.gradleProperty("mod_authors").get()
+val metadata = extensions.getByType<ModMetadata>()
+val modId = metadata.id
+val modAuthors = metadata.authors
 
 minecraft {
     mappings("official", platform.minecraft)
@@ -74,3 +77,5 @@ tasks.jar {
 sourceSets.main {
     resources.srcDir(layout.buildDirectory.dir("generated/resources/datagen"))
 }
+
+registerReleaseExport(tasks.jar.flatMap { it.archiveFile })

@@ -1,6 +1,6 @@
 package fantasy.build
 
-internal fun recipeResources(armor: List<ArmorDefinition>, format: RecipeFormat): Map<String, String> = buildMap {
+internal fun recipeResources(armor: List<ArmorDefinition>, craftingRecipes: List<ShapedRecipeDefinition>, format: RecipeFormat): Map<String, String> = buildMap {
     val directory = "data/$RESOURCE_NAMESPACE/${format.directory}"
     for (set in armor) {
         for (piece in Piece.entries) {
@@ -8,7 +8,10 @@ internal fun recipeResources(armor: List<ArmorDefinition>, format: RecipeFormat)
             put("$directory/$id.json", armorRecipe(set, piece, format))
         }
     }
-    put("$directory/moon_crystal.json", moonCrystalRecipe(format))
+    for (recipe in craftingRecipes) {
+        val path = "$directory/${recipe.id}.json"
+        require(putIfAbsent(path, shapedRecipe(recipe, format)) == null) { "Duplicate recipe: $path" }
+    }
 }
 
 private fun armorRecipe(set: ArmorDefinition, piece: Piece, format: RecipeFormat): String {
@@ -28,14 +31,11 @@ private fun armorRecipe(set: ArmorDefinition, piece: Piece, format: RecipeFormat
     }
 }
 
-private fun moonCrystalRecipe(format: RecipeFormat): String {
-    val ingredients = mapOf("#" to "minecraft:glow_ink_sac", "X" to "minecraft:amethyst_shard")
-    return json(ShapedRecipe(
-        listOf("###", "#X#", "###"),
-        ingredients.mapValues { format.ingredients.encode(it.value) },
-        format.craftingResult.encode("$RESOURCE_NAMESPACE:moon_crystal"),
-    ))
-}
+private fun shapedRecipe(recipe: ShapedRecipeDefinition, format: RecipeFormat): String = json(ShapedRecipe(
+    recipe.pattern,
+    recipe.ingredients.mapValues { format.ingredients.encode(it.value) },
+    format.craftingResult.encode(recipe.result),
+))
 
 // The JSON boundary deliberately supports both strings and small object DTOs.
 private fun IngredientEncoding.encode(id: String): Any = when (this) {

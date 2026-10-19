@@ -1,6 +1,5 @@
 package fantasy.build
 
-import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
 
 import org.gradle.api.tasks.SourceSetContainer
@@ -30,38 +29,19 @@ class FantasyFabricPlugin : Plugin<Project> {
         }
 
         val target = extensions.getByType<Target>()
-        val metadata = mapOf(
-            "id" to providers.gradleProperty("mod_id").get(),
-            "version" to target.modVersion,
-            "name" to providers.gradleProperty("mod_name").get(),
-            "description" to providers.gradleProperty("mod_description").get().replace("\\n", "\n"),
-            "authors" to providers.gradleProperty("mod_authors").get().split(",").map(String::trim),
-            "contact" to mapOf(
-                "homepage" to providers.gradleProperty("mod_homepage").get(),
-                "sources" to providers.gradleProperty("mod_sources").get(),
-            ),
-            "license" to providers.gradleProperty("mod_license").get(),
-            "icon" to providers.gradleProperty("mod_icon").get(),
-            "environment" to providers.gradleProperty("mod_environment").get(),
-            "depends" to mapOf(
-                "fabricloader" to target.loaderRange,
-                "minecraft" to target.minecraftRange,
-                "java" to ">=${target.java}",
-                "fabric-api" to target.fabricApiRange,
-                "geckolib" to target.geckolibRange,
-                "cloth-config2" to target.clothConfigRange,
-            ),
-        )
+        val fabric = target.settings
+        require(fabric is FabricSettings) { "Expected Fabric settings for $path" }
+        extensions.add(FabricSettings::class.java, "fabricSettings", fabric)
+        val metadata = extensions.getByType<ModMetadata>().fabricValues(target, fabric)
         val template = providers.fileContents(layout.projectDirectory.file("src/main/templates/fabric.mod.json")).asText
         val generateModMetadata = tasks.register<GenerateResources>("generateModMetadata") {
             contents.set(template.map { text ->
-                val gson = GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create()
-                val json = JsonParser.parseString(text).asJsonObject
+                val document = JsonParser.parseString(text).asJsonObject
                 metadata.forEach { (name, value) ->
-                    require(!json.has(name)) { "$name must be configured in targets.kt or gradle.properties, not fabric.mod.json" }
-                    json.add(name, gson.toJsonTree(value))
+                    require(!document.has(name)) { "$name must be configured in targets.kt or gradle.properties, not fabric.mod.json" }
+                    document.add(name, resourceGson.toJsonTree(value))
                 }
-                mapOf("fabric.mod.json" to gson.toJson(json) + "\n")
+                mapOf("fabric.mod.json" to json(document))
             })
             outputDirectory.set(layout.buildDirectory.dir("generated/resources/metadata"))
         }

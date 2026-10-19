@@ -1,18 +1,38 @@
 package fantasy.build
 
+class TranslationCatalog internal constructor(
+    val entries: Map<String, Map<String, String>>,
+    private val armorIds: Map<String, Set<String>>,
+) {
+    fun validate(armor: List<ArmorDefinition>) {
+        val known = armor.map { it.id }.toSet()
+        armorIds.forEach { (locale, ids) ->
+            require((ids - known).isEmpty()) { "Unknown armor translations in $locale: ${ids - known}" }
+        }
+        val english = requireNotNull(entries["en_us"]) { "Required locale en_us is missing" }
+        val required = armor.flatMap { set -> Piece.entries.map { "item.$RESOURCE_NAMESPACE.${set.id}_${it.id}" } }
+        val missing = required.filter { english[it].isNullOrBlank() }
+        require(missing.isEmpty()) { "Missing en_us armor names: $missing" }
+    }
+}
+
 @ContentDsl
 class Translations {
     private val languages = linkedMapOf<String, Map<String, String>>()
+    private val armorIds = linkedMapOf<String, Set<String>>()
     fun language(locale: String, configure: Language.() -> Unit) {
         require(locale.matches(Regex("[a-z]{2,3}_[a-z0-9_]+"))) { "Invalid locale: $locale" }
         require(locale !in languages) { "Duplicate locale: $locale" }
-        languages[locale] = Language().apply(configure).entries.toMap()
+        val language = Language().apply(configure)
+        languages[locale] = language.entries.toMap()
+        armorIds[locale] = language.armorIds.toSet()
     }
-    fun build(): Map<String, Map<String, String>> = languages.toMap()
+    fun build(): TranslationCatalog = TranslationCatalog(languages.toMap(), armorIds.toMap())
 }
 
 @ContentDsl
 class Language {
+    internal val armorIds = linkedSetOf<String>()
     internal val entries = linkedMapOf<String, String>()
 
     private var names: ArmorNames? = null
@@ -24,6 +44,7 @@ class Language {
 
     fun armor(id: String, name: String? = null, configure: ArmorTranslation.() -> Unit) {
         require(id.matches(Regex("[a-z0-9_]+"))) { "Invalid armor ID: $id" }
+        armorIds.add(id)
         val templates = requireNotNull(names) { "Declare armorNames before armor translations" }
         val translation = ArmorTranslation().apply(configure)
         for (piece in Piece.entries) {
@@ -42,7 +63,7 @@ class Language {
     }
 }
 
-fun translations(configure: Translations.() -> Unit): Map<String, Map<String, String>> =
+fun translations(configure: Translations.() -> Unit): TranslationCatalog =
     Translations().apply(configure).build()
 
 private data class ArmorNames(

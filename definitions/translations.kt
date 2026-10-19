@@ -1,8 +1,9 @@
 package fantasy.definitions
 
 import fantasy.build.translations
+import fantasy.build.TranslationCatalog
 
-val languages = translations {
+val languages: TranslationCatalog = translations {
     language("en_us") {
         armorNames(
             helmet = "{name} Helmet",
