@@ -5,7 +5,6 @@ import net.kenddie.fantasyarmor.config.*;
 import net.kenddie.fantasyarmor.item.FAArmorItems;
 import net.kenddie.fantasyarmor.item.FACreativeModTabs;
 import net.kenddie.fantasyarmor.item.FAItems;
-import net.kenddie.fantasyarmor.item.armor.FAArmorComponents;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -23,7 +22,6 @@ public class FantasyArmor {
         context.registerConfig(ModConfig.Type.SERVER, FAArmorConfig.SPEC, "fantasy_armor-armor_attributes.toml");
         context.registerConfig(ModConfig.Type.SERVER, FAArmorEffectsConfig.SPEC, "fantasy_armor-armor_effects.toml");
         context.registerConfig(ModConfig.Type.CLIENT, FAClientConfig.SPEC, "fantasy_armor-client.toml");
-        FAArmorComponents.TYPES.register(modBus);
         FAItems.register(modBus);
         FAArmorItems.register(modBus);
         FACreativeModTabs.register(modBus);

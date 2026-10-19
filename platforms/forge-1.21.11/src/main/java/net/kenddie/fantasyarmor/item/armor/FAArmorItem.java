@@ -9,6 +9,8 @@ import net.kenddie.fantasyarmor.FantasyArmor;
 import net.kenddie.fantasyarmor.client.model.FAArmorModel;
 import net.kenddie.fantasyarmor.client.render.FAArmorRenderer;
 import net.kenddie.fantasyarmor.config.FAClientConfig;
+import net.kenddie.fantasyarmor.config.FAArmorConfig;
+import net.kenddie.fantasyarmor.config.FAConfig;
 import net.kenddie.fantasyarmor.config.FAArmorEffectsConfig;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
@@ -67,14 +69,18 @@ public class FAArmorItem extends Item implements GeoItem {
     }
 
     public void applyServerSettings(ItemStack stack) {
-        FAArmorComponents.update(stack);
+        if (!FAArmorConfig.SPEC.isLoaded()) return;
+        var attributes = FAArmorConfig.ARMOR_CONFIGS.get(armorSet.getName())
+                .get(armorType.getName()).read().withBonuses(FAConfig.applyModifiers());
+        var modifiers = ArmorModifiers.build(armorType, attributes);
+        ArmorStackSettings.apply(stack, attributes, modifiers, FAConfig.enableDurability());
     }
 
     @Override
     public void inventoryTick(ItemStack stack, net.minecraft.server.level.ServerLevel level,
                               net.minecraft.world.entity.Entity entity, @Nullable EquipmentSlot slot) {
         super.inventoryTick(stack, level, entity, slot);
-        net.kenddie.fantasyarmor.item.armor.FAArmorComponents.update(stack);
+        applyServerSettings(stack);
     }
 
     public FAArmorSet getArmorSet() {

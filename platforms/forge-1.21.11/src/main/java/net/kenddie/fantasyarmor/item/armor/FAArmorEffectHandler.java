@@ -22,7 +22,9 @@ public class FAArmorEffectHandler {
 
     @SubscribeEvent
     public static void onEquipmentChanged(LivingEquipmentChangeEvent event) {
-        if (!event.getEntity().level().isClientSide()) FAArmorComponents.update(event.getTo());
+        if (!event.getEntity().level().isClientSide() && event.getTo().getItem() instanceof FAArmorItem armor) {
+            armor.applyServerSettings(event.getTo());
+        }
     }
 
 }
