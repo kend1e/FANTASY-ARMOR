@@ -52,7 +52,6 @@ public final class FAArmorItems {
                 setPieces.put(type, item);
             }
 
-
             ARMOR_ITEMS.put(set, setPieces);
         }
     }

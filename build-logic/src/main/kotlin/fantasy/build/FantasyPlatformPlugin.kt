@@ -63,9 +63,7 @@ class FantasyPlatformPlugin : Plugin<Project> {
         }
         extensions.getByType<SourceSetContainer>().named("main") {
             java.srcDir(rootProject.layout.projectDirectory.dir("minecraft/${target.minecraft}/src/main/java"))
-            if (target.loader == Loader.FABRIC) {
-                java.srcDir(rootProject.layout.projectDirectory.dir("loaders/fabric/src/main/java"))
-            }
+            java.srcDir(rootProject.layout.projectDirectory.dir("loaders/${target.loader.id}/src/main/java"))
             resources.srcDir(shared)
             resources.srcDir(content.flatMap { it.outputDirectory })
         }

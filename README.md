@@ -33,7 +33,8 @@ Content structure:
 - [gradle/libs.versions.toml](gradle/libs.versions.toml) - Gradle plugin versions.
 - `resources/` - shared textures, geometry, and logo.
 - `core/` - logic without Minecraft APIs.
-- `minecraft/` and `loaders/` - shared version and loader sources.
+- `minecraft/<version>/` - shared armor modifiers, set effects, stack components, and rendering for each Minecraft version.
+- `loaders/` - shared loader initialization and configuration code.
 - `platforms/` - code for individual targets.
 - `build-logic/` - Gradle plugins, content DSL, and resource generators.
 

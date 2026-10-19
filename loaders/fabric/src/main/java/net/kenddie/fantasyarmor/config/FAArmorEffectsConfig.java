@@ -3,20 +3,12 @@ package net.kenddie.fantasyarmor.config;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
-import net.kenddie.fantasyarmor.shared.armor.FAArmorSet;
 import net.kenddie.fantasyarmor.shared.config.FAEffectDefaults;
-import net.minecraft.core.Holder;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @Config(name = "fantasy_armor-effects")
 public class FAArmorEffectsConfig implements ConfigData {
@@ -59,26 +51,14 @@ public class FAArmorEffectsConfig implements ConfigData {
         }
     }
 
-    public static List<MobEffectInstance> getEffectsFor(String armorSetName) {
-        var main = FAConfigs.getMainConfig();
-        boolean showParticles = main.showParticles;
-        boolean showIcon = main.showEffectIcon;
-        var cfg = me.shedaniel.autoconfig.AutoConfig.getConfigHolder(FAArmorEffectsConfig.class).getConfig();
-        var list = cfg.effects.getOrDefault(armorSetName, Collections.emptyList());
+    public static List<net.kenddie.fantasyarmor.shared.config.EffectEntry> getEffectsFor(String armorSetName) {
+        var list = FAConfigs.getEffectsConfig().effects.get(armorSetName);
         if (list == null) return List.of();
-        List<MobEffectInstance> out = new ArrayList<>(list.size());
-        for (EffectEntry e : list) {
-            if (e == null) continue;
-            var parsed = net.kenddie.fantasyarmor.shared.config.EffectEntry.validated(e.id, e.duration, e.amplifier);
-            if (parsed.isEmpty()) continue;
-            ResourceLocation id = ResourceLocation.parse(parsed.get().id());
-
-            Optional<Holder.Reference<MobEffect>> holderOpt = BuiltInRegistries.MOB_EFFECT.getHolder(id);
-            if (holderOpt.isEmpty()) continue;
-            Holder<MobEffect> effectHolder = holderOpt.get();
-
-            out.add(new MobEffectInstance(effectHolder, e.duration, e.amplifier, true, showParticles, showIcon));
+        List<net.kenddie.fantasyarmor.shared.config.EffectEntry> result = new ArrayList<>(list.size());
+        for (EffectEntry entry : list) {
+            if (entry != null) net.kenddie.fantasyarmor.shared.config.EffectEntry
+                    .validated(entry.id, entry.duration, entry.amplifier).ifPresent(result::add);
         }
-        return out;
+        return result;
     }
 }

@@ -6,6 +6,7 @@ import net.kenddie.fantasyarmor.shared.config.FAArmorDefaults;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 public class FAArmorAttributesConfig {
+    public final FAArmorAttributes defaults;
     public final ForgeConfigSpec.DoubleValue armor;
     public final ForgeConfigSpec.DoubleValue armorToughness;
     public final ForgeConfigSpec.DoubleValue knockbackResistance;
@@ -17,7 +18,7 @@ public class FAArmorAttributesConfig {
     public final ForgeConfigSpec.DoubleValue durability;
 
     public FAArmorAttributesConfig(ForgeConfigSpec.Builder builder, String setName, String pieceName) {
-        FAArmorAttributes defaults = FAArmorDefaults.get(setName, pieceName);
+        defaults = FAArmorDefaults.get(setName, pieceName);
 
         armor = builder.worldRestart().defineInRange("armor", defaults.armor(), ARMOR.min(), ARMOR.max());
         armorToughness = builder.worldRestart().defineInRange("armorToughness", defaults.armorToughness(), ARMOR_TOUGHNESS.min(), ARMOR_TOUGHNESS.max());
@@ -28,5 +29,13 @@ public class FAArmorAttributesConfig {
         attackSpeed = builder.worldRestart().defineInRange("attackSpeed", defaults.attackSpeed(), ATTACK_SPEED.min(), ATTACK_SPEED.max());
         luck = builder.worldRestart().defineInRange("luck", defaults.luck(), LUCK.min(), LUCK.max());
         durability = builder.worldRestart().defineInRange("durability", defaults.durability(), DURABILITY.min(), DURABILITY.max());
+    }
+
+    public FAArmorAttributes read() {
+        if (!FAArmorConfig.SPEC.isLoaded()) return defaults;
+        return new FAArmorAttributes(
+                armor.get(), armorToughness.get(), knockbackResistance.get(),
+                movementSpeed.get(), maxHealth.get(), attackDamage.get(),
+                attackSpeed.get(), luck.get(), durability.get());
     }
 }

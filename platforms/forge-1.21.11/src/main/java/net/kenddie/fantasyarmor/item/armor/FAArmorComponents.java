@@ -6,14 +6,11 @@ import net.kenddie.fantasyarmor.FantasyArmor;
 import net.kenddie.fantasyarmor.config.FAArmorConfig;
 import net.kenddie.fantasyarmor.config.FAConfig;
 import net.minecraft.core.component.DataComponentType;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.util.Unit;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
-
 
 /** Applies native config values to our armor, preserving absolute wear. */
 public final class FAArmorComponents {
@@ -38,20 +35,8 @@ public final class FAArmorComponents {
         if (!FAArmorConfig.SPEC.isLoaded() || !(stack.getItem() instanceof FAArmorItem item)) return;
         var attributes = FAArmorConfig.ARMOR_CONFIGS.get(item.getArmorSet().getName())
                 .get(item.getArmorType().getName()).read().withBonuses(FAConfig.applyModifiers());
-        var modifiers = FAArmorItem.buildAttributeModifiers(item.getArmorType(), attributes);
-        if (!modifiers.equals(stack.get(DataComponents.ATTRIBUTE_MODIFIERS))) {
-            stack.set(DataComponents.ATTRIBUTE_MODIFIERS, modifiers);
-        }
-        int maxDamage = Math.max(1, (int) attributes.durability());
-        if (stack.getOrDefault(DataComponents.MAX_DAMAGE, 0) != maxDamage) {
-            stack.set(DataComponents.MAX_DAMAGE, maxDamage);
-        }
-        if (!stack.has(DataComponents.DAMAGE)) stack.set(DataComponents.DAMAGE, 0);
-        if (!FAConfig.enableDurability() || attributes.durability() <= 0) {
-            if (!stack.has(DataComponents.UNBREAKABLE)) stack.set(DataComponents.UNBREAKABLE, Unit.INSTANCE);
-        } else {
-            stack.remove(DataComponents.UNBREAKABLE);
-        }
+        var modifiers = ArmorModifiers.build(item.getArmorType(), attributes);
+        ArmorStackSettings.apply(stack, attributes, modifiers, FAConfig.enableDurability());
         // Keep the codec registration to read old saves, but no longer persist session markers.
         stack.remove(APPLIED.get());
     }

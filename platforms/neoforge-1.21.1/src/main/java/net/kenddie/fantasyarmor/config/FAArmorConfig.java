@@ -1,7 +1,5 @@
 package net.kenddie.fantasyarmor.config;
 
-import net.kenddie.fantasyarmor.shared.armor.FAArmorAttributes;
-
 import net.kenddie.fantasyarmor.shared.armor.FAArmorSet;
 import net.minecraft.world.item.ArmorItem;
 import net.neoforged.neoforge.common.ModConfigSpec;

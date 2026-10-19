@@ -1,5 +1,6 @@
 package net.kenddie.fantasyarmor;
 
+import net.kenddie.fantasyarmor.config.FAClientConfig;
 import net.kenddie.fantasyarmor.config.*;
 import net.kenddie.fantasyarmor.item.FAArmorItems;
 import net.kenddie.fantasyarmor.item.FACreativeModTabs;

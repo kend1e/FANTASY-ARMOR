@@ -1,5 +1,7 @@
 package net.kenddie.fantasyarmor.client.render;
 
+import net.minecraft.client.Minecraft;
+import net.kenddie.fantasyarmor.shared.armor.FAArmorSet;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.function.BooleanSupplier;
 import net.kenddie.fantasyarmor.shared.ModConstants;
@@ -38,8 +40,10 @@ public class FAArmorRenderer<T extends FAArmorItem, R extends HumanoidRenderStat
     private final BooleanSupplier showCapes;
     private final BooleanSupplier useEpicFightCape;
 
-    public FAArmorRenderer(GeoModel<T> model, boolean dyeable, BooleanSupplier showCapes, BooleanSupplier useEpicFightCape) {
+    public FAArmorRenderer(GeoModel<T> model, FAArmorSet armorSet, BooleanSupplier showCapes, BooleanSupplier useEpicFightCape) {
         super(model);
+        boolean dyeable = Minecraft.getInstance().getResourceManager()
+                .getResource(Identifier.fromNamespaceAndPath(ModConstants.MOD_ID, armorSet.getOverlayPath())).isPresent();
         this.showCapes = showCapes;
         this.useEpicFightCape = useEpicFightCape;
         this.dyeable = dyeable;

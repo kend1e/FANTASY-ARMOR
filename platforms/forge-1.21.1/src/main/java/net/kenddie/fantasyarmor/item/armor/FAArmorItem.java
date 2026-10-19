@@ -1,5 +1,7 @@
 package net.kenddie.fantasyarmor.item.armor;
 
+import net.kenddie.fantasyarmor.config.FAClientConfig;
+import net.kenddie.fantasyarmor.shared.config.EffectEntry;
 import net.kenddie.fantasyarmor.shared.armor.FAArmorSet;
 
 import net.kenddie.fantasyarmor.shared.armor.FAArmorAttributes;
@@ -9,21 +11,13 @@ import net.kenddie.fantasyarmor.client.model.FAArmorModel;
 import net.kenddie.fantasyarmor.client.render.FAArmorRenderer;
 import net.kenddie.fantasyarmor.config.FAArmorEffectsConfig;
 import net.kenddie.fantasyarmor.config.FAConfig;
-import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.ItemStack;
@@ -43,7 +37,6 @@ import software.bernie.geckolib.animation.AnimatableManager;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;
 
 import java.util.List;
-import java.util.Properties;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -69,20 +62,20 @@ public class FAArmorItem extends ArmorItem implements GeoItem {
     @Override
     public @NotNull ItemStack getDefaultInstance() {
         ItemStack stack = super.getDefaultInstance();
-        syncDurabilityComponent(stack);
+        applyServerSettings(stack);
         return stack;
     }
 
     @Override
     public void onCraftedBy(@NotNull ItemStack stack, @NotNull Level level, @NotNull Player player) {
         super.onCraftedBy(stack, level, player);
-        if (!level.isClientSide) syncDurabilityComponent(stack);
+        if (!level.isClientSide) applyServerSettings(stack);
     }
 
     @Override
     public void inventoryTick(@NotNull ItemStack stack, @NotNull Level level, @NotNull Entity entity, int slotId, boolean isSelected) {
         super.inventoryTick(stack, level, entity, slotId, isSelected);
-        if (!level.isClientSide) syncDurabilityComponent(stack);
+        if (!level.isClientSide) applyServerSettings(stack);
     }
 
     @Override
@@ -113,7 +106,7 @@ public class FAArmorItem extends ArmorItem implements GeoItem {
     public void appendHoverText(@NotNull ItemStack pStack, @NotNull TooltipContext pContext, @NotNull List<Component> pTooltipComponents, @NotNull TooltipFlag pTooltipFlag) {
         super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
 
-        if (FAConfig.showDescriptions) {
+        if (FAClientConfig.showDescriptions()) {
             String translationKey = this.getDescriptionId() + ".tooltip";
             pTooltipComponents.add(Component.translatable(translationKey));
         }
@@ -138,95 +131,7 @@ public class FAArmorItem extends ArmorItem implements GeoItem {
     }
 
     public ItemAttributeModifiers getDefaultAttributeModifiers() {
-        FAArmorAttributes effective = attributesSupplier.get().withBonuses(FAConfig.applyModifiers);
-        if (cachedModifiers == null || !effective.equals(cachedAttributes)) {
-            cachedModifiers = buildModifiers(effective);
-            cachedAttributes = effective;
-        }
-
-        return cachedModifiers;
-    }
-
-    private ItemAttributeModifiers buildModifiers(FAArmorAttributes armorAttributes) {
-        ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder();
-
-        EquipmentSlotGroup slotGroup = EquipmentSlotGroup.bySlot(this.type.getSlot());
-        String slotName = this.type.getName();
-
-        if (armorAttributes.armor() != 0) {
-            builder.add(
-                    Attributes.ARMOR,
-                    new AttributeModifier(ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, slotName + "_armor"),
-                            armorAttributes.armor(),
-                            AttributeModifier.Operation.ADD_VALUE),
-                    slotGroup
-            );
-        }
-        if (armorAttributes.armorToughness() != 0) {
-            builder.add(
-                    Attributes.ARMOR_TOUGHNESS,
-                    new AttributeModifier(ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, slotName + "_armor_toughness"),
-                            armorAttributes.armorToughness(),
-                            AttributeModifier.Operation.ADD_VALUE),
-                    slotGroup
-            );
-        }
-        if (armorAttributes.knockbackResistance() != 0) {
-            builder.add(
-                    Attributes.KNOCKBACK_RESISTANCE,
-                    new AttributeModifier(ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, slotName + "_knockback"),
-                            armorAttributes.knockbackResistance(),
-                            AttributeModifier.Operation.ADD_VALUE),
-                    slotGroup
-            );
-        }
-        if (armorAttributes.movementSpeed() != 0) {
-            builder.add(
-                    Attributes.MOVEMENT_SPEED,
-                    new AttributeModifier(ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, slotName + "_speed"),
-                            armorAttributes.movementSpeed(),
-                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
-                    slotGroup
-            );
-        }
-        if (armorAttributes.maxHealth() != 0) {
-            builder.add(
-                    Attributes.MAX_HEALTH,
-                    new AttributeModifier(ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, slotName + "_health"),
-                            armorAttributes.maxHealth(),
-                            AttributeModifier.Operation.ADD_VALUE),
-                    slotGroup
-            );
-        }
-        if (armorAttributes.attackDamage() != 0) {
-            builder.add(
-                    Attributes.ATTACK_DAMAGE,
-                    new AttributeModifier(ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, slotName + "_attack_damage"),
-                            armorAttributes.attackDamage(),
-                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
-                    slotGroup
-            );
-        }
-        if (armorAttributes.attackSpeed() != 0) {
-            builder.add(
-                    Attributes.ATTACK_SPEED,
-                    new AttributeModifier(ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, slotName + "_attack_speed"),
-                            armorAttributes.attackSpeed(),
-                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
-                    slotGroup
-            );
-        }
-        if (armorAttributes.luck() != 0) {
-            builder.add(
-                    Attributes.LUCK,
-                    new AttributeModifier(ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, slotName + "_luck"),
-                            armorAttributes.luck(),
-                            AttributeModifier.Operation.ADD_VALUE),
-                    slotGroup
-            );
-        }
-
-        return builder.build();
+        return modifiersFor(attributesSupplier.get().withBonuses(FAConfig.applyModifiers()));
     }
 
     @Override
@@ -240,51 +145,29 @@ public class FAArmorItem extends ArmorItem implements GeoItem {
 
     @OnlyIn(Dist.CLIENT)
     protected GeoArmorRenderer<? extends FAArmorItem> createArmorRenderer() {
-        boolean dyeable = resourceExists(ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, armorSet.getOverlayPath()));
 
-        return new FAArmorRenderer<>(new FAArmorModel<>("geo/" + armorSet.getGeoPath() + ".geo.json", armorSet.getTexturePath()), dyeable,
-                            () -> FAConfig.showCapes, () -> FantasyArmor.isEpicFightLoaded && !FAConfig.epicFightNotStaticCapes, 3.5f);
+        return new FAArmorRenderer<>(new FAArmorModel<>("geo/" + armorSet.getGeoPath() + ".geo.json", armorSet.getTexturePath()), armorSet,
+                            () -> FAClientConfig.showCapes(), () -> FantasyArmor.isEpicFightLoaded && !FAClientConfig.epicFightNotStaticCapes(), 3.5f);
     }
 
-    public List<MobEffectInstance> getFullSetEffects() {
-        return FAArmorEffectsConfig.ARMOR_EFFECTS_CONFIGS.getOrDefault(armorSet.getName(), null).getEffects();
+    public List<EffectEntry> getFullSetEffects() {
+        return FAArmorEffectsConfig.ARMOR_EFFECTS_CONFIGS.get(armorSet.getName()).getEffects();
     }
 
     public FAArmorSet getArmorSet() {
         return armorSet;
     }
-    
-    private boolean isDurabilityEnabled() {
-        try {
-            return FAConfig.ENABLE_DURABILITY.get();
-        } catch (IllegalStateException ignored) {
-            return FAConfig.enableDurability;
+
+    private ItemAttributeModifiers modifiersFor(FAArmorAttributes attributes) {
+        if (cachedModifiers == null || !attributes.equals(cachedAttributes)) {
+            cachedModifiers = ArmorModifiers.build(type, attributes);
+            cachedAttributes = attributes;
         }
+        return cachedModifiers;
     }
 
-    private void syncDurabilityComponent(ItemStack stack) {
-        int configured = (int) attributesSupplier.get().durability();
-        int maximum = Math.max(1, configured);
-        if (stack.getOrDefault(DataComponents.MAX_DAMAGE, 0) != maximum) {
-            stack.set(DataComponents.MAX_DAMAGE, maximum);
-        }
-        if (!isDurabilityEnabled() || configured <= 0) {
-            if (!stack.has(DataComponents.UNBREAKABLE)) {
-                stack.set(DataComponents.UNBREAKABLE, new net.minecraft.world.item.component.Unbreakable(false));
-            }
-        } else {
-            stack.remove(DataComponents.UNBREAKABLE);
-        }
-        // Preserve absolute wear when durability is disabled or its maximum changes.
-        if (!stack.has(DataComponents.DAMAGE)) stack.set(DataComponents.DAMAGE, 0);
-    }
-
-    public static boolean resourceExists(ResourceLocation location) {
-        ResourceManager resourceManager = Minecraft.getInstance().getResourceManager();
-        try {
-            return resourceManager.getResource(location).isPresent();
-        } catch (Exception e) {
-            return false;
-        }
+    public void applyServerSettings(ItemStack stack) {
+        var attributes = attributesSupplier.get().withBonuses(FAConfig.applyModifiers());
+        ArmorStackSettings.apply(stack, attributes, modifiersFor(attributes), FAConfig.enableDurability());
     }
 }

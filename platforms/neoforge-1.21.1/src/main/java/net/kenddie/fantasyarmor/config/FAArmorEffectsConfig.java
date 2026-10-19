@@ -3,11 +3,6 @@ package net.kenddie.fantasyarmor.config;
 import net.kenddie.fantasyarmor.shared.armor.FAArmorSet;
 import net.kenddie.fantasyarmor.shared.config.FAEffectDefaults;
 import net.kenddie.fantasyarmor.shared.config.EffectEntry;
-import net.minecraft.core.Holder;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
 import java.util.ArrayList;
@@ -15,7 +10,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 public class FAArmorEffectsConfig {
     public static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
@@ -36,7 +30,6 @@ public class FAArmorEffectsConfig {
         }
         return Map.copyOf(result);
     }
-
 
     private final ModConfigSpec.ConfigValue<List<? extends String>> effectsList;
 
@@ -63,16 +56,10 @@ public class FAArmorEffectsConfig {
                 List.of("effects"), () -> defaultEffects, EffectEntry::isValidConfigValue);
     }
 
-    public List<MobEffectInstance> getEffects() {
-        List<MobEffectInstance> result = new ArrayList<>();
+    public List<EffectEntry> getEffects() {
+        List<EffectEntry> result = new ArrayList<>();
         for (String entry : SPEC.isLoaded() ? effectsList.get() : effectsList.getDefault()) {
-            var parsed = EffectEntry.parse(entry);
-            if (parsed.isEmpty()) continue;
-            var effectEntry = parsed.get();
-            var holder = BuiltInRegistries.MOB_EFFECT.getHolder(ResourceLocation.tryParse(effectEntry.id()));
-            if (holder.isEmpty()) continue;
-            result.add(new MobEffectInstance(holder.get(), effectEntry.duration(), effectEntry.amplifier(),
-                    true, FAConfig.showParticles, FAConfig.showEffectIcon));
+            EffectEntry.parse(entry).ifPresent(result::add);
         }
         return result;
     }

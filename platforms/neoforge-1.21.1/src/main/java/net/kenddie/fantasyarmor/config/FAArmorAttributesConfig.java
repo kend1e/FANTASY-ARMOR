@@ -7,7 +7,6 @@ import net.kenddie.fantasyarmor.shared.armor.FAArmorSet;
 import net.minecraft.world.item.ArmorItem;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
-
 public class FAArmorAttributesConfig {
     public final ModConfigSpec.DoubleValue armor;
     public final ModConfigSpec.DoubleValue armorToughness;

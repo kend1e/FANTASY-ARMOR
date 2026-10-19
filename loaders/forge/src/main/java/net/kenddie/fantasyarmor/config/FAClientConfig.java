@@ -16,5 +16,13 @@ public final class FAClientConfig {
         SPEC = builder.build();
     }
 
+    private static boolean value(ForgeConfigSpec.BooleanValue setting) {
+        return SPEC.isLoaded() ? setting.get() : setting.getDefault();
+    }
+
+    public static boolean showDescriptions() { return value(SHOW_DESCRIPTIONS); }
+    public static boolean showCapes() { return value(SHOW_CAPES); }
+    public static boolean epicFightNotStaticCapes() { return value(EPIC_FIGHT_NOT_STATIC_CAPES); }
+
     private FAClientConfig() {}
 }

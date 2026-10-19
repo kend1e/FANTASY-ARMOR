@@ -1,5 +1,9 @@
 package net.kenddie.fantasyarmor.client.render;
 
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.client.Minecraft;
+import net.kenddie.fantasyarmor.shared.ModConstants;
+import net.kenddie.fantasyarmor.shared.armor.FAArmorSet;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.function.BooleanSupplier;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -28,8 +32,10 @@ public class FAArmorRenderer<T extends FAArmorItem> extends GeoArmorRenderer<T> 
     private final BooleanSupplier useEpicFightCape;
     private final float crouchingCapeOffset;
 
-    public FAArmorRenderer(GeoModel<T> model, boolean dyeable, BooleanSupplier showCapes, BooleanSupplier useEpicFightCape, float crouchingCapeOffset) {
+    public FAArmorRenderer(GeoModel<T> model, FAArmorSet armorSet, BooleanSupplier showCapes, BooleanSupplier useEpicFightCape, float crouchingCapeOffset) {
         super(model);
+        boolean dyeable = Minecraft.getInstance().getResourceManager()
+                .getResource(new ResourceLocation(ModConstants.MOD_ID, armorSet.getOverlayPath())).isPresent();
         this.showCapes = showCapes;
         this.useEpicFightCape = useEpicFightCape;
         this.crouchingCapeOffset = crouchingCapeOffset;

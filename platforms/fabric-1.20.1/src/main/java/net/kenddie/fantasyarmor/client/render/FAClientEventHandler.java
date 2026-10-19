@@ -11,7 +11,6 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.DyeableArmorItem;
 import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraft.world.item.Item;
-import org.intellij.lang.annotations.Identifier;
 
 public class FAClientEventHandler implements ClientModInitializer {
 

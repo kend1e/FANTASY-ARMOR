@@ -57,7 +57,6 @@ public class FADyeableGeoLayer<T extends FAArmorItem> extends GeoRenderLayer<T> 
         );
     }
 
-
     public ResourceLocation getArmorResource(FAArmorItem armorItem) {
         String texture = ModConstants.MOD_ID + ":" + armorItem.getArmorSet().getOverlayPath();
 
