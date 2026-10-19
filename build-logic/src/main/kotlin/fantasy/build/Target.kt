@@ -13,14 +13,16 @@ data class Target(
     val loaderVersion: String,
     val geckolib: String,
     val resources: ResourceProfile,
-    val minecraftRange: String = if (loader == Loader.FABRIC) "~$minecraft" else "[$minecraft]",
-    val loaderRange: String = if (loader == Loader.FABRIC) ">=$loaderVersion" else "[${loaderVersion.substringBefore('.')},)",
+    val minecraftRange: String = if (loader == Loader.FABRIC) "=$minecraft" else "[$minecraft]",
+    val loaderRange: String = if (loader == Loader.FABRIC) "=$loaderVersion" else "[${loaderVersion.substringBefore('.')},)",
     val fabricApi: String = "",
     val clothConfig: String = "",
     val srgRemapping: Boolean = false,
-    val geckolibRange: String = ">=$geckolib",
-    val fabricApiRange: String = "*",
-    val clothConfigRange: String = "*",
+    val geckolibRange: String = if (loader == Loader.FABRIC) "=$geckolib" else "[$geckolib]",
+    val fabricApiRange: String = "=$fabricApi",
+    val clothConfigRange: String = "=$clothConfig",
+    // The mod dependency version is distinct from the javafml language-loader version.
+    val loaderDependencyRange: String = "[$loaderVersion]",
 ) {
     val name: String get() = "${loader.id}-$minecraft"
     val path: String get() = ":platforms:$name"

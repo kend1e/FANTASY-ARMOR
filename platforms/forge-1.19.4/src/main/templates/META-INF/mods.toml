@@ -61,7 +61,7 @@ side="BOTH"
 [[dependencies.${mod_id}]]
 modId="minecraft"
 mandatory=true
-# This version range declares a minimum of the current minecraft version up to but not including the next major version
+# Compatibility is declared centrally in definitions/targets.kt.
 versionRange="${minecraft_version_range}"
 ordering="NONE"
 side="BOTH"
@@ -71,3 +71,11 @@ side="BOTH"
 # stop your mod loading on the server for example.
 #[features.${mod_id}]
 #openGLVersion="[3.2,)"
+
+# GeckoLib is required by the armor items on both physical sides.
+[[dependencies.${mod_id}]]
+modId="geckolib"
+mandatory=true
+versionRange="${geckolib_version_range}"
+ordering="NONE"
+side="BOTH"
