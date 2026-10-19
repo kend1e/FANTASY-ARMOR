@@ -18,10 +18,8 @@ private fun armorRecipe(set: ArmorDefinition, piece: Piece, format: RecipeFormat
     val base = "minecraft:netherite_${piece.id}"
     val result = "$RESOURCE_NAMESPACE:${set.id}_${piece.id}"
     return when (val method = format.armor) {
-        ArmorRecipeMethod.CraftingTable -> json(ShapedRecipe(
-            listOf("TBA"),
-            mapOf("T" to format.ingredients.encode(set.upgradeIngredient), "B" to format.ingredients.encode(base),
-                "A" to format.ingredients.encode(set.addition)),
+        ArmorRecipeMethod.CraftingTable -> json(ShapelessRecipe(
+            listOf(set.upgradeIngredient, base, set.addition).map { format.ingredients.encode(it) },
             format.craftingResult.encode(result),
         ))
         is ArmorRecipeMethod.SmithingTransform -> json(SmithingRecipe(

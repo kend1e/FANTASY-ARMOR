@@ -17,6 +17,13 @@ internal data class SmithingRecipe<I, R>(
     val category = "equipment"
 }
 
+internal data class ShapelessRecipe<I, R>(
+    val ingredients: List<I>,
+    val result: R,
+) {
+    val type = "minecraft:crafting_shapeless"
+}
+
 internal data class ShapedRecipe<I, R>(
     val pattern: List<String>,
     val key: Map<String, I>,
