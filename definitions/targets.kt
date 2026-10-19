@@ -15,7 +15,7 @@ val targets = listOf(
         modVersion = "$latestModVersion-1.19.4",
         loaderVersion = "45.3.9",
         geckolib = "4.2",
-        resources = LEGACY,
+        resources = LEGACY_CRAFTING,
         srgRemapping = true
     ),
     Target(

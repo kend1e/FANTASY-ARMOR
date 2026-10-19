@@ -19,6 +19,7 @@ enum class Loader(val id: String) {
 }
 
 enum class ResourceProfile(val recipeDirectory: String) {
+    LEGACY_CRAFTING("recipes"),
     LEGACY("recipes"),
     COMPONENTS("recipe"),
     ITEM_DEFINITIONS("recipe")
@@ -40,7 +41,7 @@ data class Target(
     val path get() = ":platforms:$name"
 
     val minecraftRange get() = when (loader) {
-        Loader.FABRIC -> "=>$minecraft"
+        Loader.FABRIC -> ">=$minecraft"
         else -> "[$minecraft,)"
     }
 
