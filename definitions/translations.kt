@@ -1,9 +1,9 @@
 package fantasy.definitions
 
-import fantasy.build.translations
-import fantasy.build.TranslationCatalog
+import fantasy.gradle.resources.translations
+import fantasy.gradle.resources.TranslationCatalog
 
-val languages: TranslationCatalog = translations {
+val languages: TranslationCatalog = translations(namespace = mod.id) {
     language("en_us") {
         armorNames(
             helmet = "{name} Helmet",

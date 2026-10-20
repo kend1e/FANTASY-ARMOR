@@ -30,15 +30,14 @@ Content structure:
 - [definitions/armor.kt](definitions/armor.kt) - armor sets, attributes, effects, and recipe ingredients.
 - [definitions/translations.kt](definitions/translations.kt) - localized names and descriptions.
 - [definitions/recipes.kt](definitions/recipes.kt) - shared crafting recipes.
-- [definitions/minecraft.kt](definitions/minecraft.kt) - Minecraft resource formats and Java versions.
 - [definitions/targets.kt](definitions/targets.kt) - release versions and typed Forge, NeoForge, and Fabric dependency settings.
-- [gradle/libs.versions.toml](gradle/libs.versions.toml) - Gradle plugin versions.
+- [gradle/libs.versions.toml](gradle/libs.versions.toml) - build dependencies.
 - `resources/` - shared textures, geometry, and logo.
 - `core/` - logic without Minecraft APIs.
 - `minecraft/<version>/` - shared armor modifiers, set effects, stack components, and rendering for each Minecraft version.
 - `loaders/` - shared loader initialization and configuration code.
 - `platforms/` - code for individual targets.
-- `build-logic/` - Gradle plugins, content DSL, and resource generators.
+- `build-logic/` - connects project definitions to the shared Fantasy Build plugin.
 
 Resources are generated automatically into each module's `build/generated/` during builds and Gradle game launches. 
-To generate content separately `./gradlew generateAll` exists.
+To generate content separately, run `./gradlew generateResources`.

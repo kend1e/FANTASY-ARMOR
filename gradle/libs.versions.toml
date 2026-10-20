@@ -1,5 +1,12 @@
 [versions]
+fantasy-build = "0.1.0-SNAPSHOT"
+gson = "2.10.1"
 mclib = "20"
 
 [libraries]
+fantasy-build = { module = "net.kenddie.fantasy:fantasy-build", version.ref = "fantasy-build" }
+fantasy-fabric = { module = "net.kenddie.fantasy:fabric", version.ref = "fantasy-build" }
+fantasy-forge = { module = "net.kenddie.fantasy:forge", version.ref = "fantasy-build" }
+fantasy-neoforge = { module = "net.kenddie.fantasy:neoforge", version.ref = "fantasy-build" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 mclib = { group = "com.eliotlash.mclib", name = "mclib", version.ref = "mclib" }

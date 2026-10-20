@@ -1,6 +1,7 @@
 package fantasy.build
 
 import fantasy.gradle.Loader
+import fantasy.gradle.content.armor.*
 
 import com.google.gson.Gson
 
@@ -36,8 +37,7 @@ data class TestProfile(
             ["Armor Effects".eclipse_soldier]
             effects = ${Gson().toJson(setEffects.map { "${it.id},${it.duration},${it.amplifier}" })}
         """.trimIndent()
-        // NeoForge GameTest loads SERVER configs from config/.
-        val directories = if (loader == Loader.NEOFORGE) listOf("config") else listOf("defaultconfigs", serverConfigDirectory)
+        val directories = if (loader == Loader.NEOFORGE) listOf(serverConfigDirectory) else listOf("defaultconfigs", serverConfigDirectory)
         return directories.flatMap { directory -> listOf(
             "$directory/fantasy_armor-server.toml" to settings,
             "$directory/fantasy_armor-armor_attributes.toml" to attributes,
