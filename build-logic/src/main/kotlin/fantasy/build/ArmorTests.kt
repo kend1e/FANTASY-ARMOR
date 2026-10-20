@@ -1,5 +1,8 @@
 package fantasy.build
 
+import fantasy.gradle.GenerateFiles
+import fantasy.gradle.PrepareTestRun
+
 import com.google.gson.GsonBuilder
 import fantasy.definitions.armorTests
 import fantasy.definitions.armor

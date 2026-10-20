@@ -4,68 +4,36 @@ import fantasy.definitions.targets
 import fantasy.definitions.armor
 import fantasy.definitions.languages
 import fantasy.definitions.craftingRecipes
+import fantasy.gradle.PlatformExtension
+import fantasy.gradle.ResourcesExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.file.DuplicatesStrategy
-import org.gradle.api.plugins.BasePluginExtension
-import org.gradle.api.plugins.JavaPluginExtension
-import org.gradle.api.tasks.Copy
-import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.api.tasks.Sync
-import org.gradle.api.tasks.compile.JavaCompile
-import org.gradle.api.tasks.bundling.AbstractArchiveTask
-import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.gradle.kotlin.dsl.*
 
 class FantasyPlatformPlugin : Plugin<Project> {
     override fun apply(project: Project): Unit = with(project) {
         val target = targets.single { it.path == path }
-        pluginManager.apply("java")
+        pluginManager.apply("fantasy.build.platform")
+        pluginManager.apply("fantasy.build.resources")
         version = target.modVersion
         val metadata = ModMetadata.read(providers)
         require(metadata.id == RESOURCE_NAMESPACE) { "mod_id must match resource namespace $RESOURCE_NAMESPACE" }
         group = metadata.group
         extensions.add(ModMetadata::class.java, "modMetadata", metadata)
         extensions.add(Target::class.java, "platformTarget", target)
-        extensions.configure<BasePluginExtension> {
-            archivesName.set(metadata.id)
+        extensions.configure<PlatformExtension> {
+            javaVersion.set(target.java)
+            archiveName.set(metadata.id)
+            sources.from(rootProject.layout.projectDirectory.dir("minecraft/${target.minecraft}/src/main/java"))
+            sources.from(rootProject.layout.projectDirectory.dir("loaders/${target.loader.id}/src/main/java"))
         }
-        val coreSourcesDependencies = configurations.dependencyScope("coreSourcesDependencies")
-        val coreSources = configurations.resolvable("coreSources") {
-            extendsFrom(coreSourcesDependencies.get())
-            isTransitive = false
-        }
-        val coreResourcesDependencies = configurations.dependencyScope("coreResourcesDependencies")
-        val coreResources = configurations.resolvable("coreResources") {
-            extendsFrom(coreResourcesDependencies.get())
-            isTransitive = false
-        }
-        dependencies.add(coreSourcesDependencies.name, dependencies.project(mapOf("path" to ":core", "configuration" to "sharedSources")))
-        dependencies.add(coreResourcesDependencies.name, dependencies.project(mapOf("path" to ":core", "configuration" to "sharedResources")))
-        extensions.getByType<SourceSetContainer>().named("main") {
-            java.srcDir(coreSources)
-            resources.srcDir(coreResources)
-        }
-        configureJava(target)
+        dependencies.add("sharedSourcesDependencies", dependencies.project(mapOf("path" to ":core", "configuration" to "sharedSources")))
+        dependencies.add("sharedResourcesDependencies", dependencies.project(mapOf("path" to ":core", "configuration" to "sharedResources")))
         configureResources(target)
-        tasks.register("generateResources") {
-            group = "build"
-            description = "Prepares shared resources, content, defaults, and mod metadata."
-            dependsOn(coreResources, tasks.named("prepareSharedResources"), tasks.named("generateContentResources"))
-        }
-    }
-
-    private fun Project.configureJava(target: Target) {
-        extensions.configure<JavaPluginExtension> {
-            toolchain.languageVersion.set(JavaLanguageVersion.of(target.java))
-        }
-        tasks.withType<JavaCompile>().configureEach {
-            options.encoding = "UTF-8"
-            options.release.set(target.java)
-        }
-        tasks.withType<AbstractArchiveTask>().configureEach {
-            isPreserveFileTimestamps = false
-            isReproducibleFileOrder = true
+        tasks.named("generateResources") {
+            dependsOn(configurations.named("sharedResourceFiles"))
         }
     }
 
@@ -80,17 +48,13 @@ class FantasyPlatformPlugin : Plugin<Project> {
             into(layout.buildDirectory.dir("generated/resources/shared"))
             duplicatesStrategy = DuplicatesStrategy.FAIL
         }
-        val content = tasks.register<GenerateFiles>("generateContentResources") {
-            contents.set(contentResources(armor, languages, craftingRecipes, target.resources))
-            outputDirectory.set(layout.buildDirectory.dir("generated/resources/content"))
+        extensions.configure<ResourcesExtension> {
+            sources.from(shared)
+            generate("generateContentResources") {
+                contents.set(contentResources(armor, languages, craftingRecipes, target.resources))
+                outputDirectory.set(layout.buildDirectory.dir("generated/resources/content"))
+            }
         }
-        extensions.getByType<SourceSetContainer>().named("main") {
-            java.srcDir(rootProject.layout.projectDirectory.dir("minecraft/${target.minecraft}/src/main/java"))
-            java.srcDir(rootProject.layout.projectDirectory.dir("loaders/${target.loader.id}/src/main/java"))
-            resources.srcDir(shared)
-            resources.srcDir(content.flatMap { it.outputDirectory })
-        }
-        tasks.named<Copy>("processResources") { duplicatesStrategy = DuplicatesStrategy.FAIL }
         // Also covers loader run preparation tasks created after this plugin.
         tasks.matching { it.name == "runClient" || it.name == "runServer" }.configureEach {
             dependsOn(tasks.named("classes"))

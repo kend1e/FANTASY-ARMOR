@@ -1,8 +1,9 @@
 package fantasy.build
 
+import fantasy.gradle.ResourcesExtension
+
 import com.google.gson.JsonParser
 
-import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.BasePluginExtension
@@ -34,21 +35,19 @@ class FantasyFabricPlugin : Plugin<Project> {
         extensions.add(FabricSettings::class.java, "fabricSettings", fabric)
         val metadata = extensions.getByType<ModMetadata>().fabricValues(target, fabric)
         val template = providers.fileContents(layout.projectDirectory.file("src/main/templates/fabric.mod.json")).asText
-        val generateModMetadata = tasks.register<GenerateFiles>("generateModMetadata") {
-            contents.set(template.map { text ->
-                val document = JsonParser.parseString(text).asJsonObject
-                metadata.forEach { (name, value) ->
-                    require(!document.has(name)) { "$name must be configured in targets.kt or gradle.properties, not fabric.mod.json" }
-                    document.add(name, resourceGson.toJsonTree(value))
-                }
-                mapOf("fabric.mod.json" to json(document))
-            })
-            outputDirectory.set(layout.buildDirectory.dir("generated/resources/metadata"))
+        extensions.configure<ResourcesExtension> {
+            generate("generateModMetadata") {
+                contents.set(template.map { text ->
+                    val document = JsonParser.parseString(text).asJsonObject
+                    metadata.forEach { (name, value) ->
+                        require(!document.has(name)) { "$name must be configured in targets.kt or gradle.properties, not fabric.mod.json" }
+                        document.add(name, resourceGson.toJsonTree(value))
+                    }
+                    mapOf("fabric.mod.json" to json(document))
+                })
+                outputDirectory.set(layout.buildDirectory.dir("generated/resources/metadata"))
+            }
         }
-        extensions.getByType<SourceSetContainer>().named("main") {
-            resources.srcDir(generateModMetadata.flatMap { it.outputDirectory })
-        }
-        tasks.named("generateResources") { dependsOn(generateModMetadata) }
 
         extensions.configure<JavaPluginExtension> { withSourcesJar() }
 

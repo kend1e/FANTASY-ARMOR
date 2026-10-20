@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("../../fantasy-build")
     repositories {
         gradlePluginPortal()
         mavenCentral()

@@ -1,5 +1,7 @@
 package fantasy.build
 
+import fantasy.gradle.ExportRelease
+
 import org.gradle.api.Project
 import org.gradle.api.file.RegularFile
 import org.gradle.api.provider.Provider

@@ -1,8 +1,8 @@
 package fantasy.build
 
+import fantasy.gradle.ResourcesExtension
 import org.gradle.api.Project
 import org.gradle.api.provider.ProviderFactory
-import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.api.tasks.Sync
 import org.gradle.kotlin.dsl.*
 
@@ -70,6 +70,5 @@ internal fun Project.registerMetadataTemplates(values: Map<String, String>) {
         into(layout.buildDirectory.dir("generated/resources/metadata"))
         expand(values)
     }
-    extensions.getByType<SourceSetContainer>().named("main") { resources.srcDir(metadata) }
-    tasks.named("generateResources") { dependsOn(metadata) }
+    extensions.configure<ResourcesExtension> { sources.from(metadata) }
 }
