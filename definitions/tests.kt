@@ -14,6 +14,7 @@ val armorTests = listOf(
     TestCase("sets", "SetTests"),
     TestCase("effects", "EffectTests"),
     TestCase("configs", "ConfigTests"),
+    TestCase("config_fixture", "ConfigFixtureTests", loaders = setOf(Loader.FORGE)),
     TestCase("config_load", "ConfigLoadTests"),
     TestCase("config_restart_policy", "RestartPolicyTests", loaders = setOf(Loader.NEOFORGE)),
     TestCase("ticks", "TickTests"),

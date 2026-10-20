@@ -3,6 +3,7 @@ package net.kenddie.fantasyarmor.test;
 import net.kenddie.fantasyarmor.config.FAConfigs;
 
 final class ConfigAccess {
+    static void withSettings(Runnable scenario) { scenario.run(); }
     static boolean modifiers() { return FAConfigs.getMainConfig().applyModifiers; }
     static void modifiers(boolean value) { FAConfigs.getMainConfig().applyModifiers = value; }
     static boolean durability() { return FAConfigs.getMainConfig().enableDurability; }

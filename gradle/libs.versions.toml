@@ -1,15 +1,5 @@
 [versions]
-forgePlugin = "7.0.29"
-renamerPlugin = "1.1.2"
-loomPlugin = "1.13.6"
-moddevPlugin = "2.0.107"
 mclib = "20"
 
 [libraries]
 mclib = { group = "com.eliotlash.mclib", name = "mclib", version.ref = "mclib" }
-
-[plugins]
-forgeGradle = { id = "net.minecraftforge.gradle", version.ref = "forgePlugin" }
-renamer = { id = "net.minecraftforge.renamer", version.ref = "renamerPlugin" }
-fabricLoom = { id = "fabric-loom", version.ref = "loomPlugin" }
-moddev = { id = "net.neoforged.moddev", version.ref = "moddevPlugin" }

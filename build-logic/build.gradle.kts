@@ -4,10 +4,16 @@ plugins {
 
 repositories {
     mavenCentral()
+    gradlePluginPortal()
+    maven("https://maven.fabricmc.net/")
+    maven("https://maven.minecraftforge.net/")
 }
 
 dependencies {
     implementation("net.kenddie.fantasy:fantasy-build:0.1.0-SNAPSHOT")
+    implementation("net.kenddie.fantasy:fabric:0.1.0-SNAPSHOT")
+    implementation("net.kenddie.fantasy:forge:0.1.0-SNAPSHOT")
+    implementation("net.kenddie.fantasy:neoforge:0.1.0-SNAPSHOT")
     implementation("com.google.code.gson:gson:2.10.1")
 }
 

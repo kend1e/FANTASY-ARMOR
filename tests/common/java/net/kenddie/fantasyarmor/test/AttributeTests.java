@@ -9,6 +9,11 @@ import static net.kenddie.fantasyarmor.test.TestSupport.*;
 
 public final class AttributeTests {
     public static void run(GameTestHelper h) {
+        ConfigAccess.withSettings(() -> verifyAttributes(h));
+        h.succeed();
+    }
+
+    private static void verifyAttributes(GameTestHelper h) {
         var player = player(h);
         double initialArmor = player.getAttributeValue(Attributes.ARMOR);
         double initialSpeed = player.getAttributeValue(Attributes.MOVEMENT_SPEED);
@@ -31,7 +36,6 @@ public final class AttributeTests {
         } finally {
             ConfigAccess.modifiers(modifiers);
         }
-        h.succeed();
     }
 
     private AttributeTests() {}

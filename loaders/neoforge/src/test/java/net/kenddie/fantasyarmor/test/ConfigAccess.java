@@ -7,6 +7,7 @@ import net.minecraft.gametest.framework.GameTestHelper;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
 final class ConfigAccess {
+    static void withSettings(Runnable scenario) { scenario.run(); }
     static boolean modifiers() { return FAConfig.applyModifiers; }
     static void modifiers(boolean value) { mainSetting(FAConfig.APPLY_MODIFIERS, value); }
     static boolean durability() { return FAConfig.enableDurability; }
