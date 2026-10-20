@@ -11,8 +11,11 @@ final class TickAccess {
     static void tick(Player player) { ((ServerPlayer) player).doTick(); }
     static void close(Player player) {
         var serverPlayer = (ServerPlayer) player;
-        serverPlayer.level().getServer().getPlayerList().remove(serverPlayer);
-        serverPlayer.discard();
+        try {
+            serverPlayer.level().getServer().getPlayerList().remove(serverPlayer);
+        } finally {
+            serverPlayer.discard();
+        }
     }
     private TickAccess() {}
 }

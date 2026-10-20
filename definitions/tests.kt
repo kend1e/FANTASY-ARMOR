@@ -10,12 +10,14 @@ val armorTests = listOf(
     TestCase("shapeless", "ShapelessRecipeTests", minecraft = setOf("1.19.4")),
     TestCase("dyeing", "DyeingTests"),
     TestCase("attributes", "AttributeTests"),
+    TestCase("stack_update", "StackUpdateTests", minecraft = setOf("1.21.1", "1.21.10", "1.21.11")),
     TestCase("sets", "SetTests"),
     TestCase("effects", "EffectTests"),
     TestCase("configs", "ConfigTests"),
     TestCase("config_load", "ConfigLoadTests"),
     TestCase("config_restart_policy", "RestartPolicyTests", loaders = setOf(Loader.NEOFORGE)),
     TestCase("ticks", "TickTests"),
+    TestCase("tick_cleanup", "TickCleanupTests"),
 )
 
 val testVersions = mapOf(
@@ -32,19 +34,19 @@ val testVersions = mapOf(
         registrations = mapOf(Loader.FORGE to FORGE_CONTAINER, Loader.FABRIC to FABRIC_VANILLA),
     ),
     "1.21.1" to TestVersion(
-        sources = listOf("1.21.1"),
+        sources = listOf("component-stacks", "1.21.1"),
         packFormat = 48,
         structures = "structure",
         registrations = mapOf(Loader.FORGE to FORGE_COMPONENTS, Loader.FABRIC to FABRIC_VANILLA, Loader.NEOFORGE to NEOFORGE),
     ),
     "1.21.10" to TestVersion(
-        sources = listOf("components", "crafting-input", "1.21.10"),
+        sources = listOf("component-stacks", "components", "crafting-input", "1.21.10"),
         packFormat = 88,
         structures = "structure",
         registrations = mapOf(Loader.FABRIC to FABRIC_REGISTRY),
     ),
     "1.21.11" to TestVersion(
-        sources = listOf("components", "crafting-input", "1.21.11"),
+        sources = listOf("component-stacks", "components", "crafting-input", "1.21.11"),
         packFormat = 94,
         structures = "structure",
         registrations = mapOf(Loader.FORGE to FORGE_FUNCTIONS),

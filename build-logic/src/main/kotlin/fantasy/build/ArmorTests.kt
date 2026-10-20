@@ -4,6 +4,7 @@ import com.google.gson.GsonBuilder
 import fantasy.definitions.armorTests
 import fantasy.definitions.armor
 import fantasy.definitions.testVersions
+import fantasy.definitions.targets
 import org.gradle.api.GradleException
 import org.gradle.api.Project
 import org.gradle.api.file.RegularFile
@@ -15,6 +16,7 @@ import org.gradle.kotlin.dsl.*
 import javax.xml.parsers.DocumentBuilderFactory
 
 fun Project.configureArmorTests(): SourceSet {
+    validateTestCatalog(armorTests, targets)
     val target = extensions.getByType<Target>()
     val version = testVersions[target.minecraft] ?: error("No test sources declared for ${target.name}")
     val registration = requireNotNull(version.registrations[target.loader]) { "No test registration declared for ${target.name}" }
@@ -118,7 +120,9 @@ fun Project.verifyArmorTestReport(taskName: String): Provider<RegularFile> {
     val expected = armorTests.filter { it.appliesTo(target) }.map { registration.reportName(it.id) }.toSet() + registration.additionalReportNames
     val profile = testProfile(providers.gradleProperty("testProfile").getOrElse("defaults"), armor)
     val prepare = tasks.register<PrepareTestRun>("prepareTestRun") {
-        contents.set(profile.files(target.loader, version.serverConfigDirectory))
+        val files = profile.files(target.loader, version.serverConfigDirectory)
+        filesToRemove.set(files.keys)
+        contents.set(if (profile.id == "defaults") emptyMap() else files)
         runDirectory.set(layout.buildDirectory.dir("run/test"))
     }
     val report = layout.buildDirectory.file("reports/test/${profile.id}/results.xml")

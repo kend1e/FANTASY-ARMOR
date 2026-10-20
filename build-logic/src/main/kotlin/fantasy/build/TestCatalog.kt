@@ -14,6 +14,17 @@ data class TestCase(
         (loaders.isEmpty() || target.loader in loaders)
 }
 
+fun validateTestCatalog(cases: List<TestCase>, targets: List<Target>) {
+    val versions = targets.map { it.minecraft }.toSet()
+    for (case in cases) {
+        val unknown = case.minecraft - versions
+        require(unknown.isEmpty()) { "Test '${case.id}' references unsupported Minecraft versions: $unknown" }
+        require(targets.any(case::appliesTo)) {
+            "Test '${case.id}' matches no supported targets: minecraft=${case.minecraft}, loaders=${case.loaders}"
+        }
+    }
+}
+
 enum class TestRegistration {
     FORGE_CONTAINER, FORGE_COMPONENTS, NEOFORGE, FABRIC_VANILLA, FORGE_FUNCTIONS, FABRIC_REGISTRY;
 
