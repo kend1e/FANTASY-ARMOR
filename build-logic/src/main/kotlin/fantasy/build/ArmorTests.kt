@@ -127,6 +127,50 @@ fun Project.verifyArmorTestReport(taskName: String): Provider<RegularFile> {
     }
     val report = layout.buildDirectory.file("reports/test/${profile.id}/results.xml")
     tasks.matching { it.name == taskName }.configureEach {
+        val run = this
+        val summary = rootProject.tasks.findByName("testSummary")?.let { rootProject.tasks.named(it.name) }
+            ?: rootProject.tasks.register("testSummary") {
+                description = "Prints a short summary of the Minecraft tests run in this build."
+                doFirst { logger.lifecycle("\nMinecraft tests (${profile.id}):") }
+            }
+        summary.configure {
+            mustRunAfter(run)
+            doLast {
+                if (run.state.executed && !run.state.skipped) {
+                    val file = report.get().asFile
+                    val result = if (!file.isFile) {
+                        "FAIL — no report; see the task output"
+                    } else try {
+                        val factory = DocumentBuilderFactory.newInstance()
+                        factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true)
+                        val document = factory.newDocumentBuilder().parse(file)
+                        val nodes = document.getElementsByTagName("testcase")
+                        val cases = (0 until nodes.length).map { nodes.item(it) as org.w3c.dom.Element }
+                        val unsuccessful = cases.filter {
+                            listOf("failure", "error", "skipped").any { tag -> it.getElementsByTagName(tag).length > 0 }
+                        }
+                        val complete = cases.map { it.getAttribute("name") }.let { it.size == expected.size && it.toSet() == expected }
+                        val passed = cases.size - unsuccessful.size
+                        val status = if (run.state.failure == null && complete && unsuccessful.isEmpty()) "PASS" else "FAIL"
+                        buildString {
+                            append("$status — $passed/${expected.size}")
+                            unsuccessful.forEach { case ->
+                                val message = listOf("failure", "error", "skipped").firstNotNullOf { tag ->
+                                    (case.getElementsByTagName(tag).item(0) as? org.w3c.dom.Element)?.getAttribute("message")
+                                }
+                                append("\n  ${case.getAttribute("name")}: $message")
+                            }
+                            if (!complete) append("\n  Report does not match the expected test list")
+                            if (run.state.failure != null && unsuccessful.isEmpty()) append("\n  Server task failed; see the task output")
+                        }
+                    } catch (_: Exception) {
+                        "FAIL — cannot read report; see $file"
+                    }
+                    logger.lifecycle("${target.name}: $result")
+                }
+            }
+        }
+        finalizedBy(summary)
         outputs.file(report)
         outputs.upToDateWhen { false }
         dependsOn(prepare, tasks.named("classes"), tasks.named("testClasses"))
