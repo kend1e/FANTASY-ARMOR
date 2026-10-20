@@ -1,8 +1,9 @@
+import fantasy.gradle.GeckoLib
 import fantasy.build.configureArmorTests
 import fantasy.build.verifyArmorTestReport
-import fantasy.build.Target
+import fantasy.gradle.Target
 import fantasy.build.registerReleaseExport
-import fantasy.build.ModMetadata
+import fantasy.gradle.ModMetadata
 import org.slf4j.event.Level
 
 plugins {
@@ -59,7 +60,7 @@ sourceSets.main {
 tasks.processResources { duplicatesStrategy = DuplicatesStrategy.FAIL }
 
 dependencies {
-    implementation("software.bernie.geckolib:geckolib-neoforge-${platform.minecraft}:${platform.geckolib}")
+    implementation(platform.dependency<GeckoLib>().notation(platform))
 }
 
 neoForge.ideSyncTask(tasks.named("generateModMetadata"))

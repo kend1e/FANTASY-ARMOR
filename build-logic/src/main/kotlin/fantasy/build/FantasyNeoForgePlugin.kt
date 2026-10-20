@@ -1,5 +1,8 @@
 package fantasy.build
 
+import fantasy.gradle.Target
+import fantasy.gradle.NeoForgeSettings
+
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.publish.PublishingExtension
@@ -20,13 +23,6 @@ class FantasyNeoForgePlugin : Plugin<Project> {
         }
 
         require(platform.settings is NeoForgeSettings) { "Expected NeoForge settings for $path" }
-        val metadata = extensions.getByType<ModMetadata>().templateValues(platform) + mapOf(
-            "neo_version" to platform.loaderVersion,
-            "neo_version_range" to platform.loaderDependencyRange,
-        )
-        registerMetadataTemplates(metadata)
-
-
         extensions.configure<PublishingExtension> {
             publications {
                 register<MavenPublication>("mavenJava") { from(components["java"]) }

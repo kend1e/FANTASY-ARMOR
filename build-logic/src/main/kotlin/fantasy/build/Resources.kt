@@ -1,8 +1,9 @@
 package fantasy.build
 
 import com.google.gson.GsonBuilder
+import fantasy.definitions.mod
 
-const val RESOURCE_NAMESPACE = "fantasy_armor"
+val RESOURCE_NAMESPACE = mod.id
 
 internal val resourceGson = GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create()
 

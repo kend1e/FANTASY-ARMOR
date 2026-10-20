@@ -1,8 +1,9 @@
+import fantasy.gradle.GeckoLib
 import fantasy.build.configureArmorTests
 import fantasy.build.verifyArmorTestReport
-import fantasy.build.Target
+import fantasy.gradle.Target
 import fantasy.build.registerReleaseExport
-import fantasy.build.ModMetadata
+import fantasy.gradle.ModMetadata
 
 plugins {
     id("fantasy.forge")
@@ -57,7 +58,7 @@ dependencies {
     implementation(minecraft.dependency(project.name, forge))
     annotationProcessor("net.minecraftforge:eventbus-validator:7.0.5")
     annotationProcessor("org.spongepowered:mixin:0.8.7:processor")
-    implementation("software.bernie.geckolib:geckolib-forge-${platform.minecraft}:${platform.geckolib}")
+    implementation(platform.dependency<GeckoLib>().notation(platform))
 }
 
 tasks.jar {

@@ -1,5 +1,7 @@
 package fantasy.build
 
+import fantasy.gradle.MinecraftRuntime
+
 @DslMarker
 annotation class MinecraftDsl
 
@@ -31,7 +33,7 @@ data class MinecraftResources(
     val armorTags: ArmorTagFormat,
 )
 
-data class MinecraftVersion(val id: String, val java: Int, val resources: MinecraftResources)
+data class MinecraftVersion(val runtime: MinecraftRuntime, val resources: MinecraftResources)
 
 class MinecraftCatalog internal constructor(versions: Map<String, MinecraftVersion>) {
     private val versions = versions.toMap()
@@ -59,8 +61,7 @@ class MinecraftVersionBuilder internal constructor(private val id: String) {
     var armorTags: ArmorTagFormat? = null
 
     internal fun build() = MinecraftVersion(
-        id,
-        requireNotNull(java) { "$id: java is required" },
+        MinecraftRuntime(id, requireNotNull(java) { "$id: java is required" }),
         MinecraftResources(
             requireNotNull(recipes) { "$id: recipes are required" },
             requireNotNull(itemModels) { "$id: itemModels are required" },

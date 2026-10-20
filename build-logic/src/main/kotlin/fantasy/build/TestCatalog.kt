@@ -1,5 +1,8 @@
 package fantasy.build
 
+import fantasy.gradle.Target
+import fantasy.gradle.Loader
+
 data class TestCase(
     val id: String,
     val owner: String,

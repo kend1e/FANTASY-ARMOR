@@ -28,7 +28,7 @@ displayName="${mod_name}" #mandatory
 # A URL for the "homepage" for this mod, displayed in the mod UI
 #displayURL="https://change.me.to.your.mods.homepage.example.invalid/" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
-logoFile="logo.png" #optional
+logoFile="${mod_icon}" #optional
 # A text field displayed in the mod UI
 #credits="" #optional
 # A text field displayed in the mod UI
@@ -73,9 +73,4 @@ side="BOTH"
 #openGLVersion="[3.2,)"
 
 # GeckoLib is required by the armor items on both physical sides.
-[[dependencies.${mod_id}]]
-modId="geckolib"
-mandatory=true
-versionRange="${geckolib_version_range}"
-ordering="NONE"
-side="BOTH"
+${mod_dependencies}

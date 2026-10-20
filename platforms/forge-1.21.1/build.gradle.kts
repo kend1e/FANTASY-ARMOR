@@ -1,8 +1,9 @@
+import fantasy.gradle.GeckoLib
 import fantasy.build.configureArmorTests
 import fantasy.build.verifyArmorTestReport
-import fantasy.build.Target
+import fantasy.gradle.Target
 import fantasy.build.registerReleaseExport
-import fantasy.build.ModMetadata
+import fantasy.gradle.ModMetadata
 
 plugins {
     id("fantasy.forge")
@@ -61,7 +62,7 @@ dependencies {
     implementation("net.sf.jopt-simple:jopt-simple:5.0.4") {
         version { strictly("5.0.4") }
     }
-    implementation("software.bernie.geckolib:geckolib-forge-${platform.minecraft}:${platform.geckolib}")
+    implementation(platform.dependency<GeckoLib>().notation(platform))
     implementation(libs.mclib)
 }
 

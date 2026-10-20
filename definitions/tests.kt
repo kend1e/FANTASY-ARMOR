@@ -1,7 +1,7 @@
 package fantasy.definitions
 
 import fantasy.build.TestCase
-import fantasy.build.Loader
+import fantasy.gradle.Loader
 import fantasy.build.TestVersion
 import fantasy.build.TestRegistration.*
 

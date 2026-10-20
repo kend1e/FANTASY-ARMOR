@@ -1,5 +1,8 @@
 package fantasy.build
 
+import fantasy.gradle.Target
+import fantasy.gradle.Loader
+
 import fantasy.gradle.GenerateFiles
 import fantasy.gradle.PrepareTestRun
 

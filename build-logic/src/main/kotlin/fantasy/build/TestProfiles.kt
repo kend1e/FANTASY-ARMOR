@@ -1,5 +1,7 @@
 package fantasy.build
 
+import fantasy.gradle.Loader
+
 import com.google.gson.Gson
 
 data class TestProfile(
