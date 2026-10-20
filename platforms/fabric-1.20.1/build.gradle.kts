@@ -1,3 +1,5 @@
+import fantasy.build.configureArmorTests
+import fantasy.build.verifyArmorTestReport
 import org.gradle.api.tasks.bundling.AbstractArchiveTask
 import fantasy.build.FabricSettings
 import fantasy.build.Target
@@ -36,3 +38,19 @@ dependencies {
 }
 
 registerReleaseExport(tasks.named<AbstractArchiveTask>("remapJar").flatMap { it.archiveFile })
+
+val tests = configureArmorTests()
+fabricApi.configureTests {
+    createSourceSet.set(false)
+    enableClientGameTests.set(false)
+}
+loom.mods {
+    register("fantasy_armor") { sourceSet(sourceSets.main.get()) }
+    register("fantasy_armor_tests") { sourceSet(tests) }
+}
+val testReport = verifyArmorTestReport("runGameTest")
+loom.runs.named("gameTest") {
+    source(tests)
+    runDir("build/run/test")
+    property("fabric-api.gametest.report-file", testReport.get().asFile.absolutePath)
+}

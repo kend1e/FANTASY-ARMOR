@@ -80,7 +80,7 @@ class FantasyPlatformPlugin : Plugin<Project> {
             into(layout.buildDirectory.dir("generated/resources/shared"))
             duplicatesStrategy = DuplicatesStrategy.FAIL
         }
-        val content = tasks.register<GenerateResources>("generateContentResources") {
+        val content = tasks.register<GenerateFiles>("generateContentResources") {
             contents.set(contentResources(armor, languages, craftingRecipes, target.resources))
             outputDirectory.set(layout.buildDirectory.dir("generated/resources/content"))
         }

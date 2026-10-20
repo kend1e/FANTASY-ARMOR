@@ -1,3 +1,5 @@
+import fantasy.build.configureArmorTests
+import fantasy.build.verifyArmorTestReport
 import fantasy.build.Target
 import fantasy.build.registerReleaseExport
 import fantasy.build.ModMetadata
@@ -79,3 +81,14 @@ sourceSets.main {
 }
 
 registerReleaseExport(tasks.jar.flatMap { it.archiveFile })
+
+val tests = configureArmorTests()
+val testReport = verifyArmorTestReport("runTestGameTestServer")
+minecraft.runs.named("gameTestServer") {
+    with(tests) {
+        systemProperty("forge.logging.console.level", "info")
+        systemProperty("forge.enabledGameTestNamespaces", "fantasy_armor_tests")
+        systemProperty("fantasy_armor.test.report", testReport.get().asFile.absolutePath)
+        workingDir.set(layout.buildDirectory.dir("run/test"))
+    }
+}

@@ -1,3 +1,5 @@
+import fantasy.build.configureArmorTests
+import fantasy.build.verifyArmorTestReport
 import net.minecraftforge.renamer.gradle.RenameJar
 import fantasy.build.Target
 import fantasy.build.registerReleaseExport
@@ -28,6 +30,7 @@ minecraft {
         }
         register("client")
         register("server") { args("--nogui") }
+        register("gameTestServer")
     }
 }
 
@@ -87,3 +90,19 @@ idea.module {
 }
 
 registerReleaseExport(tasks.named<RenameJar>("renameJar").flatMap { it.output })
+
+val tests = configureArmorTests()
+val testReport = verifyArmorTestReport("runTestGameTestServer")
+minecraft.runs.named("gameTestServer") {
+    with(tests) {
+        systemProperty("forge.logging.console.level", "info")
+        mods.register(modId) { source(sourceSets.main.get()) }
+        mods.register("fantasy_armor_tests") { source(tests) }
+        systemProperty("forge.enabledGameTestNamespaces", "fantasy_armor_tests")
+        systemProperty("fantasy_armor.test.report", testReport.get().asFile.absolutePath)
+        workingDir.set(layout.buildDirectory.dir("run/test"))
+    }
+}
+tasks.matching { it.name == "runTestGameTestServer" }.configureEach {
+    dependsOn(devRefmapMappings)
+}

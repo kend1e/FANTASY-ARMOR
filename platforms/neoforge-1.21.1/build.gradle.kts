@@ -1,3 +1,5 @@
+import fantasy.build.configureArmorTests
+import fantasy.build.verifyArmorTestReport
 import fantasy.build.Target
 import fantasy.build.registerReleaseExport
 import fantasy.build.ModMetadata
@@ -68,3 +70,19 @@ idea.module {
 }
 
 registerReleaseExport(tasks.jar.flatMap { it.archiveFile })
+
+val tests = configureArmorTests()
+val testReport = verifyArmorTestReport("runGameTestServer")
+neoForge {
+    mods.register("fantasy_armor_tests") { sourceSet(tests) }
+    runs.named("gameTestServer") {
+        logLevel = Level.INFO
+        sourceSet.set(tests)
+        gameDirectory.set(layout.buildDirectory.dir("run/test"))
+        systemProperty("neoforge.enabledGameTestNamespaces", "fantasy_armor_tests")
+        systemProperty("fantasy_armor.test.report", testReport.get().asFile.absolutePath)
+    }
+    runs.matching { it.name != "gameTestServer" }.configureEach {
+        loadedMods.set(setOf(mods.getByName(modId)))
+    }
+}

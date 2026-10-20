@@ -8,7 +8,7 @@ import org.gradle.api.tasks.*
 import javax.inject.Inject
 
 @CacheableTask
-abstract class GenerateResources : DefaultTask() {
+abstract class GenerateFiles : DefaultTask() {
     @get:Input abstract val contents: MapProperty<String, String>
     @get:OutputDirectory abstract val outputDirectory: DirectoryProperty
     @get:Inject abstract val fileSystem: FileSystemOperations
@@ -18,7 +18,7 @@ abstract class GenerateResources : DefaultTask() {
         val files = contents.get()
         files.keys.forEach { name ->
             require(!java.nio.file.Path.of(name).isAbsolute && root.resolve(name).normalize().startsWith(root)) {
-                "Resource path escapes output directory: $name"
+                "Generated file path escapes output directory: $name"
             }
         }
         fileSystem.delete { delete(root) }

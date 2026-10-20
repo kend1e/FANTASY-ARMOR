@@ -20,3 +20,10 @@ tasks.named<Delete>("clean") {
     dependsOn(":core:clean")
     dependsOn(platformProjects.map { "${it.path}:clean" })
 }
+
+val testAll = tasks.register("testAll") {
+    group = "verification"
+    description = "Runs server tests on every declared target."
+    dependsOn(platformProjects.map { "${it.path}:test" })
+}
+tasks.named("check") { dependsOn(testAll) }

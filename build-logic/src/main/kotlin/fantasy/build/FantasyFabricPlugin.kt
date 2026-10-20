@@ -34,7 +34,7 @@ class FantasyFabricPlugin : Plugin<Project> {
         extensions.add(FabricSettings::class.java, "fabricSettings", fabric)
         val metadata = extensions.getByType<ModMetadata>().fabricValues(target, fabric)
         val template = providers.fileContents(layout.projectDirectory.file("src/main/templates/fabric.mod.json")).asText
-        val generateModMetadata = tasks.register<GenerateResources>("generateModMetadata") {
+        val generateModMetadata = tasks.register<GenerateFiles>("generateModMetadata") {
             contents.set(template.map { text ->
                 val document = JsonParser.parseString(text).asJsonObject
                 metadata.forEach { (name, value) ->

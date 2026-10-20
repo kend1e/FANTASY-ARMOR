@@ -21,7 +21,7 @@ class FantasyCorePlugin : Plugin<Project> {
         artifacts.add(sharedResources.name, tasks.named("processResources")) {
             type = "directory"
         }
-        val defaults = tasks.register<GenerateResources>("generateArmorDefaults") {
+        val defaults = tasks.register<GenerateFiles>("generateArmorDefaults") {
             contents.set(defaultResources(armor))
             outputDirectory.set(layout.buildDirectory.dir("generated/resources/defaults"))
         }
