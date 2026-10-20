@@ -1,0 +1,38 @@
+package net.kenddie.fantasyarmor.client.render;
+
+import net.kenddie.fantasyarmor.shared.client.CapePhysics;
+import net.minecraft.client.model.PlayerModel;
+import net.minecraft.client.renderer.entity.state.AvatarRenderState;
+import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.cache.object.GeoBone;
+
+public final class FARenderUtils {
+
+    /** Uses vanilla cape motion captured in the avatar render state. */
+    public static void applyCapeRotation(AvatarRenderState state, GeoBone bone) {
+        CapePhysics.CapeRotation rot = CapePhysics.computeCapeRotation(
+                state.capeFlap, state.capeLean, state.capeLean2);
+        bone.updateRotation(rot.rotX(), rot.rotY(), rot.rotZ());
+    }
+
+    public static void setFrontLegCapeAngle(@Nullable GeoBone leftLeg, @Nullable GeoBone rightLeg, GeoBone frontCape) {
+        if (leftLeg == null || rightLeg == null) return;
+
+        frontCape.setRotX(CapePhysics.computeFrontCapeAngle(leftLeg.getRotX(), rightLeg.getRotX()));
+    }
+
+    public static void applyBraidRotation(AvatarRenderState state, GeoBone braid) {
+        applyCapeRotation(state, braid);
+
+        braid.setRotX(CapePhysics.computeBraidAngle(braid.getRotX(), state.xRot, state.isCrouching));
+    }
+
+    public static void setArmsVisibility(PlayerModel model, boolean visible) {
+        model.rightArm.visible = visible;
+        model.rightSleeve.visible = visible;
+        model.leftArm.visible = visible;
+        model.leftSleeve.visible = visible;
+    }
+
+    private FARenderUtils() {}
+}

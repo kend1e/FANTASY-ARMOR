@@ -1,7 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "fantasy_armor:item/forgotten_trace_boots",
-    "layer1": "fantasy_armor:item/forgotten_trace_boots_overlay"
-  }
-}

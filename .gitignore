@@ -1,8 +1,11 @@
 .gradle
+.kotlin/
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+docs/
+PROJECT_CONTEXT.md
 
 ### IntelliJ IDEA ###
 .idea
