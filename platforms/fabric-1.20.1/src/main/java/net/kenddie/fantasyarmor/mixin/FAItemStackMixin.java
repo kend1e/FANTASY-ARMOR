@@ -7,7 +7,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-/** 1.20.1 has no per-stack MAX_DAMAGE component or Fabric durability callback. */
 @Mixin(ItemStack.class)
 public abstract class FAItemStackMixin {
     @Inject(method = "getMaxDamage", at = @At("HEAD"), cancellable = true)

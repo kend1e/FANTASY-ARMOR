@@ -13,7 +13,7 @@ data class TestProfile(
     val helmetArmor: Double,
     val setEffects: List<Effect>,
 ) {
-    fun files(loader: Loader, serverConfigDirectory: String): Map<String, String> {
+    fun files(loader: Loader, testServerConfigDirectory: String): Map<String, String> {
         if (loader == Loader.FABRIC) return mapOf(
             "config/fantasy_armor-common.json" to Gson().toJson(mapOf(
                 "applyModifiers" to modifiers, "enableDurability" to durability, "applyArmorEffects" to effects,
@@ -37,7 +37,7 @@ data class TestProfile(
             ["Armor Effects".eclipse_soldier]
             effects = ${Gson().toJson(setEffects.map { "${it.id},${it.duration},${it.amplifier}" })}
         """.trimIndent()
-        val directories = if (loader == Loader.NEOFORGE) listOf(serverConfigDirectory) else listOf("defaultconfigs", serverConfigDirectory)
+        val directories = if (loader == Loader.NEOFORGE) listOf(testServerConfigDirectory) else listOf("defaultconfigs", testServerConfigDirectory)
         return directories.flatMap { directory -> listOf(
             "$directory/fantasy_armor-server.toml" to settings,
             "$directory/fantasy_armor-armor_attributes.toml" to attributes,

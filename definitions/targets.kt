@@ -7,6 +7,11 @@ val targets = buildTargets(releaseVersion = "1.3") {
         dataGeneration = true
         geckolib()
     }
+    fabric("1.19.4") {
+        fabricApi()
+        geckolib()
+        clothConfig()
+    }
     forge("1.20.1") {
         geckolib()
     }
@@ -29,6 +34,12 @@ val targets = buildTargets(releaseVersion = "1.3") {
         geckolib()
         clothConfig()
     }
+    forge("1.21.10") {
+        geckolib()
+    }
+    neoforge("1.21.10") {
+        geckolib()
+    }
     fabric("1.21.10") {
         fabricApi()
         geckolib()
@@ -37,5 +48,13 @@ val targets = buildTargets(releaseVersion = "1.3") {
     forge("1.21.11") {
         dataGeneration = true
         geckolib()
+    }
+    neoforge("1.21.11") {
+        geckolib()
+    }
+    fabric("1.21.11") {
+        fabricApi()
+        geckolib()
+        clothConfig()
     }
 }

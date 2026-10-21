@@ -27,7 +27,7 @@ final class ConfigAccess {
         boolean configured = setting.getRaw();
         try {
             setting.set(!active);
-            helper.assertTrue(setting.get() == active, "WORLD_RESTART must keep active value until restart");
+            TestSupport.check(helper, setting.get() == active, "WORLD_RESTART must keep active value until restart");
         } finally {
             setting.set(configured);
         }
