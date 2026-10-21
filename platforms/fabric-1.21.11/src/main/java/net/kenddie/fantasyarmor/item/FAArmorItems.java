@@ -45,7 +45,7 @@ public final class FAArmorItems {
 
                 Item.Properties props = new Item.Properties().setId(key);
 
-                Supplier<FAArmorAttributes> attributesSupplier = FAConfigs.armorSupplier(set, type);
+                Supplier<FAArmorAttributes> attributesSupplier = FAConfigs.armorSupplier(set, type.getName());
                 FAArmorItem item = new FAArmorItem(set, type, attributesSupplier, props);
 
                 Item registered = Registry.register(BuiltInRegistries.ITEM, key, item);

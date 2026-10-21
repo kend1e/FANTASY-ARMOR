@@ -1,7 +1,6 @@
 package net.kenddie.fantasyarmor.config;
 
 import net.kenddie.fantasyarmor.shared.armor.FAArmorSet;
-import net.minecraft.world.item.ArmorItem;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
 import java.util.HashMap;
@@ -20,10 +19,10 @@ public class FAArmorConfig {
             BUILDER.push(armorSet.getName());
             Map<String, FAArmorAttributesConfig> pieces = new HashMap<>();
 
-            for (ArmorItem.Type type : java.util.List.of(ArmorItem.Type.HELMET, ArmorItem.Type.CHESTPLATE, ArmorItem.Type.LEGGINGS, ArmorItem.Type.BOOTS)) {
-                BUILDER.push(type.getName());
-                FAArmorAttributesConfig attributesConfig = new FAArmorAttributesConfig(BUILDER, armorSet, type);
-                pieces.put(type.getName(), attributesConfig);
+            for (String piece : java.util.List.of("helmet", "chestplate", "leggings", "boots")) {
+                BUILDER.push(piece);
+                FAArmorAttributesConfig attributesConfig = new FAArmorAttributesConfig(BUILDER, armorSet.getName(), piece);
+                pieces.put(piece, attributesConfig);
                 BUILDER.pop();
             }
 

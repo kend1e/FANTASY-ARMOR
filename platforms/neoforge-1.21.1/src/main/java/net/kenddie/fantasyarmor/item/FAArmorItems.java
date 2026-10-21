@@ -35,18 +35,7 @@ public final class FAArmorItems {
 
                 FAArmorAttributesConfig config = FAArmorConfig.ARMOR_CONFIGS.get(set.getName()).get(type.getName());
 
-                Supplier<FAArmorAttributes> attributesSupplier = () -> !FAArmorConfig.SPEC.isLoaded()
-                        ? set.defaults().get(type.getName()) : new FAArmorAttributes.Builder()
-                        .armor(config.armor.get())
-                        .armorToughness(config.armorToughness.get())
-                        .knockbackResistance(config.knockbackResistance.get())
-                        .movementSpeed(config.movementSpeed.get())
-                        .maxHealth(config.maxHealth.get())
-                        .attackDamage(config.attackDamage.get())
-                        .attackSpeed(config.attackSpeed.get())
-                        .luck(config.luck.get())
-                        .durability(config.durability.get())
-                        .build();
+                Supplier<FAArmorAttributes> attributesSupplier = config::read;
 
                 DeferredItem<Item> item = FAItems.ITEMS.register(name, () -> new FAArmorItem(set, type, attributesSupplier));
                 setPieces.put(type, item);

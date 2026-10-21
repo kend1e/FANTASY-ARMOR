@@ -4,14 +4,11 @@ import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.kenddie.fantasyarmor.shared.armor.FAArmorAttributes;
 import net.kenddie.fantasyarmor.shared.armor.FAArmorSet;
-import net.minecraft.world.item.equipment.ArmorType;
 
 import java.util.function.Supplier;
 
 public final class FAConfigs {
-
-    private FAConfigs() {
-    }
+    private FAConfigs() {}
 
     public static void init() {
         AutoConfig.register(FAConfig.class, GsonConfigSerializer::new);
@@ -33,7 +30,7 @@ public final class FAConfigs {
         return AutoConfig.getConfigHolder(FAArmorAttributesConfig.class).getConfig();
     }
 
-    public static Supplier<FAArmorAttributes> armorSupplier(FAArmorSet set, ArmorType type) {
-        return () -> getArmorConfig().getAttributes(set.getName(), type.getName());
+    public static Supplier<FAArmorAttributes> armorSupplier(FAArmorSet set, String pieceName) {
+        return () -> getArmorConfig().getAttributes(set.getName(), pieceName);
     }
 }
