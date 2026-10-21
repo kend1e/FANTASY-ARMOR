@@ -10,7 +10,7 @@ private val baseArmor = mapOf(
     Piece.BOOTS to Attributes(armor = 3.0, armorToughness = 3.0, knockbackResistance = 0.1, durability = 500.0),
 )
 
-val armor = armorCatalog(defaults = baseArmor, addition = "${mod.id}:moon_crystal") {
+val armor = armorCatalog(defaults = baseArmor, addition = "${mod.id}:${moonCrystal.id}") {
     armor("eclipse_soldier") {
         upgradeIngredient = "minecraft:gold_nugget"
         helmet {
