@@ -672,4 +672,147 @@ val languages: TranslationCatalog = translations {
         }
     }
 
+
+    language("tr_tr") {
+        armorNames(
+            helmet = "{name} Miğferi",
+            chestplate = "{name} Göğüslüğü",
+            leggings = "{name} Tozluğu",
+            boots = "{name} Çizmesi",
+        )
+        entry("itemGroup.fantasy_armor.fa_tab", "Fantasy Armor")
+        entry("item.${mod.id}.${moonCrystal.id}", "Ay Kristali")
+
+        armor("eclipse_soldier", name = "Tutulma Askeri") {
+            description = "§7Çok eski zamanlarda tutulmanın güneşe karşı zaferi uğruna savaşmış bir piyadenin zırhı.\nLejyonların çizmeleri altında binlerce talihsizin ölüme kavuştuğu söylenir."
+        }
+
+        armor("golden_horns", name = "Altın Boynuz") {
+            description = "§7Öylesine göz kamaştırıcıdır ki, sanki ışığın kendisinden yontulmuş gibidir.\nNe var ki altını bir lütuf değil, lanettir.\nBu altın ölüm ve yıkıma tanıklık etmiş; parıltısı açgözlülüğü ve kana susamışlığı beslemiştir.\nBu zırh, sahibine ancak düşmanlarını feda etmeye razı olduğu sürece hizmet eder."
+        }
+
+        armor("dragonslayer", name = "Ejderha Avcısı") {
+            description = "§7Mağlup edilmiş ejderhaların pullarından dövülmüştür; her biri kadim güç ve öfkenin bir simgesidir.\nZırhın plakaları ve dikenleri sana ejderhalar üzerindeki zaferin kudretini bahşeder. Ancak unutma: Bu zırhla atılan her adım, sayısız ölümün ağırlığını taşır."
+        }
+
+        armor("hero", name = "Kahraman") {
+            description = "§7Her biri son nefesine dek savaşmış kadim savaşçıların mirasıdır.\nAdalet uğruna göğüslenen sayısız savaşın ve cefanın hatırasını taşır.\nFakat şan ağır bir yüktür.\nHer hikâye çağların ötesine ulaşamaz."
+        }
+
+        armor("thief", name = "Hırsız") {
+            description = "§7Gölgelerde yaşayan ve karanlığı soluyanlar için kusursuz bir yoldaştır.\nOnu kuşanan, geceyle bir olur.\nKara maske yüzünü gizler; düşmanlarını ise kim olduğuna dair şüphe içinde bırakır."
+        }
+
+        armor("wandering_wizard", name = "Gezgin Büyücü") {
+            helmet = "Gezgin Büyücü Başlığı"
+            chestplate = "Gezgin Büyücü Cübbesi"
+            leggings = "Gezgin Büyücü Pantolonu"
+            boots = "Gezgin Büyücü Çarığı"
+            description = "§7Kadim büyüyle yoğrulmuştur.\nGiysileri unutulmuş büyüleri fısıldar, başka dünyalara açılan kapılar aralar.\nBu giysinin her bir ipliği, sahibini bilinmeyen güçlere bağlar; ona büyü yapma kudreti verirken dinlenmeye izin vermeyen ebedi bir gezginlik laneti de yükler."
+        }
+
+        armor("sunset_wings", name = "Gün Batımı Kanatları") {
+            description = "§7Günbatımı, aynı anda hem son hem de başlangıçtır.\nKanatlar sahibine karanlığın içinden yol gösterir.\nOnları kuşandığında, ebedi gecenin hüzünlü habercisine dönüşürsün."
+        }
+
+        armor("chess_board_knight", name = "Satranç Şövalyesi") {
+            leggings = "Satranç Şövalyesi Pantolonu"
+            description = "§7Her hamle bir savaş, her adım bir stratejidir.\nBu zırh, savaşın soğuk mantığını ve acımasız kudretini cisimleştirir.\nOnu bir stratejistin gururuyla kuşan; zafer uğruna her şeyi, hatta ruhunu bile feda etmeye hazır ol."
+        }
+
+        armor("dark_lord", name = "Karanlığın Lordu") {
+            description = "§7Başka bir dünyanın derinliklerinde yaratılmış bu zırh, dehşetin kudretinin vücut bulmuş halidir.\nDikenleri ve kara zırhı, kırılmış dişleri andırır.\nCesaretin varsa kuşan; lakin karanlığa ebedi sadakat istediğini ve ona direnenleri yuttuğunu bil."
+        }
+
+        armor("fog_guard", name = "Pus Muhafızı") {
+            description = "§7Kadim sislerle örtülü bu zırh, eşsiz bir koruma sunar; ancak sahibini kayıp diyarların görüntüleriyle zayıflatır."
+        }
+
+        armor("dark_cover", name = "Zifiri Örtü") {
+            description = "§7Sahibini gölgelere bürüyen bu zırh, ışığa karşı koruma ve sessizlik bahşeder; fakat karanlık güçlerin unutulmuş sırlarını fısıldar.\nKuşan, ama gölgelerin uyarılarına kulak ver."
+        }
+
+        armor("spark_of_dawn", name = "Şafak Kıvılcımı") {
+            description = "§7İlk ışığın doğduğu anda dövülen bu zırh, sıcaklık ve aydınlık taşır; ne var ki kalbi temiz olmayanı yakar.\nGerçek kudretini yalnızca Erdemliler açığa çıkarabilir."
+        }
+
+        armor("golden_execution", name = "Altın İnfazcı") {
+            description = "§7İmparatorluğun gazabının yükünü taşıyan bu zırh altın gibi parlar, fakat düşenlerin kanına bulanmıştır.\nOnu gururla kuşan; ama bedelini asla unutma."
+        }
+
+        armor("forgotten_trace", name = "Unutulmuş İz") {
+            leggings = "Unutulmuş İz Pantolonu"
+            description = "§7Kadim savaşların hatırası bu zırhın içinde hâlâ yankılanır; kaybedilmiş nice savaşın izleri, onu kuşananın peşini bırakmaz. Bir kez kuşanıldığında, sahibini başka bir çağdan kalmış ruh olarak damgalar."
+        }
+
+        armor("redeemer", name = "Kefaretçi") {
+            leggings = "Kefaretçi Pantolonu"
+            description = "§7Kadim tarikat tarafından yaratılmış bir zırh.\nTanrın çok uzun zaman önce öldürüldü, fakat inancın ayakta kaldı.\nBu görevden dönmeme ihtimalini gayet iyi bilerek, bilinmeyene cesaretle bir adım atarsın."
+        }
+
+        armor("twinned", name = "İkiz Ruh") {
+            leggings = "İkiz Ruh Pantolonu"
+            description = "§7Ruhen bir başkasına bağlanmış bu zırh, acıyı ve zaferi ikiziyle paylaşır.\nBu setin tamamını kuşananları ortak bir kader bekler."
+        }
+
+        armor("gilded_hunt", name = "Yaldızlı Av") {
+            leggings = "Yaldızlı Av Pantolonu"
+            description = "§7Onur ve şanın peşinden koşanlar tarafından kuşanılır; sahibinin dizginlenmemiş hırsını yansıtır.\nOnunla ava çık, fakat dikkat et — şanın bedeli çoğu zaman ağırdır."
+        }
+
+        armor("lady_maria", name = "Lady Maria'nın") {
+            leggings = "Lady Maria'nın Pantolonu"
+            description = "§7Bir ceset... olduğu yerde, huzur içinde bırakılmalı.\nAh, çok iyi biliyorum. Sırların insanı nasıl da tatlı tatlı çağırdığını.\nArtık seni yalnızca dürüst bir ölüm iyileştirebilir.\nSeni o dizginlenemez merakından özgür bırakabilir."
+        }
+
+        armor("crucible_knight", name = "Kor Ocağı Şövalyesi") {
+            description = "§7Yaşam ocağının kadim gücünü barındırır. Zamanla bu şövalyelerin sergilediği kudret ve hatta heybetleri bile kaotik bulunmuş, hor görülmüştür."
+        }
+
+        armor("evening_ghost", name = "Alacakaranlık Hayaleti") {
+            leggings = "Alacakaranlık Hayaleti Pantolonu"
+            description = "§7Gecenin içinde gizlenen gölge, yerini bilir.\nAdımları sessizdir; fakat varlığının soğuğu teninde hissedilir."
+        }
+
+        armor("ronin", name = "Ronin") {
+            leggings = "Ronin Pantolonu"
+            description = "§7Çelik geçmişin izlerini taşır; üzerindeki desenler, çoktan soğumuş kanla lekelenmiştir."
+        }
+
+        armor("malenia", name = "Malenia") {
+            leggings = "Malenia Pantolonu"
+            description = "§7...Sözlerime kulak ver. Ben Malenia. Miquella'nın Kılıcı. Ve yenilgiyi asla tatmadım."
+        }
+
+        armor("old_knight", name = "Kadim Şövalye") {
+            description = "§7Sayısız savaştan sağ çıkan bir şövalyenin bir zamanlar kuşandığı zırh.\nZayıf olanlar için ağırlığı dayanılmazdır; ancak yükünü taşıyabilenler asla yere serilmez."
+        }
+
+        armor("silver_knight", name = "Gümüş Şövalye") {
+            description = "§7Savaşta asla sendelememiş seçkin bir savaşçının zırhı.\nGümüşten parıltısı ay ışığını yansıtır; sahibine karşı koymaya cüret edenleri kaçınılmaz bir ölüm bekler."
+        }
+
+        armor("dead_gladiator", name = "Ölü Gladyatör") {
+            description = "§7Arenada düşen bir kölenin zırhı.\nAdı unutulmuş olsa da çeliğin altında hâlâ bir öfke yanmaktadır."
+        }
+
+        armor("flesh_of_the_feaster", name = "Yutucunun Eti") {
+            leggings = "Yutucunun Eti Pantolonu"
+            description = "§7Bu zırh kan ve açgözlülük kokar.\nBir zamanlar durmaksızın beslenen birine aitti — ta ki yediği şeye dönüşene dek."
+        }
+
+        armor("wind_worshipper", name = "Rüzgâr Müridi") {
+            leggings = "Rüzgâr Müridi Pantolonu"
+            description = "§7Kumaşı nefes kadar hafiftir.\nHuzur nedir bilmeyenlerin giydiği bu kumaş, rüzgârın götürdüğü her yere savrulur."
+        }
+
+        armor("grave_sentinel", name = "Mezarlık Muhafızı") {
+            description = "§7Ölülerin ebedi uykusuna bekçilik eden zırh. Zamanında şanlı yeminlerle adanmış bu vazife, yıllar içinde tozun ve sükûtun arasında sessiz bir nöbete evrildi."
+        }
+
+        armor("ornstein", name = "Ornstein") {
+            leggings = "Ornstein Pantolonu"
+            description = "§7Aslan suretinde şekillendirilmiş altın levhalar.\nİlk Lord’un en azılı ejderha avcısı için dövülen bu zırh, geride kalan yıldırımın gücüyle hâlâ titreşiyor.\nSetin tamamını kuşananlar, kadim taş pulları bile delip geçebilen bir mızrak darbesinin yankısını hisseder."
+        }
+    }
 }
