@@ -815,4 +815,131 @@ val languages: TranslationCatalog = translations(namespace = mod.id) {
             description = "§7Aslan suretinde şekillendirilmiş altın levhalar.\nİlk Lord’un en azılı ejderha avcısı için dövülen bu zırh, geride kalan yıldırımın gücüyle hâlâ titreşiyor.\nSetin tamamını kuşananlar, kadim taş pulları bile delip geçebilen bir mızrak darbesinin yankısını hisseder."
         }
     }
+
+    language("ko_kr") {
+        armorNames(
+            helmet = "{name}의 투구",
+            chestplate = "{name}의 흉갑",
+            leggings = "{name}의 각반",
+            boots = "{name}의 장화",
+        )
+        entry("itemGroup.fantasy_armor.fa_tab", "Fantasy Armor")
+        entry("item.${mod.id}.${moonCrystal.id}", "달의 수정")
+
+        armor("eclipse_soldier", name = "일식 병사") {
+            description = "§7오래전 태양을 누르고 일식의 승리를 이루기 위해 싸웠던 보병의 갑옷.\n군단의 군홧발 아래 수천 명의 불운한 이들이 죽음을 맞았다고 한다."
+        }
+
+        armor("golden_horns", name = "황금 뿔") {
+            description = "§7빛 그 자체를 깎아 만든 듯 눈부시게 빛나는 갑옷.\n그러나 그 황금은 축복이 아닌 저주다.\n죽음과 파괴를 목격한 황금의 빛은 탐욕과 살육의 갈망을 키운다.\n이 갑옷은 주인이 적들을 제물로 바칠 의지가 있는 동안에만 그를 섬긴다."
+        }
+
+        armor("dragonslayer", name = "용 사냥꾼") {
+            description = "§7쓰러뜨린 용들의 비늘로 벼려낸 갑옷. 비늘 하나하나가 고대의 힘과 분노를 상징한다.\n철판과 가시는 용에게 거둔 승리의 힘을 부여한다. 하지만 이 갑옷을 입고 내딛는 걸음마다 수많은 죽음의 무게가 실려 있음을 잊지 마라."
+        }
+
+        armor("hero", name = "영웅") {
+            description = "§7마지막 숨을 거둘 때까지 싸웠던 고대 전사들의 유산.\n정의를 찾아 나서며 겪은 수많은 전투와 고난의 기억이 깃들어 있다.\n그러나 영광은 무거운 짐이다.\n모든 이야기가 세월을 넘어 전해지는 것은 아니다."
+        }
+
+        armor("thief", name = "도둑") {
+            description = "§7그림자 속에 살며 어둠을 호흡하는 이들에게 더없이 좋은 동반자.\n착용자는 밤과 하나가 된다.\n검은 가면이 얼굴을 가려 적들이 그 정체를 알 수 없게 한다."
+        }
+
+        armor("wandering_wizard", name = "방랑 마법사") {
+            description = "§7고대의 마법이 스며든 의복.\n옷자락은 잊힌 주문을 속삭이며 다른 세계로 통하는 문을 연다.\n실 한 올 한 올이 착용자를 알 수 없는 힘에 묶어 마법을 부리는 능력을 주지만, 동시에 쉴 수 없는 영원한 방랑의 저주를 내린다."
+        }
+
+        armor("sunset_wings", name = "석양의 날개") {
+            description = "§7석양은 끝인 동시에 시작이다.\n날개는 주인을 어둠 속에서 인도한다.\n이를 걸치면 영원한 밤의 침울한 전령이 된다."
+        }
+
+        armor("chess_board_knight", name = "체스판 기사") {
+            description = "§7모든 수는 전투이며, 모든 발걸음은 전략이다.\n이 갑옷은 전쟁의 냉혹한 논리와 무자비한 힘을 구현한다.\n전략가의 긍지로 입어라. 승리를 위해서는 영혼마저 바칠 각오를 해야 한다."
+        }
+
+        armor("dark_lord", name = "어둠의 군주") {
+            description = "§7다른 세계의 깊은 곳에서 만들어진, 공포의 힘을 구현한 갑옷.\n가시와 검은 갑주는 부러진 송곳니를 닮았다.\n용기가 있다면 입어라. 그러나 어둠에 대한 영원한 충성을 요구하며, 저항하는 자들을 집어삼킨다는 것을 알아야 한다."
+        }
+
+        armor("fog_guard", name = "안개 파수꾼") {
+            description = "§7고대의 안개에 싸인 이 갑옷은 비할 데 없는 보호를 제공하지만, 사라진 왕국의 환영으로 착용자를 쇠약하게 만든다."
+        }
+
+        armor("dark_cover", name = "어둠의 장막") {
+            description = "§7착용자를 그림자로 감싸 빛으로부터 보호하고 고요함을 부여하는 갑옷. 그러나 어둠의 세력이 품은 잊힌 비밀을 속삭인다.\n입되, 그림자의 경고에 귀를 기울여라."
+        }
+
+        armor("spark_of_dawn", name = "새벽의 불꽃") {
+            description = "§7첫 빛 속에서 벼려져 온기와 광채를 품은 갑옷. 그러나 마음이 순수하지 않은 자는 불태운다.\n오직 의로운 자만이 그 진정한 힘을 일깨울 수 있다."
+        }
+
+        armor("golden_execution", name = "황금 처형") {
+            description = "§7제국의 분노를 짊어진 이 갑옷은 황금빛으로 빛나지만, 쓰러진 이들의 피에 젖어 있다.\n긍지를 품고 입되, 그 대가를 결코 잊지 마라."
+        }
+
+        armor("forgotten_trace", name = "잊힌 흔적") {
+            description = "§7고대 전쟁의 기억이 깃든 갑옷. 오래전 사라진 전투의 메아리가 착용자를 따라다닌다.\n한번 입으면 다른 시대에서 온 영혼이라는 낙인이 찍힌다."
+        }
+
+        armor("redeemer", name = "구원자") {
+            description = "§7옛 기사단이 만든 갑옷.\n네 신은 오래전에 살해되었으나, 신앙은 살아남았다.\n여정에서 돌아오지 못할 가능성을 알면서도, 너는 미지의 세계로 용감히 발을 내딛는다."
+        }
+
+        armor("twinned", name = "쌍둥이") {
+            description = "§7영혼으로 다른 존재와 이어진 이 갑옷은 쌍둥이와 고통과 승리를 함께 나눈다.\n한 벌을 모두 갖춰 입는 자에게는 공동의 운명이 기다린다."
+        }
+
+        armor("gilded_hunt", name = "황금빛 사냥") {
+            description = "§7명예와 영광을 좇는 이들이 입는 갑옷. 주인의 길들여지지 않은 야망을 비춘다.\n이를 입고 사냥하되 조심하라. 영광에는 흔히 값비싼 대가가 따른다."
+        }
+
+        armor("lady_maria", name = "레이디 마리아") {
+            description = "§7시체는… 그대로 내버려 두어야 하는 법.\n아, 잘 알고 있지. 비밀이 얼마나 달콤하게 유혹하는지.\n이제 너를 치유할 것은 오직 정직한 죽음뿐.\n네 걷잡을 수 없는 호기심에서 해방해 주리라."
+        }
+
+        armor("crucible_knight", name = "도가니 기사") {
+            description = "§7생명의 도가니가 지닌 힘을 품고 있다.\n시간이 흐르면서 이 기사들이 보인 힘은 물론 그 모습마저 혼돈의 산물로 여겨져 경멸받게 되었다."
+        }
+
+        armor("evening_ghost", name = "저녁의 망령") {
+            description = "§7밤에 숨은 그림자는 자신의 자리를 안다.\n그 발걸음은 소리 없지만, 존재가 풍기는 냉기는 피부로 느껴진다."
+        }
+
+        armor("ronin", name = "낭인") {
+            description = "§7강철에는 과거의 상처가 남아 있고, 그 무늬에는 오래전에 식어 버린 피가 배어 있다."
+        }
+
+        armor("malenia", name = "말레니아") {
+            description = "§7…내 말을 새겨들어라. 나는 말레니아. 미켈라의 칼날. 그리고 나는 패배를 모른다."
+        }
+
+        armor("old_knight", name = "옛 기사") {
+            description = "§7수많은 전투에서 살아남은 기사가 한때 입었던 갑옷.\n나약한 자는 그 무게를 견딜 수 없으나, 이를 감당하는 자는 결코 쓰러지지 않는다."
+        }
+
+        armor("silver_knight", name = "은빛 기사") {
+            description = "§7전장에서 한 번도 흔들리지 않았던 정예 전사의 갑옷.\n은빛 광채는 달빛을 비추며, 주인에게 맞서는 자에게 신속한 죽음을 선사한다."
+        }
+
+        armor("dead_gladiator", name = "죽은 검투사") {
+            description = "§7투기장에서 쓰러진 노예의 갑옷.\n그 이름은 잊혔지만, 강철 아래에서는 여전히 분노가 타오른다."
+        }
+
+        armor("flesh_of_the_feaster", name = "포식자의 살점") {
+            description = "§7피와 탐욕의 악취가 풍기는 갑옷.\n끝없이 먹어 치우던 자의 것이었으나, 그는 결국 자신이 먹은 것과 같은 존재가 되었다."
+        }
+
+        armor("wind_worshipper", name = "바람 숭배자") {
+            description = "§7숨결처럼 가벼운 천으로 지은 의복.\n쉼을 모르는 이들이 입고, 바람이 이끄는 곳이면 어디든 떠돈다."
+        }
+
+        armor("grave_sentinel", name = "묘지 파수꾼") {
+            description = "§7죽은 이들의 잠을 지키는 갑옷.\n한때 고결한 맹세로 다짐했던 의무는 세월 속에 뒤틀려, 먼지와 정적 사이에서 이어지는 말없는 경계가 되었다."
+        }
+
+        armor("ornstein", name = "오른슈타인") {
+            description = "§7사자의 형상을 본뜬 황금 갑주.\n최초의 군주를 섬긴 가장 맹렬한 용 사냥꾼을 위해 벼려졌으며, 남아 있는 번개의 힘으로 지금도 낮게 울린다.\n한 벌을 모두 갖춰 입으면 고대의 돌비늘마저 꿰뚫을 창격의 메아리를 느낄 수 있다."
+        }
+    }
 }
