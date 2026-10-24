@@ -34,7 +34,7 @@ public final class FAArmorItems {
 
             for (ArmorItem.Type type : VALID_ARMOR_TYPES) {
                 String name = set.getName() + "_" + type.getName();
-                Supplier<FAArmorAttributes> attributesSupplier = FAConfigs.armorSupplier(set, type);
+                Supplier<FAArmorAttributes> attributesSupplier = FAConfigs.armorSupplier(set, type.getName());
                 FAArmorItem item = new FAArmorItem(set, type, attributesSupplier);
 
                 ResourceLocation id = ResourceLocation.fromNamespaceAndPath(FantasyArmor.MOD_ID, name);

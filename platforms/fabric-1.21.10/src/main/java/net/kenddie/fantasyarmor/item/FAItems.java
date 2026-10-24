@@ -1,6 +1,7 @@
 package net.kenddie.fantasyarmor.item;
 
 import net.kenddie.fantasyarmor.FantasyArmor;
+import net.kenddie.fantasyarmor.shared.content.MaterialCatalog;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
@@ -14,13 +15,11 @@ import java.util.function.Function;
 public final class FAItems {
     public static final Collection<Item> ITEMS = new ArrayList<>();
 
-    public static Item MOON_CRYSTAL;
-
     private FAItems() {
     }
 
     public static void register() {
-        MOON_CRYSTAL = register("moon_crystal", Item::new);
+        MaterialCatalog.IDS.forEach(id -> register(id, FAMaterials::create));
     }
 
     private static Item register(String name, Function<Item.Properties, Item> factory) {

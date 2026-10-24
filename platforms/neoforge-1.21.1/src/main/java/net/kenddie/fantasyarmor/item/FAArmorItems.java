@@ -10,19 +10,18 @@ import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
 public final class FAArmorItems {
-    public static final ArrayList<ArmorItem.Type> VALID_ARMOR_TYPES = new ArrayList<>(List.of(
+    public static final List<ArmorItem.Type> VALID_ARMOR_TYPES = List.of(
             ArmorItem.Type.HELMET,
             ArmorItem.Type.CHESTPLATE,
             ArmorItem.Type.LEGGINGS,
             ArmorItem.Type.BOOTS
-    ));
+    );
     // Set definition -> (ArmorPiece -> RegistryObject<Item> )
     public static final Map<FAArmorSet, Map<ArmorItem.Type, DeferredItem<Item>>> ARMOR_ITEMS = new HashMap<>();
 
@@ -35,20 +34,10 @@ public final class FAArmorItems {
 
                 FAArmorAttributesConfig config = FAArmorConfig.ARMOR_CONFIGS.get(set.getName()).get(type.getName());
 
-                Supplier<FAArmorAttributes> attributesSupplier = () -> !FAArmorConfig.SPEC.isLoaded()
-                        ? set.defaults().get(type.getName()) : new FAArmorAttributes.Builder()
-                        .armor(config.armor.get())
-                        .armorToughness(config.armorToughness.get())
-                        .knockbackResistance(config.knockbackResistance.get())
-                        .movementSpeed(config.movementSpeed.get())
-                        .maxHealth(config.maxHealth.get())
-                        .attackDamage(config.attackDamage.get())
-                        .attackSpeed(config.attackSpeed.get())
-                        .luck(config.luck.get())
-                        .durability(config.durability.get())
-                        .build();
+                Supplier<FAArmorAttributes> attributesSupplier = config::read;
 
-                DeferredItem<Item> item = FAItems.ITEMS.register(name, () -> new FAArmorItem(set, type, attributesSupplier));
+                DeferredItem<Item> item = FAItems.ITEMS.registerItem(name,
+                        properties -> new FAArmorItem(set, type, attributesSupplier, properties));
                 setPieces.put(type, item);
             }
 

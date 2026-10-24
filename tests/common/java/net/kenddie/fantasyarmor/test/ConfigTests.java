@@ -1,7 +1,6 @@
 package net.kenddie.fantasyarmor.test;
 
 import net.kenddie.fantasyarmor.item.armor.ArmorSetEffects;
-import net.kenddie.fantasyarmor.item.armor.FAArmorItem;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -11,6 +10,11 @@ import static net.kenddie.fantasyarmor.test.TestSupport.*;
 public final class ConfigTests {
     public static void run(GameTestHelper h) {
         check(h, ConfigAccess.loaded(), "Server configs must be loaded before tests");
+        ConfigAccess.withSettings(() -> verifySettings(h));
+        h.succeed();
+    }
+
+    private static void verifySettings(GameTestHelper h) {
         boolean modifiers = ConfigAccess.modifiers();
         boolean durability = ConfigAccess.durability();
         boolean effects = ConfigAccess.effects();
@@ -21,7 +25,6 @@ public final class ConfigTests {
             ConfigAccess.durability(true);
             ConfigAccess.effects(false);
             var stack = stack("eclipse_soldier_helmet");
-            var item = (FAArmorItem) stack.getItem();
             MinecraftAccess.applySettings(stack);
             check(h, stack.isDamageableItem(), "Enabled durability must make armor damageable");
             stack.setDamageValue(13);
@@ -48,7 +51,6 @@ public final class ConfigTests {
             ConfigAccess.durability(durability);
             ConfigAccess.effects(effects);
         }
-        h.succeed();
     }
 
     private ConfigTests() {}
