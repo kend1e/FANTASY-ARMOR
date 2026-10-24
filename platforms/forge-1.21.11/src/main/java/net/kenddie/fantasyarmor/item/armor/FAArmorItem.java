@@ -43,6 +43,8 @@ public class FAArmorItem extends Item implements GeoItem {
 
     private final FAArmorSet armorSet;
     private final ArmorType armorType;
+    private FAArmorAttributes cachedAttributes;
+    private ItemAttributeModifiers cachedModifiers;
 
     public FAArmorItem(FAArmorSet armorSet, ArmorType armorType, Supplier<FAArmorAttributes> attributesSupplier, Item.Properties properties) {
         super(buildProperties(properties, armorType, attributesSupplier.get()));
@@ -68,12 +70,19 @@ public class FAArmorItem extends Item implements GeoItem {
         return properties;
     }
 
+    private ItemAttributeModifiers modifiersFor(FAArmorAttributes attributes) {
+        if (cachedModifiers == null || !attributes.equals(cachedAttributes)) {
+            cachedModifiers = ArmorModifiers.build(armorType, attributes);
+            cachedAttributes = attributes;
+        }
+        return cachedModifiers;
+    }
+
     public void applyServerSettings(ItemStack stack) {
         if (!FAArmorConfig.SPEC.isLoaded()) return;
         var attributes = FAArmorConfig.ARMOR_CONFIGS.get(armorSet.getName())
                 .get(armorType.getName()).read().withBonuses(FAConfig.applyModifiers());
-        var modifiers = ArmorModifiers.build(armorType, attributes);
-        ArmorStackSettings.apply(stack, attributes, modifiers, FAConfig.enableDurability());
+        ArmorStackSettings.apply(stack, attributes, modifiersFor(attributes), FAConfig.enableDurability());
     }
 
     @Override

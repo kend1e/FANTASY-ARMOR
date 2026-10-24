@@ -12,8 +12,7 @@ import net.kenddie.fantasyarmor.client.model.FAArmorModel;
 import net.kenddie.fantasyarmor.client.render.FAArmorRenderer;
 import net.kenddie.fantasyarmor.config.FAArmorEffectsConfig;
 import net.kenddie.fantasyarmor.config.FAConfigs;
-import net.minecraft.client.Minecraft;
-import net.kenddie.fantasyarmor.client.FATooltips;
+import net.kenddie.fantasyarmor.item.FATooltips;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
@@ -98,7 +97,6 @@ public class FAArmorItem extends ArmorItem implements GeoItem {
         if (FAConfigs.getMainConfig().showDescriptions) {
             FATooltips.append(
                     Component.translatable(getDescriptionId() + ".tooltip"),
-                    Minecraft.getInstance().font.getSplitter(),
                     FAConfigs.getMainConfig().descriptionsLength,
                     tooltip::add);
         }

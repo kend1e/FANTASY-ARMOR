@@ -46,8 +46,8 @@ public class FAArmorItem extends ArmorItem implements GeoItem {
     private final Supplier<FAArmorAttributes> attributesSupplier;
     private ItemAttributeModifiers cachedModifiers;
 
-    public FAArmorItem(FAArmorSet armorSet, Type type, Supplier<FAArmorAttributes> attributesSupplier) {
-        super(ArmorMaterials.NETHERITE, type, new Properties().stacksTo(1).fireResistant());
+    public FAArmorItem(FAArmorSet armorSet, Type type, Supplier<FAArmorAttributes> attributesSupplier, Properties properties) {
+        super(ArmorMaterials.NETHERITE, type, properties.stacksTo(1).fireResistant());
         this.armorSet = armorSet;
         this.attributesSupplier = attributesSupplier;
     }

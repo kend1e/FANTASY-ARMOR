@@ -2,11 +2,11 @@
 
 A Minecraft mod with armor sets and effects for Forge, NeoForge, and Fabric.
 
-| Loader   | Minecraft                       |
-|----------|---------------------------------|
-| Forge    | 1.19.4, 1.20.1, 1.21.1, 1.21.11 |
-| NeoForge | 1.21.1                          |
-| Fabric   | 1.20.1, 1.21.1, 1.21.10         |
+| Loader   | Minecraft                                |
+|----------|------------------------------------------|
+| Forge    | 1.19.4, 1.20.1, 1.21.1, 1.21.10, 1.21.11 |
+| NeoForge | 1.21.1, 1.21.10, 1.21.11                 |
+| Fabric   | 1.19.4, 1.20.1, 1.21.1, 1.21.10, 1.21.11 |
 
 Project needs JDK 21 to run Gradle. Toolchains select Java 17 or 21 for each target.
 
@@ -29,16 +29,19 @@ Content structure:
 
 - [definitions/armor.kt](definitions/armor.kt) - armor sets, attributes, effects, and recipe ingredients.
 - [definitions/translations.kt](definitions/translations.kt) - localized names and descriptions.
+- [definitions/mod.kt](definitions/mod.kt) - mod metadata and configuration.
 - [definitions/recipes.kt](definitions/recipes.kt) - shared crafting recipes.
-- [definitions/minecraft.kt](definitions/minecraft.kt) - Minecraft resource formats and Java versions.
 - [definitions/targets.kt](definitions/targets.kt) - release versions and typed Forge, NeoForge, and Fabric dependency settings.
-- [gradle/libs.versions.toml](gradle/libs.versions.toml) - Gradle plugin versions.
+- [definitions/tests.kt](definitions/tests.kt) - test cases for armor sets and attributes.
+- [gradle/libs.versions.toml](gradle/libs.versions.toml) - build dependencies.
 - `resources/` - shared textures, geometry, and logo.
 - `core/` - logic without Minecraft APIs.
 - `minecraft/<version>/` - shared armor modifiers, set effects, stack components, and rendering for each Minecraft version.
 - `loaders/` - shared loader initialization and configuration code.
 - `platforms/` - code for individual targets.
-- `build-logic/` - Gradle plugins, content DSL, and resource generators.
+- `build-logic/` - connects project definitions to the shared Fantasy Build plugin.
 
 Resources are generated automatically into each module's `build/generated/` during builds and Gradle game launches. 
-To generate content separately `./gradlew generateAll` exists.
+To generate content separately, run `./gradlew generateResources`.
+
+_P.S. I also want to note that part of this code was written using AI, which isn't something I'm proud of, but I'm tired of Minecraft development and constantly having to update the API for every new version. I’m familiar with 1.7.10, but I don’t want to delve deeply into how the new versions of Minecraft work, let alone three or more loaders at the same time. I tried to keep it under control as best I could. Sorry if there’s any garbage code or bad design choices here._

@@ -1,6 +1,6 @@
 package fantasy.definitions
 
-import fantasy.build.*
+import fantasy.gradle.content.armor.*
 
 // Shared starting values. Set defaults and then piece overrides take precedence.
 private val baseArmor = mapOf(
@@ -10,7 +10,7 @@ private val baseArmor = mapOf(
     Piece.BOOTS to Attributes(armor = 3.0, armorToughness = 3.0, knockbackResistance = 0.1, durability = 500.0),
 )
 
-val armor = armorCatalog(defaults = baseArmor) {
+val armor = armorCatalog(defaults = baseArmor, addition = "${mod.id}:${moonCrystal.id}") {
     armor("eclipse_soldier") {
         upgradeIngredient = "minecraft:gold_nugget"
         helmet {

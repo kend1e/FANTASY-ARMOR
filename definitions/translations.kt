@@ -1,9 +1,9 @@
 package fantasy.definitions
 
-import fantasy.build.translations
-import fantasy.build.TranslationCatalog
+import fantasy.gradle.resources.translations
+import fantasy.gradle.resources.TranslationCatalog
 
-val languages: TranslationCatalog = translations {
+val languages: TranslationCatalog = translations(namespace = mod.id) {
     language("en_us") {
         armorNames(
             helmet = "{name} Helmet",
@@ -12,7 +12,7 @@ val languages: TranslationCatalog = translations {
             boots = "{name} Boots",
         )
         entry("itemGroup.fantasy_armor.fa_tab", "Fantasy Armor")
-        entry("item.fantasy_armor.moon_crystal", "Moon Crystal")
+        entry("item.${mod.id}.${moonCrystal.id}", "Moon Crystal")
 
         armor("eclipse_soldier", name = "Eclipse Soldier") {
             description = "§7The armor of an infantryman who fought for the triumph of the eclipse over the sun long ago. \nIt is said that beneath the boots of the legions thousands of unfortunates have found death."
@@ -139,7 +139,7 @@ val languages: TranslationCatalog = translations {
             boots = "{name}のブーツ",
         )
         entry("itemGroup.fantasy_armor.fa_tab", "Fantasy Armor")
-        entry("item.fantasy_armor.moon_crystal", "月の結晶")
+        entry("item.${mod.id}.${moonCrystal.id}", "月の結晶")
 
         armor("eclipse_soldier", name = "覆面兵士") {
             description = "§7太陽の勝利を掲げて戦った、かつての歩兵の鎧\n数千の不運な者たちが、軍団の足元で死を迎えたと言われている"
@@ -290,7 +290,7 @@ val languages: TranslationCatalog = translations {
             boots = "Ботинки {name}",
         )
         entry("itemGroup.fantasy_armor.fa_tab", "Fantasy Armor")
-        entry("item.fantasy_armor.moon_crystal", "Лунный кристалл")
+        entry("item.${mod.id}.${moonCrystal.id}", "Лунный кристалл")
 
         armor("eclipse_soldier", name = "Солдата Затмения") {
             description = "§7Доспехи пехотинца, когда-то давно сражавшегося за торжество затмения над солнцем. \nКто-то говорит, что под сапогами легионов нашли смерть тысячи несчастных."
@@ -417,7 +417,7 @@ val languages: TranslationCatalog = translations {
             boots = "Чоботи {name}",
         )
         entry("itemGroup.fantasy_armor.fa_tab", "Fantasy Armor")
-        entry("item.fantasy_armor.moon_crystal", "Місячний кристал")
+        entry("item.${mod.id}.${moonCrystal.id}", "Місячний кристал")
 
         armor("eclipse_soldier", name = "Солдата Затемнення") {
             description = "§7Броня піхотинця, який колись боровся за тріумф затемнення над сонцем. \nКажуть, що під черевиками легіонів знайшли смерть тисячі нещасних."
@@ -544,7 +544,7 @@ val languages: TranslationCatalog = translations {
             boots = "{name}靴子",
         )
         entry("itemGroup.fantasy_armor.fa_tab", "奇幻铠甲")
-        entry("item.fantasy_armor.moon_crystal", "皎月水晶")
+        entry("item.${mod.id}.${moonCrystal.id}", "皎月水晶")
 
         armor("eclipse_soldier", name = "日蚀战士") {
             description = "§7很久以前是为日蚀战胜太阳的步兵的铠甲。\n据说，在军团的铁蹄下，成千上万的不幸者败亡。"

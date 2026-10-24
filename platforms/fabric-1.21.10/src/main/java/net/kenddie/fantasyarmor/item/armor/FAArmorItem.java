@@ -7,14 +7,12 @@ import net.kenddie.fantasyarmor.shared.armor.FAArmorAttributes;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.kenddie.fantasyarmor.FantasyArmor;
 import net.kenddie.fantasyarmor.client.model.FAArmorModel;
 import net.kenddie.fantasyarmor.client.render.FAArmorRenderer;
 import net.kenddie.fantasyarmor.config.FAArmorEffectsConfig;
 import net.kenddie.fantasyarmor.config.FAConfigs;
-import net.minecraft.client.Minecraft;
-import net.kenddie.fantasyarmor.client.FATooltips;
+import net.kenddie.fantasyarmor.item.FATooltips;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -107,12 +105,9 @@ public class FAArmorItem extends Item implements GeoItem {
     public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltipAdder, TooltipFlag flag) {
         super.appendHoverText(stack, context, tooltipDisplay, tooltipAdder, flag);
 
-        if (!RenderSystem.isOnRenderThread()) return;
-
         if (FAConfigs.getMainConfig().showDescriptions) {
             FATooltips.append(
                     Component.translatable(getDescriptionId() + ".tooltip"),
-                    Minecraft.getInstance().font.getSplitter(),
                     FAConfigs.getMainConfig().descriptionsLength,
                     tooltipAdder);
         }

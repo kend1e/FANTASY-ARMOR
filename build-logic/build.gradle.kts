@@ -4,10 +4,17 @@ plugins {
 
 repositories {
     mavenCentral()
+    gradlePluginPortal()
+    maven("https://maven.fabricmc.net/")
+    maven("https://maven.minecraftforge.net/")
 }
 
 dependencies {
-    implementation("com.google.code.gson:gson:2.10.1")
+    implementation(libs.fantasy.build)
+    implementation(libs.fantasy.fabric)
+    implementation(libs.fantasy.forge)
+    implementation(libs.fantasy.neoforge)
+    implementation(libs.gson)
 }
 
 kotlin {
@@ -19,18 +26,6 @@ kotlin {
 
 gradlePlugin {
     plugins {
-        register("fabric") {
-            id = "fantasy.fabric"
-            implementationClass = "fantasy.build.FantasyFabricPlugin"
-        }
-        register("forge") {
-            id = "fantasy.forge"
-            implementationClass = "fantasy.build.FantasyForgePlugin"
-        }
-        register("neoforge") {
-            id = "fantasy.neoforge"
-            implementationClass = "fantasy.build.FantasyNeoForgePlugin"
-        }
         register("settings") {
             id = "fantasy.settings"
             implementationClass = "fantasy.build.FantasySettingsPlugin"

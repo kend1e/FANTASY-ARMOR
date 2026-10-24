@@ -1,9 +1,7 @@
 package fantasy.definitions
 
-import fantasy.build.TestCase
-import fantasy.build.Loader
-import fantasy.build.TestVersion
-import fantasy.build.TestRegistration.*
+import fantasy.gradle.testing.TestCase
+import fantasy.gradle.Loader
 
 val armorTests = listOf(
     TestCase("recipes", "RecipeTests"),
@@ -14,42 +12,17 @@ val armorTests = listOf(
     TestCase("sets", "SetTests"),
     TestCase("effects", "EffectTests"),
     TestCase("configs", "ConfigTests"),
+    TestCase("config_fixture", "ConfigFixtureTests", loaders = setOf(Loader.FORGE)),
     TestCase("config_load", "ConfigLoadTests"),
     TestCase("config_restart_policy", "RestartPolicyTests", loaders = setOf(Loader.NEOFORGE)),
     TestCase("ticks", "TickTests"),
     TestCase("tick_cleanup", "TickCleanupTests"),
 )
 
-val testVersions = mapOf(
-    "1.19.4" to TestVersion(
-        sources = listOf("nbt", "crafting-container", "1.19.4"),
-        packFormat = 12,
-        structures = "structures",
-        registrations = mapOf(Loader.FORGE to FORGE_CONTAINER),
-    ),
-    "1.20.1" to TestVersion(
-        sources = listOf("nbt", "crafting-container", "1.20.1"),
-        packFormat = 15,
-        structures = "structures",
-        registrations = mapOf(Loader.FORGE to FORGE_CONTAINER, Loader.FABRIC to FABRIC_VANILLA),
-    ),
-    "1.21.1" to TestVersion(
-        sources = listOf("component-stacks", "1.21.1"),
-        packFormat = 48,
-        structures = "structure",
-        registrations = mapOf(Loader.FORGE to FORGE_COMPONENTS, Loader.FABRIC to FABRIC_VANILLA, Loader.NEOFORGE to NEOFORGE),
-    ),
-    "1.21.10" to TestVersion(
-        sources = listOf("component-stacks", "components", "crafting-input", "1.21.10"),
-        packFormat = 88,
-        structures = "structure",
-        registrations = mapOf(Loader.FABRIC to FABRIC_REGISTRY),
-    ),
-    "1.21.11" to TestVersion(
-        sources = listOf("component-stacks", "components", "crafting-input", "1.21.11"),
-        packFormat = 94,
-        structures = "structure",
-        registrations = mapOf(Loader.FORGE to FORGE_FUNCTIONS),
-        serverConfigDirectory = "gametestserver/gametestworld/serverconfig",
-    ),
+val testSources = mapOf(
+    "1.19.4" to listOf("nbt", "crafting-container", "1.19.4"),
+    "1.20.1" to listOf("nbt", "crafting-container", "1.20.1"),
+    "1.21.1" to listOf("component-stacks", "1.21.1"),
+    "1.21.10" to listOf("component-stacks", "components", "crafting-input", "1.21.10"),
+    "1.21.11" to listOf("component-stacks", "components", "crafting-input", "1.21.11"),
 )

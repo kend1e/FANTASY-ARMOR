@@ -18,11 +18,12 @@ public final class StackUpdateTests {
             var expected = stack("eclipse_soldier_helmet");
             var stale = new ItemStack(expected.getItem());
             stale.set(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY);
-            stale.set(DataComponents.MAX_DAMAGE, expected.getMaxDamage() + 100);
+            stale.set(DataComponents.MAX_DAMAGE, expected.getOrDefault(DataComponents.MAX_DAMAGE, 0) + 100);
             stale.set(DataComponents.DAMAGE, 13);
             stale.remove(DataComponents.UNBREAKABLE);
             var loaded = MinecraftAccess.roundTrip(helper, stale);
-            check(helper, loaded.getMaxDamage() != expected.getMaxDamage(), "Fixture must contain outdated durability");
+            check(helper, !Objects.equals(loaded.get(DataComponents.MAX_DAMAGE), expected.get(DataComponents.MAX_DAMAGE)),
+                    "Fixture must contain outdated durability");
             check(helper, !Objects.equals(loaded.get(DataComponents.ATTRIBUTE_MODIFIERS), expected.get(DataComponents.ATTRIBUTE_MODIFIERS)),
                     "Fixture must contain outdated attributes");
             fixture.player().setItemSlot(EquipmentSlot.HEAD, loaded);
@@ -32,6 +33,8 @@ public final class StackUpdateTests {
                 check(helper, Objects.equals(equipped.get(DataComponents.ATTRIBUTE_MODIFIERS), expected.get(DataComponents.ATTRIBUTE_MODIFIERS)),
                         "Equipped armor must refresh outdated attributes");
                 check(helper, equipped.getMaxDamage() == expected.getMaxDamage(), "Equipped armor must refresh outdated durability");
+                check(helper, Objects.equals(equipped.get(DataComponents.MAX_DAMAGE), expected.get(DataComponents.MAX_DAMAGE)),
+                        "Equipped armor must refresh the stored durability component");
                 check(helper, Objects.equals(equipped.get(DataComponents.UNBREAKABLE), expected.get(DataComponents.UNBREAKABLE)),
                         "Equipped armor must apply the configured durability toggle");
                 check(helper, equipped.getOrDefault(DataComponents.DAMAGE, 0) == 13, "Refreshing armor must preserve damage");
