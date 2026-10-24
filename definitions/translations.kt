@@ -942,4 +942,639 @@ val languages: TranslationCatalog = translations(namespace = mod.id) {
             description = "§7사자의 형상을 본뜬 황금 갑주.\n최초의 군주를 섬긴 가장 맹렬한 용 사냥꾼을 위해 벼려졌으며, 남아 있는 번개의 힘으로 지금도 낮게 울린다.\n한 벌을 모두 갖춰 입으면 고대의 돌비늘마저 꿰뚫을 창격의 메아리를 느낄 수 있다."
         }
     }
+
+    language("es_es") {
+        armorNames(
+            helmet = "Casco {name}",
+            chestplate = "Peto {name}",
+            leggings = "Grebas {name}",
+            boots = "Botas {name}",
+        )
+        entry("itemGroup.fantasy_armor.fa_tab", "Fantasy Armor")
+        entry("item.${mod.id}.${moonCrystal.id}", "Cristal Lunar")
+
+        armor("eclipse_soldier", name = "del Soldado del Eclipse") {
+            description = "§7La armadura de un infante que luchó hace mucho por el triunfo del eclipse sobre el sol.\nSe dice que miles de desdichados encontraron la muerte bajo las botas de las legiones."
+        }
+
+        armor("golden_horns", name = "de los Cuernos Dorados") {
+            description = "§7Una armadura tan resplandeciente que parece tallada en la propia luz.\nSin embargo, su oro no es una bendición, sino una maldición.\nHa presenciado muerte y destrucción, y su luz alimenta la codicia y la sed de sangre.\nSolo sirve a su dueño mientras esté dispuesto a sacrificar a sus enemigos."
+        }
+
+        armor("dragonslayer", name = "del Matadragones") {
+            description = "§7Forjada con las escamas de dragones vencidos, cada una símbolo de fuerza y furia ancestrales.\nSus placas y púas te otorgan el poder de la victoria sobre ellos, pero recuerda que cada paso bajo esta armadura carga con el peso de muchas muertes."
+        }
+
+        armor("hero", name = "del Héroe") {
+            description = "§7El legado de antiguos guerreros que lucharon hasta su último aliento.\nGuarda el recuerdo de innumerables batallas y penurias soportadas en busca de justicia.\nPero la gloria es una carga pesada.\nNo todas las historias perduran a través de los siglos."
+        }
+
+        armor("thief", name = "del Ladrón") {
+            description = "§7La compañera perfecta de quienes viven entre sombras y respiran oscuridad.\nQuien la lleva se funde con la noche.\nLa máscara negra oculta tu rostro y deja a tus enemigos en la incertidumbre."
+        }
+
+        armor("wandering_wizard", name = "del Mago Errante") {
+            description = "§7Estas prendas están imbuidas de magia antigua.\nSusurran hechizos olvidados y abren puertas a otros mundos.\nCada hilo vincula a su portador con fuerzas desconocidas, otorgándole el poder de hacer magia y, a la vez, la maldición de vagar eternamente sin descanso."
+        }
+
+        armor("sunset_wings", name = "de las Alas del Ocaso") {
+            description = "§7El ocaso es a la vez un final y un comienzo.\nLas alas guían a su dueño a través de la oscuridad.\nAl vestirlas, te conviertes en el sombrío mensajero de la noche eterna."
+        }
+
+        armor("chess_board_knight", name = "del Caballero del Tablero") {
+            description = "§7Cada movimiento es una batalla; cada paso, una estrategia.\nEsta armadura encarna la fría lógica y el poder despiadado de la guerra.\nVístela con el orgullo de un estratega, dispuesto a sacrificarlo todo por la victoria, incluso tu alma."
+        }
+
+        armor("dark_lord", name = "del Señor Oscuro") {
+            description = "§7Creada en las profundidades de otro mundo, esta armadura encarna el poder del terror.\nSus púas y placas negras recuerdan a colmillos rotos.\nVístela si te atreves, pero recuerda que exige devoción eterna a la oscuridad y devora a quienes intentan resistirse."
+        }
+
+        armor("fog_guard", name = "del Guardián de la Niebla") {
+            description = "§7Envuelta en niebla ancestral, esta armadura ofrece una protección inigualable, pero debilita a su portador con visiones de reinos perdidos."
+        }
+
+        armor("dark_cover", name = "del Manto Oscuro") {
+            description = "§7Esta armadura envuelve a su portador en sombras, lo protege de la luz y le concede silencio, pero susurra secretos olvidados de fuerzas oscuras.\nVístela, pero escucha las advertencias de las sombras."
+        }
+
+        armor("spark_of_dawn", name = "de la Chispa del Alba") {
+            description = "§7Forjada en la primera luz, esta armadura alberga calor y claridad, pero quema a quienes no son puros de corazón.\nSolo los justos pueden despertar su verdadero poder."
+        }
+
+        armor("golden_execution", name = "de la Ejecución Dorada") {
+            description = "§7Esta armadura soporta el peso de la ira del imperio y brilla como el oro, pero está empapada en la sangre de los caídos.\nVístela con orgullo, sin olvidar jamás su precio."
+        }
+
+        armor("forgotten_trace", name = "de la Huella Olvidada") {
+            description = "§7El recuerdo de antiguas guerras perdura en esta armadura y acosa a su portador con ecos de batallas olvidadas.\nAl vestirla, queda marcado como un alma de otra era."
+        }
+
+        armor("redeemer", name = "del Redentor") {
+            description = "§7Una armadura creada por la antigua orden.\nTu dios fue asesinado hace mucho, pero tu fe ha perdurado.\nAun sabiendo que probablemente no regresarás de tu misión, avanzas con valentía hacia lo desconocido."
+        }
+
+        armor("twinned", name = "de los Gemelos") {
+            description = "§7Unida en espíritu a otro ser, esta armadura comparte el dolor y el triunfo con su gemela.\nUn destino común aguarda a quienes visten el conjunto completo."
+        }
+
+        armor("gilded_hunt", name = "de la Cacería Dorada") {
+            description = "§7Vestida por quienes persiguen el honor y la gloria, esta armadura refleja la ambición indómita de su portador.\nCaza con ella, pero recuerda: la gloria suele exigir un alto precio."
+        }
+
+        armor("lady_maria", name = "de Lady Maria") {
+            description = "§7Un cadáver… debería dejarse en paz.\nAh, lo sé muy bien. Con qué dulzura llaman los secretos.\nAhora solo una muerte honesta puede curarte.\nLiberarte de tu desenfrenada curiosidad."
+        }
+
+        armor("crucible_knight", name = "del Caballero del Crisol") {
+            description = "§7Alberga el poder del crisol de la vida.\nCon el tiempo, la fuerza de estos caballeros, e incluso su aspecto, llegaron a considerarse caóticos y dignos de desprecio."
+        }
+
+        armor("evening_ghost", name = "del Fantasma del Anochecer") {
+            description = "§7Oculta en la noche, la sombra conoce su lugar.\nSus pasos son silenciosos, pero el frío de su presencia se siente en la piel."
+        }
+
+        armor("ronin", name = "del Ronin") {
+            description = "§7El acero lleva las cicatrices del pasado; sus dibujos están impregnados de sangre enfriada hace mucho."
+        }
+
+        armor("malenia", name = "de Malenia") {
+            description = "§7…Escucha mis palabras. Soy Malenia. La Espada de Miquella. Y jamás he conocido la derrota."
+        }
+
+        armor("old_knight", name = "del Viejo Caballero") {
+            description = "§7Una armadura que perteneció a un caballero que sobrevivió a innumerables batallas.\nSu peso es insoportable para los débiles, pero quienes lo soporten jamás caerán."
+        }
+
+        armor("silver_knight", name = "del Caballero Plateado") {
+            description = "§7La armadura de un guerrero de élite que nunca flaqueó en combate.\nSu brillo plateado refleja la luz de la luna y trae una muerte rápida a quienes osan enfrentarse a su dueño."
+        }
+
+        armor("dead_gladiator", name = "del Gladiador Muerto") {
+            description = "§7La armadura de un esclavo caído en la arena.\nSu nombre ha sido olvidado, pero la furia aún arde bajo el acero."
+        }
+
+        armor("flesh_of_the_feaster", name = "de la Carne del Devorador") {
+            description = "§7Esta armadura apesta a sangre y codicia.\nPerteneció a alguien que comía sin cesar, hasta convertirse en aquello que consumía."
+        }
+
+        armor("wind_worshipper", name = "del Adorador del Viento") {
+            description = "§7Una tela tan ligera como el aliento.\nLa visten quienes no conocen el descanso y vagan adonde los lleve el viento."
+        }
+
+        armor("grave_sentinel", name = "del Centinela del Cementerio") {
+            description = "§7La armadura que vela el sueño de los muertos.\nAntaño ligada a nobles juramentos, su deber se deformó con los años hasta convertirse en una vigilia muda entre polvo y silencio."
+        }
+
+        armor("ornstein", name = "de Ornstein") {
+            description = "§7Placas doradas con la forma de un león.\nForjada para el más feroz matadragones del Primer Señor, esta armadura aún vibra con vestigios del rayo.\nQuienes visten el conjunto completo sienten el eco de una estocada capaz de atravesar antiguas escamas de piedra."
+        }
+    }
+
+    language("pt_br") {
+        armorNames(
+            helmet = "Elmo {name}",
+            chestplate = "Peitoral {name}",
+            leggings = "Perneiras {name}",
+            boots = "Botas {name}",
+        )
+        entry("itemGroup.fantasy_armor.fa_tab", "Fantasy Armor")
+        entry("item.${mod.id}.${moonCrystal.id}", "Cristal Lunar")
+
+        armor("eclipse_soldier", name = "do Soldado do Eclipse") {
+            description = "§7A armadura de um soldado de infantaria que lutou, há muito tempo, pelo triunfo do eclipse sobre o sol.\nDizem que milhares de desafortunados encontraram a morte sob as botas das legiões."
+        }
+
+        armor("golden_horns", name = "dos Chifres Dourados") {
+            description = "§7Uma armadura tão resplandecente que parece esculpida na própria luz.\nSeu ouro, porém, não é uma bênção, mas uma maldição.\nEle testemunhou morte e destruição, e sua luz alimenta a ganância e a sede de sangue.\nEsta armadura só serve ao dono enquanto ele estiver disposto a sacrificar seus inimigos."
+        }
+
+        armor("dragonslayer", name = "do Matador de Dragões") {
+            description = "§7Forjada com escamas de dragões derrotados, cada uma símbolo de força e fúria ancestrais.\nSuas placas e espinhos concedem o poder da vitória sobre eles, mas lembre-se: cada passo com esta armadura carrega o peso de muitas mortes."
+        }
+
+        armor("hero", name = "do Herói") {
+            description = "§7O legado de antigos guerreiros que lutaram até o último suspiro.\nGuarda a memória de incontáveis batalhas e provações enfrentadas em busca de justiça.\nMas a glória é um fardo pesado.\nNem toda história atravessa as eras."
+        }
+
+        armor("thief", name = "do Ladrão") {
+            description = "§7A companheira perfeita de quem vive nas sombras e respira a escuridão.\nQuem a veste se torna um com a noite.\nA máscara negra esconde seu rosto, deixando seus inimigos na dúvida."
+        }
+
+        armor("wandering_wizard", name = "do Mago Errante") {
+            description = "§7Estas vestes estão imbuídas de magia antiga.\nElas sussurram feitiços esquecidos e abrem portais para outros mundos.\nCada fio liga seu portador a forças desconhecidas, concedendo o poder de realizar magia e, ao mesmo tempo, a maldição de vagar eternamente sem descanso."
+        }
+
+        armor("sunset_wings", name = "das Asas do Poente") {
+            description = "§7O poente é, ao mesmo tempo, fim e começo.\nAs asas guiam seu dono pela escuridão.\nAo vesti-las, você se torna o mensageiro sombrio da noite eterna."
+        }
+
+        armor("chess_board_knight", name = "do Cavaleiro do Tabuleiro") {
+            description = "§7Cada movimento é uma batalha; cada passo, uma estratégia.\nEsta armadura incorpora a lógica fria e o poder implacável da guerra.\nVista-a com o orgulho de um estrategista, pronto para sacrificar tudo pela vitória, até mesmo sua alma."
+        }
+
+        armor("dark_lord", name = "do Senhor das Trevas") {
+            description = "§7Criada nas profundezas de outro mundo, esta armadura incorpora o poder do terror.\nSeus espinhos e placas negras lembram presas quebradas.\nVista-a se tiver coragem, mas saiba que ela exige devoção eterna às trevas e devora quem tenta resistir."
+        }
+
+        armor("fog_guard", name = "do Guardião da Névoa") {
+            description = "§7Envolta em uma névoa ancestral, esta armadura oferece proteção inigualável, mas enfraquece seu portador com visões de reinos perdidos."
+        }
+
+        armor("dark_cover", name = "do Manto Sombrio") {
+            description = "§7Esta armadura envolve seu portador em sombras, protege-o da luz e lhe concede silêncio, mas sussurra segredos esquecidos de forças obscuras.\nVista-a, mas ouça os avisos das sombras."
+        }
+
+        armor("spark_of_dawn", name = "da Centelha da Aurora") {
+            description = "§7Forjada na primeira luz, esta armadura traz calor e claridade, mas queima quem não tem o coração puro.\nSomente os justos podem despertar seu verdadeiro poder."
+        }
+
+        armor("golden_execution", name = "da Execução Dourada") {
+            description = "§7Carregando o peso da ira do império, esta armadura brilha como ouro, mas está encharcada com o sangue dos caídos.\nVista-a com orgulho, mas jamais esqueça seu preço."
+        }
+
+        armor("forgotten_trace", name = "do Vestígio Esquecido") {
+            description = "§7A memória de guerras antigas permanece nesta armadura, assombrando seu portador com ecos de batalhas há muito esquecidas.\nAo vesti-la, ele é marcado como uma alma de outra era."
+        }
+
+        armor("redeemer", name = "do Redentor") {
+            description = "§7Uma armadura criada pela antiga ordem.\nSeu deus foi morto há muito tempo, mas sua fé resistiu.\nMesmo sabendo que provavelmente não voltará de sua missão, você avança com coragem rumo ao desconhecido."
+        }
+
+        armor("twinned", name = "dos Gêmeos") {
+            description = "§7Ligada em espírito a outro ser, esta armadura compartilha a dor e o triunfo com sua gêmea.\nUm destino comum aguarda quem veste o conjunto completo."
+        }
+
+        armor("gilded_hunt", name = "da Caçada Dourada") {
+            description = "§7Usada por quem busca honra e glória, esta armadura reflete a ambição indomável de seu portador.\nCace com ela, mas cuidado: a glória costuma cobrar um preço alto."
+        }
+
+        armor("lady_maria", name = "de Lady Maria") {
+            description = "§7Um cadáver… deve ser deixado em paz.\nAh, eu sei muito bem. Como os segredos chamam de forma tão doce.\nAgora, só uma morte honesta pode curar você.\nLibertar você dessa curiosidade desenfreada."
+        }
+
+        armor("crucible_knight", name = "do Cavaleiro do Crisol") {
+            description = "§7Abriga o poder do crisol da vida.\nCom o tempo, a força desses cavaleiros, e até sua aparência, passou a ser vista como caótica e digna de desprezo."
+        }
+
+        armor("evening_ghost", name = "do Fantasma do Anoitecer") {
+            description = "§7Oculta na noite, a sombra conhece seu lugar.\nSeus passos são silenciosos, mas o frio de sua presença é sentido na pele."
+        }
+
+        armor("ronin", name = "do Ronin") {
+            description = "§7O aço carrega as cicatrizes do passado; seus padrões estão impregnados de sangue há muito resfriado."
+        }
+
+        armor("malenia", name = "de Malenia") {
+            description = "§7…Ouça minhas palavras. Sou Malenia. A Lâmina de Miquella. E nunca conheci a derrota."
+        }
+
+        armor("old_knight", name = "do Velho Cavaleiro") {
+            description = "§7Uma armadura que pertenceu a um cavaleiro que sobreviveu a incontáveis batalhas.\nSeu peso é insuportável para os fracos, mas quem o suporta jamais cairá."
+        }
+
+        armor("silver_knight", name = "do Cavaleiro Prateado") {
+            description = "§7A armadura de um guerreiro de elite que jamais vacilou em batalha.\nSeu brilho prateado reflete o luar e traz morte rápida a quem ousa enfrentar seu dono."
+        }
+
+        armor("dead_gladiator", name = "do Gladiador Morto") {
+            description = "§7A armadura de um escravo que tombou na arena.\nSeu nome foi esquecido, mas a fúria ainda arde sob o aço."
+        }
+
+        armor("flesh_of_the_feaster", name = "da Carne do Devorador") {
+            description = "§7Esta armadura fede a sangue e ganância.\nPertenceu a alguém que se alimentava sem parar, até se tornar aquilo que consumia."
+        }
+
+        armor("wind_worshipper", name = "do Adorador do Vento") {
+            description = "§7Um tecido leve como o sopro.\nUsado por quem não conhece descanso e vagueia para onde o vento levar."
+        }
+
+        armor("grave_sentinel", name = "da Sentinela do Cemitério") {
+            description = "§7A armadura que guarda o sono dos mortos.\nAntes ligada a nobres juramentos, sua missão se distorceu com o tempo, tornando-se uma vigília muda em meio à poeira e ao silêncio."
+        }
+
+        armor("ornstein", name = "de Ornstein") {
+            description = "§7Placas douradas moldadas à imagem de um leão.\nForjada para o mais feroz matador de dragões do Primeiro Senhor, esta armadura ainda vibra com resquícios de relâmpagos.\nQuem veste o conjunto completo sente o eco de uma estocada capaz de perfurar antigas escamas de pedra."
+        }
+    }
+
+    language("de_de") {
+        armorNames(
+            helmet = "Helm {name}",
+            chestplate = "Brustpanzer {name}",
+            leggings = "Beinschutz {name}",
+            boots = "Stiefel {name}",
+        )
+        entry("itemGroup.fantasy_armor.fa_tab", "Fantasy Armor")
+        entry("item.${mod.id}.${moonCrystal.id}", "Mondkristall")
+
+        armor("eclipse_soldier", name = "des Eklipsensoldaten") {
+            description = "§7Die Rüstung eines Fußsoldaten, der vor langer Zeit für den Sieg der Finsternis über die Sonne kämpfte.\nMan sagt, unter den Stiefeln der Legionen hätten Tausende Unglückliche den Tod gefunden."
+        }
+
+        armor("golden_horns", name = "der Goldenen Hörner") {
+            description = "§7Eine Rüstung, die so hell strahlt, als wäre sie aus dem Licht selbst gemeißelt.\nDoch ihr Gold ist kein Segen, sondern ein Fluch.\nEs hat Tod und Zerstörung gesehen, und sein Licht nährt Gier und Blutdurst.\nDiese Rüstung dient ihrem Träger nur, solange er bereit ist, seine Feinde zu opfern."
+        }
+
+        armor("dragonslayer", name = "des Drachentöters") {
+            description = "§7Aus den Schuppen bezwungener Drachen geschmiedet, jede ein Sinnbild uralter Stärke und Wut.\nDie Platten und Stacheln verleihen dir die Macht des Sieges über sie. Vergiss jedoch nicht, dass jeder Schritt in dieser Rüstung das Gewicht vieler Tode trägt."
+        }
+
+        armor("hero", name = "des Helden") {
+            description = "§7Das Erbe uralter Krieger, die bis zum letzten Atemzug kämpften.\nSie bewahrt die Erinnerung an zahllose Schlachten und Entbehrungen auf der Suche nach Gerechtigkeit.\nDoch Ruhm ist eine schwere Last.\nNicht jede Geschichte überdauert die Zeiten."
+        }
+
+        armor("thief", name = "des Diebes") {
+            description = "§7Der vollkommene Begleiter für jene, die in Schatten leben und Dunkelheit atmen.\nIhr Träger wird eins mit der Nacht.\nDie schwarze Maske verbirgt dein Gesicht und lässt deine Feinde im Ungewissen."
+        }
+
+        armor("wandering_wizard", name = "des Wandernden Magiers") {
+            description = "§7Diese Gewänder sind von uralter Magie durchdrungen.\nSie flüstern vergessene Zauber und öffnen Tore zu anderen Welten.\nJeder Faden bindet den Träger an unbekannte Mächte und verleiht ihm die Gabe zu zaubern, aber auch den Fluch ewiger Wanderschaft ohne Rast."
+        }
+
+        armor("sunset_wings", name = "der Abendrotschwingen") {
+            description = "§7Der Sonnenuntergang ist Ende und Anfang zugleich.\nDie Schwingen führen ihren Träger durch die Dunkelheit.\nWer sie anlegt, wird zum düsteren Boten der ewigen Nacht."
+        }
+
+        armor("chess_board_knight", name = "des Schachbrettritters") {
+            description = "§7Jeder Zug ist eine Schlacht, jeder Schritt eine Strategie.\nDiese Rüstung verkörpert die kalte Logik und rücksichtslose Macht des Krieges.\nTrage sie mit dem Stolz eines Strategen, bereit, für den Sieg alles zu opfern, selbst deine Seele."
+        }
+
+        armor("dark_lord", name = "des Dunklen Fürsten") {
+            description = "§7In den Tiefen einer anderen Welt erschaffen, verkörpert diese Rüstung die Macht des Schreckens.\nIhre Stacheln und schwarzen Platten gleichen zerbrochenen Fangzähnen.\nTrage sie, wenn du es wagst. Doch wisse, dass sie ewige Treue zur Dunkelheit fordert und jene verschlingt, die ihr widerstehen wollen."
+        }
+
+        armor("fog_guard", name = "des Nebelwächters") {
+            description = "§7Von uraltem Nebel umhüllt, gewährt diese Rüstung unvergleichlichen Schutz, schwächt ihren Träger jedoch mit Visionen verlorener Reiche."
+        }
+
+        armor("dark_cover", name = "des Dunklen Schleiers") {
+            description = "§7Diese Rüstung hüllt ihren Träger in Schatten, schützt ihn vor Licht und schenkt ihm Stille, flüstert jedoch vergessene Geheimnisse dunkler Mächte.\nTrage sie, aber höre auf die Warnungen der Schatten."
+        }
+
+        armor("spark_of_dawn", name = "des Morgenfunkens") {
+            description = "§7Im ersten Licht geschmiedet, birgt diese Rüstung Wärme und Helligkeit, verbrennt jedoch jene, deren Herz nicht rein ist.\nNur die Rechtschaffenen können ihre wahre Macht erwecken."
+        }
+
+        armor("golden_execution", name = "der Goldenen Hinrichtung") {
+            description = "§7Diese Rüstung trägt die Last des kaiserlichen Zorns. Sie glänzt golden, ist aber vom Blut der Gefallenen getränkt.\nTrage sie mit Stolz, doch vergiss niemals ihren Preis."
+        }
+
+        armor("forgotten_trace", name = "der Vergessenen Spur") {
+            description = "§7Die Erinnerung an uralte Kriege verweilt in dieser Rüstung und verfolgt ihren Träger mit dem Echo längst vergangener Schlachten.\nWer sie anlegt, trägt das Mal einer Seele aus einem anderen Zeitalter."
+        }
+
+        armor("redeemer", name = "des Erlösers") {
+            description = "§7Eine Rüstung, geschaffen vom alten Orden.\nDein Gott wurde vor langer Zeit erschlagen, doch dein Glaube blieb bestehen.\nObwohl du weißt, dass du von deiner Suche wohl nicht zurückkehren wirst, schreitest du mutig ins Unbekannte."
+        }
+
+        armor("twinned", name = "der Zwillinge") {
+            description = "§7Im Geist mit einem anderen verbunden, teilt diese Rüstung Schmerz und Triumph mit ihrem Zwilling.\nWer das vollständige Set trägt, den erwartet ein gemeinsames Schicksal."
+        }
+
+        armor("gilded_hunt", name = "der Vergoldeten Jagd") {
+            description = "§7Diese Rüstung wird von jenen getragen, die Ehre und Ruhm suchen, und spiegelt den ungezügelten Ehrgeiz ihres Trägers wider.\nJage mit ihr, doch sei gewarnt: Ruhm hat oft einen hohen Preis."
+        }
+
+        armor("lady_maria", name = "von Lady Maria") {
+            description = "§7Eine Leiche … sollte man in Frieden lassen.\nOh, ich weiß nur zu gut, wie süß Geheimnisse locken.\nNur ein ehrlicher Tod kann dich jetzt noch heilen.\nDich von deiner ungezügelten Neugier befreien."
+        }
+
+        armor("crucible_knight", name = "des Schmelztiegelritters") {
+            description = "§7Sie birgt die Macht des Schmelztiegels des Lebens.\nMit der Zeit galten die Stärke dieser Ritter und sogar ihr Aussehen als chaotisch und verachtenswert."
+        }
+
+        armor("evening_ghost", name = "des Abendgeistes") {
+            description = "§7In der Nacht verborgen, kennt der Schatten seinen Platz.\nSeine Schritte sind lautlos, doch die Kälte seiner Gegenwart ist auf der Haut zu spüren."
+        }
+
+        armor("ronin", name = "des Ronin") {
+            description = "§7Der Stahl trägt die Narben der Vergangenheit; seine Muster sind von längst erkaltetem Blut durchtränkt."
+        }
+
+        armor("malenia", name = "von Malenia") {
+            description = "§7…Höre meine Worte. Ich bin Malenia. Miquellas Klinge. Und ich habe noch nie eine Niederlage erfahren."
+        }
+
+        armor("old_knight", name = "des Alten Ritters") {
+            description = "§7Die Rüstung eines Ritters, der zahllose Schlachten überlebte.\nIhr Gewicht ist für die Schwachen unerträglich, doch wer es erträgt, wird niemals fallen."
+        }
+
+        armor("silver_knight", name = "des Silberritters") {
+            description = "§7Die Rüstung eines Elitekriegers, der im Kampf niemals wankte.\nIhr silberner Glanz spiegelt das Mondlicht wider und bringt jenen den raschen Tod, die sich ihrem Träger entgegenstellen."
+        }
+
+        armor("dead_gladiator", name = "des Toten Gladiators") {
+            description = "§7Die Rüstung eines Sklaven, der in der Arena fiel.\nSein Name ist vergessen, doch unter dem Stahl brennt noch immer Zorn."
+        }
+
+        armor("flesh_of_the_feaster", name = "des Fleisches des Verschlingers") {
+            description = "§7Diese Rüstung stinkt nach Blut und Gier.\nSie gehörte einst jemandem, der unablässig fraß, bis er zu dem wurde, was er verschlang."
+        }
+
+        armor("wind_worshipper", name = "des Windanbeters") {
+            description = "§7Der Stoff ist leicht wie ein Atemzug.\nEr wird von Rastlosen getragen, die dorthin ziehen, wohin der Wind sie trägt."
+        }
+
+        armor("grave_sentinel", name = "des Grabwächters") {
+            description = "§7Eine Rüstung, die den Schlaf der Toten bewacht.\nEinst edlen Eiden verpflichtet, wandelte sich ihre Pflicht mit der Zeit zu einer stummen Wache zwischen Staub und Stille."
+        }
+
+        armor("ornstein", name = "von Ornstein") {
+            description = "§7Goldene Platten in der Gestalt eines Löwen.\nFür den wildesten Drachentöter des Ersten Fürsten geschmiedet, summt diese Rüstung noch immer von verbliebener Blitzkraft.\nWer das vollständige Set trägt, spürt das Echo eines Speerstoßes, der selbst uralte Steinschuppen durchdringen kann."
+        }
+    }
+
+    language("fr_fr") {
+        armorNames(
+            helmet = "Casque {name}",
+            chestplate = "Plastron {name}",
+            leggings = "Jambières {name}",
+            boots = "Bottes {name}",
+        )
+        entry("itemGroup.fantasy_armor.fa_tab", "Fantasy Armor")
+        entry("item.${mod.id}.${moonCrystal.id}", "Cristal Lunaire")
+
+        armor("eclipse_soldier", name = "du Soldat de l'Éclipse") {
+            description = "§7L'armure d'un fantassin qui combattit jadis pour le triomphe de l'éclipse sur le soleil.\nOn raconte que des milliers de malheureux trouvèrent la mort sous les bottes des légions."
+        }
+
+        armor("golden_horns", name = "des Cornes Dorées") {
+            description = "§7Une armure si éclatante qu'elle semble taillée dans la lumière elle-même.\nPourtant, son or n'est pas une bénédiction, mais une malédiction.\nIl a été témoin de mort et de destruction, et sa lumière nourrit la cupidité et la soif de sang.\nCette armure ne sert son maître que tant qu'il accepte de sacrifier ses ennemis."
+        }
+
+        armor("dragonslayer", name = "du Tueur de Dragons") {
+            description = "§7Forgée dans les écailles de dragons vaincus, chacune symbole de force et de fureur ancestrales.\nSes plaques et ses pointes vous confèrent la puissance de la victoire sur eux, mais chaque pas sous cette armure porte le poids de nombreuses morts."
+        }
+
+        armor("hero", name = "du Héros") {
+            description = "§7L'héritage d'anciens guerriers qui combattirent jusqu'à leur dernier souffle.\nElle garde le souvenir d'innombrables batailles et épreuves endurées au nom de la justice.\nMais la gloire est un lourd fardeau.\nToutes les histoires ne traversent pas les âges."
+        }
+
+        armor("thief", name = "du Voleur") {
+            description = "§7La compagne idéale de ceux qui vivent dans les ombres et respirent les ténèbres.\nCelui qui la porte ne fait plus qu'un avec la nuit.\nLe masque noir dissimule votre visage et laisse vos ennemis dans l'incertitude."
+        }
+
+        armor("wandering_wizard", name = "du Mage Errant") {
+            description = "§7Ces vêtements sont imprégnés de magie ancienne.\nIls murmurent des sortilèges oubliés et ouvrent des portes vers d'autres mondes.\nChaque fil lie son porteur à des forces inconnues, lui donnant le pouvoir de pratiquer la magie, mais aussi la malédiction d'une errance éternelle sans repos."
+        }
+
+        armor("sunset_wings", name = "des Ailes du Crépuscule") {
+            description = "§7Le crépuscule est à la fois une fin et un commencement.\nLes ailes guident leur maître à travers l'obscurité.\nEn les revêtant, vous devenez le sombre messager de la nuit éternelle."
+        }
+
+        armor("chess_board_knight", name = "du Chevalier de l'Échiquier") {
+            description = "§7Chaque mouvement est une bataille, chaque pas une stratégie.\nCette armure incarne la froide logique et la puissance impitoyable de la guerre.\nPortez-la avec la fierté d'un stratège, prêt à tout sacrifier pour la victoire, même votre âme."
+        }
+
+        armor("dark_lord", name = "du Seigneur des Ténèbres") {
+            description = "§7Créée dans les profondeurs d'un autre monde, cette armure incarne la puissance de la terreur.\nSes pointes et ses plaques noires ressemblent à des crocs brisés.\nPortez-la si vous l'osez, mais sachez qu'elle exige une dévotion éternelle aux ténèbres et dévore ceux qui tentent de lui résister."
+        }
+
+        armor("fog_guard", name = "du Gardien de la Brume") {
+            description = "§7Enveloppée d'une brume ancestrale, cette armure offre une protection inégalée, mais affaiblit son porteur par des visions de royaumes perdus."
+        }
+
+        armor("dark_cover", name = "du Voile Sombre") {
+            description = "§7Cette armure enveloppe son porteur d'ombres, le protège de la lumière et lui accorde le silence, mais murmure les secrets oubliés de forces obscures.\nPortez-la, mais écoutez les avertissements des ombres."
+        }
+
+        armor("spark_of_dawn", name = "de l'étincelle de l'Aube") {
+            description = "§7Forgée dans la première lumière, cette armure porte chaleur et clarté, mais brûle ceux dont le cœur n'est pas pur.\nSeuls les justes peuvent éveiller sa véritable puissance."
+        }
+
+        armor("golden_execution", name = "de l'exécution Dorée") {
+            description = "§7Portant le poids du courroux de l'empire, cette armure brille comme l'or, mais est trempée du sang des morts.\nPortez-la avec fierté, sans jamais oublier son prix."
+        }
+
+        armor("forgotten_trace", name = "de la Trace Oubliée") {
+            description = "§7Le souvenir des guerres anciennes demeure dans cette armure et hante son porteur des échos de batailles oubliées.\nQuiconque la revêt porte la marque d'une âme venue d'un autre âge."
+        }
+
+        armor("redeemer", name = "du Rédempteur") {
+            description = "§7Une armure créée par l'ancien ordre.\nVotre dieu a été tué il y a bien longtemps, mais votre foi a perduré.\nSachant que vous ne reviendrez probablement pas de votre quête, vous avancez courageusement vers l'inconnu."
+        }
+
+        armor("twinned", name = "des Jumeaux") {
+            description = "§7Liée à un autre être par l'esprit, cette armure partage la douleur et le triomphe de sa jumelle.\nUn destin commun attend ceux qui portent l'ensemble complet."
+        }
+
+        armor("gilded_hunt", name = "de la Chasse Dorée") {
+            description = "§7Portée par ceux qui recherchent l'honneur et la gloire, cette armure reflète l'ambition indomptable de son porteur.\nChassez avec elle, mais prenez garde : la gloire exige souvent un lourd tribut."
+        }
+
+        armor("lady_maria", name = "de Dame Maria") {
+            description = "§7Un cadavre… devrait reposer en paix.\nOh, je ne le sais que trop bien. Comme les secrets nous appellent avec douceur.\nSeule une mort honnête peut désormais vous guérir.\nVous libérer de votre curiosité effrénée."
+        }
+
+        armor("crucible_knight", name = "du Chevalier du Creuset") {
+            description = "§7Elle renferme la puissance du creuset de la vie.\nAvec le temps, la force de ces chevaliers, et même leur apparence, furent jugées chaotiques et dignes de mépris."
+        }
+
+        armor("evening_ghost", name = "du Fantôme du Soir") {
+            description = "§7Cachée dans la nuit, l'ombre connaît sa place.\nSes pas sont silencieux, mais le froid de sa présence se ressent sur la peau."
+        }
+
+        armor("ronin", name = "du Ronin") {
+            description = "§7L'acier porte les cicatrices du passé ; ses motifs sont imprégnés d'un sang refroidi depuis longtemps."
+        }
+
+        armor("malenia", name = "de Malenia") {
+            description = "§7…Écoutez mes paroles. Je suis Malenia. L'Épée de Miquella. Et je n'ai jamais connu la défaite."
+        }
+
+        armor("old_knight", name = "du Vieux Chevalier") {
+            description = "§7Une armure jadis portée par un chevalier ayant survécu à d'innombrables batailles.\nSon poids est insupportable pour les faibles, mais ceux qui l'endurent ne tomberont jamais."
+        }
+
+        armor("silver_knight", name = "du Chevalier d'Argent") {
+            description = "§7L'armure d'un guerrier d'élite qui ne faiblit jamais au combat.\nSon éclat argenté reflète la lune et apporte une mort rapide à ceux qui osent défier son maître."
+        }
+
+        armor("dead_gladiator", name = "du Gladiateur Mort") {
+            description = "§7L'armure d'un esclave tombé dans l'arène.\nSon nom est oublié, mais la fureur brûle encore sous l'acier."
+        }
+
+        armor("flesh_of_the_feaster", name = "de la Chair du Dévoreur") {
+            description = "§7Cette armure empeste le sang et la cupidité.\nElle appartenait jadis à un être qui se nourrissait sans fin, jusqu'à devenir ce qu'il dévorait."
+        }
+
+        armor("wind_worshipper", name = "de l'adorateur du Vent") {
+            description = "§7Un tissu léger comme le souffle.\nIl est porté par ceux qui ne connaissent aucun repos et errent au gré du vent."
+        }
+
+        armor("grave_sentinel", name = "de la Sentinelle du Cimetière") {
+            description = "§7L'armure qui veille sur le sommeil des morts.\nJadis liée à de nobles serments, sa mission s'est déformée avec le temps, devenant une veille muette parmi la poussière et le silence."
+        }
+
+        armor("ornstein", name = "d'Ornstein") {
+            description = "§7Des plaques dorées façonnées à l'image d'un lion.\nForgée pour le plus féroce tueur de dragons du Premier Seigneur, cette armure vibre encore des vestiges de la foudre.\nCeux qui portent l'ensemble complet ressentent l'écho d'un coup de lance capable de percer d'antiques écailles de pierre."
+        }
+    }
+
+    language("pl_pl") {
+        armorNames(
+            helmet = "Hełm {name}",
+            chestplate = "Napierśnik {name}",
+            leggings = "Nogawice {name}",
+            boots = "Buty {name}",
+        )
+        entry("itemGroup.fantasy_armor.fa_tab", "Fantasy Armor")
+        entry("item.${mod.id}.${moonCrystal.id}", "Księżycowy Kryształ")
+
+        armor("eclipse_soldier", name = "Żołnierza Zaćmienia") {
+            description = "§7Zbroja piechura, który dawno temu walczył o triumf zaćmienia nad słońcem.\nPowiadają, że pod butami legionów śmierć znalazły tysiące nieszczęśników."
+        }
+
+        armor("golden_horns", name = "Złotych Rogów") {
+            description = "§7Zbroja tak olśniewająca, jakby wyrzeźbiono ją z samego światła.\nJej złoto nie jest jednak błogosławieństwem, lecz klątwą.\nByło świadkiem śmierci i zniszczenia, a jego blask podsyca chciwość i żądzę krwi.\nZbroja służy właścicielowi tylko tak długo, jak długo jest gotów składać w ofierze swoich wrogów."
+        }
+
+        armor("dragonslayer", name = "Zabójcy Smoków") {
+            description = "§7Wykuta z łusek pokonanych smoków, z których każda symbolizuje pradawną siłę i gniew.\nPłyty i kolce dają ci moc zwycięstwa nad nimi, lecz pamiętaj, że każdy krok w tej zbroi niesie ciężar wielu śmierci."
+        }
+
+        armor("hero", name = "Bohatera") {
+            description = "§7Dziedzictwo dawnych wojowników, którzy walczyli do ostatniego tchu.\nPrzechowuje pamięć niezliczonych bitew i trudów znoszonych w poszukiwaniu sprawiedliwości.\nLecz chwała to ciężkie brzemię.\nNie każda opowieść przetrwa wieki."
+        }
+
+        armor("thief", name = "Złodzieja") {
+            description = "§7Doskonała towarzyszka tych, którzy żyją w cieniu i oddychają mrokiem.\nNoszący ją staje się jednością z nocą.\nCzarna maska skrywa twoją twarz, pozostawiając wrogów w niepewności."
+        }
+
+        armor("wandering_wizard", name = "Wędrownego Maga") {
+            description = "§7Szaty przesycone pradawną magią.\nSzepczą zapomniane zaklęcia i otwierają bramy do innych światów.\nKażda nić wiąże noszącego z nieznanymi siłami, dając mu moc czarowania, lecz także klątwę wiecznej tułaczki bez prawa do odpoczynku."
+        }
+
+        armor("sunset_wings", name = "Skrzydeł Zmierzchu") {
+            description = "§7Zachód słońca jest zarazem końcem i początkiem.\nSkrzydła prowadzą swego właściciela przez ciemność.\nGdy je przywdziejesz, staniesz się posępnym zwiastunem wiecznej nocy."
+        }
+
+        armor("chess_board_knight", name = "Rycerza Szachownicy") {
+            description = "§7Każdy ruch to bitwa, każdy krok to strategia.\nTa zbroja ucieleśnia chłodną logikę i bezlitosną potęgę wojny.\nNoś ją z dumą stratega, gotów poświęcić dla zwycięstwa wszystko, nawet własną duszę."
+        }
+
+        armor("dark_lord", name = "Mrocznego Władcy") {
+            description = "§7Stworzona w głębinach innego świata zbroja ucieleśnia potęgę grozy.\nJej kolce i czarne płyty przypominają połamane kły.\nPrzywdziej ją, jeśli się odważysz, lecz wiedz, że wymaga wiecznej wierności ciemności i pożera tych, którzy próbują się jej oprzeć."
+        }
+
+        armor("fog_guard", name = "Strażnika Mgły") {
+            description = "§7Spowita pradawną mgłą zbroja daje niezrównaną ochronę, lecz osłabia noszącego wizjami zaginionych krain."
+        }
+
+        armor("dark_cover", name = "Mrocznej Zasłony") {
+            description = "§7Ta zbroja otula noszącego cieniem, chroni przed światłem i obdarza ciszą, lecz szepcze zapomniane sekrety mrocznych sił.\nNoś ją, ale słuchaj ostrzeżeń cieni."
+        }
+
+        armor("spark_of_dawn", name = "Iskry Świtu") {
+            description = "§7Wykuta w pierwszym świetle zbroja niesie ciepło i blask, lecz parzy tych, których serca nie są czyste.\nTylko prawi mogą przebudzić jej prawdziwą moc."
+        }
+
+        armor("golden_execution", name = "Złotej Egzekucji") {
+            description = "§7Dźwigająca ciężar gniewu imperium zbroja lśni złotem, lecz jest przesiąknięta krwią poległych.\nNoś ją z dumą, ale nigdy nie zapominaj o jej cenie."
+        }
+
+        armor("forgotten_trace", name = "Zapomnianego Śladu") {
+            description = "§7Pamięć pradawnych wojen trwa w tej zbroi, nawiedzając noszącego echem dawno zapomnianych bitew.\nKto ją przywdzieje, zostaje naznaczony jako dusza z innej epoki."
+        }
+
+        armor("redeemer", name = "Odkupiciela") {
+            description = "§7Zbroja stworzona przez dawny zakon.\nTwój bóg został zabity dawno temu, lecz twoja wiara przetrwała.\nWiedząc, że zapewne nie wrócisz z wyprawy, odważnie kroczysz w nieznane."
+        }
+
+        armor("twinned", name = "Bliźniąt") {
+            description = "§7Związana duchem z inną istotą zbroja dzieli ból i triumf ze swą bliźniaczką.\nWspólny los czeka tych, którzy przywdzieją cały zestaw."
+        }
+
+        armor("gilded_hunt", name = "Złoconych Łowów") {
+            description = "§7Noszona przez tych, którzy ścigają honor i chwałę, zbroja odzwierciedla nieposkromioną ambicję właściciela.\nPoluj w niej, lecz uważaj: chwała często ma wysoką cenę."
+        }
+
+        armor("lady_maria", name = "Lady Marii") {
+            description = "§7Zwłoki… należy pozostawić w spokoju.\nOch, wiem aż za dobrze, jak słodko kuszą tajemnice.\nTeraz tylko uczciwa śmierć może cię uleczyć.\nUwolnić cię od nieposkromionej ciekawości."
+        }
+
+        armor("crucible_knight", name = "Rycerza Tygla") {
+            description = "§7Skrywa potęgę tygla życia.\nZ czasem siłę tych rycerzy, a nawet ich wygląd, uznano za chaotyczne i godne pogardy."
+        }
+
+        armor("evening_ghost", name = "Wieczornego Widma") {
+            description = "§7Ukryty w nocy cień zna swoje miejsce.\nJego kroki są bezgłośne, lecz chłód jego obecności czuć na skórze."
+        }
+
+        armor("ronin", name = "Ronina") {
+            description = "§7Stal nosi blizny przeszłości, a jej wzory są przesiąknięte dawno ostygłą krwią."
+        }
+
+        armor("malenia", name = "Malenii") {
+            description = "§7…Zapamiętaj moje słowa. Jestem Malenia. Ostrze Miquelli. I nigdy nie zaznałam porażki."
+        }
+
+        armor("old_knight", name = "Starego Rycerza") {
+            description = "§7Zbroja noszona niegdyś przez rycerza, który przeżył niezliczone bitwy.\nJej ciężar jest nie do zniesienia dla słabych, lecz ci, którzy go udźwigną, nigdy nie upadną."
+        }
+
+        armor("silver_knight", name = "Srebrnego Rycerza") {
+            description = "§7Zbroja elitarnego wojownika, który nigdy nie zachwiał się w boju.\nJej srebrny blask odbija światło księżyca i niesie szybką śmierć tym, którzy ośmielą się sprzeciwić jej panu."
+        }
+
+        armor("dead_gladiator", name = "Martwego Gladiatora") {
+            description = "§7Zbroja niewolnika poległego na arenie.\nJego imię zapomniano, lecz pod stalą wciąż płonie gniew."
+        }
+
+        armor("flesh_of_the_feaster", name = "Ciała Pożeracza") {
+            description = "§7Ta zbroja cuchnie krwią i chciwością.\nNależała do kogoś, kto pożerał bez końca, aż stał się tym, co pochłaniał."
+        }
+
+        armor("wind_worshipper", name = "Czciciela Wiatru") {
+            description = "§7Tkanina lekka jak oddech.\nNoszą ją ci, którzy nie znają spoczynku i wędrują tam, dokąd poniesie ich wiatr."
+        }
+
+        armor("grave_sentinel", name = "Strażnika Cmentarza") {
+            description = "§7Zbroja strzegąca snu zmarłych.\nNiegdyś związana szlachetnymi przysięgami, z czasem jej służba wypaczyła się w niemą wartę pośród pyłu i ciszy."
+        }
+
+        armor("ornstein", name = "Ornsteina") {
+            description = "§7Złote płyty ukształtowane na podobieństwo lwa.\nWykuta dla najzacieklejszego zabójcy smoków Pierwszego Władcy zbroja wciąż drży od resztek mocy błyskawic.\nNoszący cały zestaw czują echo pchnięcia włócznią zdolnego przebić pradawne kamienne łuski."
+        }
+    }
 }
